@@ -29,7 +29,7 @@
 		<nav id="gen-nav">
 			<ul>
 				<li><a href="home.php" class="active">Home</a></li>
-				<li><a href="javascript:void(0)">View</a></li>
+				<li><a href="view.php">View</a></li>
 				<li><a href="javascript:void(0)">Poll</a></li>
 				<li><a href="javascript:void(0)">About</a></li>
 				<li><a href="javascript:void(0)">Log in</a></li>
