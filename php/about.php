@@ -1,12 +1,12 @@
 <?php
 	session_start();
-	require("function.php");
+	require "function.php";
 	$dbconn = dbconn();
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-	<title>DorMe | Home</title>
+	<title>DorMe | About Us</title>
 </head>
 <body>
 	<header id="header">
@@ -37,21 +37,50 @@
 			</ul>
 		</nav>
 	</header>
-	<section id="establishments">
-		<h2>Featured Establishments</h2>
-		<?php
-			$query = homequeryConstruct();
-			$result = mysqli_query($dbconn, $query);
-			renderlist($result);
-		?>
-		<a href="#header">Back to Top</a>
-	</section>
-	<section id='contacthome'>
+	<div id="about">
+		<p>
+			DorMe makes it easy for you to access our website of establishment listings located within the Universtity of the Philippines Miagao campus.
+			Whether you're looking for a dormitory, apartment, or boarding house, DorMe offers convenience while you're at home or on-the-go.
+			DorMe provides housing information for University of the Philippines Visayas' students in Miagao which is inline with their dyamic lifestyle.  
+		</p>
+		<h2>♦ Our Team ♦</h2>
+		<div id='TEAM' align='center'>
+		<div id='team1'>
+			<ul>
+				<li>
+					<img src="css/images/gregg.jpg"/>
+					<li><strong>Gregg Marionn Icay</strong></li>
+					<li>Developer</li><br>
+				</li>
+				<li>
+					<img src="css/images/shebna.jpg"/>
+					<li><strong>Shebna Rose Fabilloren</strong></li>
+					<li>Developer</li>
+				</li>
+			</ul>
+		</div>
+			<div id='team2'>
+			<ul>
+				<li>
+					<img src="css/images/lincy.jpg"/>
+					<li><strong>Lincy Legada</strong></li>
+					<li>Developer</li><br>
+				</li>
+				<li>
+					<img src="css/images/cyra.jpg"/>
+					<li><strong>Cyra Dawn Montano</strong></li>
+					<li>Designer</li>
+				</li>
+			</ul>
+		</div>
+	</div>
+	</div>
+	<div id='contact'>
 		<h2>Contact Us</h2>
 		<p> Questions? Feedback? Suggestions? <br> We'd love to hear from you!<br>
 			Send us an email at <strong><a href=''>support@dorme.com</a></strong> and we'll get back to you as soon as possible.<br>
 		</p>
-	</section>
+	</div>
 	<footer>
 		<p>&copy; Dorme 2016 | A.Y. 2016-2017 CMSC 127: Fabilloren, Icay, Legada, Montano</p>
 	</footer>

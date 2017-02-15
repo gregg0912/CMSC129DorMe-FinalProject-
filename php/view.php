@@ -1,5 +1,5 @@
 <?
-	sessiont_start();
+	session_start();
 	require "function.php";
 	$dbconn = dbconn();
 ?>
