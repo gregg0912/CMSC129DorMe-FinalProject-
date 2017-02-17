@@ -10,16 +10,17 @@ if(isset($_POST["submit"])){
 	$username = $_POST["userName"];
 	$password = MD5($_POST["password"]);
 	$connect = mysqli_connect("localhost","root","","dorme") or die("Could not connect to the database.");
-	$query = "SELECT Username, Password FROM owner WHERE owner.Username='$username' AND owner.Password='$password'";
+	$query = "SELECT username, password FROM admin WHERE admin.username='$username' AND admin.password='$password'";
 	$result= mysqli_query($connect, $query) or die("Query failed.");
+	echo $query;
 
 
 	if(mysqli_num_rows($result) == 1){
 			$_SESSION["userName"] = $username;
-			$query = "SELECT ownerID FROM owner WHERE Username='$username'";
+			$query = "SELECT adminID FROM admin WHERE username='$username'";
 			$result= mysqli_query($connect, $query);
 			$row = mysqli_fetch_assoc($result);
-			$_SESSION["userID"] = $row['ownerID'];
+			$_SESSION["userID"] = $row['adminID'];
 			header("Location:view.php");
 	}
 	else{
@@ -30,10 +31,10 @@ if(isset($_POST["submit"])){
 <!DOCTYPE html>
 <html>
 <head>
-	<title> Login Form </title>
+	<title>Admin Login Form </title>
 </head>
  <body>
-	<h1>Login</h1>
+	<h1>Admin Login</h1>
 			
 		
 		<form method="post">
