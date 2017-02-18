@@ -10,16 +10,23 @@
 		if(!empty($_GET['loc'])){
 			$area = $_GET['loc'];
 			$area = "dorm.location = '".$area."'";
+			$query = $query . " AND $area";
 		}
 		if(!empty($_GET['keyword'])){
 			$key1 = htmlspecialchars($_GET['keyword'], ENT_QUOTES);
 			$key2 = str_replace("'", "\\'",$_GET['keyword']);
+			$query = $query . " AND dorm.DormId IN (SELECT dorm.DormId
+											FROM dorm
+											WHERE dorm.DormName LIKE '%$key1%' OR dorm.DormName LIKE '%$key2%')";
 		}
 		if(!empty($_GET['facilityList'])){
 			$facilities = $_GET['facilityList'];
-		}
-		if((!empty($facilities))&&(empty($area))&&(empty($_GET['keyword']))){
-			
+			$size = count($facilities);
+			$query = $query . " AND dorm.DormId IN (SELECT all_facilities.DormId
+								FROM all_facilities
+								WHERE all_facilities.facilityNo IN ('".implode("','",$facilities)."')
+								GROUP BY all_facilities.DormId
+								HAVING COUNT(all_facilities.facilityNo)>=$size)";
 		}
 	}
 ?>
@@ -29,56 +36,9 @@
 	<title>DorMe | View Dorm</title>
 </head>
 <body>
-	<header id="header">
-		<div id="estab fade">
-			<img src="../../../CMSC127_DORME/thumbnails/bettys.JPG" alt="image not found" />
-		</div>
-		<div id="estab fade">
-			<img src="../../../CMSC127_DORME/thumbnails/firstestate.JPG" alt="image not found" />
-		</div>
-		<div id="estab fade">
-			<img src="../../../CMSC127_DORME/thumbnails/foursisters.JPG" alt="image not found" />
-		</div>
-		<h1>DorMe.</h1>
-		<h2>your dorm. my dorm. our dorm.</h2>
-		<p> Looking for convenience? Look no further. Dorme is here for your new place to dwell!<br />
-			Scroll through featured dormitories and apartments on our home page and <br />
-			have an easy glimpse into finding your perfect second home!<br />
-			Sit back and pick your like.
-		</p>
-		<nav id="gen-nav">
-			<ul>
-				<li><a href="home.php" class="active">Home</a></li>
-				<li><a href="view.php">View</a></li>
-				<?php 
-				if(!isset($_SESSION['adminID'])){ ?>
-				<li><a href="poll.php">Poll</a></li>
-				<?php } ?>
-				<li><a href="about.php">About</a></li>
-				<?php
-				if(!isset($_SESSION['adminID'])){  ?>
-				<li><a href="javascript:void(0)">Log in</a>
-					<ul>
-						<li><a href="adminlogin.php">Admin</a></li>
-						<li><a href="login.php">Owner</a></li>
-					</ul>
-				</li>
-				<li><a href="registration.php">Sign up</a></li>
-				<?php }
-				
-				if(isset($_SESSION['adminID'])){ ?>
-				<li><a href="logout.php">Logout</a></li>
-				<?php } ?>
-			</ul>
-		</nav>
-		<div id="header2">
-			<h1>Search. See. Stay.</h1>
-			<p> Search for you desired facilities. <br />
-			See what establishment offers your wants. <br />
-			Filter your needs.
-			</p>
-		</div>
-	</header>
+	<?php
+	headerRender();
+	?>
 	<form id="filter" class="filter" method="get">
 		<fieldset>
 			<legend>FILTER:</legend>
