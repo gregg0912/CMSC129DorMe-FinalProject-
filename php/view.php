@@ -50,8 +50,13 @@
 			<ul>
 				<li><a href="home.php" class="active">Home</a></li>
 				<li><a href="view.php">View</a></li>
+				<?php 
+				if(!isset($_SESSION['adminID'])){ ?>
 				<li><a href="poll.php">Poll</a></li>
+				<?php } ?>
 				<li><a href="about.php">About</a></li>
+				<?php
+				if(!isset($_SESSION['adminID'])){  ?>
 				<li><a href="javascript:void(0)">Log in</a>
 					<ul>
 						<li><a href="adminlogin.php">Admin</a></li>
@@ -59,6 +64,11 @@
 					</ul>
 				</li>
 				<li><a href="registration.php">Sign up</a></li>
+				<?php }
+				
+				if(isset($_SESSION['adminID'])){ ?>
+				<li><a href="logout.php">Logout</a></li>
+				<?php } ?>
 			</ul>
 		</nav>
 		<div id="header2">
