@@ -2,16 +2,25 @@
 	session_start();
 	require("function.php");
 	$dbconn = dbconn();
-	if(isset($_GET['submit'])){
-		if(!empty($_GET['loc'])){
-			$area = $_GET['loc'];
-		}
-		if(!empty($_GET['keyword']))
-	}else{
-		$query = "SELECT dorm.DormId,dorm.DormName, CONCAT(address.streetName,', ',address.Barangay), owner.Name, dorm.HousingType, dorm.thumbnailpic
+	$query = "SELECT dorm.DormId,dorm.DormName, CONCAT(address.streetName,', ',address.Barangay), owner.Name, dorm.HousingType, dorm.thumbnailpic
 			FROM dorm, address, owner
 			WHERE dorm.AddressId = address.AddressId
 			AND dorm.OwnerId = owner.OwnerId";
+	if(isset($_GET['submit'])){
+		if(!empty($_GET['loc'])){
+			$area = $_GET['loc'];
+			$area = "dorm.location = '".$area."'";
+		}
+		if(!empty($_GET['keyword'])){
+			$key1 = htmlspecialchars($_GET['keyword'], ENT_QUOTES);
+			$key2 = str_replace("'", "\\'",$_GET['keyword']);
+		}
+		if(!empty($_GET['facilityList'])){
+			$facilities = $_GET['facilityList'];
+		}
+		if((!empty($facilities))&&(empty($area))&&(empty($_GET['keyword']))){
+			
+		}
 	}
 ?>
 <!DOCTYPE html>
@@ -65,8 +74,8 @@
 			<legend>FILTER:</legend>
 			<input type="text" name="keyword" placeholder="Search" class="form-control-srch" id="noborder" />
 			<?php
-			$query = "SELECT * FROM facilities";
-			$result = mysqli_query($dbconn, $query);
+			$query2 = "SELECT * FROM facilities";
+			$result = mysqli_query($dbconn, $query2);
 			checkbox($result);
 			?>
 			<div class="location">
@@ -85,6 +94,8 @@
 	</form>
 	<section id="establishments">
 		<?php
+		$result = mysqli_query($dbconn, $query);
+		renderlist($result);
 		?>
 	</section>
 	<footer>

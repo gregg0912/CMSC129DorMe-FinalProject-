@@ -58,7 +58,7 @@
 		echo '</ul>';
 	}
 	function homequeryConstruct(){
-		$query = "SELECT dorm.DormName, CONCAT(address.StreetName,', ',address.Barangay), owner.Name, dorm.HousingType, dorm.thumbnailpic
+		$query = "SELECT dorm.DormId, dorm.DormName, CONCAT(address.StreetName,', ',address.Barangay), owner.Name, dorm.HousingType, dorm.thumbnailpic
 				FROM dorm, address, owner
 				WHERE dorm.AddressId = address.AddressId AND dorm.OwnerId = owner.OwnerId
 				ORDER BY votes DESC
@@ -69,7 +69,7 @@
 	?>
 		<section id="estab-list">
 			<?php
-			while(list($estName, $address, $owner, $housingType, $thumbnailpic) = mysqli_fetch_row($result)){
+			while(list($estId, $estName, $address, $owner, $housingType, $thumbnailpic) = mysqli_fetch_row($result)){
 				$housingType = determine($housingType);
 			?>
 			<div id="establishment">

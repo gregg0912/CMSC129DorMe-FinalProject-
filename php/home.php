@@ -45,7 +45,11 @@
 	<section id="establishments">
 		<h2>Featured Establishments</h2>
 		<?php
-			$query = homequeryConstruct();
+			$query = "SELECT dorm.DormId, dorm.DormName, CONCAT(address.StreetName,', ',address.Barangay), owner.Name, dorm.HousingType, dorm.thumbnailpic
+				FROM dorm, address, owner
+				WHERE dorm.AddressId = address.AddressId AND dorm.OwnerId = owner.OwnerId
+				ORDER BY votes DESC
+				LIMIT 5";
 			$result = mysqli_query($dbconn, $query);
 			renderlist($result);
 		?>
