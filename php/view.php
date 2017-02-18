@@ -2,6 +2,11 @@
 	session_start();
 	require("function.php");
 	$dbconn = dbconn();
+	if(isset($_GET['submit'])){
+
+	}else{
+		$query = "SELECT "
+	}
 ?>
 <!DOCTYPE html>
 <html>
@@ -56,11 +61,26 @@
 			<?php
 			$query = "SELECT * FROM facilities";
 			$result = mysqli_query($dbconn, $query);
+			checkbox($result);
 			?>
-			
+			<div class="location">
+				<label class="radio inline">
+					<input type="radio" name="loc" value="dorm" />
+					<span>Dorm Area</span>
+				</label>
+				<label class="radio inline">
+					<input type="radio" name="loc" value="banwa" />
+					<span>Banwa</span>
+				</label>
+			</div>
+			<input type="submit" name="submit" value="Filter" />
 			<a href="javascript:void(0)"><strong>Remove Filter</strong></a>
 		</fieldset>
 	</form>
+	<section id="establishments">
+		<?php
+		?>
+	</section>
 	<footer>
 		<p>&copy; Dorme 2016 | A.Y. 2016-2017 CMSC 127: Fabilloren, Icay, Legada, Montano</p>
 	</footer>
