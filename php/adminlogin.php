@@ -12,7 +12,6 @@ if(isset($_POST["submit"])){
 	$connect = mysqli_connect("localhost","root","","dorme") or die("Could not connect to the database.");
 	$query = "SELECT username, password FROM admin WHERE admin.username='$username' AND admin.password='$password'";
 	$result= mysqli_query($connect, $query) or die("Query failed.");
-	echo $query;
 
 
 	if(mysqli_num_rows($result) == 1){
@@ -31,12 +30,49 @@ if(isset($_POST["submit"])){
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Admin Login Form </title>
+	<title>DorMe | Admin Login</title>
 </head>
  <body>
-	<h1>Admin Login</h1>
-			
-		
+	<header id="header">
+		<div id="estab fade">
+			<img src="../../../CMSC127_DORME/thumbnails/bettys.JPG" alt="image not found" />
+		</div>
+		<div id="estab fade">
+			<img src="../../../CMSC127_DORME/thumbnails/firstestate.JPG" alt="image not found" />
+		</div>
+		<div id="estab fade">
+			<img src="../../../CMSC127_DORME/thumbnails/foursisters.JPG" alt="image not found" />
+		</div>
+		<h1>DorMe.</h1>
+		<h2>your dorm. my dorm. our dorm.</h2>
+		<p> Looking for convenience? Look no further. Dorme is here for your new place to dwell!<br />
+			Scroll through featured dormitories and apartments on our home page and <br />
+			have an easy glimpse into finding your perfect second home!<br />
+			Sit back and pick your like.
+		</p>
+		<nav id="gen-nav">
+			<ul>
+				<li><a href="home.php" class="active">Home</a></li>
+				<li><a href="view.php">View</a></li>
+				<li><a href="poll.php">Poll</a></li>
+				<li><a href="about.php">About</a></li>
+				<li><a href="javascript:void(0)">Log in</a>
+					<ul>
+						<li><a href="adminlogin.php">Admin</a></li>
+						<li><a href="login.php">Owner</a></li>
+					</ul>
+				</li>
+				<li><a href="registration.php">Sign up</a></li>
+			</ul>
+		</nav>
+		<div id="header2">
+			<h1>Search. See. Stay.</h1>
+			<p> Search for you desired facilities. <br />
+			See what establishment offers your wants. <br />
+			Filter your needs.
+			</p>
+		</div>
+	</header>
 		<form method="post">
 				<label for="userName">USERNAME</label>
 		  		<input type="text" required id="userName" name="userName">

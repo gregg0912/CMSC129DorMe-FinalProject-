@@ -32,8 +32,13 @@
 				<li><a href="view.php">View</a></li>
 				<li><a href="poll.php">Poll</a></li>
 				<li><a href="about.php">About</a></li>
-				<li><a href="javascript:void(0)">Log in</a></li>
-				<li><a href="javascript:void(0)">Sign up</a></li>
+				<li><a href="javascript:void(0)">Log in</a>
+					<ul>
+						<li><a href="adminlogin.php">Admin</a></li>
+						<li><a href="login.php">Owner</a></li>
+					</ul>
+				</li>
+				<li><a href="registration.php">Sign up</a></li>
 			</ul>
 		</nav>
 	</header>
