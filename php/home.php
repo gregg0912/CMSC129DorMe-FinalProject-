@@ -26,44 +26,15 @@
 			have an easy glimpse into finding your perfect second home!<br />
 			Sit back and pick your like.
 		</p>
-		<nav id="gen-nav">
-			<ul>
-				<li><a href="home.php" class="active">Home</a></li>
-				<?php
-				if(isset($_SESSION['userID'])){ ?>
-				<li><a href="viewOwner.php">View</a></li>
-				<?php }
-				 else{ ?> 
-				<li><a href="view.php">View</a></li>
-				<?php } ?>
-
-				<?php
-				if((!isset($_SESSION['userID'])) && (!isset($_SESSION['adminID']))){ ?>
-				<li><a href="poll.php">Poll</a></li>
-				<?php } ?>
-				<li><a href="about.php">About</a></li>
-				<?php
-				if((!isset($_SESSION['userID'])) && (!isset($_SESSION['adminID']))){  ?>
-				<li><a href="javascript:void(0)">Log in</a>
-					<ul>
-						<li><a href="adminlogin.php">Admin</a></li>
-						<li><a href="login.php">Owner</a></li>
-					</ul>
-				</li>
-				<li><a href="registration.php">Sign up</a></li>
-				<?php }?>
-				<?php
-				if((isset($_SESSION['userID'])) || (isset($_SESSION['adminID']))){ ?>
-				<li><a href="logout.php">Logout</a></li>
-				<?php } ?>
-				<?php if (isset($_SESSION['userID'])){ ?>
-					<li><a href="ownerNotifs.php"></a></li>
-				<?php }
-				else if(isset($_SESSION['adminID'])){ ?>
-				<li><a href="adminNotifs.php">Notifications</a></li>
-				<?php } ?>
-			</ul>
-		</nav>
+		<?php
+		if(isset($_SESSION['userID'])){
+			adminNav();
+		}else if(isset($_SESSION['adminID'])){
+			ownerNav();
+		}else if(!isset($_SESSION['adminID'])&&!isset($_SESSION['userID'])){
+			userNav();
+		}
+		?>
 	</header>
 	<section id="establishments">
 		<h2>Featured Establishments</h2>

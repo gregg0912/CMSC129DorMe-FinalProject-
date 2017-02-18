@@ -98,4 +98,49 @@
 	<?php
 		}
 	}
+	function ownerNav(){
+	?>
+		<nav id="gen-nav">
+			<ul>
+				<li><a href="home.php">Home</a></li>
+				<li><a href="viewOwner.php">View</a></li>
+				<li><a href="ownerNotifs.php">Notifications</a></li>
+				<li><a href="about.php">About</a></li>
+				<li><a href="logout.php">Log Out</a></li>
+			</ul>
+		</nav>
+	<?php
+	}
+	function adminNav(){
+	?>
+		<nav id="gen-nav">
+			<ul>
+				<li><a href="home.php">Home</a></li>
+				<li><a href="view.php">View</a></li>
+				<li><a href="adminNotifs.php">Notifications</a></li>
+				<li><a href="about.php">About</a></li>
+				<li><a href="logout.php">Log Out</a></li>
+			</ul>
+		</nav>
+	<?php
+	}
+	function userNav(){
+	?>
+		<nav id="gen-nav">
+			<ul>
+				<li><a href="home.php">Home</a></li>
+				<li><a href="view.php">View</a></li>
+				<li><a href="poll.php">Poll</a></li>
+				<li><a href="about.php">About</a></li>
+				<li><a href="javascript:void(0)">Log In</a>
+					<ul>
+						<li><a href="adminlogin.php">Admin</a></li>
+						<li><a href="login.php">Owner</a></li>
+					</ul>
+				</li>
+				<li><a href="registration.php">Sign Up</a></li>
+			</ul>
+		</nav>
+	<?php
+	}
 ?>
