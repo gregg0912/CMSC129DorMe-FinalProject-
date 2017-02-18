@@ -3,7 +3,7 @@
 	require "function.php";
 	$dbconn = dbconn();
 	$error=0;
-if(isset($_SESSION['userID'])){
+if(isset($_SESSION['adminID'])){
 	header("Location: view.php");
 }
 if(isset($_POST["submit"])){
@@ -19,7 +19,7 @@ if(isset($_POST["submit"])){
 			$query = "SELECT adminID FROM admin WHERE username='$username'";
 			$result= mysqli_query($connect, $query);
 			$row = mysqli_fetch_assoc($result);
-			$_SESSION["userID"] = $row['adminID'];
+			$_SESSION["adminID"] = $row['adminID'];
 			header("Location:view.php");
 	}
 	else{
