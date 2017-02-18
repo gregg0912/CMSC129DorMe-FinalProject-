@@ -91,4 +91,10 @@
 			return "Boarding House";
 		return "Dormitory";
 	}
+	function checkbox($result){
+		while(list($facilityNo, $facilityName) = mysqli_fetch_row($result)){
+	?>
+	<?php
+		}
+	}
 ?>
