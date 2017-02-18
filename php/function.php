@@ -94,7 +94,7 @@
 	function checkbox($result){
 		while(list($facilityNo, $facilityName) = mysqli_fetch_row($result)){
 	?>
-		<label><input type="checkbox" name="<?=$facilityNo?>"><?=$facilityName?></label>
+		<label><input type="checkbox" name="facilityList[]" value="<?=$facilityNo?>" /><?=$facilityName?></label>
 	<?php
 		}
 	}

@@ -3,9 +3,15 @@
 	require("function.php");
 	$dbconn = dbconn();
 	if(isset($_GET['submit'])){
-
+		if(!empty($_GET['loc'])){
+			$area = $_GET['loc'];
+		}
+		if(!empty($_GET['keyword']))
 	}else{
-		$query = "SELECT "
+		$query = "SELECT dorm.DormId,dorm.DormName, CONCAT(address.streetName,', ',address.Barangay), owner.Name, dorm.HousingType, dorm.thumbnailpic
+			FROM dorm, address, owner
+			WHERE dorm.AddressId = address.AddressId
+			AND dorm.OwnerId = owner.OwnerId";
 	}
 ?>
 <!DOCTYPE html>
@@ -65,7 +71,7 @@
 			?>
 			<div class="location">
 				<label class="radio inline">
-					<input type="radio" name="loc" value="dorm" />
+					<input type="radio" name="loc" value="dormArea" />
 					<span>Dorm Area</span>
 				</label>
 				<label class="radio inline">
