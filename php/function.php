@@ -66,21 +66,30 @@
 		return $query;
 	}
 	function renderlist($result){
-	?>
-		<section id="estab-list">
-			<?php
-			while(list($estId, $estName, $address, $owner, $housingType, $thumbnailpic) = mysqli_fetch_row($result)){
-				$housingType = determine($housingType);
-			?>
-			<div id="establishment">
-				<a href="javascript:void(0)"><img src="<?=$thumbnailpic?>" alt="Image not found" /></a>
-				<span><?=$estName?></span> | <?=$owner?> | <?=$address?> | <?=$housingType?>
-			</div>
-			<?php
-			}
-			?>
-		</section>
+		if(mysqli_num_rows($result)){
+		?>
+			<section id="estab-list">
+				<?php
+				while(list($estId, $estName, $address, $owner, $housingType, $thumbnailpic) = mysqli_fetch_row($result)){
+					$housingType = determine($housingType);
+				?>
+				<div id="establishment">
+					<a href="viewdorm.php?dormId=<?=$estId?>"><img src="<?=$thumbnailpic?>" alt="Image not found" /></a>
+					<span><?=$estName?></span> | <?=$owner?> | <?=$address?> | <?=$housingType?>
+				</div>
+				<?php
+				}
+				?>
+			</section>
 	<?php
+		}else{
+	?>
+			<div id="establishment">
+				<a href="javascript:void(0)"><img src="" alt="Image not found" /></a>
+				<span>Your search returned no results!</span>
+			</div>
+	<?php
+		}
 	}
 	function determine($housingType){
 		if($housingType == "apartment")
@@ -173,5 +182,82 @@
 			?>
 		</header>
 	<?php
+	}
+	function viewDormRedirect(){
+		if(isset($_GET['dormId'])==""||empty($_GET['dormId'])){
+			header("Location:view.php");
+		}
+	}
+	function determineLoc($location){
+		if($location == "banwa")
+			return "Banwa";
+		return "Dorm Area";
+	}
+	function viewdormQuery($dbconn,$id){
+		$query = "SELECT dorm.DormName, dorm.HousingType, owner.Name, dorm.Location, dorm.thumbnailpic, CONCAT(address.StreetName,', ',address.Barangay)
+				FROM dorm, address, owner
+				WHERE dorm.OwnerId = owner.OwnerId AND dorm.AddressId = address.AddressId
+				AND dorm.DormId = '".$id."'";
+		$result = mysqli_query($dbconn, $query);
+		return $result;
+	}
+	function retrieveGallery($dbconn, $id){
+		$query = "SELECT dorm_pictures.imgurl, dorm_pictures.imgdesc
+				FROM dorm_pictures
+				WHERE dorm_pictures.DormId = '".$id."'";
+		$result = mysqli_query($dbconn, $query);
+		return $result;
+	}
+	function retrieveFacilities($dbconn, $id){
+		$query = "SELECT facilities.facilityName
+				FROM facilities, facility_dorm
+				WHERE facilities.facilityNo = facility_dorm.facilityNo
+				AND facility_dorm.DormID ='".$id."'";
+		$result = mysqli_query($dbconn, $query);
+		return $result;
+	}
+	function retrieveRooms($dbconn, $id){
+		$query = "SELECT room.MaxNoOfResidents, rent.TypeOfPayment, rent.Price,dorm_room.Availability
+				FROM dorm_room, room, rent
+				WHERE dorm_room.DormID = '".$id."' AND room.RoomNo = dorm_room.RoomNo AND rent.RentId = room.RentId";
+		$result = mysqli_query($dbconn, $query);
+		return $result;
+	}
+	function determineTOP($typeofpayment){
+		if($typeofpayment=="by_person")
+			return "By Person";
+		return "By Room";
+	}
+	function numType($numType, $dormID, $dbconn){
+		$query = "SELECT Number
+				FROM dorm_number
+				WHERE NumType = '".$numType."' AND DormID = '".$dormID."'";
+		$result = mysqli_query($dbconn, $query);
+		if(mysqli_num_rows($result)!=0){
+			while(list($number)=mysqli_fetch_row($result)){
+	?>
+			<span><?=$number?></span><br />
+	<?php	}
+		}else{
+	?>
+			<span>N/A</span>
+	<?php	}
+	}
+	function retrieveAdd($dormID, $dbconn){
+		$query = "SELECT add_on.add_item, add_on.add_price
+				FROM dorm_addon, add_on
+				WHERE dorm_addon.DormID = '".$dormID."'
+				AND dorm_addon.add_id = add_on.add_id";
+		$result = mysqli_query($dbconn, $query);
+		return $result;
+	}
+
+	function elipse($string){
+		if(strlen($string)<20){
+			echo $string;
+		}
+		else{
+			echo substr($string, 0, 20) . "...";
+		}
 	}
 ?>

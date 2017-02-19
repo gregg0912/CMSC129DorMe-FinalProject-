@@ -27,6 +27,7 @@
 								WHERE all_facilities.facilityNo IN ('".implode("','",$facilities)."')
 								GROUP BY all_facilities.DormId
 								HAVING COUNT(all_facilities.facilityNo)>=$size)";
+			unset($facilities);
 		}
 	}
 ?>
