@@ -184,7 +184,7 @@
 		</header>
 	<?php
 	}
-	function viewOwnerRedirect(){
+	function oswnerRedirect(){
 		if(!isset($_SESSION['userID'])){
 			header("Location:home.php");
 		}

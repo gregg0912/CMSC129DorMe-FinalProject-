@@ -2,7 +2,7 @@
 	session_start();
 	require("function.php");
 	$dbconn = dbconn();
-
+	ownerRedirect();
 ?>
 <!DOCTYPE html>
 <html>
