@@ -21,7 +21,7 @@ if(isset($_POST["submit"])){
 			$row = mysqli_fetch_assoc($result);
 			$_SESSION["userID"] = $row['ownerID'];
 			$_SESSION["adminID"] = null;
-			header("Location:view.php");
+			header("Location:home.php");
 	}
 	else{
 		$error = 1;

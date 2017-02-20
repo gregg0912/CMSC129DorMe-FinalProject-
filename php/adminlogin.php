@@ -20,7 +20,7 @@ if(isset($_POST["submit"])){
 			$result= mysqli_query($connect, $query);
 			$row = mysqli_fetch_assoc($result);
 			$_SESSION["adminID"] = $row['adminID'];
-			header("Location:view.php");
+			header("Location:home.php");
 	}
 	else{
 		$error = 1;

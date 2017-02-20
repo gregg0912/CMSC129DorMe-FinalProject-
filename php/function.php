@@ -112,7 +112,8 @@
 		<nav id="gen-nav">
 			<ul>
 				<li><a href="home.php">Home</a></li>
-				<li><a href="viewOwner.php">View</a></li>
+				<li><a href="view.php">View</a></li>
+				<li><a href="viewOwner.php">Manage Establishments</a></li>
 				<li><a href="ownerNotifs.php">Notifications</a></li>
 				<li><a href="about.php">About</a></li>
 				<li><a href="logout.php">Log Out</a></li>
@@ -173,9 +174,9 @@
 			</p>
 			<?php
 			if(isset($_SESSION['userID'])){
-				adminNav();
-			}else if(isset($_SESSION['adminID'])){
 				ownerNav();
+			}else if(isset($_SESSION['adminID'])){
+				adminNav();
 			}else if(!isset($_SESSION['adminID'])&&!isset($_SESSION['userID'])){
 				userNav();
 			}
@@ -201,27 +202,79 @@
 		$result = mysqli_query($dbconn, $query);
 		return $result;
 	}
-	function retrieveGallery($dbconn, $id){
+	function retrieveGallery($dbconn, $id, $dormName){
 		$query = "SELECT dorm_pictures.imgurl, dorm_pictures.imgdesc
 				FROM dorm_pictures
 				WHERE dorm_pictures.DormId = '".$id."'";
 		$result = mysqli_query($dbconn, $query);
-		return $result;
+		if(mysqli_num_rows($result) > 0){
+		?>
+			<ul>
+		<?php
+			while(list($imgurl, $imgdesc) = mysqli_fetch_row($result)){
+			?>
+				<li><img src="<?=$imgurl?>" width = "400px" /></li>
+			<?php
+			}
+			?>
+			</ul>
+		<?php
+		}else{
+		?>
+			<ul>
+				<li>No available images in the database for <?=$dormName?></li>
+			</ul>
+		<?php
+		}
 	}
-	function retrieveFacilities($dbconn, $id){
+	function retrieveFacilities($dbconn, $id, $dormName){
 		$query = "SELECT facilities.facilityName
 				FROM facilities, facility_dorm
 				WHERE facilities.facilityNo = facility_dorm.facilityNo
 				AND facility_dorm.DormID ='".$id."'";
 		$result = mysqli_query($dbconn, $query);
-		return $result;
+		if(mysqli_num_rows($result)>0){
+			while(list($facilityName) = mysqli_fetch_row($result)){
+			?>
+				<li><?=$facilityName?></li>
+			<?php
+			}
+		}else{
+		?>
+			<li>No recorded facilities for <?=$dormName?></li>
+		<?php
+		}
 	}
 	function retrieveRooms($dbconn, $id){
-		$query = "SELECT room.MaxNoOfResidents, rent.TypeOfPayment, rent.Price,dorm_room.Availability
-				FROM dorm_room, room, rent
-				WHERE dorm_room.DormID = '".$id."' AND room.RoomNo = dorm_room.RoomNo AND rent.RentId = room.RentId";
+		$query = "SELECT room.MaxNoOfResidents, room.TypeOfPayment, room.Price,dorm_room.Availability
+				FROM dorm_room, room
+				WHERE dorm_room.DormId = '".$id."' AND room.RoomNo = dorm_room.RoomNo";
 		$result = mysqli_query($dbconn, $query);
-		return $result;
+		if(mysqli_num_rows($result) > 0){
+			while(list($maxNum,$typeofpayment,$price,$availability)=mysqli_fetch_row($result)){
+			?>
+				<dt>Maximum No. of Residences</dt>
+				<dd><?=$maxNum?></dd>
+				<dt>Type of Payment</dt>
+				<dd><?=determineTOP($typeofpayment)?></dd>
+				<dt>Price</dt>
+				<dd><?=$price?></dd>
+				<dt>Availability</dt>
+				<dd><?=$availability?></dd>
+			<?php
+			}
+		}else{
+		?>
+			<dt>Maximum No. of Residences</dt>
+			<dd>N/A</dd>
+			<dt>Type of Payment</dt>
+			<dd>N/A</dd>
+			<dt>Price</dt>
+			<dd>N/A</dd>
+			<dt>Availability</dt>
+			<dd>N/A</dd>
+		<?php
+		}
 	}
 	function determineTOP($typeofpayment){
 		if($typeofpayment=="by_person")
@@ -243,13 +296,29 @@
 			<span>N/A</span>
 	<?php	}
 	}
-	function retrieveAdd($dormID, $dbconn){
+	function retrieveAdd($dormID, $dbconn, $dormName){
 		$query = "SELECT add_on.add_item, add_on.add_price
 				FROM dorm_addon, add_on
 				WHERE dorm_addon.DormID = '".$dormID."'
 				AND dorm_addon.add_id = add_on.add_id";
 		$result = mysqli_query($dbconn, $query);
-		return $result;
+		if(mysqli_num_rows($result) > 0){
+		?>
+			<ul>
+			<?php
+				while(list($addItem, $addPrice)=mysqli_fetch_row($result)){
+				?>
+					<li><strong><?=$addItem?></strong> - <?=$addPrice?></li>
+				<?php
+				}
+			?>	
+			</ul>
+		<?php
+		}else{
+		?>
+			<ul><li>No Additional Payments for <?=$dormName?></li></ul>
+		<?php
+		}
 	}
 
 	function elipse($string){
