@@ -184,6 +184,11 @@
 		</header>
 	<?php
 	}
+	function viewOwnerRedirect(){
+		if(!isset($_SESSION['userID'])){
+			header("Location:home.php");
+		}
+	}
 	function viewDormRedirect(){
 		if(isset($_GET['dormId'])==""||empty($_GET['dormId'])){
 			header("Location:view.php");
