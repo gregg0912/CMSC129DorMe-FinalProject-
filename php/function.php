@@ -5,58 +5,6 @@
 		return $dbconn;
 	}
 
-	function pagination($currentPage, $itemCount, $itemsPerPage, $adjacentCount, $pageLinkTemplate, $showPrevNext = true) {
-		$firstPage = 1;
-		$lastPage  = ceil($itemCount / $itemsPerPage);
-		if ($lastPage == 1) {
-			return;
-		}
-		if ($currentPage <= $adjacentCount + $adjacentCount) {
-			$firstAdjacentPage = $firstPage;
-			$lastAdjacentPage  = min($firstPage + $adjacentCount + $adjacentCount, $lastPage);
-		} elseif ($currentPage > $lastPage - $adjacentCount - $adjacentCount) {
-			$lastAdjacentPage  = $lastPage;
-			$firstAdjacentPage = $lastPage - $adjacentCount - $adjacentCount;
-		} else {
-			$firstAdjacentPage = $currentPage - $adjacentCount;
-			$lastAdjacentPage  = $currentPage + $adjacentCount;
-		}
-		echo '<ul style="clear:both; bottom:0;" class="pagination" id="pagination">';
-		if ($showPrevNext) {
-			if ($currentPage == $firstPage) {
-				echo '<li><span><span class="glyphicon glyphicon-triangle-left"></span></span></li>';
-			} else {
-				echo '<li><a href="' . (is_callable($pageLinkTemplate) ? $pageLinkTemplate($currentPage - 1) : sprintf($pageLinkTemplate, $currentPage - 1)) . '"><span class="glyphicon glyphicon-triangle-left"></span></a></li>';
-			}
-		}
-		if ($firstAdjacentPage > $firstPage) {
-			echo '<li><a href="' . (is_callable($pageLinkTemplate) ? $pageLinkTemplate($firstPage) : sprintf($pageLinkTemplate, $firstPage)) . '">' . $firstPage . '</a></li>';
-			if ($firstAdjacentPage > $firstPage + 1) {
-				echo '<li><span>...</span></li>';
-			}
-		}
-		for ($i = $firstAdjacentPage; $i <= $lastAdjacentPage; $i++) {
-			if ($currentPage == $i) {
-				echo '<li><span><b>' . $i . '</b></span></li>';
-			} else {
-				echo '<li><a href="' . (is_callable($pageLinkTemplate) ? $pageLinkTemplate($i) : sprintf($pageLinkTemplate, $i)) . '">' . $i . '</a></li>';
-			}
-		}
-		if ($lastAdjacentPage < $lastPage) {
-			if ($lastAdjacentPage < $lastPage - 1) {
-				echo '<li><span>...</span></li>';
-			}
-			echo '<li><a href="' . (is_callable($pageLinkTemplate) ? $pageLinkTemplate($lastPage) : sprintf($pageLinkTemplate, $lastPage)) . '">' . $lastPage . '</a></li>';
-		}
-		if ($showPrevNext) {
-			if ($currentPage == $lastPage) {
-				echo '<li><span><span class="glyphicon glyphicon-triangle-right"></span></span></li>';
-			} else {
-				echo '<li><a href="' . (is_callable($pageLinkTemplate) ? $pageLinkTemplate($currentPage + 1) : sprintf($pageLinkTemplate, $currentPage + 1)) . '"><span class="glyphicon glyphicon-triangle-right"></span></a></li>';
-			}
-		}
-		echo '</ul>';
-	}
 	function homequeryConstruct(){
 		$query = "SELECT dorm.DormId, dorm.DormName, CONCAT(address.StreetName,', ',address.Barangay), owner.Name, dorm.HousingType, dorm.thumbnailpic
 				FROM dorm, address, owner
@@ -65,12 +13,14 @@
 				LIMIT 5";
 		return $query;
 	}
-	function renderlist($result){
-		if(mysqli_num_rows($result)){
+
+
+	function renderlist($res, $page, $count){	
+		if(mysqli_num_rows($res)){
 		?>
 			<section id="estab-list">
 				<?php
-				while(list($estId, $estName, $address, $owner, $housingType, $thumbnailpic) = mysqli_fetch_row($result)){
+				while(list($estId, $estName, $address, $owner, $housingType, $thumbnailpic) = mysqli_fetch_row($res)){
 					$housingType = determine($housingType);
 				?>
 				<div id="establishment">
@@ -82,14 +32,19 @@
 				?>
 			</section>
 	<?php
-		}else{
-	?>
+		}
+		else{
+
+	?>		
 			<div id="establishment">
 				<a href="javascript:void(0)"><img src="" alt="Image not found" /></a>
 				<span>Your search returned no results!</span>
 			</div>
 	<?php
 		}
+
+		pages($count, $page);
+
 	}
 	function determine($housingType){
 		if($housingType == "apartment")
@@ -328,5 +283,35 @@
 		else{
 			echo substr($string, 0, 20) . "...";
 		}
+	}
+
+	function pages($count, $page){
+
+        parse_str($_SERVER["QUERY_STRING"], $url_array);
+        unset($url_array['page']);
+        $url = http_build_query($url_array);
+        if($count > 1){
+            if($page > 1){ ?>
+                <li><a href="?page=<?php echo ($page-1); ?><?php echo isset($url) && !empty($url) ? "&" . $url : ""; ?>">&laquo;</a></li>
+            <?php  
+            }  
+            for($x = 1; $x <= $count; $x++){
+                if($x == $page){ ?>
+                    <li><a class="current" href="?page=<?php echo $x; ?><?php echo isset($url) && !empty($url) ? "&" . $url : ""; ?>"><?=$x?></a></li>
+                <?php
+                }else{ ?>
+                    <li><a href="?page=<?php echo $x; ?><?php echo isset($url) && !empty($url) ? "&" . $url : ""; ?>"><?=$x?></a></li>
+                <?php      
+                }   
+            }
+
+            if($page!=$count){ ?>
+                <li><a href="?page=<?php echo ($page+1); ?><?php echo isset($url) && !empty($url) ? "&" . $url : ""; ?>">&raquo;</a></li>
+            <?php   
+            }
+        } elseif ($count < 1) { ?>
+        <?php 
+        } 
+    
 	}
 ?>
