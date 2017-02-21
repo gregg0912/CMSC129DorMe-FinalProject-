@@ -334,4 +334,7 @@
 			echo substr($string, 0, 20) . "...";
 		}
 	}
+	function addEst($estName, $streetName, $barangayName, $cellnum, $telnum, $loc, $hType, $facilityList){
+		
+	}
 ?>
