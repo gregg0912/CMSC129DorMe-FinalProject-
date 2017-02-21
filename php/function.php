@@ -139,6 +139,11 @@
 		</header>
 	<?php
 	}
+	function ownerRedirect(){
+		if(!isset($_SESSION['userID'])){
+			header("Location:home.php");
+		}
+	}
 	function viewDormRedirect(){
 		if(isset($_GET['dormId'])==""||empty($_GET['dormId'])){
 			header("Location:view.php");
@@ -284,6 +289,7 @@
 			echo substr($string, 0, 20) . "...";
 		}
 	}
+<<<<<<< HEAD
 
 	function pages($count, $page){
 
@@ -315,3 +321,9 @@
     
 	}
 ?>
+=======
+	function addEst($estName, $streetName, $barangayName, $cellnum, $telnum, $loc, $hType, $facilityList){
+		
+	}
+?>
+>>>>>>> dd28d1357ad8924a655433fc2cba79b8dd96207e

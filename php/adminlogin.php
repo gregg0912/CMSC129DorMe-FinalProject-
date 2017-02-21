@@ -4,7 +4,7 @@
 	$dbconn = dbconn();
 	$error=0;
 if(isset($_SESSION['adminID'])){
-	header("Location: view.php");
+	header("Location: home.php");
 }
 if(isset($_POST["submit"])){
 	$username = $_POST["userName"];

@@ -30,6 +30,9 @@
 			unset($facilities);
 		}
 	}
+
+
+	// $res = mysqli_query($dbconn, $query);
 ?>
 <!DOCTYPE html>
 <html>
@@ -39,6 +42,7 @@
 <body>
 	<?php
 	headerRender();
+
 	?>
 	<form id="filter" class="filter" method="get">
 		<fieldset>
@@ -65,8 +69,28 @@
 	</form>
 	<section id="establishments">
 		<?php
-		$result = mysqli_query($dbconn, $query);
-		renderlist($result);
+		 $result = mysqli_query($dbconn, $query);
+
+
+		$start = 0;
+		$lim = 4;
+
+		if (isset($_GET['page'])) {
+			$page=$_GET['page'];
+			$start=($page-1) * $lim;
+		}
+		else{
+			$page = 1;
+		}
+
+		$count = mysqli_affected_rows($dbconn);
+		$count = ceil($count/$lim);
+
+		$query = $query . " LIMIT $start, $lim";
+		$res = mysqli_query($dbconn, $query);
+
+		renderlist($res, $page, $count);
+
 		?>
 	</section>
 	<footer>
