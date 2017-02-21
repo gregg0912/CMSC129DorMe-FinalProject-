@@ -289,7 +289,6 @@
 			echo substr($string, 0, 20) . "...";
 		}
 	}
-<<<<<<< HEAD
 
 	function pages($count, $page){
 
@@ -321,9 +320,3 @@
     
 	}
 ?>
-=======
-	function addEst($estName, $streetName, $barangayName, $cellnum, $telnum, $loc, $hType, $facilityList){
-		
-	}
-?>
->>>>>>> dd28d1357ad8924a655433fc2cba79b8dd96207e
