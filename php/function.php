@@ -42,8 +42,9 @@
 			</div>
 	<?php
 		}
-
-		pages($count, $page);
+		if(!empty($page)&&!empty($count)){
+			pages($count, $page);
+		}
 
 	}
 	function determine($housingType){
@@ -362,7 +363,7 @@
 			$successMsg = "Your request has been successfully added! Please wait for the approval of the admin.";
 		}
 		return array($errorMsg, $successMsg);
-
+	}
 	function pages($count, $page){
 
         parse_str($_SERVER["QUERY_STRING"], $url_array);
