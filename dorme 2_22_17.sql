@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 17, 2017 at 07:18 AM
+-- Generation Time: Feb 22, 2017 at 04:50 AM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 7.0.9
 
@@ -61,8 +61,8 @@ INSERT INTO `address` (`AddressId`, `StreetName`, `Barangay`) VALUES
 
 CREATE TABLE `add_on` (
   `add_id` int(10) NOT NULL,
-  `add_item` varchar(20) NOT NULL,
-  `add_price` int(10) NOT NULL
+  `add_item` varchar(60) NOT NULL,
+  `add_price` varchar(40) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -70,13 +70,13 @@ CREATE TABLE `add_on` (
 --
 
 INSERT INTO `add_on` (`add_id`, `add_item`, `add_price`) VALUES
-(1, 'Laptop', 0),
-(2, 'Cellphone', 0),
-(3, 'Laptop', 0),
-(5, 'Electric Fan', 0),
-(6, 'Electricity', 0),
-(7, 'WiFi', 0),
-(8, 'WiFi', 0);
+(1, 'Laptop', 'Php 100.00'),
+(2, 'Cellphone', 'Php 50.00'),
+(3, 'Laptop', 'Php 300.00'),
+(5, 'Electric Fan', 'Php 250.00'),
+(6, 'Electricity', 'Electric Meter Dependent'),
+(7, 'WiFi', 'Php 100.00'),
+(8, 'WiFi', 'Php 150.00');
 
 -- --------------------------------------------------------
 
@@ -110,8 +110,21 @@ CREATE TABLE `admin_notif` (
   `NotifId` int(11) NOT NULL,
   `adminId` int(11) NOT NULL,
   `OwnerId` int(11) NOT NULL,
-  `requestId` int(11) NOT NULL
+  `requestId` int(11) NOT NULL,
+  `mark` enum('read','not_read') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `all_facilities`
+--
+CREATE TABLE `all_facilities` (
+`DormId` int(10)
+,`DormName` varchar(50)
+,`facilityNo` int(10)
+,`facilityName` varchar(30)
+);
 
 -- --------------------------------------------------------
 
@@ -380,7 +393,8 @@ INSERT INTO `dorm_pictures` (`dormpicID`, `DormId`, `imgurl`, `imgdesc`) VALUES
 CREATE TABLE `dorm_room` (
   `dorm_roomID` int(11) NOT NULL,
   `DormId` int(11) NOT NULL,
-  `RoomId` int(11) NOT NULL
+  `RoomNo` int(11) NOT NULL,
+  `Availability` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -544,7 +558,7 @@ CREATE TABLE `owner` (
   `Username` varchar(30) NOT NULL,
   `Password` varchar(100) NOT NULL,
   `Email` varchar(40) NOT NULL,
-  `Number` int(20) NOT NULL
+  `Number` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -552,27 +566,27 @@ CREATE TABLE `owner` (
 --
 
 INSERT INTO `owner` (`OwnerId`, `Name`, `Username`, `Password`, `Email`, `Number`) VALUES
-(1, 'Emiliana Gabon', 'egabon', 'fdc788e97c0f2fb088ca850db913f34c', 'egabon@gmail.com', 0),
-(2, 'Ferdinand Nonato', 'fnonato', 'ddccdf0975292540fb60b8d4a531f57b', 'fnonato@yahoo.com', 0),
-(3, 'Napoleon and Marjorie Nonato', 'nmnonato', '9dd514e1fd6c243e1622df2b5b9a036e', 'nmnonato@gmail.com', 0),
-(4, 'Resurrecion Nonchete', 'rnochete', '379ac2417ff292ab5934786519565787', 'rnochete@gmail.com', 0),
-(5, 'Etta Bumanlag', 'ebumanlag', 'a31c6ca111d3491becb18395d501859c', 'ebumanlag@yahoo.com', 0),
-(6, 'Marissa Pascasio', 'mpascasio', '754467f8d6beb49a032e33618db78169', 'mpascasio@gmail.com', 0),
-(7, 'Four Sisters Apartment', 'fsapartment', 'ebe9a2922f8ee7569a5a8f044a36f135', 'fsapartment@gmail.com', 0),
-(8, 'Elpidio Mombay', 'emombay', '15213950cf0fd8d13fef6e089f8ecaea', 'emombay@gmail.com', 0),
-(9, 'Nela Silfaban', 'nsilfaban', '75093e39e5e7e0a69119ab3472d53c5d', 'nsilfaban@yahoo.com', 0),
-(10, 'Nelson Napud', 'nnapud', '396fbf170eda4443490b0a86581359f3', 'nnapud@gmail.com', 0),
-(11, 'Betty Nufuar', 'bnufuar', 'b88de490dd66003ba329803c242a9753', 'bnufuar@gmail.com', 0),
-(12, 'Cheery Joy Mayormente', 'cjmayormente', 'bc357b14c04b280af89ed2789853a2fe', 'cjmayormente@gmail.com', 0),
-(13, 'Leny Fortaleza', 'lfortaleza', '81dd4c264bc7bd803fbcaf96e553d96e', 'lfortaleza@gmail.com', 0),
-(14, 'Edwin Mollinedo', 'emollinedo', '92b67fae55b3165648b1e0f5a475fda4', 'emollinedo@gmail.com', 0),
-(15, 'Nida Nufable', 'nnufable', 'cf7fb225d46013e633fac7ae27ed6d94', 'nnufable@gmail.com', 0),
-(16, 'ShebnaFabilloren', 'sfabilloren', 'c11d061d1a191b7487f924a2a565e659', 'sfabilloren@gmail.com', 0),
-(17, 'Rose', 'rose', '337b38e2f3bfe3bf7c11e4cd60835bfe', 'rose@gmail.com', 0),
-(18, 'Kom Sai', 'komsai', '0229a5b03f2d1331163fb02739c48a82', 'komsai@gmail.com', 0),
-(19, 'Hello', 'hello', 'hello123', 'hello@gmail.com', 0),
-(20, 'Hello Cold World', 'hellocoldworld', 'abdb716c43b93f31c6df05a0455f7200', 'hellocoldworld@gmail.com', 0),
-(21, 'Lincy Legada', 'llegada', '5763a22d3d28ad3814fa3c21358a85d1', 'llegada@gmail.com', 0);
+(1, 'Emiliana Gabon', 'egabon', 'fdc788e97c0f2fb088ca850db913f34c', 'egabon@gmail.com', '0'),
+(2, 'Ferdinand Nonato', 'fnonato', 'ddccdf0975292540fb60b8d4a531f57b', 'fnonato@yahoo.com', '0'),
+(3, 'Napoleon and Marjorie Nonato', 'nmnonato', '9dd514e1fd6c243e1622df2b5b9a036e', 'nmnonato@gmail.com', '0'),
+(4, 'Resurrecion Nonchete', 'rnochete', '379ac2417ff292ab5934786519565787', 'rnochete@gmail.com', '0'),
+(5, 'Etta Bumanlag', 'ebumanlag', 'a31c6ca111d3491becb18395d501859c', 'ebumanlag@yahoo.com', '0'),
+(6, 'Marissa Pascasio', 'mpascasio', '754467f8d6beb49a032e33618db78169', 'mpascasio@gmail.com', '0'),
+(7, 'Four Sisters Apartment', 'fsapartment', 'ebe9a2922f8ee7569a5a8f044a36f135', 'fsapartment@gmail.com', '0'),
+(8, 'Elpidio Mombay', 'emombay', '15213950cf0fd8d13fef6e089f8ecaea', 'emombay@gmail.com', '0'),
+(9, 'Nela Silfaban', 'nsilfaban', '75093e39e5e7e0a69119ab3472d53c5d', 'nsilfaban@yahoo.com', '0'),
+(10, 'Nelson Napud', 'nnapud', '396fbf170eda4443490b0a86581359f3', 'nnapud@gmail.com', '0'),
+(11, 'Betty Nufuar', 'bnufuar', 'b88de490dd66003ba329803c242a9753', 'bnufuar@gmail.com', '0'),
+(12, 'Cheery Joy Mayormente', 'cjmayormente', 'bc357b14c04b280af89ed2789853a2fe', 'cjmayormente@gmail.com', '0'),
+(13, 'Leny Fortaleza', 'lfortaleza', '81dd4c264bc7bd803fbcaf96e553d96e', 'lfortaleza@gmail.com', '0'),
+(14, 'Edwin Mollinedo', 'emollinedo', '92b67fae55b3165648b1e0f5a475fda4', 'emollinedo@gmail.com', '0'),
+(15, 'Nida Nufable', 'nnufable', 'cf7fb225d46013e633fac7ae27ed6d94', 'nnufable@gmail.com', '0'),
+(16, 'ShebnaFabilloren', 'sfabilloren', 'c11d061d1a191b7487f924a2a565e659', 'sfabilloren@gmail.com', '0'),
+(17, 'Rose', 'rose', '337b38e2f3bfe3bf7c11e4cd60835bfe', 'rose@gmail.com', '0'),
+(18, 'Kom Sai', 'komsai', '0229a5b03f2d1331163fb02739c48a82', 'komsai@gmail.com', '0'),
+(19, 'Hello', 'hello', 'hello123', 'hello@gmail.com', '0'),
+(20, 'Hello Cold World', 'hellocoldworld', 'abdb716c43b93f31c6df05a0455f7200', 'hellocoldworld@gmail.com', '0'),
+(21, 'Lincy Legada', 'llegada', '5763a22d3d28ad3814fa3c21358a85d1', 'llegada@gmail.com', '0');
 
 -- --------------------------------------------------------
 
@@ -585,6 +599,7 @@ CREATE TABLE `owner_notif` (
   `OwnerId` int(11) NOT NULL,
   `DormID` int(11) NOT NULL,
   `notif_type` enum('review','notice','approve','disapprove') NOT NULL,
+  `mark` enum('read','not_read') NOT NULL,
   `review` text NOT NULL,
   `userName` varchar(40) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -667,6 +682,15 @@ CREATE TABLE `room` (
   `TypeOfPayment` varchar(10) NOT NULL,
   `Price` int(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `all_facilities`
+--
+DROP TABLE IF EXISTS `all_facilities`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `all_facilities`  AS  (select `dorm`.`DormId` AS `DormId`,`dorm`.`DormName` AS `DormName`,`facilities`.`facilityNo` AS `facilityNo`,`facilities`.`facilityName` AS `facilityName` from ((`dorm` join `facility_dorm`) join `facilities`) where ((`dorm`.`DormId` = `facility_dorm`.`DormId`) and (`facility_dorm`.`facilityNo` = `facilities`.`facilityNo`))) ;
 
 --
 -- Indexes for dumped tables

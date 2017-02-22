@@ -355,6 +355,21 @@
 				$requestId = dbconn()->insert_id;
 				if(!empty($addOn)){
 					foreach($addOn as $value){
+						$addition = explode(",",$value);
+						$query = "INSERT INTO request_add_on(`raId`, `requestId`, `add_item`, `add_price`) VALUES(NULL, `$requestId`, `$addition[0]`,`$addition[1]`)";
+						$result = mysqli_query(dbconn(),$query);
+						if(!$result){
+							echo "<script type='text/javascript'>alert('Something went wrong. Please try again.')</script>";
+							break;
+						}
+					}
+				}
+				foreach($facilityList as $value){
+					$query = "INSERT INTO request_facility(`rfID`, `requestId`, `facilityName`) VALUES(NULL, `$requestid`, `$value`)";
+					$result = mysqli_query(dbconn(),$query);
+					if(!$result){
+						echo "<script type='text/javascript'>alert('Something went wrong. Please try again.')</script>";
+						break;
 					}
 				}
 			}else{
