@@ -107,6 +107,24 @@
 	<?php
 		}
 	}
+	function checkboxEst(){
+		$query = "SELECT facilities.facilityName FROM facilities ORDER BY facilities.facilityName";
+		$result = mysqli_query(dbconn(), $query);
+		while(list($facilityName) = mysqli_fetch_row($result)){
+		?>
+			<label><input type="checkbox" name="facilityList[]" value="<?=$facilityName?>" /><?=$facilityName?></label>
+		<?php
+		}
+	}
+	function checkboxAdd(){
+		$query = "SELECT * FROM add_on";
+		$result = mysqli_query(dbconn(), $query);
+		while(list($add_id, $add_item, $add_price) = mysqli_fetch_row($result)){
+		?>
+			<label><input type="checkbox" name="addOn[]" value="<?=$add_item.",".$add_price?>" /><?=$add_item?> - <?=$add_price?></label>
+		<?php
+		}
+	}
 	function ownerNav(){
 	?>
 		<nav id="gen-nav">
@@ -334,7 +352,59 @@
 			echo substr($string, 0, 20) . "...";
 		}
 	}
-	function addEst($estName, $streetName, $barangayName, $cellnum, $telnum, $loc, $hType, $facilityList){
-		
+	function addEst($estName, $streetName, $barangayName, $cellnum, $telnum, $loc, $hType, $facilityList, $addOn){
+		$errorMsg = "";
+		$successMsg = "";
+		$errors = 0;
+		$estName1 = htmlspecialchars($estName, ENT_QUOTES);
+		$estName2 = str_replace("'","\\'",$estName);
+		$query = "SELECT * FROM dorm WHERE dorm.dormName LIKE '$estName1' OR dorm.dormName LIKE '$estName2'";
+		$result = mysqli_query(dbconn(),$query);
+		if(mysqli_num_rows($result)>=1){
+			$errorMsg = $errorMsg."$estName is already taken. Please input a different establishment name.";
+			$errors++;
+		}
+		if(!(empty($telnum))&&!(preg_match("/^\d{3}-\d{4}?$/", $telnum))){
+			$errorMsg = $errorMsg."<br />For the telephone number, please follow this format: (123-4567).";
+			$errors++;
+		}
+		if(!(empty($cellnum))&&!(preg_match("~^(0|\+63)9\d{9}~",$cellnum))){
+			$errorMsg = $errorMsg."<br />For the cellphone number, please follow this format: (09123456789 or +639123456789).";
+			$errors++;
+		}
+		if(empty($loc)){
+			$errorMsg = $errorMsg."<br />Location field was left blank. Please choose a location.";
+			$errors++;
+		}
+		if(empty($hType)){
+			$errorMsg = $errorMsg."<br />Housing Type field left blank. Please choose a housing type.";
+			$errors++;
+		}
+		if(empty($facilityList)){
+			$errorMsg = $errorMsg."<br />Facilities were left blank. Please choose one or more facilities.";
+			$errors++;
+		}
+		if($errors==0){
+			if(!(preg_match("/St\.$/", $streetName))){
+				$streetName = $streetName." St.";
+			}
+			if(!(preg_match("/^Brgy\. /", $barangayName))){
+				$barangayName = "Brgy. ".$barangayName;
+			}
+			$ownerId = $_SESSION['userID'];
+			$query = "INSERT INTO request(`requestId`,`OwnerId`, `DormName`, `HousingType`, `Location`, `thumbnailpic`) VALUES(NULL, '$ownerId', '$estName', '$hType', '$loc', 'css/images/no_image.png' )";
+			$result = mysqli_query(dbconn(), $query);
+			if($result){
+				$requestId = dbconn()->insert_id;
+				if(!empty($addOn)){
+					foreach($addOn as $value){
+					}
+				}
+			}else{
+				echo "<script type='text/javascript'>alert('Something went wrong. Please try again.')</script>";
+			}
+			$successMsg = "Your request has been successfully added! Please wait for the approval of the admin.";
+		}
+		return array($errorMsg, $successMsg);
 	}
 ?>

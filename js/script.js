@@ -4,6 +4,6 @@ $(document).ready(function(){
 function add_facility(e){
 	e.preventDefault();
 	$.ajax({
-		url: ""
+		url: "";
 	});
 }

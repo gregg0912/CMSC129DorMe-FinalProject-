@@ -8,6 +8,9 @@
 	$barangayName = "";
 	$cellnum = "";
 	$telnum = "";
+	$loc = "";
+	$hType = "";
+	$facilityList = "";
 	$errorMsg1 = "";
 	$errorMsg2 = "";
 	$errorMsg3 = "";
@@ -19,10 +22,19 @@
 		$barangayName = $_POST['barangayName'];
 		$cellnum = $_POST['cellnum'];
 		$telnum = $_POST['telnum'];
-		$loc = $_POST['loc'];
-		$hType = $_POST['hType'];
-		$facilityList = $_POST['facilityList'];
-		list($errorMsg1, $errorMsg2, $errorMsg3, $errorMsg4, $successMsg) = addEst($estName, $streetName, $barangayName, $cellnum, $telnum, $loc, $hType, $facilityList);
+		if(!empty($_POST['loc'])){
+			$loc = $_POST['loc'];
+		}
+		if(!empty($_POST['hType'])){
+			$hType = $_POST['hType'];
+		}
+		if(!empty($_POST['facilityList'])){
+			$facilityList = $_POST['facilityList'];
+		}
+		if(!empty($_POST['addOn'])){
+			$addOn = $_POST['addOn'];
+		}
+		list($errorMsg, $successMsg) = addEst($estName, $streetName, $barangayName, $cellnum, $telnum, $loc, $hType, $facilityList, $addOn);
 	}
 ?>
 <!DOCTYPE html>
@@ -41,8 +53,7 @@
 <div>
 	<form method="POST" action="" id="add-form">
 		<div class="msg">
-			<p><?=$errorMsg1?></p>
-		</div>
+			<p><?=$errorMsg?></p>
 		<fieldset>
 			<legend>Establishment Information</legend>
 			<input type="text" name="estName" required="required" placeholder="Establishment Name" value="<?=$estName?>" />
@@ -51,38 +62,31 @@
 		</fieldset>
 		<fieldset>
 			<legend>Contact Information</legend>
-			<input pattern="^\d{3}(-\d{4})?$" type="text" name="cellnum"  placeholder="Telephone: (ex. 123-4567)" value="<?=$cellnum?>" />
-			<input pattern="\b\d{11}\b" type="text" name="telnum" placeholder="Cellphone: (ex. 09123456789)" value="<?=$telnum?>" />
+			<input type="text" name="telnum"  placeholder="Telephone: (ex. 123-4567)" value="<?=$telnum?>" />
+			<input type="text" name="cellnum" placeholder="Cellphone: (ex. 09123456789 or +639123456789)" value="<?=$cellnum?>" />
 		</fieldset>
-		<div class="msg">
-			<p><?=$errorMsg2?></p>
-		</div>
 		<fieldset>
 			<legend>Establishment Location</legend>
 			<label class="radio inline"><input type="radio" name="loc" value="dormArea" /><span>Dorm Area</span></label>
 			<label class="radio inline"><input type="radio" name="loc" value="banwa" /><span>Banwa</span></label>
 		</fieldset>
-		<div class="msg">
-			<p><?=$errorMsg3?></p>
-		</div>
 		<fieldset>
 			<legend>Housing Type</legend>
 			<label class="radio inline"><input type="radio" name="hType" value="apartment" /><span>Apartment</span></label>
 			<label class="radio inline"><input type="radio" name="hType" value="bedspace" /><span>Bedspace</span></label>
-			<label class="radio inline"><input type="radio" name="hType" value="boardinghouse" /><span>Boarding House</span></label>
+			<label class="radio inline"><input type="radio" name="hType" value="Boardinghouse" /><span>Boarding House</span></label>
 			<label class="radio inline"><input type="radio" name="hType" value="dormitory"><span>Dormitory</span></label>
 		</fieldset>
-		<div class="msg">
-			<p><?=$errorMsg4?></p>
-		</div>
 		<fieldset>
 			<legend>Facilities</legend>
 			<?php
-			$query = "SELECT * FROM facilities ORDER BY facilities.facilityName";
-			$result = mysqli_query($dbconn, $query);
-			checkbox($result);
+			checkboxEst();
 			?>
 			<input type="button" id="add-btn" name="add-btn" value="Add Option" />
+		</fieldset>
+		<fieldset>
+			<legend>Add-On</legend>
+			<?=checkboxAdd();?>
 		</fieldset>
 		<input type="submit" name="submit" value="Submit" />
 	</form>
