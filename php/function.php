@@ -309,7 +309,7 @@
 		}
 	}
 
-	function addEst($estName, $streetName, $barangayName, $cellnum, $telnum, $loc, $hType, $facilityList, $addOn){
+	function addEst($estName, $streetName, $barangayName, $cellnum, $telnum, $loc, $hType, $facilityList, $addOn, $typeOfPayment, $maxNum, $price){
 		$errorMsg = "";
 		$successMsg = "";
 		$errors = 0;
@@ -317,6 +317,7 @@
 		$estName2 = str_replace("'","\\'",$estName);
 		$query = "SELECT * FROM dorm WHERE dorm.dormName LIKE '$estName1' OR dorm.dormName LIKE '$estName2'";
 		$result = mysqli_query(dbconn(),$query);
+		$flag = true;
 		if(mysqli_num_rows($result)>=1){
 			$errorMsg = $errorMsg."$estName is already taken. Please input a different establishment name.";
 			$errors++;
@@ -341,6 +342,10 @@
 			$errorMsg = $errorMsg."<br />Facilities were left blank. Please choose one or more facilities.";
 			$errors++;
 		}
+		if(empty($typeOfPayment)){
+			$errorMsg = $errorMsg."<br />Type of payment was left blank. Please choose a payment type.";
+			$errors++;
+		}
 		if($errors==0){
 			if(!(preg_match("/St\.$/", $streetName))){
 				$streetName = $streetName." St.";
@@ -360,16 +365,23 @@
 						$result = mysqli_query(dbconn(),$query);
 						if(!$result){
 							echo "<script type='text/javascript'>alert('Something went wrong. Please try again.')</script>";
+							$flag = false;
 							break;
 						}
 					}
 				}
-				foreach($facilityList as $value){
-					$query = "INSERT INTO request_facility(`rfID`, `requestId`, `facilityName`) VALUES(NULL, `$requestid`, `$value`)";
-					$result = mysqli_query(dbconn(),$query);
-					if(!$result){
-						echo "<script type='text/javascript'>alert('Something went wrong. Please try again.')</script>";
-						break;
+				if($flag){
+					foreach($facilityList as $value){
+						$query = "INSERT INTO request_facility(`rfID`, `requestId`, `facilityName`) VALUES(NULL, `$requestid`, `$value`)";
+						$result = mysqli_query(dbconn(),$query);
+						if(!$result){
+							echo "<script type='text/javascript'>alert('Something went wrong. Please try again.')</script>";
+							$flag = false;
+							break;
+						}
+					}
+					if($flag){
+						
 					}
 				}
 			}else{
@@ -377,7 +389,7 @@
 			}
 			$successMsg = "Your request has been successfully added! Please wait for the approval of the admin.";
 		}
-		return array($errorMsg, $successMsg);
+		return array($errorMsg, $successMsg, $errors);
 	}
 	function pages($count, $page){
 

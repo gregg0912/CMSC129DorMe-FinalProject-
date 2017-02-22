@@ -11,6 +11,9 @@
 	$loc = "";
 	$hType = "";
 	$facilityList = "";
+	$maxNum = "";
+	$typeOfPayment = "";
+	$price = "";
 	$errorMsg1 = "";
 	$errorMsg2 = "";
 	$errorMsg3 = "";
@@ -22,6 +25,9 @@
 		$barangayName = $_POST['barangayName'];
 		$cellnum = $_POST['cellnum'];
 		$telnum = $_POST['telnum'];
+		$price = $_POST['price'];
+		$maxNum = $_POST['maxNum'];
+		$price = $_POST['price'];
 		if(!empty($_POST['loc'])){
 			$loc = $_POST['loc'];
 		}
@@ -33,6 +39,9 @@
 		}
 		if(!empty($_POST['addOn'])){
 			$addOn = $_POST['addOn'];
+		}
+		if(!empty($_POST['typeOfPayment'])){
+			$typeOfPayment = $_POST['typeOfPayment'];
 		}
 		list($errorMsg, $successMsg) = addEst($estName, $streetName, $barangayName, $cellnum, $telnum, $loc, $hType, $facilityList, $addOn);
 	}
@@ -82,7 +91,20 @@
 			<?php
 			checkboxEst();
 			?>
-			<input type="button" id="add-btn" name="add-btn" value="Add Option" />
+			<input type="button" class="add-btn" id="add-btn" name="add-btn" value="Add Option" />
+		</fieldset>
+		<fieldset>
+			<legend>Rooms</legend>
+			<label>Maximum number of residents: <input type="number" name="maxNum" min="1" value="1" /></label>
+			<label>
+				Type of Payment:
+				<select name="typeOfPayment" id="typeOfPayment">
+					<option value="by_room">Per Room</option>
+					<option value="by_person">Per person</option>
+				</select>
+			</label>
+			<label>Price: <input type="number" name="price" min="500" value="500" /></label>
+			<input type="button" class="add-btn" id="add-btn2" name="add-btn2" value="Add Option" />
 		</fieldset>
 		<fieldset>
 			<legend>Add-On</legend>
