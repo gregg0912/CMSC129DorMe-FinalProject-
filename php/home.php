@@ -12,6 +12,15 @@
 	<?php
 	headerRender();
 	?>
+	<nav id="navigation">
+		<ul>
+			<li><a href="home.xhtml" class="active">Home</a></li>
+			<li><a href="">View</a></li>
+			<li><a href="">Poll</a></li>
+			<li><a href="">About</a></li>
+		</ul>
+	</nav>
+	
 	<section id="establishments">
 		<h2>Featured Establishments</h2>
 		<?php
