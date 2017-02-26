@@ -1,9 +1,18 @@
 $(document).ready(function(){
-	$(document).on("click","#add-btn",add_facility);
+	$(document).on("click", "#delete", delete_est);
+
 });
-function add_facility(e){
+
+function delete_est(e){
 	e.preventDefault();
+	var del = $(this).attr("data-pg");
 	$.ajax({
-		url: "";
+		url:'delete-est.php',
+		type: "post",
+		data: {'row': del},
+		success: function(data){
+			console.log(data);
+			$("#manage-est").html(data);
+		}	
 	});
 }

@@ -14,18 +14,19 @@
 		return $query;
 	}
 
-
 	function renderlist($res, $page, $count){	
+
 		if(mysqli_num_rows($res)){
 		?>
 			<section id="estab-list">
 				<?php
-				while(list($estId, $estName, $address, $owner, $housingType, $thumbnailpic) = mysqli_fetch_row($res)){
+				while(list($id, $estId, $estName, $owner, $address,$housingType, $thumbnailpic) = mysqli_fetch_row($res)){
 					$housingType = determine($housingType);
 				?>
 				<div id="establishment">
 					<a href="viewdorm.php?dormId=<?=$estId?>"><img src="<?=$thumbnailpic?>" alt="Image not found" /></a>
-					<span><?=$estName?></span> | <?=$owner?> | <?=$address?> | <?=$housingType?>
+					<span><?=$estId?></span> |<?=$estName?>| <?=$owner?> | <?=$address?> | <?=$housingType?>
+				<a href="javascript:void(0)" name="delete" id="delete" data-pg = '<?=$id?>'> Delete
 				</div>
 				<?php
 				}
