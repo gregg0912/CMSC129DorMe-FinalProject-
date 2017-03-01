@@ -47,6 +47,9 @@
 <html>
 <head>
 	<title>DorMe | Add Establishment</title>
+	<script type="text/javascript" src="../js/js.js"></script>
+	<script type="text/javascript" src="../js/script.js"></script>
+
 </head>
 <body>
 <?=headerRender();?>
@@ -83,7 +86,7 @@
 			<label class="radio inline"><input type="radio" name="hType" value="Boardinghouse" /><span>Boarding House</span></label>
 			<label class="radio inline"><input type="radio" name="hType" value="dormitory"><span>Dormitory</span></label>
 		</fieldset>
-		<fieldset>
+		<fieldset id="TextBoxesGroup" name="TextBoxesGroup">
 			<legend>Facilities</legend>
 			<?php
 			checkboxEst();
