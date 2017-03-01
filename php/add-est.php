@@ -11,14 +11,11 @@
 	$loc = "";
 	$hType = "";
 	$facilityList = "";
+	$addOn = "";
 	$maxNum = "";
 	$typeOfPayment = "";
 	$price = "";
-	$errorMsg1 = "";
-	$errorMsg2 = "";
-	$errorMsg3 = "";
-	$errorMsg4 = "";
-	$successMsg = "";
+	$errorMsg = "";
 	if(isset($_POST['submit'])){
 		$estName = $_POST['estName'];
 		$streetName = $_POST['streetName'];
@@ -43,7 +40,7 @@
 		if(!empty($_POST['typeOfPayment'])){
 			$typeOfPayment = $_POST['typeOfPayment'];
 		}
-		list($errorMsg, $successMsg) = addEst($estName, $streetName, $barangayName, $cellnum, $telnum, $loc, $hType, $facilityList, $addOn);
+		list($errorMsg, $successMsg) = addEst($estName, $streetName, $barangayName, $cellnum, $telnum, $loc, $hType, $facilityList, $addOn, $typeOfPayment, $maxNum, $price);
 	}
 ?>
 <!DOCTYPE html>

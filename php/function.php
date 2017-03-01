@@ -333,7 +333,7 @@
 		$result = mysqli_query(dbconn(),$query);
 		$flag = true;
 		if(mysqli_num_rows($result)>=1){
-			$errorMsg = $errorMsg."$estName is already taken. Please input a different establishment name.";
+			$errorMsg = $errorMsg."<br />$estName is already taken. Please input a different establishment name.";
 			$errors++;
 		}
 		if(!(empty($telnum))&&!(preg_match("/^\d{3}-\d{4}?$/", $telnum))){
@@ -371,7 +371,7 @@
 			// $query = "INSERT INTO request(`requestId`,`OwnerId`, `DormName`, `HousingType`, `Location`, `thumbnailpic`) VALUES(NULL, '$ownerId', '$estName', '$hType', '$loc', 'css/images/no_image.png' )";
 			// $result = mysqli_query(dbconn(), $query);
 			echo "Establishment Name: $estName <br />";
-			echo "Telephone Number: $telnm <br />";
+			echo "Telephone Number: $telnum <br />";
 			echo "Cellphone Number: $cellnum <br />";
 			echo "Location: $loc <br />";
 			echo "Housing Type: $hType <br />";
@@ -381,7 +381,8 @@
 					$count = 1;
 					foreach($addOn as $value){
 						$addition = explode(",",$value);
-						echo "Addition '".$count"': '".$addition[0]."' - '".$addition[1]."' <br />";
+						echo "Addition '".$count."' : '".$addition[0]."' - '".$addition[1]."' <br />";
+						$count++;
 						// $query = "INSERT INTO request_add_on(`raId`, `requestId`, `add_item`, `add_price`) VALUES(NULL, `$requestId`, `$addition[0]`,`$addition[1]`)";
 						// $result = mysqli_query(dbconn(),$query);
 						// if(!$result){
@@ -404,15 +405,24 @@
 					}
 					if($flag){
 						$flag = true;
+						// $query = "INSERT INTO request_room(`rrID`, `requestId`, `MaxNoOfResidents`, `TypeOfPayment`, `Price`) VALUES(NULL, `$requestid`, `$maxNum`, `$typeOfPayment`, `$price`)";
+						// $result = mysqli_query(dbconn(), $query);
+						// if(!$result){
+						// 	echo "<script type='text/javascript'>alert('Something went wrong. Please try again.')</script>";
+						// 	$flag = false;
+						// 	break;
+						// }
 						echo "Max number of residents: '".$maxNum."' <br />";
 						echo "Type of Payment: '".$typeOfPayment."' <br />";
 						echo "Price: '".$price."' <br />";
+						if($flag){
+							$successMsg = "Your request has been successfully added! Please wait for the approval of the admin.";
+						}
 					}
 				}
 			}else{
 				echo "<script type='text/javascript'>alert('Something went wrong. Please try again.')</script>";
 			}
-			$successMsg = "Your request has been successfully added! Please wait for the approval of the admin.";
 		}
 		return array($errorMsg, $successMsg, $errors);
 	}
