@@ -368,34 +368,45 @@
 				$barangayName = "Brgy. ".$barangayName;
 			}
 			$ownerId = $_SESSION['userID'];
-			$query = "INSERT INTO request(`requestId`,`OwnerId`, `DormName`, `HousingType`, `Location`, `thumbnailpic`) VALUES(NULL, '$ownerId', '$estName', '$hType', '$loc', 'css/images/no_image.png' )";
-			$result = mysqli_query(dbconn(), $query);
+			// $query = "INSERT INTO request(`requestId`,`OwnerId`, `DormName`, `HousingType`, `Location`, `thumbnailpic`) VALUES(NULL, '$ownerId', '$estName', '$hType', '$loc', 'css/images/no_image.png' )";
+			// $result = mysqli_query(dbconn(), $query);
+			echo "Establishment Name: $estName <br />";
+			echo "Telephone Number: $telnm <br />";
+			echo "Cellphone Number: $cellnum <br />";
+			echo "Location: $loc <br />";
+			echo "Housing Type: $hType <br />";
 			if($result){
-				$requestId = dbconn()->insert_id;
+				// $requestId = dbconn()->insert_id;
 				if(!empty($addOn)){
+					$count = 1;
 					foreach($addOn as $value){
 						$addition = explode(",",$value);
-						$query = "INSERT INTO request_add_on(`raId`, `requestId`, `add_item`, `add_price`) VALUES(NULL, `$requestId`, `$addition[0]`,`$addition[1]`)";
-						$result = mysqli_query(dbconn(),$query);
-						if(!$result){
-							echo "<script type='text/javascript'>alert('Something went wrong. Please try again.')</script>";
-							$flag = false;
-							break;
-						}
+						echo "Addition '".$count"': '".$addition[0]."' - '".$addition[1]."' <br />";
+						// $query = "INSERT INTO request_add_on(`raId`, `requestId`, `add_item`, `add_price`) VALUES(NULL, `$requestId`, `$addition[0]`,`$addition[1]`)";
+						// $result = mysqli_query(dbconn(),$query);
+						// if(!$result){
+						// 	echo "<script type='text/javascript'>alert('Something went wrong. Please try again.')</script>";
+						// 	$flag = false;
+						// 	break;
+						// }
 					}
 				}
 				if($flag){
 					foreach($facilityList as $value){
-						$query = "INSERT INTO request_facility(`rfID`, `requestId`, `facilityName`) VALUES(NULL, `$requestid`, `$value`)";
-						$result = mysqli_query(dbconn(),$query);
-						if(!$result){
-							echo "<script type='text/javascript'>alert('Something went wrong. Please try again.')</script>";
-							$flag = false;
-							break;
-						}
+						echo "Facility: '".$value."' <br />";
+						// $query = "INSERT INTO request_facility(`rfID`, `requestId`, `facilityName`) VALUES(NULL, `$requestid`, `$value`)";
+						// $result = mysqli_query(dbconn(),$query);
+						// if(!$result){
+						// 	echo "<script type='text/javascript'>alert('Something went wrong. Please try again.')</script>";
+						// 	$flag = false;
+						// 	break;
+						// }
 					}
 					if($flag){
 						$flag = true;
+						echo "Max number of residents: '".$maxNum."' <br />";
+						echo "Type of Payment: '".$typeOfPayment."' <br />";
+						echo "Price: '".$price."' <br />";
 					}
 				}
 			}else{
