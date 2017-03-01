@@ -6,6 +6,9 @@
 if(isset($_SESSION['userID'])){
 	header("Location: home.php");
 }
+else if(isset($_SESSION['adminID'])){
+	header("Location: home.php");
+}
 if(isset($_POST["submit"])){
 	$username = $_POST["userName"];
 	$password = MD5($_POST["password"]);
