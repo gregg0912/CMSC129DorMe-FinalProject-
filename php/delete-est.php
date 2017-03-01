@@ -4,7 +4,7 @@
 	$dbconn = dbconn();
 	$ownerID = $_SESSION['userID'];
 		$del = $_POST['row'];
-		$query = array("DELETE FROM dorm_number WHERE DormId = '$del'",
+		$queries = array("DELETE FROM dorm_number WHERE DormId = '$del'",
 						"DELETE FROM dorm_pictures WHERE DormId = '$del'",
 						"DELETE FROM dorm_room WHERE DormId = '$del'",
 						"DELETE FROM facility_dorm WHERE DormId = '$del'",

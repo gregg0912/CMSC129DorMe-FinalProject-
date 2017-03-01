@@ -40,12 +40,21 @@
 	<?php
 		}
 		else{
+			if($fromPage == "view"){
 	?>		
-			<div id="establishment">
-				<a href="javascript:void(0)"><img src="" alt="Image not found" /></a>
-				<span>Your search returned no results!</span>
-			</div>
+				<div id="establishment">
+					<a href="javascript:void(0)"><img src="" alt="Image not found" /></a>
+					<span>Your search returned no results!</span>
+				</div>
 	<?php
+			}else if($fromPage == "viewOwner"){
+	?>
+				<div id="establishment">
+					<a href="javascript:void(0)"><img src="" alt="Image not found" /></a>
+					<span>You don't have any dormitories! Try adding one.</span>
+				</div>
+	<?php
+			}
 		}
 		if(!empty($page)&&!empty($count)){
 			pages($count, $page);
