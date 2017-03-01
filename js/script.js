@@ -35,7 +35,6 @@ function add_op(e){
 		type: "post",
 		data: $(this).serialize(),
 		success: function(data){
-			alert(counter);
 			console.log(data);
 			newTextBoxDiv.after().html('<label>Facility ' + counter +  ': </label>' +
 	      '<input type="text" name="textbox' + counter +
