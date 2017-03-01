@@ -381,7 +381,7 @@
 						}
 					}
 					if($flag){
-						
+						$flag = true;
 					}
 				}
 			}else{
