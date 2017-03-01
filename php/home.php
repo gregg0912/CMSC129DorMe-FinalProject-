@@ -17,7 +17,7 @@
 		<?php
 			$query = homequeryConstruct();
 			$result = mysqli_query($dbconn, $query);
-			renderlist($result, "", "");
+			renderlist($result, "", "", "home");
 		?>
 		<a href="#header">Back to Top</a>
 	</section>

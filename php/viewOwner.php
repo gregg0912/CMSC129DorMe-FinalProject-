@@ -4,7 +4,12 @@
 	$dbconn = dbconn();
 	ownerRedirect();
 	$ownerID = $_SESSION["userID"];
-	$query = "SELECT dorm.DormId, dorm.DormName, dorm.HousingType, owner.Name, dorm.Location, dorm.thumbnailpic, CONCAT(address.StreetName,', ',address.Barangay) FROM dorm, address, owner WHERE dorm.OwnerId = $ownerID AND owner.OwnerId= $ownerID AND dorm.AddressId = address.AddressId";
+	// $query = "SELECT dorm.DormId, dorm.DormName, dorm.HousingType, owner.Name, dorm.Location, dorm.thumbnailpic, CONCAT(address.StreetName,', ',address.Barangay) FROM dorm, address, owner WHERE dorm.OwnerId = $ownerID AND owner.OwnerId= $ownerID AND dorm.AddressId = address.AddressId";
+	$query = "SELECT dorm.DormId, dorm.DormName, CONCAT(address.StreetName,', ',address.Barangay), owner.Name, dorm.HousingType, dorm.thumbnailpic
+		FROM dorm, address, owner
+		WHERE dorm.OwnerId = $ownerID
+		AND owner.OwnerId= $ownerID
+		AND dorm.AddressId = address.AddressId";
 	$result = mysqli_query($dbconn, $query) or die("Query failed.");
 
 ?>
@@ -20,8 +25,10 @@
 <nav id="manage-est">
 	<a href="add-est.php">Add Establishment</a
 </nav>
+<div id="estab-list">
 	<?php
-		renderlist($result,"","");
+		renderlist($result,"","","viewOwner");
 	?>
+</div>
 </body>
 </html>

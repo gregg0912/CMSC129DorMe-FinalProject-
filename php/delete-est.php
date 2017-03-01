@@ -21,7 +21,7 @@
 	<a href="add-est.php">Add Establishment</a
 </nav>
 	<?php
-		renderlist($result,"","");
+		renderlist($result,"","","viewOwner");
 	?>
 </body>
 </html>

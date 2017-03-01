@@ -14,19 +14,24 @@
 		return $query;
 	}
 
-	function renderlist($res, $page, $count){	
-
+	function renderlist($res, $page, $count, $fromPage){
 		if(mysqli_num_rows($res)){
 		?>
 			<section id="estab-list">
 				<?php
-				while(list($id, $estId, $estName, $owner, $address,$housingType, $thumbnailpic) = mysqli_fetch_row($res)){
+				while(list($estId, $estName, $owner, $address,$housingType, $thumbnailpic) = mysqli_fetch_row($res)){
 					$housingType = determine($housingType);
 				?>
 				<div id="establishment">
 					<a href="viewdorm.php?dormId=<?=$estId?>"><img src="<?=$thumbnailpic?>" alt="Image not found" /></a>
-					<span><?=$estId?></span> |<?=$estName?>| <?=$owner?> | <?=$address?> | <?=$housingType?>
-				<a href="javascript:void(0)" name="delete" id="delete" data-pg = '<?=$id?>'> Delete
+					<span><?=$estName?></span> | <?=$owner?> | <?=$address?> | <?=$housingType?>
+				<?php
+					if($fromPage == "viewOwner"){
+				?>
+					<a href="javascript:void(0)" name="delete" id="delete" data-pg = '<?=$estId?>'> Delete</a>
+				<?php
+					}
+				?>
 				</div>
 				<?php
 				}
@@ -35,7 +40,6 @@
 	<?php
 		}
 		else{
-
 	?>		
 			<div id="establishment">
 				<a href="javascript:void(0)"><img src="" alt="Image not found" /></a>

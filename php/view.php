@@ -89,7 +89,7 @@
 		$query = $query . " LIMIT $start, $lim";
 		$res = mysqli_query($dbconn, $query);
 
-		renderlist($res, $page, $count);
+		renderlist($res, $page, $count,"view");
 
 		?>
 	</section>

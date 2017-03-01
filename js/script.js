@@ -12,7 +12,7 @@ function delete_est(e){
 		data: {'row': del},
 		success: function(data){
 			console.log(data);
-			$("#manage-est").html(data);
+			$("#estab-list").html(data);
 		}	
 	});
 }
