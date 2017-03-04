@@ -2,7 +2,7 @@
 body {
      margin:0;
      background: fixed;
-     background-color: white;
+     background-color: #F4F6F8;
      overflow-x: hidden;
      padding: 15px;
 }
@@ -150,10 +150,31 @@ body {
 	/* insert style */
 }
 /***********************************************************************/
-gen-nav {
+#gen-nav {
 	width: 100%;
-	color: #00065B;
+	background-color: #121212;
 	font-size: 13px;
+	box-sizing: border-box;
+}
+#gen-nav ul {
+	list-style-type: none;
+    margin: auto;
+    padding: 0;
+    overflow: hidden;
+}
+#gen-nav li {
+    display: inline-block;
+    background-color: #207CEA;
+    width: 100px;
+    height: 40px;
+    margin: 5px 0px 5px 0px;
+}
+#gen-nav li a {
+    display: block;
+    color: white;
+    padding: 14px 16px;
+    text-decoration: none;
+    text-align: center;
 }
 footer p {
      width: 100%;
