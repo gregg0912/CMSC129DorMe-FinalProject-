@@ -71,7 +71,7 @@ function add_on_op(e){
 		data: $(this).serialize(),
 		success: function(data){
 			console.log(data);
-			
+			newAddDiv.after().html('<input type="text" name="add-item[]" placeholder="Add On Name" />');
 		}
 	});
 }
