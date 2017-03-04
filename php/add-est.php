@@ -12,6 +12,8 @@
 	$hType = "";
 	$facilityList = "";
 	$addOn = "";
+	$addItem = "";
+	$addPrice = "";
 	$maxNum = "";
 	$typeOfPayment = "";
 	$price = "";
@@ -22,9 +24,6 @@
 		$barangayName = $_POST['barangayName'];
 		$cellnum = $_POST['cellnum'];
 		$telnum = $_POST['telnum'];
-		$price = $_POST['price'];
-		$maxNum = $_POST['maxNum'];
-		$price = $_POST['price'];
 		if(!empty($_POST['loc'])){
 			$loc = $_POST['loc'];
 		}
@@ -40,7 +39,36 @@
 		if(!empty($_POST['typeOfPayment'])){
 			$typeOfPayment = $_POST['typeOfPayment'];
 		}
-		list($errorMsg, $successMsg) = addEst($estName, $streetName, $barangayName, $cellnum, $telnum, $loc, $hType, $facilityList, $addOn, $typeOfPayment, $maxNum, $price);
+		if(!empty($_POST['maxNum'])){
+			$maxNum = $_POST['maxNum'];
+		}
+		if(!empty($_POST['price'])){
+			$price = $_POST['price'];
+		}
+		if(!empty($_POST['add-item'])){
+			$addItem = $_POST['add-item'];
+		}
+		if(!empty($_POST['add-price'])){
+			$addPrice = $_POST['add-price'];
+		}
+		list($errorMsg, $successMsg, $errors) = addEst($estName, $streetName, $barangayName, $cellnum, $telnum, $loc, $hType, $facilityList, $addOn, $addItem, $addPrice, $typeOfPayment, $maxNum, $price);
+		if($errors == 0){
+			$estName = "";
+			$streetName = "";
+			$barangayName = "";
+			$cellnum = "";
+			$telnum = "";
+			$loc = "";
+			$hType = "";
+			$facilityList = "";
+			$addOn = "";
+			$addItem = "";
+			$addPrice = "";
+			$maxNum = "";
+			$typeOfPayment = "";
+			$price = "";
+			$errorMsg = "";
+		}
 	}
 ?>
 <!DOCTYPE html>

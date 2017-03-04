@@ -71,7 +71,12 @@ function add_on_op(e){
 		data: $(this).serialize(),
 		success: function(data){
 			console.log(data);
-			newAddDiv.after().html('<input type="text" name="add-item[]" placeholder="Add On Name" />');
+			newAddDiv.after().html('<input type="text" name="add-item[]" placeholder="Add On Name" />'
+				+ ' - '+
+				'<input type="number" name="add-price[]" value="50" min="50" />'+
+				'<input type="button" value="Remove" class="remove" />');
+			newAddDiv.appendTo("#checkboxAddGroup");
+			counterAdd++;
 		}
 	});
 }
