@@ -88,27 +88,34 @@
 		</fieldset>
 		<fieldset id="TextBoxesGroup" name="TextBoxesGroup">
 			<legend>Facilities</legend>
+			<div id="checkboxEstGroup">
 			<?php
 			checkboxEst();
 			?>
+			</div>
 			<input type="button" class="add-btn" id="add-btn" name="add-btn" value="Add Option" />
 		</fieldset>
-		<fieldset>
+		<fieldset id="RoomsGroup" name="RoomsGroup">
 			<legend>Rooms</legend>
-			<label>Maximum number of residents: <input type="number" name="maxNum" min="1" value="1" /></label>
-			<label>
-				Type of Payment:
-				<select name="typeOfPayment" id="typeOfPayment">
-					<option value="by_room">Per Room</option>
-					<option value="by_person">Per person</option>
-				</select>
-			</label>
-			<label>Price: <input type="number" name="price" min="500" value="500" /></label>
+			<div id="roomDiv1">
+				<label>Maximum number of residents: <input type="number" name="maxNum[]" min="1" value="1" /></label>
+				<label>
+					Type of Payment:
+					<select name="typeOfPayment[]" id="typeOfPayment">
+						<option value="by_room">Per Room</option>
+						<option value="by_person">Per person</option>
+					</select>
+				</label>
+				<label>Price: <input type="number" name="price[]" min="500" value="500" /></label>
+			</div>
 			<input type="button" class="add-btn" id="add-btn2" name="add-btn2" value="Add Option" />
 		</fieldset>
-		<fieldset>
+		<fieldset id="AddOnGroup" name="AddOnGroup">
 			<legend>Add-On</legend>
-			<?=checkboxAdd();?>
+			<div id="checkboxAddGroup">
+				<?=checkboxAdd();?>
+			</div>
+			<input type="button" name="add-btn" id="add-btn3" name="add-btn3" value="Add Option" />
 		</fieldset>
 		<input type="submit" name="submit" value="Submit" />
 	</form>
