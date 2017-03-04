@@ -3,6 +3,7 @@
 	require("function.php");
 	$dbconn = dbconn();
 	ownerRedirect();
+	$ownerId = $_SESSION['userID'];
 	$estName = "";
 	$streetName = "";
 	$barangayName = "";
@@ -51,7 +52,7 @@
 		if(!empty($_POST['add-price'])){
 			$addPrice = $_POST['add-price'];
 		}
-		list($errorMsg, $successMsg, $errors) = addEst($estName, $streetName, $barangayName, $cellnum, $telnum, $loc, $hType, $facilityList, $addOn, $addItem, $addPrice, $typeOfPayment, $maxNum, $price);
+		list($errorMsg, $successMsg, $errors) = addEst($ownerId, $estName, $streetName, $barangayName, $cellnum, $telnum, $loc, $hType, $facilityList, $addOn, $addItem, $addPrice, $typeOfPayment, $maxNum, $price);
 		if($errors == 0){
 			$estName = "";
 			$streetName = "";

@@ -323,7 +323,7 @@
 		}
 	}
 
-	function addEst($estName, $streetName, $barangayName, $cellnum, $telnum, $loc, $hType, $facilityList, $addOn, $addItem, $addPrice, $typeOfPayment, $maxNum, $price){
+	function addEst($ownerId, $estName, $streetName, $barangayName, $cellnum, $telnum, $loc, $hType, $facilityList, $addOn, $addItem, $addPrice, $typeOfPayment, $maxNum, $price){
 		$errorMsg = "";
 		$successMsg = "";
 		$errors = 0;
@@ -367,14 +367,18 @@
 			if(!(preg_match("/^Brgy\. /", $barangayName))){
 				$barangayName = "Brgy. ".$barangayName;
 			}
-			$ownerId = $_SESSION['userID'];
-			$query = "INSERT INTO request(`requestId`,`OwnerId`, `DormName`, `HousingType`, `Location`, `thumbnailpic`) VALUES(NULL, '$ownerId', '$estName', '$hType', '$loc', 'css/images/no_image.png' )";
+			// $ownerId = $_SESSION['userID'];
+			if(preg_match("/'/",$estName)){
+				$estName = $estName1;
+			}
+			$query = "INSERT INTO request(`requestId`,`OwnerId`, `DormName`, `HousingType`, `Location`, `thumbnailpic`) VALUES(NULL, `$ownerId`, `$estName`, `$hType`, `$loc`, `css/images/no_image.png` )";
+			echo "$query<br />";
 			$result = mysqli_query(dbconn(), $query);
 			if($result){
 				$requestId = dbconn()->insert_id;
 				if(!empty($addOn)){
 					foreach($addOn as $value){
-						$addition = explode(",",$value)
+						$addition = explode(",",$value);
 						$query = "INSERT INTO request_add_on(`raId`, `requestId`, `add_item`, `add_price`) VALUES(NULL, `$requestId`, `$addition[0]`,`$addition[1]`)";
 						$result = mysqli_query(dbconn(),$query);
 						if(!$result){
