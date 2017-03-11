@@ -138,17 +138,17 @@ body {
 	display: table;
 }
 
-@media only screen and (min-width: 1024px) {
+@media screen and (min-width: 1280px) {
+	/* insert style */
+}
+@media screen and (min-width: 990px) {
 	/* insert style */
 }
 
-@media only screen and (min-width: 1024px) {
+@media screen and (min-width: 720px) {
 	/* insert style */
 }
 
-@media only screen and (min-width: 1024px) {
-	/* insert style */
-}
 /***********************************************************************/
 #gen-nav {
 	width: 100%;
