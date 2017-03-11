@@ -17,15 +17,15 @@ body {
 
 @font-face {
 	font-family: ;
-    src: url();
+	src: url();
 }
 @font-face {
 	font-family: ;
-    src: url();
+    	src: url();
 }
 @font-face {
 	font-family: ;
-    src: url();
+    	src: url();
 }
 
 @media screen and (min-width: 1024px) {
@@ -40,7 +40,7 @@ body {
 	/* insert style */
 }
 /***********************************************************************/
-/*                         CSS FOR NAVIGATION                          */
+/*                         CSS FOR NAV AND FOOTER                      */
 /***********************************************************************/
 #gen-nav {
 	background-color: #2A2A2A;
@@ -103,7 +103,6 @@ body {
 #gen-nav ul li:hover > ul {
 	display: block;
 }
-/***********************************************************************/
 footer {
 	background-color: #2A2A2A;
 	width: 100%;
@@ -115,7 +114,7 @@ footer p {
 	padding: 10px;
 	color: white;
 }
-
+/***********************************************************************/
 #dorme-main-header {
 	border: 3px solid blue;
 	width: 100%;
