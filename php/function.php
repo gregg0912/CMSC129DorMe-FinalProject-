@@ -333,8 +333,25 @@
 			echo substr($string, 0, 20) . "...";
 		}
 	}
-
-	function addEst($estName, $streetName, $barangayName, $cellnum, $telnum, $loc, $hType, $facilityList, $addOn, $typeOfPayment, $maxNum, $price){
+	function addressDataList($key){
+	?>
+		<datalist id="<?=$key?>">
+			<?php
+			if($key=="street")
+				$query = "SELECT StreetName FROM address";
+			else if($key=="barangay")
+				$query = "SELECT Barangay FROM address";
+			$result = mysqli_query(dbconn(), $query);
+			while(list($names) = mysqli_fetch_row($result)){
+			?>
+				<option><?=$names?></option>
+			<?php
+			}
+			?>
+			</datalist>
+	<?php
+	}
+	function addEst($dbconn, $ownerId, $estName, $streetName, $barangayName, $cellnum, $telnum, $loc, $hType, $facilityList, $addOn, $addItem, $addPrice, $typeOfPayment, $maxNum, $price){
 		$errorMsg = "";
 		$successMsg = "";
 		$errors = 0;
@@ -378,61 +395,109 @@
 			if(!(preg_match("/^Brgy\. /", $barangayName))){
 				$barangayName = "Brgy. ".$barangayName;
 			}
-			$ownerId = $_SESSION['userID'];
-			// $query = "INSERT INTO request(`requestId`,`OwnerId`, `DormName`, `HousingType`, `Location`, `thumbnailpic`) VALUES(NULL, '$ownerId', '$estName', '$hType', '$loc', 'css/images/no_image.png' )";
-			// $result = mysqli_query(dbconn(), $query);
-			echo "Establishment Name: $estName <br />";
-			echo "Telephone Number: $telnum <br />";
-			echo "Cellphone Number: $cellnum <br />";
-			echo "Location: $loc <br />";
-			echo "Housing Type: $hType <br />";
+			// $ownerId = $_SESSION['userID'];
+			$estName = mysqli_real_escape_string(dbconn(), $estName);
+			$query = "INSERT INTO request(`requestId`,`OwnerId`, `DormName`, `HousingType`, `Location`, `thumbnailpic`) VALUES(NULL, '$ownerId', '$estName', '$hType', '$loc', 'css/images/no_image.png')";
+			$result = mysqli_query(dbconn(), $query);
 			if($result){
-				// $requestId = dbconn()->insert_id;
+				$requestId = mysqli_insert_id(dbconn());
 				if(!empty($addOn)){
-					$count = 1;
 					foreach($addOn as $value){
 						$addition = explode(",",$value);
-						echo "Addition '".$count."' : '".$addition[0]."' - '".$addition[1]."' <br />";
-						$count++;
-						// $query = "INSERT INTO request_add_on(`raId`, `requestId`, `add_item`, `add_price`) VALUES(NULL, `$requestId`, `$addition[0]`,`$addition[1]`)";
-						// $result = mysqli_query(dbconn(),$query);
-						// if(!$result){
-						// 	echo "<script type='text/javascript'>alert('Something went wrong. Please try again.')</script>";
-						// 	$flag = false;
-						// 	break;
-						// }
+						echo "$addition[0] : $addition[1] <br />";
+						$query = "INSERT INTO request_add_on(`raId`, `requestId`, `add_item`, `add_price`) VALUES(NULL, '$requestId', '$addition[0]','$addition[1]')";
+						echo "$query <br />";
+						$result = mysqli_query(dbconn(),$query);
+						if(!$result){
+							$errors++;
+							echo "<script type='text/javascript'>alert('Something went wrong while inserting an add on. Please try again.')</script>";
+							$flag = false;
+							break;
+						}
+					}
+					if(!empty($addItem) && !empty($addPrice)){
+						for($i = 0; ($i < count($addItem)) && ($i < count($addPrice)); $i++){
+							$query = "INSERT INTO request_add_on(`raId`, `requestId`, `add_item`, `add_price`) VALUES(NULL, '$requestId', '$addItem[$i]','$addPrice[$i]')";
+							$result = mysqli_query(dbconn(), $query);
+							if(!$result){
+								$errors++;
+								echo "<script type='text/javascript'>alert('Something went wrong while inserting an add on 2. Please try again.')</script>";
+								$flag = false;
+								break;
+							}
+						}
 					}
 				}
 				if($flag){
-					foreach($facilityList as $value){
-						echo "Facility: '".$value."' <br />";
-						// $query = "INSERT INTO request_facility(`rfID`, `requestId`, `facilityName`) VALUES(NULL, `$requestid`, `$value`)";
-						// $result = mysqli_query(dbconn(),$query);
-						// if(!$result){
-						// 	echo "<script type='text/javascript'>alert('Something went wrong. Please try again.')</script>";
-						// 	$flag = false;
-						// 	break;
-						// }
+					if(!empty($cellnum)){
+						$query = "INSERT INTO request_number(`rnId`, `requestId`, `NumType`, `Number`) VALUES(NULL, '$requestId', 'cp_no', '$cellnum')";
+						$result = mysqli_query(dbconn(), $query);
+						if(!$result){
+							$errors++;
+							echo "<script type='text/javascript'>alert('Something went wrong while inserting a cellphone number. Please try again.')</script>";
+							$flag = false;
+						}
+					}
+					if(!empty($telnum)){
+						$query = "INSERT INTO request_number(`rnId`, `requestId`, `NumType`, `Number`) VALUES(NULL, '$requestId', 'tel_no', '$telnum')";
+						$result = mysqli_query(dbconn(), $query);
+						if(!$result){
+							$errors++;
+							echo "<script type='text/javascript'>alert('Something went wrong while inserting a telephone number. Please try again.')</script>";
+							$flag = false;
+						}
 					}
 					if($flag){
-						$flag = true;
-						// $query = "INSERT INTO request_room(`rrID`, `requestId`, `MaxNoOfResidents`, `TypeOfPayment`, `Price`) VALUES(NULL, `$requestid`, `$maxNum`, `$typeOfPayment`, `$price`)";
-						// $result = mysqli_query(dbconn(), $query);
-						// if(!$result){
-						// 	echo "<script type='text/javascript'>alert('Something went wrong. Please try again.')</script>";
-						// 	$flag = false;
-						// 	break;
-						// }
-						echo "Max number of residents: '".$maxNum."' <br />";
-						echo "Type of Payment: '".$typeOfPayment."' <br />";
-						echo "Price: '".$price."' <br />";
+						foreach($facilityList as $value){
+							$query = "INSERT INTO request_facility(`rfID`, `requestId`, `facilityName`) VALUES(NULL, '$requestId', '$value')";
+							$result = mysqli_query(dbconn(),$query);
+							if(!$result){
+								$errors++;
+								echo "<script type='text/javascript'>alert('Something went wrong while inserting a facility. Please try again.')</script>";
+								$flag = false;
+								break;
+							}
+						}
 						if($flag){
-							$successMsg = "Your request has been successfully added! Please wait for the approval of the admin.";
+							$flag = true;
+							for($i = 0; ($i < count($maxNum))&&( $i < count($typeOfPayment))&&( $i < count($price)); $i++){
+								$query = "INSERT INTO request_room(`rrID`, `requestId`, `MaxNoOfResidents`, `TypeOfPayment`, `Price`) VALUES(NULL, '$requestId', '$maxNum[$i]', '$typeOfPayment[$i]', '$price[$i]')";
+								$result = mysqli_query(dbconn(), $query);
+								if(!$result){
+									$errors++;
+									echo "<script type='text/javascript'>alert('Something went wrong while inserting a room. Please try again.')</script>";
+									$flag = false;
+									break;
+								}
+							}
+							if($flag){
+								$flag = true;
+								$query = "SELECT adminId FROM admin";
+								$result = mysqli_query(dbconn(), $query);
+								while(list($adminId) = mysqli_fetch_row($result)){
+									$seen_query = "INSERT INTO `admin_notif`(`NotifId`, `adminId`, `OwnerId`, `requestId`, `mark`) VALUES(NULL, '$adminId', '$ownerId', '$requestId', 'not_read')";
+									$seen_result = mysqli_query(dbconn(), $seen_query);
+									if(!$seen_result){
+										$errors++;
+										echo "<script type='text/javascript'>alert('Something went wrong while notifying the admin. Please try again.')</script>";
+										$flag = false;
+										break;
+									}
+								}
+								if($flag){
+									$successMsg = "Your request has been successfully added! Please wait for the approval of the admin.";
+								}
+								// else{
+								// 	$errors++;
+								// 	echo "<script type='text/javascript'>alert('Something went wrong. Please try again.')</script>";
+								// }
+							}
 						}
 					}
 				}
 			}else{
-				echo "<script type='text/javascript'>alert('Something went wrong. Please try again.')</script>";
+				$errors++;
+				echo "<script type='text/javascript'>alert('Something went wrong while inserting in request. Please try again.')</script>";
 			}
 		}
 		return array($errorMsg, $successMsg, $errors);
