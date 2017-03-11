@@ -7,36 +7,11 @@
 <html>
 <head>
 	<title>DorMe | Poll</title>
+	<link rel="stylesheet" type="text/css" href="../css/style.css" />
 </head>
 <body>
-	<header id="header">
-		<div id="estab fade">
-			<img src="../../../CMSC127_DORME/thumbnails/bettys.JPG" alt="image not found" />
-		</div>
-		<div id="estab fade">
-			<img src="../../../CMSC127_DORME/thumbnails/firstestate.JPG" alt="image not found" />
-		</div>
-		<div id="estab fade">
-			<img src="../../../CMSC127_DORME/thumbnails/foursisters.JPG" alt="image not found" />
-		</div>
-		<h1>DorMe.</h1>
-		<h2>your dorm. my dorm. our dorm.</h2>
-		<p> Looking for convenience? Look no further. Dorme is here for your new place to dwell!<br />
-			Scroll through featured dormitories and apartments on our home page and <br />
-			have an easy glimpse into finding your perfect second home!<br />
-			Sit back and pick your like.
-		</p>
-		<nav id="gen-nav">
-			<ul>
-				<li><a href="home.php" class="active">Home</a></li>
-				<li><a href="view.php">View</a></li>
-				<li><a href="poll.php">Poll</a></li>
-				<li><a href="about.php">About</a></li>
-				<li><a href="javascript:void(0)">Log in</a></li>
-				<li><a href="javascript:void(0)">Sign up</a></li>
-			</ul>
-		</nav>
-	</header>
+	<?php headerRender(); ?>
+		
 	<section id="establishments">
 		<div id='pollform'>
 			<form action="" method="post">
