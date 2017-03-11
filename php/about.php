@@ -7,6 +7,7 @@
 <html>
 <head>
 	<title>DorMe | About Us</title>
+	<link rel="stylesheet" type="text/css" href="../css/style.css" />
 </head>
 <body>
 	<header id="header">
