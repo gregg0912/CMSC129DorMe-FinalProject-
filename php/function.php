@@ -351,7 +351,6 @@
  			</datalist>		
  	<?php		
  	}		
- 	function addEst($dbconn, $ownerId, $estName, $streetName, $barangayName, $cellnum, $telnum, $loc, $hType, $facilityList, $addOn, $addItem, $addPrice, $typeOfPayment, $maxNum, $price){
 	function addEst($estName, $streetName, $barangayName, $cellnum, $telnum, $loc, $hType, $facilityList, $addOn, $typeOfPayment, $maxNum, $price){
 		$errorMsg = "";
 		$successMsg = "";
