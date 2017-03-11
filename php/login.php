@@ -35,6 +35,7 @@ if(isset($_POST["submit"])){
 <html>
 <head>
 	<title>DorMe | Owner Login</title>
+	<link rel="stylesheet" type="text/css" href="../css/style.css" />
 </head>
  <body>
 	<?php
