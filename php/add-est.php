@@ -19,6 +19,7 @@
 	$typeOfPayment = "";
 	$price = "";
 	$errorMsg = "";
+	$successMsg = "";
 	if(isset($_POST['submit'])){
 		$estName = $_POST['estName'];
 		$streetName = $_POST['streetName'];
@@ -52,7 +53,7 @@
 		if(!empty($_POST['add-price'])){
 			$addPrice = $_POST['add-price'];
 		}
-		list($errorMsg, $successMsg, $errors) = addEst($ownerId, $estName, $streetName, $barangayName, $cellnum, $telnum, $loc, $hType, $facilityList, $addOn, $addItem, $addPrice, $typeOfPayment, $maxNum, $price);
+		list($errorMsg, $successMsg, $errors) = addEst($dbconn, $ownerId, $estName, $streetName, $barangayName, $cellnum, $telnum, $loc, $hType, $facilityList, $addOn, $addItem, $addPrice, $typeOfPayment, $maxNum, $price);
 		if($errors == 0){
 			$estName = "";
 			$streetName = "";
@@ -91,12 +92,21 @@
 <div>
 	<form method="POST" action="" id="add-form">
 		<div class="msg">
-			<p><?=$errorMsg?></p>
+			<p>
+			<?php
+			if(!empty($errorMsg))
+				echo "$errorMsg";
+			else
+				echo "$successMsg";
+			?>
+			</p>
 		<fieldset>
 			<legend>Establishment Information</legend>
 			<input type="text" name="estName" required="required" placeholder="Establishment Name" value="<?=$estName?>" />
-			<input type="text" name="streetName" required="required" placeholder="Street Name" value="<?=$streetName?>" />
-			<input type="text" name="barangayName" required="required" placeholder="Barangay Name" value="<?=$barangayName?>" />
+			<input type="text" name="streetName" required="required" placeholder="Street Name" value="<?=$streetName?>" list="street" />
+			<?=addressDataList("street");?>
+			<input type="text" name="barangayName" required="required" placeholder="Barangay Name" value="<?=$barangayName?>" list="barangay" />
+			<?=addressDataList("barangay")?>
 		</fieldset>
 		<fieldset>
 			<legend>Contact Information</legend>
@@ -132,7 +142,7 @@
 					Type of Payment:
 					<select name="typeOfPayment[]" id="typeOfPayment">
 						<option value="by_room">Per Room</option>
-						<option value="by_person">Per person</option>
+						<option value="by_person">Per Person</option>
 					</select>
 				</label>
 				<label>Price: <input type="number" name="price[]" min="500" value="500" /></label>

@@ -52,7 +52,7 @@ function add_room_op(e){
 					'Type of Payment:'+
 					'<select name="typeOfPayment[]" id="typeOfPayment">'+
 						'<option value="by_room">Per Room</option>'+
-						'<option value="by_person">Per person</option>'+
+						'<option value="by_person">Per Person</option>'+
 					'</select>'+
 				'</label>'+
 				'<label>Price: <input type="number" name="price[]" min="500" value="500" /></label>'+
