@@ -386,7 +386,7 @@
 			}
 			// $ownerId = $_SESSION['userID'];
 			$estName = mysqli_real_escape_string(dbconn(), $estName);
-			$query = "INSERT INTO request(`requestId`,`OwnerId`, `DormName`, `HousingType`, `Location`, `thumbnailpic`) VALUES(NULL, '$ownerId', '$estName', '$hType', '$loc', 'css/images/no_image.png')";
+			$query = "INSERT INTO request(`requestId`,`OwnerId`, `DormName`, `HousingType`, `Location`, `streetName`, `barangayName`, `thumbnailpic`) VALUES(NULL, '$ownerId', '$estName', '$hType', '$loc', '$streetName', '$barangayName', 'css/images/no_image.png')";
 			$result = mysqli_query(dbconn(), $query);
 			if($result){
 				$requestId = dbconn()->insert_id;
@@ -406,6 +406,7 @@
 					}
 					if(!empty($addItem) && !empty($addPrice)){
 						for($i = 0; ($i < count($addItem)) && ($i < count($addPrice)); $i++){
+							$addPrice[$i] = "Php ".$addPrice[$i].".00";
 							$query = "INSERT INTO request_add_on(`raId`, `requestId`, `add_item`, `add_price`) VALUES(NULL, '$requestId', '$addItem[$i]','$addPrice[$i]')";
 							$result = mysqli_query(dbconn(), $query);
 							if(!$result){
