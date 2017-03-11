@@ -1,54 +1,136 @@
-/***********************************************************************/ 
+/***********************************************************************/
+/*                      DEFAULT STYLES + FONTS                         */
+/***********************************************************************/
 body {
-     margin:0;
+     margin: 0;
      background: fixed;
-     background-color: #F4F6F8;
+     background-color: #F9F9F9;
      overflow-x: hidden;
-     padding: 15px;
+}
+.body-content {
+	background-color: white;
+	margin: 0px 200px;
 }
 * {
 	box-sizing: border-box;
 }
-/*******************************************************************/
+
+@font-face {
+	font-family: ;
+    src: url();
+}
+@font-face {
+	font-family: ;
+    src: url();
+}
+@font-face {
+	font-family: ;
+    src: url();
+}
+
+@media screen and (min-width: 1024px) {
+	/* insert style */
+}
+
+@media screen and (min-width: 1024px) {
+	/* insert style */
+}
+
+@media screen and (min-width: 1024px) {
+	/* insert style */
+}
+/***********************************************************************/
+/*                         CSS FOR NAVIGATION                          */
+/***********************************************************************/
 #gen-nav {
+	background-color: #2A2A2A;
 	width: 100%;
-	background-color: #121212;
-	font-size: 13px;
-	box-sizing: border-box;
+	height: 45px;
+	margin-bottom: 0;
 }
 #gen-nav ul {
-	list-style-type: none;
-    margin: auto;
-    padding: 0;
-    overflow: hidden;
+	list-style: none;
+	position: relative;
+	float: left;
+	margin: 0px 100px;
+	padding: 5px 5px 0px 5px;
+	width: 100%;
 }
-#gen-nav li {
-    display: inline-block;
-    background-color: #207CEA;
-    width: 100px;
-    height: 40px;
-    margin: 5px 0px 5px 0px;
+#gen-nav ul a {
+	display: block;
+	color: #FFFFFF;
+	text-decoration: none;
+	line-height: 32px;
+	padding: 3px 15px;
+	text-align: center;
 }
-#gen-nav li a {
-    display: block;
-    color: white;
-    padding: 14px 16px;
-    text-decoration: none;
-    text-align: center;
+#gen-nav ul li {
+	position: relative;
+	float: left;
+	margin: 0;
+	padding: 0;
+	width: 180px;
+	border-bottom: 2px solid #2A2A2A;
+}
+#gen-nav ul li:hover {
+	border-bottom: 2px solid #7CB8FF;
+}
+#gen-nav ul li:hover a {
+	color: #7CB8FF;
+}
+#gen-nav ul ul {
+	background-color: #2A2A2A;
+	display: none;
+	position: absolute;
+	left: 0;
+	padding: 0;
+	margin: 0;
+}
+#gen-nav ul ul li {
+	float: none;
+	width: 100%;
+	margin: 0;
+}
+#gen-nav ul ul a {
+	line-height: 120%;
+	padding: 10px 15px;
+	margin: 0;
+}
+#gen-nav ul ul ul {
+	top: 0;
+	left: 100%;
+}
+#gen-nav ul li:hover > ul {
+	display: block;
+}
+/***********************************************************************/
+footer {
+	background-color: #2A2A2A;
+	width: 100%;
+	height: 45px;
+    width: 100%;
 }
 footer p {
-     width: 100%;
+	margin: 0px 200px;
+	padding: 10px;
+	color: white;
 }
 
-@media screen and (min-width: 1280px) {
-	/* insert style */
+#dorme-main-header {
+	border: 3px solid blue;
+	width: 100%;
+	height: 300px;
+	margin: auto;
+	position: relative;
 }
-@media screen and (min-width: 990px) {
-	/* insert style */
+#dorme-main-header > h1 {
+	border: 3px solid black;
+	text-align: center;
+	width: 500px;
 }
-
-@media screen and (min-width: 720px) {
-	/* insert style */
+#dorme-main-header > h2 {
+	border: 3px solid black;
 }
-
-/*******************************************************************/
+#dorme-main-header > p {
+	border: 3px solid black;
+}
