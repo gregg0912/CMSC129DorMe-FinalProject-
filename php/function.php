@@ -400,7 +400,7 @@
 			$query = "INSERT INTO request(`requestId`,`OwnerId`, `DormName`, `HousingType`, `Location`, `thumbnailpic`) VALUES(NULL, '$ownerId', '$estName', '$hType', '$loc', 'css/images/no_image.png')";
 			$result = mysqli_query(dbconn(), $query);
 			if($result){
-				$requestId = mysqli_insert_id(dbconn());
+				$requestId = dbconn()->insert_id;
 				if(!empty($addOn)){
 					foreach($addOn as $value){
 						$addition = explode(",",$value);
