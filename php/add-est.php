@@ -3,6 +3,7 @@
 	require("function.php");
 	$dbconn = dbconn();
 	ownerRedirect();
+	$ownerId = $_SESSION['userID'];
 	$estName = "";
 	$streetName = "";
 	$barangayName = "";
@@ -12,10 +13,13 @@
 	$hType = "";
 	$facilityList = "";
 	$addOn = "";
+	$addItem = "";		
+ 	$addPrice = "";
 	$maxNum = "";
 	$typeOfPayment = "";
 	$price = "";
 	$errorMsg = "";
+	$successMsg = "";
 	if(isset($_POST['submit'])){
 		$estName = $_POST['estName'];
 		$streetName = $_POST['streetName'];
@@ -40,6 +44,36 @@
 		if(!empty($_POST['typeOfPayment'])){
 			$typeOfPayment = $_POST['typeOfPayment'];
 		}
+		if(!empty($_POST['maxNum'])){
+		$maxNum = $_POST['maxNum'];		
+ 		}		
+ 		if(!empty($_POST['price'])){		
+ 			$price = $_POST['price'];		
+ 		}		
+ 		if(!empty($_POST['add-item'])){		
+ 			$addItem = $_POST['add-item'];		
+ 		}		
+ 		if(!empty($_POST['add-price'])){		
+ 			$addPrice = $_POST['add-price'];		
+		}		
+list($errorMsg, $successMsg, $errors) = addEst($dbconn, $ownerId, $estName, $streetName, $barangayName, $cellnum, $telnum, $loc, $hType, $facilityList, $addOn, $addItem, $addPrice, $typeOfPayment, $maxNum, $price);		
+ if($errors == 0){		
+	$estName = "";		
+	$streetName = "";		
+	$barangayName = "";		
+	$cellnum = "";		
+	$telnum = "";		
+	$loc = "";		
+	$hType = "";		
+	$facilityList = "";		
+	$addOn = "";		
+	$addItem = "";		
+	$addPrice = "";		
+	$maxNum = "";		
+	$typeOfPayment = "";		
+	$price = "";		
+	$errorMsg = "";		
+	}
 		list($errorMsg, $successMsg) = addEst($estName, $streetName, $barangayName, $cellnum, $telnum, $loc, $hType, $facilityList, $addOn, $typeOfPayment, $maxNum, $price);
 	}
 ?>
@@ -62,12 +96,21 @@
 <div>
 	<form method="POST" action="" id="add-form">
 		<div class="msg">
-			<p><?=$errorMsg?></p>
+			<p>
+			<?php
+			if(!empty($errorMsg))		
+ 				echo "$errorMsg";		
+ 			else		
+ 				echo "$successMsg";		
+ 			?>
+ 			</p>
 		<fieldset>
 			<legend>Establishment Information</legend>
 			<input type="text" name="estName" required="required" placeholder="Establishment Name" value="<?=$estName?>" />
-			<input type="text" name="streetName" required="required" placeholder="Street Name" value="<?=$streetName?>" />
-			<input type="text" name="barangayName" required="required" placeholder="Barangay Name" value="<?=$barangayName?>" />
+			<input type="text" name="streetName" required="required" placeholder="Street Name" value="<?=$streetName?>" list="street" />
+			<?=addressDataList("street");?>
+			<input type="text" name="barangayName" required="required" placeholder="Barangay Name" value="<?=$barangayName?>" list=""barangay" />
+				<?=addressDataList("barangay")?>
 		</fieldset>
 		<fieldset>
 			<legend>Contact Information</legend>
@@ -88,27 +131,34 @@
 		</fieldset>
 		<fieldset id="TextBoxesGroup" name="TextBoxesGroup">
 			<legend>Facilities</legend>
+			<div id="checkboxEstGroup">
 			<?php
 			checkboxEst();
 			?>
+			</div>
 			<input type="button" class="add-btn" id="add-btn" name="add-btn" value="Add Option" />
 		</fieldset>
-		<fieldset>
+		<fieldset id="RoomsGroup" name="RoomsGroup">
 			<legend>Rooms</legend>
-			<label>Maximum number of residents: <input type="number" name="maxNum" min="1" value="1" /></label>
+			<div id="roomDiv1">
+			<label>Maximum number of residents: <input type="number" name="maxNum[]" min="1" value="1" /></label>
 			<label>
 				Type of Payment:
-				<select name="typeOfPayment" id="typeOfPayment">
+				<select name="typeOfPayment[]" id="typeOfPayment">
 					<option value="by_room">Per Room</option>
 					<option value="by_person">Per person</option>
 				</select>
 			</label>
-			<label>Price: <input type="number" name="price" min="500" value="500" /></label>
+			<label>Price: <input type="number" name="price[]" min="500" value="500" /></label>
+			</div>
 			<input type="button" class="add-btn" id="add-btn2" name="add-btn2" value="Add Option" />
 		</fieldset>
-		<fieldset>
+		<fieldset id="AddOnGroup" name="AddOnGroup">
 			<legend>Add-On</legend>
+			<div id="checkboxAddGroup">
 			<?=checkboxAdd();?>
+			</div>
+			<input type="button" name="add-btn" id="add-btn3" name="add-btn3" value="Add Option"/>
 		</fieldset>
 		<input type="submit" name="submit" value="Submit" />
 	</form>
