@@ -32,8 +32,19 @@
 				<?php
 					}
 				?>
+					<div> 
+						<form method="post">
+							  Change establishment thumbnail: <input type="file" name="thumbChange">
+							  <input id="editThumb" type="submit" name="submit" value="submit">
+						</form>
+					</div>
 				</div>
 				<?php
+				$newthumb = $_POST['thumbChange'];
+				$query = "UPDATE dorm
+							SET thumbnailpic='$newthumb'
+							WHERE dormId=$estId";
+				$result = mysqli_query(dbconn(), $query);
 				}
 				?>
 			</section>
