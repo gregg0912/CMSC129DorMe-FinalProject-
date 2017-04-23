@@ -47,11 +47,20 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        return Validator::make($data, [
+        $messages = [
+            'password.regex' => 'Password must be at least 8 characters long and must contain at least a single digit',
+            'phone_number.regex' => 'Sample phone numbers: 09123456789 or +639123456789',
+            'username.min' => 'Username must be at least :min',
+        ];
+        $validator = Validator::make($data, [
             'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|min:6|confirmed',
-        ]);
+            'username' => 'required|min:3',
+            'email' => 'required|email|max:255|unique:owners',
+            'password' => 'required|min:8|confirmed|regex:/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/',
+            'phone_number' => ['required', 'regex:/^(0|\+63)9\d{9}$/'],
+        ], $messages);
+
+        return $validator;
     }
 
     /**
@@ -64,8 +73,10 @@ class RegisterController extends Controller
     {
         return User::create([
             'name' => $data['name'],
+            'username' => $data['username'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'phone_number' => $data['phone_number'],
         ]);
     }
 }
