@@ -1,3 +1,14 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="../bootstrap-3.3.7/dist/css/bootstrap.min.css" rel="stylesheet" />
+<link href="../bootstrap-3.3.7/dist/css/bootstrap.css" rel="stylesheet" />
+<link href="../css/style.css" rel="stylesheet" type="text/css" />
+<link href="../css/home.css" rel="stylesheet" type="text/css" />
+<script src="../bootstrap-3.3.7/dist/js/bootstrap.min.js"></script>
+<script src="../js/script.js"></script>
+<script src="../js/js.js"></script>
+<script src="../js/jquery.js"></script>
+
 <?php
 	function dbconn(){
 		$dbconn = mysqli_connect("localhost","root","","dorme") or die("Could not connect to database!");
@@ -32,19 +43,8 @@
 				<?php
 					}
 				?>
-					<div> 
-						<form method="post">
-							  Change establishment thumbnail: <input type="file" name="thumbChange">
-							  <input id="editThumb" type="submit" name="submit" value="submit">
-						</form>
-					</div>
 				</div>
 				<?php
-				$newthumb = $_POST['thumbChange'];
-				$query = "UPDATE dorm
-							SET thumbnailpic='$newthumb'
-							WHERE dormId=$estId";
-				$result = mysqli_query(dbconn(), $query);
 				}
 				?>
 			</section>
@@ -108,72 +108,106 @@
 	}
 	function ownerNav(){
 	?>
-		<nav id="gen-nav">
-			<ul>
-				<li><a href="home.php">Home</a></li>
-				<li><a href="view.php">View</a></li>
-				<li><a href="viewOwner.php">Manage Establishments</a></li>
-				<li><a href="ownerNotifs.php">Notifications</a></li>
-				<li><a href="about.php">About</a></li>
-				<li><a href="logout.php">Log Out</a></li>
-			</ul>
+		<nav id="gen-nav" class="nav navbar-inverse col-md-12 col-sm-12">
+			<div class="container-fluid">
+				<div class="navbar-headernav">
+					<button id="menu" class="navbar-toggle" data-toggle="collapse" data-target="#glyph-menu"><span class="glyphicon glyphicon-menu-hamburger"></span></button>
+				</div>
+				<div id="glyph-menu" class="collapse navbar-collapse">
+					<ul class="nav navbar-nav">
+						<li><a href="home.php">Home</a></li>
+						<li><a href="view.php">View</a></li>
+						<li><a href="viewOwner.php">Manage Establishments</a></li>
+						<li><a href="ownerNotifs.php">Notifications</a></li>
+						<li><a href="about.php">About</a></li>
+						<li><a href="logout.php">Log Out</a></li>
+					</ul>
+				</div>
+			</div>
 		</nav>
 	<?php
 	}
 	function adminNav(){
 	?>
-		<nav id="gen-nav">
-			<ul>
-				<li><a href="home.php">Home</a></li>
-				<li><a href="view.php">View</a></li>
-				<li><a href="adminNotifs.php">Notifications</a></li>
-				<li><a href="about.php">About</a></li>
-				<li><a href="logout.php">Log Out</a></li>
-			</ul>
+		<nav id="gen-nav" class="nav navbar-inverse col-md-12 col-sm-12">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<button id="menu" class="navbar-toggle collapse" data-toggle="collapse" data-target="#glyph-menu"><span class="glyphicon glyphicon-menu-hamburger"></span></button>
+				</div>
+				<div id="glyph-menu" class="collapse navbar-collapse">
+					<ul class="nav navbar-nav">
+						<li><a href="home.php">Home</a></li>
+						<li><a href="view.php">View</a></li>
+						<li><a href="adminNotifs.php">Notifications</a></li>
+						<li><a href="about.php">About</a></li>
+						<li><a href="logout.php">Log Out</a></li>
+					</ul>
+				</div>
+			</div>
 		</nav>
 	<?php
 	}
 	function userNav(){
 	?>
-		<nav id="gen-nav">
-			<ul>
-				<li><a href="home.php">Home</a></li>
-				<li><a href="view.php">View</a></li>
-				<li><a href="poll.php">Poll</a></li>
-				<li><a href="about.php">About</a></li>
-				<li><a href="javascript:void(0)">Log In</a>
-					<ul>
-						<li><a href="adminlogin.php">Admin</a></li>
-						<li><a href="login.php">Owner</a></li>
+		<nav id="gen-nav" class="nav navbar-inverse col-md-12 col-sm-12">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<button id="menu" class="navbar-toggle" data-toggle="collapse" data-target="#glyph-menu"><span class="glyphicon glyphicon-menu-hamburger"></span></button>
+				</div>
+				<div id="glyph-menu" class="collapse navbar-collapse">
+		    		<ul class="nav navbar-nav pull-left">
+						<li><a href="home.php">Home</a></li>
+						<li><a href="view.php">View</a></li>
+						<li><a href="poll.php">Poll</a></li>
+						<li><a href="about.php">About</a></li>
 					</ul>
-				</li>
-				<li><a href="registration.php">Sign Up</a></li>
-			</ul>
+					<ul class="nav navbar-nav pull-right">
+						<li><a href="javascript:void(0)">Log In</a>
+							<ul>
+								<li><a href="adminlogin.php">Admin</a></li>
+								<li><a href="login.php">Owner</a></li>
+							</ul>
+						</li>
+						<li><a href="registration.php">Sign Up</a></li>
+					</ul>
+				</div>
+	    	</div>
 		</nav>
+
 	<?php
 	}
 	function headerRender(){
 	?>
-		<header id="header">
-			<div id="estab fade">
-				<img src="../../../CMSC127_DORME/thumbnails/bettys.JPG" alt="image not found" />
+			<div id="carousel" class="carousel slide" data-ride="carousel">
+				<ol class="carousel-indicators">
+				    <li data-target="#carousel" data-slide-to="0" class="active"></li>
+				    <li data-target="#carousel" data-slide-to="1"></li>
+				    <li data-target="#carousel" data-slide-to="2"></li>
+				</ol>
+				<div class="carousel-inner" role="listbox">
+			    	<div class="item active"><img class="carousel-image" src="../img/thumbnails/bettys.JPG" alt="image not found" /></div>
+			    	<div class="item"><img class="carousel-image" src="../img/thumbnails/firstestate.JPG" alt="image not found" /></div>
+			    	<div class="item"><img class="carousel-image" src="../img/thumbnails/foursisters.JPG" alt="image not found" /></div>
+			  	</div>
 			</div>
-			<div id="estab fade">
-				<img src="../../../CMSC127_DORME/thumbnails/firstestate.JPG" alt="image not found" />
-			</div>
-			<div id="estab fade">
-				<img src="../../../CMSC127_DORME/thumbnails/foursisters.JPG" alt="image not found" />
-			</div>
-			<?php
-			if(isset($_SESSION['userID'])){
-				ownerNav();
-			}else if(isset($_SESSION['adminID'])){
-				adminNav();
-			}else if(!isset($_SESSION['adminID'])&&!isset($_SESSION['userID'])){
-				userNav();
-			}
-			?>
-		</header>
+		<div id='dorme-main-header' class="col-md-12 col-sm-12">
+			<h1>DorMe.</h1>
+			<h2>your dorm. my dorm. our dorm.</h2>
+			<p> Looking for convenience? Look no further. Dorme is here for your new place to dwell!<br />
+				Scroll through featured dormitories and apartments on our home page and <br />
+				have an easy glimpse into finding your perfect second home!<br />
+				Sit back and pick your like.
+			</p>
+		</div>
+		<?php
+		if(isset($_SESSION['userID'])){
+			ownerNav();
+		}else if(isset($_SESSION['adminID'])){
+			adminNav();
+		}else if(!isset($_SESSION['adminID'])&&!isset($_SESSION['userID'])){
+			userNav();
+		}
+		?>
 	<?php
 	}
 	function ownerRedirect(){
@@ -327,7 +361,6 @@
 		}
 	}
 	function addressDataList($key){
-
 	?>
 		<datalist id="<?=$key?>">
 			<?php
@@ -344,9 +377,6 @@
 			?>
 			</datalist>
 	<?php
-	}
-	function requestLast(){
-		return dbconn()->insert_id;
 	}
 	function addEst($dbconn, $ownerId, $estName, $streetName, $barangayName, $cellnum, $telnum, $loc, $hType, $facilityList, $addOn, $addItem, $addPrice, $typeOfPayment, $maxNum, $price){
 		$errorMsg = "";
@@ -392,59 +422,29 @@
 			if(!(preg_match("/^Brgy\. /", $barangayName))){
 				$barangayName = "Brgy. ".$barangayName;
 			}
-
 			// $ownerId = $_SESSION['userID'];
 			$estName = mysqli_real_escape_string(dbconn(), $estName);
-			$query = "INSERT INTO request(`requestId`,`OwnerId`, `DormName`, `HousingType`, `Location`, `streetName`, `barangayName`, `thumbnailpic`) VALUES(NULL, '$ownerId', '$estName', '$hType', '$loc', '$streetName', '$barangayName', 'css/images/no_image.png')";
+			$query = "INSERT INTO request(`requestId`,`OwnerId`, `DormName`, `HousingType`, `Location`, `thumbnailpic`) VALUES(NULL, '$ownerId', '$estName', '$hType', '$loc', 'css/images/no_image.png')";
 			$result = mysqli_query(dbconn(), $query);
-			if(dbconn())
-				echo "Connected. <br />";
-			$requestId = requestLast();
 			if($result){
+				$requestId = mysqli_insert_id(dbconn());
 				if(!empty($addOn)){
-					$count = 1;
 					foreach($addOn as $value){
 						$addition = explode(",",$value);
 						echo "$addition[0] : $addition[1] <br />";
- 						$query = "INSERT INTO request_add_on(`raId`, `requestId`, `add_item`, `add_price`) VALUES(NULL, '$requestId', '$addition[0]','$addition[1]')";
- 						echo "$query <br />";
- 						$result = mysqli_query(dbconn(),$query);
- 						if(!$result){
- 							$errors++;
- 							echo "<script type='text/javascript'>alert('Something went wrong while inserting an add on. Please try again.')</script>";
- 							$flag = false;
- 							break;
- 						}
- 					}
- 					if(!empty($addItem) && !empty($addPrice)){
- 						for($i = 0; ($i < count($addItem)) && ($i < count($addPrice)); $i++){
- 							$query = "INSERT INTO request_add_on(`raId`, `requestId`, `add_item`, `add_price`) VALUES(NULL, '$requestId', '$addItem[$i]','$addPrice[$i]')";
- 							$result = mysqli_query(dbconn(), $query);
- 							if(!$result){
- 								$errors++;
- 								echo "<script type='text/javascript'>alert('Something went wrong while inserting an add on 2. Please try again.')</script>";
- 								$flag = false;
- 								break;
- 							}
- 						}
-					}
-				}
-				if($flag){
-					foreach($facilityList as $value){
-						$query = "INSERT INTO request_facility(`rfID`, `requestId`, `facilityName`) VALUES(NULL, '$requestId', '$value')";
+						$query = "INSERT INTO request_add_on(`raId`, `requestId`, `add_item`, `add_price`) VALUES(NULL, '$requestId', '$addition[0]','$addition[1]')";
+						echo "$query <br />";
 						$result = mysqli_query(dbconn(),$query);
 						if(!$result){
 							$errors++;
-							echo "<script type='text/javascript'>alert('Something went wrong while inserting a facility. Please try again.')</script>";
+							echo "<script type='text/javascript'>alert('Something went wrong while inserting an add on. Please try again.')</script>";
 							$flag = false;
 							break;
 						}
 					}
-
 					if(!empty($addItem) && !empty($addPrice)){
 						for($i = 0; ($i < count($addItem)) && ($i < count($addPrice)); $i++){
-							$newAddPrice = "Php ".$addPrice[$i].".00";
-							$query = "INSERT INTO request_add_on(`raId`, `requestId`, `add_item`, `add_price`) VALUES(NULL, '$requestId', '$addItem[$i]','$newAddPrice')";
+							$query = "INSERT INTO request_add_on(`raId`, `requestId`, `add_item`, `add_price`) VALUES(NULL, '$requestId', '$addItem[$i]','$addPrice[$i]')";
 							$result = mysqli_query(dbconn(), $query);
 							if(!$result){
 								$errors++;
@@ -463,26 +463,17 @@
 							$errors++;
 							echo "<script type='text/javascript'>alert('Something went wrong while inserting a cellphone number. Please try again.')</script>";
 							$flag = false;
-							}
+						}
 					}
-					if(!empty($telnum)){		
- 						$query = "INSERT INTO request_number(`rnId`, `requestId`, `NumType`, `Number`) VALUES(NULL, '$requestId', 'tel_no', '$telnum')";		
- 						$result = mysqli_query(dbconn(), $query);		
- 						if(!$result){		
- 							$errors++;		
- 							echo "<script type='text/javascript'>alert('Something went wrong while inserting a telephone number. Please try again.')</script>";		
- 							$flag = false;		
- 						}
- 					}
- 					if(!empty($telnum)){		
- 						$query = "INSERT INTO request_number(`rnId`, `requestId`, `NumType`, `Number`) VALUES(NULL, '$requestId', 'tel_no', '$telnum')";		
- 						$result = mysqli_query(dbconn(), $query);		
- 						if(!$result){		
- 							$errors++;		
- 							echo "<script type='text/javascript'>alert('Something went wrong while inserting a telephone number. Please try again.')</script>";		
- 							$flag = false;		
- 						}
- 					}
+					if(!empty($telnum)){
+						$query = "INSERT INTO request_number(`rnId`, `requestId`, `NumType`, `Number`) VALUES(NULL, '$requestId', 'tel_no', '$telnum')";
+						$result = mysqli_query(dbconn(), $query);
+						if(!$result){
+							$errors++;
+							echo "<script type='text/javascript'>alert('Something went wrong while inserting a telephone number. Please try again.')</script>";
+							$flag = false;
+						}
+					}
 					if($flag){
 						foreach($facilityList as $value){
 							$query = "INSERT INTO request_facility(`rfID`, `requestId`, `facilityName`) VALUES(NULL, '$requestId', '$value')";
@@ -492,31 +483,48 @@
 								echo "<script type='text/javascript'>alert('Something went wrong while inserting a facility. Please try again.')</script>";
 								$flag = false;
 								break;
+							}
+						}
+						if($flag){
+							$flag = true;
+							for($i = 0; ($i < count($maxNum))&&( $i < count($typeOfPayment))&&( $i < count($price)); $i++){
+								$query = "INSERT INTO request_room(`rrID`, `requestId`, `MaxNoOfResidents`, `TypeOfPayment`, `Price`) VALUES(NULL, '$requestId', '$maxNum[$i]', '$typeOfPayment[$i]', '$price[$i]')";
+								$result = mysqli_query(dbconn(), $query);
+								if(!$result){
+									$errors++;
+									echo "<script type='text/javascript'>alert('Something went wrong while inserting a room. Please try again.')</script>";
+									$flag = false;
+									break;
+								}
+							}
+							if($flag){
+								$flag = true;
+								$query = "SELECT adminId FROM admin";
+								$result = mysqli_query(dbconn(), $query);
+								while(list($adminId) = mysqli_fetch_row($result)){
+									$seen_query = "INSERT INTO `admin_notif`(`NotifId`, `adminId`, `OwnerId`, `requestId`, `mark`) VALUES(NULL, '$adminId', '$ownerId', '$requestId', 'not_read')";
+									$seen_result = mysqli_query(dbconn(), $seen_query);
+									if(!$seen_result){
+										$errors++;
+										echo "<script type='text/javascript'>alert('Something went wrong while notifying the admin. Please try again.')</script>";
+										$flag = false;
+										break;
+									}
+								}
+								if($flag){
+									$successMsg = "Your request has been successfully added! Please wait for the approval of the admin.";
+								}
+								// else{
+								// 	$errors++;
+								// 	echo "<script type='text/javascript'>alert('Something went wrong. Please try again.')</script>";
+								// }
+							}
 						}
 					}
-				if($flag){
-					$flag = true;
-					$query = "SELECT adminId FROM admin";
-					$result = mysqli_query(dbconn(), $query);
-					while(list($adminId) = mysqli_fetch_row($result)){
-						$seen_query = "INSERT INTO `admin_notif`(`NotifId`, `adminId`, `OwnerId`, `requestId`, `mark`) VALUES(NULL, '$adminId', '$ownerId', '$requestId', 'not_read')";
-						$seen_result = mysqli_query(dbconn(), $seen_query);
-						if(!$seen_result){
-							$errors++;
-							echo "<script type='text/javascript'>alert('Something went wrong while notifying the admin. Please try again.')</script>";		
- 										$flag = false;		
- 										break;		
- 									}
- 								}
- 						if($flag){		
- 									$successMsg = "Your request has been successfully added! Please wait for the approval of the admin.";		
- 								}
- 							}
- 						}
- 					}
+				}
 			}else{
 				$errors++;
-				echo "<script type='text/javascript'>alert('Something went wrong. Please try again.')</script>";
+				echo "<script type='text/javascript'>alert('Something went wrong while inserting in request. Please try again.')</script>";
 			}
 		}
 		return array($errorMsg, $successMsg, $errors);
@@ -550,18 +558,4 @@
         } 
     
 	}
-
-	function uploadPics(){
-	?><form method="post">
-				<input type="file" id = "image" name="image" value="<?= isset($_POST['image'])? $_POST['image']:null?>">
-				<input type="submit" id="uploadpic" name="uploadpic" value="Upload">	
-			</form>
-	
-<?php	
-		$image = $_POST['image'];
-	$DormId = $_GET['dormId'];
-	$query = "INSERT INTO `dorm_pictures`(`dormpicID`, `DormId`, `imgurl`, `imgdesc`) VALUES (NULL,$DormId,'$image','NULL')";
-		$result = mysqli_query (dbconn(), $query);
-		
-	}
-?>	
+?>

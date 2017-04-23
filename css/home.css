@@ -1,0 +1,47 @@
+/***********************************************************************/
+/*                     STYLE FOR THE HOME PAGE                         */
+/***********************************************************************/
+.carousel {
+	width: 100%;
+	height:350px;
+}
+.img-responsive, .thumbnail > img, .thumbnail a > img, .carousel-inner > .item > img, .carousel-inner > .item > a > img {
+	height: 350px;
+	max-width: 100%;
+}
+.carousel-inner img {
+	width:100% ;
+  	max-height:100%;
+  	object-position: center;
+  	object-fit: cover;
+}
+#dorme-main-header {
+	border: 3px solid blue;
+	width: 100%;
+	position: relative;
+}
+#dorme-main-header > h1 {
+	border: 3px solid black;
+	text-align: center;
+	width: 500px;
+	position: absolute;
+	margin: auto;
+}
+#dorme-main-header > h2 {
+	border: 3px solid black;
+	position: absolute;
+	margin: auto;
+}
+#dorme-main-header > p {
+	border: 3px solid black;
+	position: absolute;
+	margin: auto;
+}
+#establishments,
+#contacthome {
+	margin: 0 100px;
+}
+.body-content {
+	align-content: center;
+	padding: 0;
+}
