@@ -11,6 +11,8 @@
 <html>
 <head>
 	<title>DorMe | View</title>
+		<script type="text/javascript" src="../js/js.js" ></script>
+	<script type="text/javascript" src="../js/script.js" ></script>
 </head>
 <body>
 <?php
@@ -63,10 +65,13 @@
 		</div>
 		<div id="gallery">
 			<h2>Gallery</h2>
-			<div class="slider">
+			<div id="slider">
 				<?=retrieveGallery($dbconn, $id, $dormName)?>
 			</div>
+
+			<?=uploadPics();?>
 		</div>
+			
 	</div>
 </body>
 </html>

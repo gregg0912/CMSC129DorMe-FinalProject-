@@ -455,4 +455,18 @@
         } 
     
 	}
-?>
+
+	function uploadPics(){
+	?><form method="post">
+				<input type="file" id = "image" name="image" value="<?= isset($_POST['image'])? $_POST['image']:null?>">
+				<input type="submit" id="uploadpic" name="uploadpic" value="Upload">	
+			</form>
+	
+<?php	
+		$image = $_POST['image'];
+	$DormId = $_GET['dormId'];
+	$query = "INSERT INTO `dorm_pictures`(`dormpicID`, `DormId`, `imgurl`, `imgdesc`) VALUES (NULL,$DormId,'$image','NULL')";
+		$result = mysqli_query (dbconn(), $query);
+		
+	}
+?>	

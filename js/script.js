@@ -2,7 +2,23 @@ var counter = 1;
 $(document).ready(function(){
 	$(document).on("click", "#delete", delete_est);
 	$(document).on("click", "#add-btn", add_op);
+	$(document).on("click", "#uploadpic", upload);
+
 });
+
+function upload(e){
+	e.preventDefault();
+	$.ajax({
+		url: 'uploadpics.php',
+		type: "post",
+		data: $(this).serialize(),
+		success: $(function(data){
+			console.log(data);
+			$("#slider").html(data);
+		});
+	});
+
+}
 
 function delete_est(e){
 	e.preventDefault();
