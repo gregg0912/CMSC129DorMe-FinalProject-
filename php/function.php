@@ -164,13 +164,6 @@
 			<div id="estab fade">
 				<img src="../../../CMSC127_DORME/thumbnails/foursisters.JPG" alt="image not found" />
 			</div>
-			<h1>DorMe.</h1>
-			<h2>your dorm. my dorm. our dorm.</h2>
-			<p> Looking for convenience? Look no further. Dorme is here for your new place to dwell!<br />
-				Scroll through featured dormitories and apartments on our home page and <br />
-				have an easy glimpse into finding your perfect second home!<br />
-				Sit back and pick your like.
-			</p>
 			<?php
 			if(isset($_SESSION['userID'])){
 				ownerNav();
@@ -334,24 +327,28 @@
 		}
 	}
 	function addressDataList($key){
-		?>
-		<datalist id="<?=$key?>">		
- 			<?php		
- 			if($key=="street")		
- 				$query = "SELECT StreetName FROM address";		
- 			else if($key=="barangay")		
- 				$query = "SELECT Barangay FROM address";		
- 			$result = mysqli_query(dbconn(), $query);		
- 			while(list($names) = mysqli_fetch_row($result)){		
- 			?>		
- 				<option><?=$names?></option>		
- 			<?php		
- 			}		
- 			?>		
- 			</datalist>		
- 	<?php		
- 	}		
-	function addEst($estName, $streetName, $barangayName, $cellnum, $telnum, $loc, $hType, $facilityList, $addOn, $typeOfPayment, $maxNum, $price){
+
+	?>
+		<datalist id="<?=$key?>">
+			<?php
+			if($key=="street")
+				$query = "SELECT StreetName FROM address";
+			else if($key=="barangay")
+				$query = "SELECT Barangay FROM address";
+			$result = mysqli_query(dbconn(), $query);
+			while(list($names) = mysqli_fetch_row($result)){
+			?>
+				<option><?=$names?></option>
+			<?php
+			}
+			?>
+			</datalist>
+	<?php
+	}
+	function requestLast(){
+		return dbconn()->insert_id;
+	}
+	function addEst($dbconn, $ownerId, $estName, $streetName, $barangayName, $cellnum, $telnum, $loc, $hType, $facilityList, $addOn, $addItem, $addPrice, $typeOfPayment, $maxNum, $price){
 		$errorMsg = "";
 		$successMsg = "";
 		$errors = 0;
@@ -395,12 +392,15 @@
 			if(!(preg_match("/^Brgy\. /", $barangayName))){
 				$barangayName = "Brgy. ".$barangayName;
 			}
-			//$ownerId = $_SESSION['userID'];
-			// $query = "INSERT INTO request(`requestId`,`OwnerId`, `DormName`, `HousingType`, `Location`, `thumbnailpic`) VALUES(NULL, '$ownerId', '$estName', '$hType', '$loc', 'css/images/no_image.png' )";
-			// $result = mysqli_query(dbconn(), $query);
-			
+
+			// $ownerId = $_SESSION['userID'];
+			$estName = mysqli_real_escape_string(dbconn(), $estName);
+			$query = "INSERT INTO request(`requestId`,`OwnerId`, `DormName`, `HousingType`, `Location`, `streetName`, `barangayName`, `thumbnailpic`) VALUES(NULL, '$ownerId', '$estName', '$hType', '$loc', '$streetName', '$barangayName', 'css/images/no_image.png')";
+			$result = mysqli_query(dbconn(), $query);
+			if(dbconn())
+				echo "Connected. <br />";
+			$requestId = requestLast();
 			if($result){
-				 $requestId = dbconn()->insert_id;
 				if(!empty($addOn)){
 					$count = 1;
 					foreach($addOn as $value){
@@ -441,6 +441,21 @@
 						}
 					}
 
+					if(!empty($addItem) && !empty($addPrice)){
+						for($i = 0; ($i < count($addItem)) && ($i < count($addPrice)); $i++){
+							$newAddPrice = "Php ".$addPrice[$i].".00";
+							$query = "INSERT INTO request_add_on(`raId`, `requestId`, `add_item`, `add_price`) VALUES(NULL, '$requestId', '$addItem[$i]','$newAddPrice')";
+							$result = mysqli_query(dbconn(), $query);
+							if(!$result){
+								$errors++;
+								echo "<script type='text/javascript'>alert('Something went wrong while inserting an add on 2. Please try again.')</script>";
+								$flag = false;
+								break;
+							}
+						}
+					}
+				}
+				if($flag){
 					if(!empty($cellnum)){
 						$query = "INSERT INTO request_number(`rnId`, `requestId`, `NumType`, `Number`) VALUES(NULL, '$requestId', 'cp_no', '$cellnum')";
 						$result = mysqli_query(dbconn(), $query);

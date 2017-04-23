@@ -13,6 +13,13 @@
 	<?php
 	headerRender();
 	?>
+	<h1>DorMe.</h1>
+	<h2>your dorm. my dorm. our dorm.</h2>
+	<p> Looking for convenience? Look no further. Dorme is here for your new place to dwell!<br />
+		Scroll through featured dormitories and apartments on our home page and <br />
+		have an easy glimpse into finding your perfect second home!<br />
+		Sit back and pick your like.
+	</p>
 	<section id="establishments">
 		<h2>Featured Establishments</h2>
 		<?php
