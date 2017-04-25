@@ -33,9 +33,19 @@
 				while(list($estId, $estName, $owner, $address,$housingType, $thumbnailpic) = mysqli_fetch_row($res)){
 					$housingType = determine($housingType);
 				?>
-				<div id="establishment">
-					<a href="viewdorm.php?dormId=<?=$estId?>"><img src="<?=$thumbnailpic?>" alt="Image not found" /></a>
-					<span><?=$estName?></span> | <?=$owner?> | <?=$address?> | <?=$housingType?>
+				<div class="establishment row">
+					<div>
+							<a href="viewdorm.php?dormId=<?=$estId?>">
+							<img src="../img/error.JPG" class="img-rounded" alt="Image not found" /></a>
+						<div class="caption">
+				        	<label><span><?=$estName?></span></label>
+				          	<p>
+				          		<?=$owner?><br />
+								<?=$address?><br />
+								<?=$housingType?>
+				        	</p>
+		        		</div>
+					</div>
 				<?php
 					if($fromPage == "viewOwner"){
 				?>
@@ -43,6 +53,7 @@
 				<?php
 					}
 				?>
+			
 				</div>
 				<?php
 				}
@@ -156,14 +167,14 @@
 				</div>
 				<div id="glyph-menu" class="collapse navbar-collapse">
 		    		<ul class="nav navbar-nav pull-left">
-						<li><a href="home.php">Home</a></li>
-						<li><a href="view.php">View</a></li>
-						<li><a href="poll.php">Poll</a></li>
-						<li><a href="about.php">About</a></li>
+						<li class="fromLeft"><a href="home.php">Home</a></li>
+						<li class="fromLeft"><a href="view.php">View</a></li>
+						<li class="fromLeft"><a href="poll.php">Poll</a></li>
+						<li class="fromLeft"><a href="about.php">About</a></li>
 					</ul>
 					<ul class="nav navbar-nav pull-right">
-						<li><a href="javascript:void(0)">Log In</a>
-							<ul>
+						<li class="dropdown"><a aria-expanded="true" aria-haspopup="true" role="button" data-toggle="dropdown" class="dropdown-toggle" href="javascript:void(0)">Log In</a>
+							<ul class="dropdown-menu">
 								<li><a href="adminlogin.php">Admin</a></li>
 								<li><a href="login.php">Owner</a></li>
 							</ul>
@@ -190,7 +201,7 @@
 			    	<div class="item"><img class="carousel-image" src="../img/thumbnails/foursisters.JPG" alt="image not found" /></div>
 			  	</div>
 			</div>
-		<div id='dorme-main-header' class="col-md-12 col-sm-12">
+		<div id='dorme-main-header' class="col-md-10 col-sm-10">
 			<h1>DorMe.</h1>
 			<h2>your dorm. my dorm. our dorm.</h2>
 			<p> Looking for convenience? Look no further. Dorme is here for your new place to dwell!<br />
