@@ -33,4 +33,8 @@ class User extends Authenticatable
     public function dorms(){
         return $this->hasMany('App\Dorm');
     }
+
+    public function requests(){
+        return $this->hasMany('App\Request');
+    }
 }

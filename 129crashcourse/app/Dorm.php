@@ -6,6 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Dorm extends Model
 {
+
+	protected $fillable = [
+    	'dormName', 'owner_id', 'housingType', 'location', 'thumbnailPic', 'votes', 'streetName', 'barangayName',
+    ];
+
     public function owner(){
     	return $this->belongsTo('App\User');
     }
