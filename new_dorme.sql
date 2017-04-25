@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 25, 2017 at 02:19 PM
+-- Generation Time: Apr 25, 2017 at 05:54 PM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 7.0.9
 
@@ -45,9 +45,8 @@ CREATE TABLE `dorms` (
   `id` int(10) UNSIGNED NOT NULL,
   `dormName` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `owner_id` int(11) NOT NULL,
-  `housingType` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `location` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `address_id` int(11) NOT NULL,
+  `housingType` enum('apartment','boardinghouse','bedspace','dormitory') COLLATE utf8_unicode_ci NOT NULL,
+  `location` enum('banwa','dormArea') COLLATE utf8_unicode_ci NOT NULL,
   `thumbnailPic` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `votes` int(11) NOT NULL,
   `streetName` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -87,12 +86,16 @@ CREATE TABLE `migrations` (
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(1, '2014_10_12_000000_create_users_table', 1),
-(2, '2014_10_12_100000_create_password_resets_table', 1),
-(3, '2017_04_23_100633_create_dorms_table', 1),
-(4, '2017_04_23_101256_create_rooms_table', 1),
-(5, '2017_04_23_101512_create_addons_table', 1),
-(6, '2017_04_23_101621_create_facilities_table', 1);
+(11, '2014_10_12_000000_create_users_table', 1),
+(12, '2014_10_12_100000_create_password_resets_table', 1),
+(13, '2017_04_23_100633_create_dorms_table', 1),
+(14, '2017_04_23_101256_create_rooms_table', 1),
+(15, '2017_04_23_101512_create_addons_table', 1),
+(16, '2017_04_23_101621_create_facilities_table', 1),
+(17, '2017_04_25_130158_create_requests_table', 1),
+(18, '2017_04_25_130237_create_requestaddons_table', 1),
+(19, '2017_04_25_130311_create_requestfacilities_table', 1),
+(20, '2017_04_25_130328_create_requestrooms_table', 1);
 
 -- --------------------------------------------------------
 
@@ -127,6 +130,70 @@ CREATE TABLE `password_resets` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `requestaddons`
+--
+
+CREATE TABLE `requestaddons` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `request_id` int(11) NOT NULL,
+  `add_item` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `add_price` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `requestfacilities`
+--
+
+CREATE TABLE `requestfacilities` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `request_id` int(11) NOT NULL,
+  `facility_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `requestrooms`
+--
+
+CREATE TABLE `requestrooms` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `request_id` int(11) NOT NULL,
+  `maxNoOfResidents` int(11) NOT NULL,
+  `typeOfPayment` enum('by_room','by_person') COLLATE utf8_unicode_ci NOT NULL,
+  `price` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `requests`
+--
+
+CREATE TABLE `requests` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `owner_id` int(11) NOT NULL,
+  `dormName` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `housingType` enum('apartment','boardinghouse','bedspace','dormitory') COLLATE utf8_unicode_ci NOT NULL,
+  `location` enum('banwa','dormArea') COLLATE utf8_unicode_ci NOT NULL,
+  `thumnbailPic` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `streetName` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `barangayName` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `rooms`
 --
 
@@ -134,7 +201,7 @@ CREATE TABLE `rooms` (
   `id` int(10) UNSIGNED NOT NULL,
   `dorm_id` int(11) NOT NULL,
   `maxNoOfResidents` int(11) NOT NULL,
-  `typeOfPayment` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `typeOfPayment` enum('by_room','by_person') COLLATE utf8_unicode_ci NOT NULL,
   `price` int(11) NOT NULL,
   `availability` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -184,6 +251,30 @@ ALTER TABLE `password_resets`
   ADD KEY `password_resets_token_index` (`token`);
 
 --
+-- Indexes for table `requestaddons`
+--
+ALTER TABLE `requestaddons`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `requestfacilities`
+--
+ALTER TABLE `requestfacilities`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `requestrooms`
+--
+ALTER TABLE `requestrooms`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `requests`
+--
+ALTER TABLE `requests`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `rooms`
 --
 ALTER TABLE `rooms`
@@ -212,11 +303,31 @@ ALTER TABLE `facilities`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT for table `owners`
 --
 ALTER TABLE `owners`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `requestaddons`
+--
+ALTER TABLE `requestaddons`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `requestfacilities`
+--
+ALTER TABLE `requestfacilities`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `requestrooms`
+--
+ALTER TABLE `requestrooms`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `requests`
+--
+ALTER TABLE `requests`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `rooms`
