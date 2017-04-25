@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRoomsTable extends Migration
+class CreateRequestaddonsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class CreateRoomsTable extends Migration
      */
     public function up()
     {
-        Schema::create('rooms', function (Blueprint $table) {
+        Schema::create('requestaddons', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('dorm_id');
-            $table->integer('maxNoOfResidents');
-            $table->enum('typeOfPayment',['by_room','by_person']);
-            $table->integer('price');
-            $table->integer('availability');
+            $table->integer('request_id');
+            $table->string('add_item');
+            $table->string('add_price');
             $table->timestamps();
         });
     }
@@ -31,6 +29,6 @@ class CreateRoomsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rooms');
+        Schema::dropIfExists('requestaddons');
     }
 }

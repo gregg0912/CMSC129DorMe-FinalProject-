@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDormsTable extends Migration
+class CreateRequestsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,13 @@ class CreateDormsTable extends Migration
      */
     public function up()
     {
-        Schema::create('dorms', function (Blueprint $table) {
+        Schema::create('requests', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('dormName');
             $table->integer('owner_id');
+            $table->string('dormName');
             $table->enum('housingType',['apartment','boardinghouse','bedspace','dormitory']);
             $table->enum('location',['banwa','dormArea']);
-            $table->string('thumbnailPic');
-            $table->integer('votes');
+            $table->string('thumnbailPic');
             $table->string('streetName');
             $table->string('barangayName');
             $table->timestamps();
@@ -34,6 +33,6 @@ class CreateDormsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('dorms');
+        Schema::dropIfExists('requests');
     }
 }
