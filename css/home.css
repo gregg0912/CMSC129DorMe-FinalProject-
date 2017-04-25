@@ -15,33 +15,119 @@
   	object-position: center;
   	object-fit: cover;
 }
+
 #dorme-main-header {
-	border: 3px solid blue;
-	width: 100%;
-	position: relative;
+	color: white;
+	width: 90%;
+	height: auto;
+	top: 12%;
+	position: absolute;
+	text-align: center;
+	margin: 0 5%;
 }
 #dorme-main-header > h1 {
-	border: 3px solid black;
+	background-color: #2A2A2A;
 	text-align: center;
-	width: 500px;
-	position: absolute;
+	position: relative;
 	margin: auto;
+	padding: 5px;
+	font-family: "Walkway Black";
 }
 #dorme-main-header > h2 {
-	border: 3px solid black;
-	position: absolute;
+	background-color: #2A2A2A;
+	position: relative;
 	margin: auto;
+	padding: 5px;
+	font-family: "Walkway Black";
 }
 #dorme-main-header > p {
-	border: 3px solid black;
-	position: absolute;
+	background-color: #2A2A2A;
+	position: relative;
 	margin: auto;
+	text-align: left;
+	padding: 5px;
+	font-family: "Segoe UI Semilight";
 }
-#establishments,
-#contacthome {
-	margin: 0 100px;
-}
+
 .body-content {
 	align-content: center;
-	padding: 0;
+	padding-top: 10px;
+	margin: 0;
+	top: 0;
+}
+
+#establishments > h2,
+#contacthome > h2 {
+	font-family: "Walkway Black";
+}
+
+#establishments,
+#contacthome {
+	margin: 0 50px;
+}
+
+#establishments {
+	margin-top: 50px;
+}
+.establishment {
+	display: inline-block;
+	margin: 5px;
+}
+.establishment img {
+	max-width: 100%;
+}
+.row {
+	width: 100%;
+}
+.caption {
+	padding: 10px;
+	text-align: center;
+	max-width: 500px;
+}
+
+#contacthome {
+	background-color: #DCF4FA;
+	padding: 30px 50px;
+	margin: 0;
+}
+.center{
+	margin-left: 0;
+}
+.center1{
+	margin-left: 0;
+}
+.to-top {
+    cursor: pointer;
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+    display: none;
+}
+
+@media screen and (min-width: 769px) {
+	.row {
+		width: 45%;
+	}
+	#establishments,
+	#contacthome {
+		margin: 0 100px;
+	}
+	#contacthome {
+		background-color: #DCF4FA;
+		padding: 60px 100px;
+		margin: 0;
+	}
+	.center1{
+		margin-left: 25%;
+	}
+@media screen and (min-width: 1024px) {
+	.row {
+		width: 31%;
+	}
+	.center{
+		margin-left: 18%;
+	}
+	.center1{
+		margin-left: 10px;
+	}
 }
