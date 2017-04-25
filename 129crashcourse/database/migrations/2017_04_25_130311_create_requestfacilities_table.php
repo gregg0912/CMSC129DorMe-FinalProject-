@@ -13,7 +13,7 @@ class CreateRequestfacilitiesTable extends Migration
      */
     public function up()
     {
-        Schema::create('requestfacilities', function (Blueprint $table) {
+        Schema::create('request_facilities', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('request_id');
             $table->string('facility_name');
@@ -28,6 +28,6 @@ class CreateRequestfacilitiesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('requestfacilities');
+        Schema::dropIfExists('request_facilities');
     }
 }

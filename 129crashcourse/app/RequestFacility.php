@@ -11,6 +11,7 @@ class RequestFacility extends Model
     	'request_id', 'facility_name',
     ];
 
+
     public function request(){
     	return $this->belongsTo('App\Request');
     }

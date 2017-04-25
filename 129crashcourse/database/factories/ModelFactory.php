@@ -36,14 +36,14 @@ $factory->define(App\Addon::class, function (Faker\Generator $faker) {
 
 $factory->define(App\Dorm::class, function(Faker\Generator $faker){
 	return [
-		'dormName' => $faker->unique()->company,
+		'dormName' => $faker->company,
 		'owner_id' => App\User::all()->random()->id,
 		'housingType' => $faker->randomElement(['apartment', 'boardinghouse', 'bedspace', 'dormitory']),
 		'location' => $faker->randomElement(['banwa', 'dormArea']),
 		'thumbnailPic' => '/img-uploads/no_image.png',
-		'votes' => $faker->unique()->randomDigit,
-		'streetName' => 'Hollywood St.',
-		'barangayName' => 'Bgy. Bolho',
+		'votes' => $faker->numberBetween($min = 0, $max = 30),
+		'streetName' => $faker->streetName,
+		'barangayName' => $faker->city,
 	];
 });
 
@@ -67,12 +67,12 @@ $factory->define(App\Room::class, function(Faker\Generator $faker){
 $factory->define(App\Request::class, function(Faker\Generator $faker){
 	return [
 		'owner_id' => App\User::all()->random()->id,
-		'dormName' => $faker->unique()->company,
+		'dormName' => $faker->company,
 		'housingType' => $faker->randomElement(['apartment', 'boardinghouse', 'bedspace', 'dormitory']),
 		'location' => $faker->randomElement(['banwa', 'dormArea']),
 		'thumbnailPic' => '/img-uploads/no_image.png',
-		'streetName' => 'Hollywood St.',
-		'barangayName' => 'Bgy. Bolho',
+		'streetName' => $faker->streetName,
+		'barangayName' => $faker->city,
 	];
 });
 
@@ -86,6 +86,16 @@ $factory->define(App\RequestAddon::class, function(Faker\Generator $faker){
 
 $factory->define(App\RequestFacility::class, function(Faker\Generator $faker){
 	return [
+		'request_id' => App\Request::all()->random()->id,
+		'facility_name' => $faker->word,
+	];
+});
 
+$factory->define(App\RequestRoom::class, function(Faker\Generator $faker){
+	return [
+		'request_id' => App\Dorm::all()->random()->id,
+		'maxNoOfResidents' => $faker->numberBetween($min = 2, $max = 8),
+		'typeOfPayment' => $faker->randomElement(['by_person', 'by_room']),
+		'price' => $faker->numberBetween($min = 800, $max = 5000),
 	];
 });

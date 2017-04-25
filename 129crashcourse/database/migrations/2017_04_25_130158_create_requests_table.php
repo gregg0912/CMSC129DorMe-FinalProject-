@@ -19,7 +19,7 @@ class CreateRequestsTable extends Migration
             $table->string('dormName');
             $table->enum('housingType',['apartment','boardinghouse','bedspace','dormitory']);
             $table->enum('location',['banwa','dormArea']);
-            $table->string('thumnbailPic');
+            $table->string('thumbnailPic');
             $table->string('streetName');
             $table->string('barangayName');
             $table->timestamps();

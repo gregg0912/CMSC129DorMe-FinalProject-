@@ -13,7 +13,7 @@ class CreateRequestroomsTable extends Migration
      */
     public function up()
     {
-        Schema::create('requestrooms', function (Blueprint $table) {
+        Schema::create('request_rooms', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('request_id');
             $table->integer('maxNoOfResidents');
@@ -30,6 +30,6 @@ class CreateRequestroomsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('requestrooms');
+        Schema::dropIfExists('request_rooms');
     }
 }

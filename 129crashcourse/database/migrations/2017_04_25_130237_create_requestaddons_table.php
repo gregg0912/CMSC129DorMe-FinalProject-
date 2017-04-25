@@ -13,7 +13,7 @@ class CreateRequestaddonsTable extends Migration
      */
     public function up()
     {
-        Schema::create('requestaddons', function (Blueprint $table) {
+        Schema::create('request_addons', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('request_id');
             $table->string('add_item');
@@ -29,6 +29,6 @@ class CreateRequestaddonsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('requestaddons');
+        Schema::dropIfExists('request_addons');
     }
 }
