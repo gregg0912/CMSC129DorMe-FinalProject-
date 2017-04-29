@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
 <div class="container">
 	<div id="establishments">
 		<div id="estab-list">
