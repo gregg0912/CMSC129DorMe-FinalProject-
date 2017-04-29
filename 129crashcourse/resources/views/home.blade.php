@@ -11,11 +11,6 @@
                     You are logged in!
                 </div>
                 
-                @forelse(Auth::user()->dorms as $dorm)
-                    <p>{{ $dorm }}</p>
-                @empty
-                    <p>WALA</p>
-                @endforelse
             </div>
         </div>
     </div>

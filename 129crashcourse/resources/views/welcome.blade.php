@@ -11,7 +11,7 @@
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
 
         <!-- Styles -->
-        <style>
+        <!-- <style>
             html, body {
                 background-color: #fff;
                 color: #636b6f;
@@ -62,14 +62,14 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
-        </style>
+        </style> -->
     </head>
     <body>
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">
                     @if (Auth::check())
-                        <a href="{{ url('/home') }}">Home</a>
+                        <a href="{{ url('/home') }}">Manage</a>
                     @else
                         <a href="{{ url('/login') }}">Login</a>
                         <a href="{{ url('/register') }}">Register</a>
@@ -78,18 +78,23 @@
             @endif
 
             <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
             </div>
+            <div class="establishment row">
+                    @forelse(App\Dorm::orderBy('votes', 'desc')->take(5)->get() as $dorm)
+                        <div>
+                            <a href="javascript:void(0)"><img src="{{ $dorm->thumbnailPic }}" alt="IMAGE NOT FOUND" /></a>
+                            <div class="caption">
+                                <label><span>{{ $dorm->dormName }}</span></label>
+                                <p>{{  }}</p>
+                                <p>{{ $dorm->streetName }}, {{ $dorm->barangayName }}</p>
+                                <p>{{ $dorm->housingType }}</p>
+                            </div>
+                        </div>
+                        
+                    @empty
+
+                    @endforelse
+                </div>
         </div>
     </body>
 </html>
