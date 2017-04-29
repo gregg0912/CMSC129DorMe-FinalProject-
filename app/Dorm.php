@@ -11,8 +11,8 @@ class Dorm extends Model
     	'dormName', 'user_id', 'housingType', 'location', 'thumbnailPic', 'votes', 'streetName', 'barangayName',
     ];
 
-    public function owner(){
-    	return $this->belongsTo('App\User', 'user_id');
+    public function user(){
+    	return $this->belongsTo('App\User');
     }
 
     public function facilities(){
@@ -25,5 +25,15 @@ class Dorm extends Model
 
     public function addons(){
     	return $this->hasMany('App\Addon');
+    }
+
+    public function getHousingType(){
+        if($this->housingType == 'boardinghouse')
+            return "Boarding House";
+        else if($this->housingType == 'apartment')
+            return "Apartment";
+        else if($this->housingType == 'dormitory')
+            return "Dormitory";
+        return "Bed-space";
     }
 }

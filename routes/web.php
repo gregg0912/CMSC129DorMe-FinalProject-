@@ -21,3 +21,11 @@ Route::group(['middleware' => 'auth'], function(){
 	Route::get('/home', 'HomeController@index');
 
 });
+
+Route::get('/about', function(){
+	return view('about');
+});
+
+Route::get('/view', function(){
+	return view('');
+});
