@@ -37,7 +37,7 @@ $factory->define(App\Addon::class, function (Faker\Generator $faker) {
 $factory->define(App\Dorm::class, function(Faker\Generator $faker){
 	return [
 		'dormName' => $faker->company,
-		'owner_id' => App\User::all()->random()->id,
+		'user_id' => App\User::all()->random()->id,
 		'housingType' => $faker->randomElement(['apartment', 'boardinghouse', 'bedspace', 'dormitory']),
 		'location' => $faker->randomElement(['banwa', 'dormArea']),
 		'thumbnailPic' => '/img-uploads/no_image.png',
@@ -66,7 +66,7 @@ $factory->define(App\Room::class, function(Faker\Generator $faker){
 
 $factory->define(App\Request::class, function(Faker\Generator $faker){
 	return [
-		'owner_id' => App\User::all()->random()->id,
+		'user_id' => App\User::all()->random()->id,
 		'dormName' => $faker->company,
 		'housingType' => $faker->randomElement(['apartment', 'boardinghouse', 'bedspace', 'dormitory']),
 		'location' => $faker->randomElement(['banwa', 'dormArea']),

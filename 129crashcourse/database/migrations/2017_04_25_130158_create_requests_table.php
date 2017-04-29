@@ -15,7 +15,7 @@ class CreateRequestsTable extends Migration
     {
         Schema::create('requests', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('owner_id');
+            $table->integer('user_id');
             $table->string('dormName');
             $table->enum('housingType',['apartment','boardinghouse','bedspace','dormitory']);
             $table->enum('location',['banwa','dormArea']);
