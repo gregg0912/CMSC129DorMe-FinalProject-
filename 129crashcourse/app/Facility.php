@@ -15,5 +15,7 @@ class Facility extends Model
     	return $this->belongsTo('App\Dorm');
     }
 
-    
+    public static function facilityList(){
+    	return Facility::orderBy('facility_name', 'asc')->groupBy('facility_name')->get();
+    }
 }

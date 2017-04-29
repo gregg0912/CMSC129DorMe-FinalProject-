@@ -2,6 +2,31 @@
 
 @section('content')
 
+
+<form>
+	<fieldset>
+		<legend>FILTER:</legend>
+		<input type="text" name="keyword" placeholder="Search" class="form-control-srch" id="noborder" />
+		@forelse(App\Facility::facilityList() as $facility)
+		<label><input type="checkbox" name="facilityList[]" value="{{ $facility->facility_name }}" />{{ $facility->facility_name }}</label>
+		@empty
+		WALA
+		@endforelse
+		<div class="location">
+			<label class="radio inline">
+				<input type="radio" name="loc" value="dormArea" />
+				<span>Dorm Area</span>
+			</label>
+			<label class="radio inline">
+				<input type="radio" name="loc" value="banwa" />
+				<span>Banwa</span>
+			</label>
+			<input type="submit" name="submit" value="Filter" />
+			<a href="javascript:void(0)"><strong>Remove Filter</strong></a>
+		</div>
+	</fieldset>
+</form>
+
 <div class="container">
 	<div id="establishments">
 		<div id="estab-list">
