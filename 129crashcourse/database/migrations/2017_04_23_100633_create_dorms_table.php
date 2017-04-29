@@ -16,7 +16,7 @@ class CreateDormsTable extends Migration
         Schema::create('dorms', function (Blueprint $table) {
             $table->increments('id');
             $table->string('dormName');
-            $table->integer('owner_id');
+            $table->integer('user_id');
             $table->enum('housingType',['apartment','boardinghouse','bedspace','dormitory']);
             $table->enum('location',['banwa','dormArea']);
             $table->string('thumbnailPic');

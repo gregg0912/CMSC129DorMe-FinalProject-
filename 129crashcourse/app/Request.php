@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Request extends Model
 {
     protected $fillable = [
-    	'owner_id', 'dormName', 'housingType', 'location', 'thumbnailPic', 'streetName', 'barangayName',
+    	'user_id', 'dormName', 'housingType', 'location', 'thumbnailPic', 'streetName', 'barangayName',
     ];
 
     public function addons(){

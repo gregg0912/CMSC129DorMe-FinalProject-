@@ -8,7 +8,7 @@ class Dorm extends Model
 {
 
 	protected $fillable = [
-    	'dormName', 'owner_id', 'housingType', 'location', 'thumbnailPic', 'votes', 'streetName', 'barangayName',
+    	'dormName', 'user_id', 'housingType', 'location', 'thumbnailPic', 'votes', 'streetName', 'barangayName',
     ];
 
     public function owner(){
