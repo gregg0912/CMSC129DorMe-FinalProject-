@@ -17,6 +17,8 @@
 	<script src="../js/script.js"></script>
 	<script src="../js/js.js"></script>
 	<script src="../js/jquery.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 </head>
 <body>
 	<?php
@@ -30,7 +32,6 @@
 				$result = mysqli_query($dbconn, $query);
 				renderlist($result, "", "", "home");
 			?>
-			<a href="#header">Back to Top</a>
 		</div>
 		<div id='contacthome'>
 			<h2>Contact Us</h2>
@@ -38,9 +39,11 @@
 				Send us an email at <strong><a href="javascript:void(0)">support@dorme.com</a></strong> and we'll get back to you as soon as possible.<br>
 			</p>
 		</div>
-	</div>
-	<footer>
+			<footer>
 		<p>&copy; Dorme 2016 | A.Y. 2016-2017 CMSC 127: Fabilloren, Icay, Legada, Montano</p>
 	</footer>
+	</div>
+	<a id="back-to-top" href="#" class="btn btn-default btn-lg to-top" role="button" title="Click to return on the top page" data-toggle="tooltip" data-placement="left"><span class="glyphicon glyphicon-chevron-up"></span></a>
+
 </body>
 </html>
