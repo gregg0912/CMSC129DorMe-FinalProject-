@@ -1,0 +1,8 @@
+.profile-img{
+	max-width: 200px;
+	border-radius: 100%;
+}
+
+.form-delete{
+	display: inline;
+}
