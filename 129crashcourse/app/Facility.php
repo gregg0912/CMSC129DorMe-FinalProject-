@@ -14,4 +14,8 @@ class Facility extends Model
     public function dorm(){
     	return $this->belongsTo('App\Dorm');
     }
+
+    public function facilityList(){
+    	return Facility::select('facility_name')->distinct()->get();
+    }
 }
