@@ -26,6 +26,7 @@ Route::get('/about', function(){
 	return view('about');
 });
 
+
 Route::resource('/view', 'DormController');
 
 Route::resource('/dorm', 'DormController');

@@ -108,7 +108,7 @@
 		</div>
 	</div>
 	</div>
-	<div id='contact'>
+	<div id='contacthome'>
 		<h2>Contact Us</h2>
 		<p> Questions? Feedback? Suggestions? <br> We'd love to hear from you!<br>
 			Send us an email at <strong><a href=''>support@dorme.com</a></strong> and we'll get back to you as soon as possible.<br>
