@@ -14,12 +14,11 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $fillable = [
-        'name', 'email', 'password', 'username', 'bdate'
-    ];
 
-    protected $dates = [
-        'bdate'
+    // protected $table = 'owners';
+
+    protected $fillable = [
+        'name', 'username', 'phone_number', 'email', 'password',
     ];
 
     /**
@@ -31,12 +30,11 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function posts(){
-        return $this->hasMany('App\Post');
+    public function dorms(){
+        return $this->hasMany('App\Dorm');
     }
 
-    public function following(){
-        // return $this->hasMany('App\Follows');
-        return $this->belongsToMany('App\User', 'follows', 'user_id', 'following'); // belongsToMany(Model, table, other foreign id, similar id to both tables)
+    public function requests(){
+        return $this->hasMany('App\Request');
     }
 }

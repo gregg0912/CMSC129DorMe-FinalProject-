@@ -11,10 +11,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\User::class, 100)->create();
-        factory(App\Post::class, 1000)->create();
-        factory(App\Like::class, 1500)->create();
-        factory(App\Followers::class, 200)->create();
-
+        // $this->call(UsersTableSeeder::class);
+        factory(App\User::class, 10)->create();
+        factory(App\Dorm::class, 20)->create();
+        factory(App\Addon::class, 25)->create();
+        factory(App\Facility::class, 30)->create();
+        factory(App\Room::class, 50)->create();
+        factory(App\Request::class, 15)->create();
+        factory(App\RequestAddon::class, 20)->create();
+        factory(App\RequestFacility::class, 20)->create();
+        factory(App\RequestRoom::class, 40)->create();
     }
 }
