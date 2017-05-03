@@ -4,8 +4,12 @@
 .body-content footer p {
 	margin-bottom: 0;
 	margin-top: 3%;
+	padding: 20px;
 }
-.body-content form {
+.well {
+	margin: 50px;
+}
+.body-content > form {
 	margin: auto;
 	min-width: 150px;
 	max-width: 600px;
@@ -18,15 +22,4 @@ h3 {
 #accAsk > p,
 #accAsk > a {
 	font-size: 0.8em;
-}
-
-@media screen and (min-width: 769px) {
-	.body-content form {
-		margin: auto;
-		margin-top: 5%;
-	}
-}
-
-@media screen and (min-width: 1024px) {
-	/* insert style */
 }
