@@ -95,7 +95,7 @@
 	function checkbox($result){
 		while(list($facilityNo, $facilityName) = mysqli_fetch_row($result)){
 	?>
-		<label><input type="checkbox" name="facilityList[]" value="<?=$facilityNo?>" /><?=$facilityName?></label> 
+		<label class="checkbox-inline"><input type="checkbox" name="facilityList[]" value="<?=$facilityNo?>" /><?=$facilityName?></label> 
 	<?php
 		}
 	}
@@ -104,7 +104,7 @@
 		$result = mysqli_query(dbconn(), $query);
 		while(list($facilityName) = mysqli_fetch_row($result)){
 		?>
-			<label><input type="checkbox" name="facilityList[]" value="<?=$facilityName?>" /><?=$facilityName?></label>
+			<label class="checkbox-inline"><input type="checkbox" name="facilityList[]" value="<?=$facilityName?>" /><?=$facilityName?></label>
 		<?php
 		}
 	}
@@ -113,7 +113,7 @@
 		$result = mysqli_query(dbconn(), $query);
 		while(list($add_id, $add_item, $add_price) = mysqli_fetch_row($result)){
 		?>
-			<label><input type="checkbox" name="addOn[]" value="<?=$add_item.",".$add_price?>" /><?=$add_item?> - <?=$add_price?></label>
+			<label class="checkbox-inline"><input type="checkbox" name="addOn[]" value="<?=$add_item.",".$add_price?>" /><?=$add_item?> - <?=$add_price?></label>
 		<?php
 		}
 	}
