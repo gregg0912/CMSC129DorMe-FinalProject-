@@ -19,6 +19,13 @@
             'csrfToken' => csrf_token(),
         ]) !!};
     </script>
+    <script type="text/javascript" src="/js/js.js"></script>
+    <script type="text/javascript" src="/js/script.js"></script>
+    <style type="text/css">
+        .modal-content{
+            overflow: hidden;
+        }
+    </style>
 </head>
 <body>
     <div id="app">

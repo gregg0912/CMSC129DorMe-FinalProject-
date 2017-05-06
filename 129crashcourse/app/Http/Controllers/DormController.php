@@ -14,7 +14,7 @@ class DormController extends Controller
      */
     public function index()
     {
-        $dorms = Dorm::orderBy('dormName', 'asc')->paginate(10);
+        $dorms = Dorm::orderBy('dormName', 'asc')->paginate(5);
         return view('dorm.index', compact('dorms'));
     }
 
@@ -22,6 +22,17 @@ class DormController extends Controller
     {
         $dorms = Dorm::orderBy('dormName', 'asc')->get();
         return view('dorm.vote', compact('dorms'));
+    }
+
+    public function vote($id)
+    {
+        $dorm = Dorm::findOrFail($id);
+        $dorm_votes = $dorm->votes;
+        $dorm->votes = $dorm_votes+1;
+        $dorm->save();
+
+        $dorms = Dorm::orderBy('dormName', 'asc')->get();
+        return $dorms;
     }
 
     /**
