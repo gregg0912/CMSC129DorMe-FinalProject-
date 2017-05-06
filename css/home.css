@@ -86,10 +86,11 @@
 }
 
 #contacthome {
-	background-color: #DCF4FA;
+	background-color: #5FC7FF;
 	padding: 30px 50px;
 	margin: 0;
 }
+
 .center{
 	margin-left: 0;
 }
@@ -113,7 +114,7 @@
 		margin: 0 100px;
 	}
 	#contacthome {
-		background-color: #DCF4FA;
+		background-color: ##5FC7FF;
 		padding: 60px 100px;
 		margin: 0;
 	}
