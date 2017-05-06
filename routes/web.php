@@ -28,6 +28,10 @@ Route::get('/about', function(){
 
 Route::resource('/view', 'DormController');
 
+Route::resource('/vote', 'DormController');
+
 Route::resource('/dorm', 'DormController');
 
 Route::get('/view', 'DormController@index');
+
+Route::get('/vote', 'DormController');

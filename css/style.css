@@ -71,7 +71,6 @@ p {
 #gen-nav ul li.fromLeft:after{  transform-origin:  0% 50%; }
 
 
-
 .dropdown-menu ul li {
 	border-bottom: none;
 }
@@ -89,4 +88,5 @@ footer p {
 	padding: 20px;
 	font-family: "Segoe UI Semilight";
 	font-size: 1.1em;
+	margin-bottom: 0px;
 }
