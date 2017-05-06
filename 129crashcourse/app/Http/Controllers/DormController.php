@@ -18,6 +18,12 @@ class DormController extends Controller
         return view('dorm.index', compact('dorms'));
     }
 
+    public function voteIndex()
+    {
+        $dorms = Dorm::orderBy('dormName', 'asc')->get();
+        return view('dorm.vote', compact('dorms'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *
