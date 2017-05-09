@@ -4,7 +4,7 @@
 	$dbconn = dbconn();
 	$error=0;
 if(isset($_SESSION['adminID'])){
-	header("Location: view.php");
+	header("Location: home.php");
 }
 if(isset($_POST["submit"])){
 	$username = $_POST["userName"];
@@ -31,21 +31,50 @@ if(isset($_POST["submit"])){
 <html>
 <head>
 	<title>DorMe | Admin Login</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="../bootstrap-3.3.7/dist/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="../bootstrap-3.3.7/dist/css/bootstrap.css" rel="stylesheet" />
+	<link href="../css/home.css" rel="stylesheet" type="text/css" />
+	<link href="../css/login.css" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" type="text/css" href="../css/style.css" />
+	<script src="../bootstrap-3.3.7/dist/js/bootstrap.min.js"></script>
+	<script src="../js/script.js"></script>
+	<script src="../js/js.js"></script>
+	<script src="../js/jquery.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 </head>
  <body>
 	<?php
 	headerRender();
 	?>
-	<form method="post">
-		<label for="userName">USERNAME</label>
-		<input type="text" required id="userName" name="userName">
-		<label for="password">PASSWORD</label>
-		<input type="password" required id="password" name="password">
-		<?php 
-		if($error == 1){ ?>
-		<span class="error"><?="The username/password you entered is incorrect."?></span>
-		<?php } ?>
-	  		<input type="submit" name="submit" value="LOGIN">
-	</form>
+	<div class='body-content col-md-12 col-sm-12'>
+		<form method="post">
+			<div class="well">
+				<h3> ADMIN LOG IN </h3>
+				<div class="input-group">
+					<span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-user"></span></span>
+			  		<input type="text" id="userName" name="userName" aria-describedby="sizing-addon2" class="form-control" placeholder="Username">
+			  	</div>
+			  	<br />
+				<div class="input-group">
+					<span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-lock"></span></span>
+					<input type="password" id="password" name="password" aria-describedby="sizing-addon2" class="form-control" placeholder="Password">
+				</div>
+
+			  	<?php 
+					if($error == 1){ ?>
+						<span class="error"><?="The username/password you entered is incorrect."?></span>
+					<?php } ?>
+				<br />
+			  	<input type="submit" name="submit" class="btn btn-primary pull-right" value="LOGIN">
+			</div>
+		</form>
+	</div>
+	<footer>
+		<p>&copy; Dorme 2016 | A.Y. 2016-2017 CMSC 127: Fabilloren, Icay, Legada, Montano</p>
+	</footer>
 	</div>
 </body>
+</html>
