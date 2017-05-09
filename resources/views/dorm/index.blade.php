@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="container">
-	<form>
+	<form class="jumbotron">
 		<fieldset>
 			<legend>FILTER:</legend>
 			<input type="text" name="keyword" placeholder="Search" class="form-control-srch" id="noborder" />
@@ -26,6 +26,7 @@
 			</div>
 		</fieldset>
 	</form>
+
 	<div id="establishments">
 		<div id="estab-list">
 			<div class="establishment row">
@@ -37,6 +38,7 @@
                             <p>{{ $dorm->user->name }}</p>
                             <p>{{ $dorm->streetName }}, {{ $dorm->barangayName }}</p>
                             <p>{{ $dorm->getHousingType() }}</p>
+                            <p>{{ $dorm->location }} </p>
                         </div>
 					</div>
 				@empty
@@ -48,5 +50,6 @@
 			</div>
 		</div>
 	</div>
+
 </div>
 @endsection

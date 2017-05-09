@@ -3,10 +3,29 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 use App\Dorm;
 
 class DormController extends Controller
 {
+
+    public function filter_location(){
+        $location = Input::get('loc');
+
+        if ($location == 'banwa') {
+            $dorms = Dorm::where('location', 'banwa')->paginate(5);
+        } 
+        elseif ($location == 'dormArea') {
+            $dorms = Dorm::where('location', 'dormArea')->paginate(5);
+        }
+        else{
+           $dorms = Dorm::orderBy('dormName', 'asc')->paginate(5);
+
+        }
+
+        return $dorms;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +34,10 @@ class DormController extends Controller
     public function index()
     {
         $dorms = Dorm::orderBy('dormName', 'asc')->paginate(5);
-        return view('dorm.index', compact('dorms'));
+        $dorms = $this->filter_location();
+
+        return view('dorm.index', ['dorms' => $dorms->appends(Input::except('page'))]);
+
     }
 
     public function voteIndex()
@@ -54,6 +76,12 @@ class DormController extends Controller
     public function store(Request $request)
     {
         //
+        // $location = $request->get('loc');
+
+        // echo $location;
+
+        // $location->loc = Input::get('loc');
+        // $location->save();
     }
 
     /**
