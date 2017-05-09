@@ -36,7 +36,6 @@
                             <label><span>{{ $dorm->dormName }}</span></label>
                             <p>{{ $dorm->user->name }}</p>
                             <p>{{ $dorm->streetName }}, {{ $dorm->barangayName }}</p>
-                            <p>{{ $dorm->location}} </p>
                             <p>{{ $dorm->getHousingType() }}</p>
                         </div>
 					</div>
