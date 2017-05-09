@@ -55,11 +55,14 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
+                        <li><a href="{{ url('/view') }}">View</a></li>
                         <!-- Authentication Links -->
                         @if (Auth::guest())
                             <li><a href="{{ route('login') }}">Login</a></li>
                             <li><a href="{{ route('register') }}">Register</a></li>
+                            <li><a href="{{ url('/vote') }}">Vote</a></li>
                         @else
+                            <li><a href="{{ url('/home') }}">Manage Establishments</a></li>
                             <li>
                                 <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">{{ csrf_field() }}
@@ -67,6 +70,8 @@
                             </li>
                             
                         @endif
+                        
+                        <li><a href="{{ url('/about') }}">About</a></li>
                     </ul>
                 </div>
             </div>
