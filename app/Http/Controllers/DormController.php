@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+   use App\Http\Controllers\Controller;
+use App\Dorm;
 
-use Auth;
-use App\Facility;
-class DormsController extends Controller
+class DormController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +16,33 @@ class DormsController extends Controller
      */
     public function index()
     {
-        //
+
+        // echo "dfasdflaksjd";
+            $dorms = Dorm::table('dorms')->where('location','banwa')->get();
+        // echo $dorms;
+        // $dorms = Dorm::orderBy('dormName', 'asc')->paginate(10);
+        return view('dorm.index', compact('dorms'));
     }
+
+    public function voteIndex()
+    {
+        $dorms = Dorm::orderBy('dormName', 'asc')->get();
+        return view('dorm.vote', compact('dorms'));
+    }
+
+    // public function filterLocation(){
+    //     $location = Input::get('loc') == 'true'? 1 : 0;
+
+
+    //     if ($location == 'banwa') {
+    //         $dorms = Dorm::where('location','banwa')->paginate(5);
+    //     }
+    //     else if ($location == 'dormArea') {
+    //         $dorms = Dorm::where('location','dormArea')->paginate(5);
+    //     }
+    //     return view('dorm.index', compact('dorms'));
+
+    // }
 
     /**
      * Show the form for creating a new resource.

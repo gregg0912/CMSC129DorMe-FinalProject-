@@ -35,3 +35,4 @@ Route::resource('/dorm', 'DormController');
 Route::get('/view', 'DormController@index');
 
 Route::get('/vote', 'DormController@voteIndex');
+
