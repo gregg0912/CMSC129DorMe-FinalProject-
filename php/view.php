@@ -69,33 +69,29 @@
 	        <br />
 			<fieldset>
 				<legend>FILTER:</legend>
-				<div class="opt">
 				<?php
 				$query2 = "SELECT * FROM facilities";
 				$result = mysqli_query($dbconn, $query2);
 				checkbox($result);
 				?>
+				<div class="location">
+					<label class="radio inline">
+						<input type="radio" name="loc" value="dormArea" />
+						<span>Dorm Area</span>
+					</label>
+					<label class="radio inline">
+						<input type="radio" name="loc" value="banwa" />
+						<span>Banwa</span>
+					</label>
 				</div>
-				<hr />
-					<div class="location opt">
-						<label class="radio inline">
-							<input type="radio" name="loc" value="dormArea" />
-							<span>Dorm Area</span>
-						</label>
-						<label class="radio inline">
-							<input type="radio" name="loc" value="banwa" />
-							<span>Banwa</span>
-						</label>
-					</div>
-					<div class="btn-group" role="group">
-					  <button type="button submit" class="btn btn-default">Filter</button>
-					  <button type="button reset" class="btn btn-default" href="javascript:void(0)">Clear</button>
-					</div>
+				<div class="btn-group col-md-12 col-sm-12" role="group">
+					<button type="submit" name="submit" class="btn btn-default">Filter</button>
+					<button type="reset" class="btn btn-default">Clear</button>
 				</div>
 			</fieldset>
 		</form>
 		</div>
-		<div id="establishments" class="col-md-8 col-sm-8">
+		<div id="establishments" class="col-md-7 col-sm-7">
 			<?php
 			 $result = mysqli_query($dbconn, $query);
 

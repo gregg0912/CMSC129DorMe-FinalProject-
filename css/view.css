@@ -1,19 +1,32 @@
 /***********************************************************************/
-/*                     STYLE FOR THE VIEW PAGE                         */
+/*                     STYLE FOR THE HOME PAGE                         */
 /***********************************************************************/
-.search-input-group .input-group-addon{
+#filter {
+	margin-top: 30px;
+	margin-left: 80px;
+	float: left;
+	position: block;
+}
+
+#establishments {
+	margin-top: 30px;
+	margin-right: 80px;
+	float: right;
+}
+
+.search-input-group .input-group-addon {
     background: white !important; 
 }
 
-.search-input-group .form-control{
+.search-input-group .form-control {
 	border-right:0; 
 	box-shadow:0 0 0; 
 	border-color:#ccc;
 }
 
-.search-input-group button{
-    border: 0;
-    background: transparent;
+.search-input-group button {
+    border:0;
+    background:transparent;
 }
 
 legend {
@@ -23,58 +36,12 @@ legend {
 .checkbox-inline {
 	display: block;
 	margin: 0;
+	margin-left: 10px;
 }
-
-.radio-inline + .radio-inline,
-.checkbox-inline + .checkbox-inline {
-	margin: 0;
-}
-
-.opt {
-	margin-left: 20px;
-}
-
-.location {
-	margin-left: 40px;
-}
-
-.btn-group {
-	margin: 20px;
-}
-
 
 @media screen and (min-width: 769px) {
-	#filter {
-		margin: 0px;
-		float: left;
-		position: absolute;
-	}
 
-	#establishments {
-		margin-left: 30%;
-	}
 
-	.center1 {
-		margin-left: 0;
-	}
 @media screen and (min-width: 1024px) {
-	#filter {
-		margin-top: 30px;
-		margin-left: 80px;
-		float: right;
-	}
 
-	#establishments {
-		margin-top: 30px;
-		margin-right: 80px;
-		margin-left: 10px;
-	}
-
-	.center {
-		margin-left: 18%;
-	}
-
-	.center1 {
-		margin-left: 10px;
-	}
 }

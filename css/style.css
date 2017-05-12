@@ -4,18 +4,11 @@
 body {
     margin: 0;
     background: fixed;
-    background-color: #FFF;
-    overflow-x: hidden;
-}
+ }
 
 .body-content {
 	background-color: white;
 	padding: 0;
-}
-
-* {
-	box-sizing: border-box;
-	font-family: "Segoe UI Semilight";
 }
 
 p {
@@ -59,17 +52,6 @@ p {
 	padding: 0px;
 }
 
-.affix {
-    top:0;
-    width: 100%;
-    z-index: 9999 !important;
-}
-
-
-#gen-nav ul {
-	list-style-type: none;
-}
-
 #gen-nav ul li {
 	padding: 0 5px;
 	color: #666;
@@ -79,15 +61,29 @@ p {
 }
 
 #gen-nav ul li:after {
-  	display:block;
-  	content: '';
-  	border-bottom: solid 3px #009BFF;  
-  	transform: scaleX(0);  
-  	transition: transform 250ms ease-in-out;
+  display:block;
+  content: '';
+  border-bottom: solid 3px #009BFF;  
+  transform: scaleX(0);  
+  transition: transform 250ms ease-in-out;
 }
 
 #gen-nav ul li:hover:after {
 	transform: scaleX(1);
+}
+
+.affix {
+    top:0;
+    width: 100%;
+    z-index: 9999 !important;
+}
+
+.dropdown-menu ul li {
+	border-bottom: none;
+}
+
+.dropdown-menu > li > a:hover {
+	background-color: #009BFF;
 }
 
 footer {

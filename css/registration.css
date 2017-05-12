@@ -1,3 +1,4 @@
+
 /***********************************************************************/
 /*                         CSS FOR SIGN UP PAGE                        */
 /***********************************************************************/
@@ -6,19 +7,23 @@
 	margin-top: 3%;
 	padding: 20px;
 }
+
 .well {
 	margin: 50px;
 }
+
 .body-content > form {
 	margin: auto;
 	min-width: 150px;
 	max-width: 600px;
 }
+
 h3 {
 	text-align: center;
 	font-family: "Walkway Black";
 	padding-bottom: 5px;
 }
+
 #accAsk > p,
 #accAsk > a {
 	font-size: 0.8em;

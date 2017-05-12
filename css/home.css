@@ -6,7 +6,8 @@
 	height:350px;
 }
 
-.img-responsive, .thumbnail > img,
+.img-responsive,
+.thumbnail > img,
 .thumbnail a > img,
 .carousel-inner > .item > img,
 .carousel-inner > .item > a > img {
@@ -77,20 +78,16 @@
 #establishments {
 	margin-top: 50px;
 }
-
 .establishment {
 	display: inline-block;
 	margin: 5px;
 }
-
 .establishment img {
 	max-width: 100%;
 }
-
 .row {
 	width: 100%;
 }
-
 .caption {
 	padding: 10px;
 	text-align: center;
@@ -123,7 +120,7 @@
 	.row {
 		width: 45%;
 	}
-
+	
 	#establishments,
 	#contacthome {
 		margin: 0 100px;
@@ -138,10 +135,11 @@
 	.center1 {
 		margin-left: 25%;
 	}
+
 @media screen and (min-width: 1024px) {
 	.row {
 		width: 31%;
-	} 
+	}
 
 	.center {
 		margin-left: 18%;

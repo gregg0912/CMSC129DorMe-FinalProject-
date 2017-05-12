@@ -5,6 +5,12 @@
 	ownerRedirect();
 	$ownerID = $_SESSION["userID"];
 	// $query = "SELECT dorm.DormId, dorm.DormName, dorm.HousingType, owner.Name, dorm.Location, dorm.thumbnailpic, CONCAT(address.StreetName,', ',address.Barangay) FROM dorm, address, owner WHERE dorm.OwnerId = $ownerID AND owner.OwnerId= $ownerID AND dorm.AddressId = address.AddressId";
+
+	
+	if (isset($_POST['submit'])) {
+		$newthumb = $_POST['thumbChange'];
+		echo $newthumb.'<br />';
+	}
 	$query = "SELECT dorm.DormId, dorm.DormName, CONCAT(address.StreetName,', ',address.Barangay), owner.Name, dorm.HousingType, dorm.thumbnailpic
 		FROM dorm, address, owner
 		WHERE dorm.OwnerId = $ownerID
