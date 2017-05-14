@@ -5,10 +5,17 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use App\Dorm;
+use App\Facility;
+
 
 class DormController extends Controller
 {
 
+    public function filter_faci(){
+        $faci = Input::all();
+
+        $facilities = Facility::where('facility_name', $faci)->get();
+    }
     public function filter_location(){
         $location = Input::get('loc');
 
@@ -34,9 +41,13 @@ class DormController extends Controller
     public function index()
     {
         $dorms = Dorm::orderBy('dormName', 'asc')->paginate(5);
-        $dorms = $this->filter_location();
+        // $dorms = $this->filter_location();
+        $dorms = $this->filter_faci();
 
-        return view('dorm.index', ['dorms' => $dorms->appends(Input::except('page'))]);
+        return view('dorm.index', compact('dorms'));
+
+
+        // return view('dorm.index', ['dorms' => $dorms->appends(Input::except('page'))]);
 
     }
 
