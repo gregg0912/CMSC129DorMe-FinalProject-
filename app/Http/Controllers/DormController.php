@@ -17,7 +17,8 @@ class DormController extends Controller
         // $facilities = Facility::where('facility_name', $faci)->get();
 
         if (!empty($faci)) {
-            $facility = Facility::whereIn('facility_name', $term)->get();
+            $facility = Facility::whereIn('facility_name', $term)->pluck('dorm_id');
+            $dorms = Dorm::where('id', $facility)->paginate(5);
 
         }
         else{
@@ -54,8 +55,8 @@ class DormController extends Controller
     public function index()
     {
         $dorms = Dorm::orderBy('dormName', 'asc')->paginate(5);
-        $dorms = $this->filter_location();
-        // $dorms = $this->filter_faci();
+        // $dorms = $this->filter_location();
+        $dorms = $this->filter_faci();
         // $dorms = serialize($dorms);
 
         // return view('dorm.index', compact('dorms'));
