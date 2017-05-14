@@ -39,6 +39,8 @@
                             <p>{{ $dorm->streetName }}, {{ $dorm->barangayName }}</p>
                             <p>{{ $dorm->getHousingType() }}</p>
                             <p>{{ $dorm->location }} </p>
+                            <p>{{ $dorm->id }} </p>
+
                         </div>
 					</div>
 				@empty

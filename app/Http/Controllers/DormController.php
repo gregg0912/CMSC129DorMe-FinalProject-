@@ -14,10 +14,12 @@ class DormController extends Controller
     public function filter_faci(){
         $faci = Input::get('facilityList');
 
+        echo serialize($faci);
+
         // $facilities = Facility::where('facility_name', $faci)->get();
 
         if (!empty($faci)) {
-            $facility = Facility::whereIn('facility_name', $term)->pluck('dorm_id');
+            $facility = Facility::whereIn('facility_name', $faci)->pluck('dorm_id');
             $dorms = Dorm::where('id', $facility)->paginate(5);
 
         }
