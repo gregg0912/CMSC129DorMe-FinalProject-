@@ -27,8 +27,7 @@ class DormController extends Controller
     public function vote($id)
     {
         $dorm = Dorm::findOrFail($id);
-        $dorm_votes = $dorm->votes;
-        $dorm->votes = $dorm_votes+1;
+        $dorm->increment('votes');
         $dorm->save();
 
         $dorms = Dorm::orderBy('dormName', 'asc')->get();

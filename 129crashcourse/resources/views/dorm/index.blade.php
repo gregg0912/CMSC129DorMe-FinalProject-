@@ -10,7 +10,7 @@
 			@forelse(App\Facility::facilityList() as $facility)
 			<label><input type="checkbox" name="facilityList[]" value="{{ $facility->facility_name }}" />{{ $facility->facility_name }}</label>
 			@empty
-			WALA
+			<label>No facilities were found!</label>
 			@endforelse
 			<div class="location">
 				<label class="radio inline">

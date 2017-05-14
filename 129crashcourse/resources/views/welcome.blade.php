@@ -20,7 +20,12 @@
                     </div>
                     
                 @empty
-
+                    <div>
+                        <a href="javascript:void(0)"><img src="" alt="IMAGE NOT FOUND" /></a>
+                        <div class="caption">
+                            <p>There are no dormitories in this database yet!</p>
+                        </div>
+                    </div>
                 @endforelse
             </div>
             <div id="contacthome">
