@@ -35,9 +35,5 @@ Route::resource('/dorm', 'DormController');
 Route::get('/view', 'DormController@index');
 
 Route::get('/vote', 'DormController@voteIndex');
-<<<<<<< HEAD:routes/web.php
 
 Route::get('/dorm/vote/{dorm_id}', 'DormController@vote');
-
-=======
->>>>>>> 42e68c8b804e979d880d52ba26f2e5c99eaab258:129crashcourse/routes/web.php
