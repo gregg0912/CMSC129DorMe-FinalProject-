@@ -15,10 +15,14 @@ class DormController extends Controller
         $faci = Input::get('facilityList');
 
         // $facilities = Facility::where('facility_name', $faci)->get();
-        echo($faci[0]);
-        echo($faci[1]);
 
-        $dorms = serialize($faci);
+        if (!empty($faci)) {
+            $dorms = Dorm::whereIn('')
+        }
+        // echo($faci[0]);
+        // echo($faci[1]);
+
+        // $dorms = serialize($faci);
        
         // return $dorms;
 

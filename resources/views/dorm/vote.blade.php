@@ -5,26 +5,40 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-6 col-md-offset-3">
-			<form id="voteForm" role="form" action="" method="GET">
-				<h1>Establishments</h1>
+			<h1 class="text-center">Establishments</h1>
+			@if(Cookie::get('voted') !== null)
 				<div class="establishments-holder">
 					@forelse($dorms as $dorm)
-						<div class="radio">
-							<label>
-								<input type="radio" name="establishment" id="{{ $dorm->id }}" value="{{ $dorm->id }}" /> {{ $dorm->dormName }}
-							</label>
+						<div>
+							<label>{{ $dorm->dormName }}</label><span class="badge pull-right">{{ $dorm->votes }}</span>
 						</div>
 					@empty
-						<h4>No establishments  were found!</h4>
+						<h4>No establishments were found!</h4>
 					@endforelse
 				</div>
-
-				@if(!$dorms->isEmpty())
-					<div class="form-group">
-						<input id="submit" type="submit" name="submit" class="btn btn-success" value="Submit" />
+			@else
+				<form id="voteForm" role="form" action="vote/" method="POST">
+	                {{ csrf_field() }}
+	                {{ method_field('PUT') }}
+					<div class="establishments-holder">
+						@forelse($dorms as $dorm)
+							<div class="radio">
+								<label>
+									<input type="radio" name="establishment" id="{{ $dorm->id }}" value="{{ $dorm->id }}" /> {{ $dorm->dormName }}
+								</label>
+							</div>
+						@empty
+							<h4>No establishments  were found!</h4>
+						@endforelse
 					</div>
-				@endif
-			</form>
+
+					@if(!$dorms->isEmpty())
+						<div class="form-group">
+							<input id="submit" type="submit" name="submit" class="btn btn-success" value="Submit" />
+						</div>
+					@endif
+				</form>
+			@endif
 		</div>
 	</div>
 	<div class="modal fade" id="errorModal" role="dialog">
