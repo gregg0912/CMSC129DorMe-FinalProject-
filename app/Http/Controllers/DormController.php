@@ -12,9 +12,17 @@ class DormController extends Controller
 {
 
     public function filter_faci(){
-        $faci = Input::all();
+        $faci = Input::get('facilityList');
 
-        $facilities = Facility::where('facility_name', $faci)->get();
+        // $facilities = Facility::where('facility_name', $faci)->get();
+        echo($faci[0]);
+        echo($faci[1]);
+
+        $dorms = serialize($faci);
+       
+        // return $dorms;
+
+
     }
     public function filter_location(){
         $location = Input::get('loc');
@@ -30,6 +38,7 @@ class DormController extends Controller
 
         }
 
+        echo($location);
         return $dorms;
     }
 
@@ -41,13 +50,12 @@ class DormController extends Controller
     public function index()
     {
         $dorms = Dorm::orderBy('dormName', 'asc')->paginate(5);
-        // $dorms = $this->filter_location();
         $dorms = $this->filter_faci();
+        $dorms = $this->filter_location();
+        // $dorms = serialize($dorms);
 
-        return view('dorm.index', compact('dorms'));
-
-
-        // return view('dorm.index', ['dorms' => $dorms->appends(Input::except('page'))]);
+        // return view('dorm.index', compact('dorms'));
+        return view('dorm.index', ['dorms' => $dorms->appends(Input::except('page'))]);
 
     }
 
