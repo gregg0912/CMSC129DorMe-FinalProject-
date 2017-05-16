@@ -36,4 +36,11 @@ class Dorm extends Model
             return "Dormitory";
         return "Bed-space";
     }
+    public function getlocation(){
+        if($this->location == 'banwa')
+            return "Banwa";
+        else if($this->location == 'dormArea')
+            return "Dorm Area";
+        return "Elsewhere";
+    }
 }

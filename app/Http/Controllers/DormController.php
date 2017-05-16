@@ -117,7 +117,8 @@ class DormController extends Controller
      */
     public function show($id)
     {
-        //
+        $dorm = Dorm::findOrFail($id);
+        return view('dorm.viewdorm', compact('dorm'));
     }
 
     /**
