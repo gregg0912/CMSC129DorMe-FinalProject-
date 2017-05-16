@@ -19,36 +19,45 @@ class DormController extends Controller
 
         if (!empty($faci) && !empty($location)) {
 
-            $dormId = Facility::whereIn('facility_name', $faci)->groupBy('dorm_id')->havingRaw('COUNT(id) >='. $size)-> pluck('dorm_id');
+            $dormId = Facility::whereIn('facility_name', $faci)
+                ->groupBy('dorm_id')
+                ->havingRaw('COUNT(id) >='. $size)
+                -> pluck('dorm_id');
 
-            $dorms = Dorm::whereIn('id', $dormId)->where('location', $location)->paginate(5);
-
+            $dorms = Dorm::whereIn('id', $dormId)
+                ->where('location', $location)
+                ->paginate(5);
         }
 
         else if (!empty($search)) {
-
             $dorms = Dorm::where('dormName', 'like', '%'.$search.'%')
-            ->orWhere('housingType', 'like', '%'.$search.'%')
-            ->orWhere('barangayName', 'like', '%'.$search.'%')
-            ->paginate(5);
+                 ->orWhere('housingType', 'like', '%'.$search.'%')
+                 ->orWhere('barangayName', 'like', '%'.$search.'%')
+                 ->paginate(5);
 
         }
 
         else if (!empty($location)) {    
 
-            $dorms = Dorm::where('location', $location)->paginate(5);
+            $dorms = Dorm::where('location', $location)
+                ->paginate(5);
         }
 
          else if(!empty($faci)){
      
-              $dormId = Facility::whereIn('facility_name', $faci)->groupBy('dorm_id')->havingRaw('COUNT(id) >='. $size)-> pluck('dorm_id');
+              $dormId = Facility::whereIn('facility_name', $faci)
+                    ->groupBy('dorm_id')
+                    ->havingRaw('COUNT(id) >='. $size)
+                    -> pluck('dorm_id');
             
-            $dorms = Dorm::whereIn('id', $dormId)->paginate(5);
+            $dorms = Dorm::whereIn('id', $dormId)
+                ->paginate(5);
 
         }
 
         else{
-           $dorms = Dorm::orderBy('dormName', 'asc')->paginate(5);
+           $dorms = Dorm::orderBy('dormName', 'asc')
+                ->paginate(5);
 
         }
 
