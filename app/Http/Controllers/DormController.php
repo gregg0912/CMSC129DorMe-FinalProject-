@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\Input;
 use App\Dorm;
 use App\Facility;
 
-
 class DormController extends Controller
 {
 
@@ -34,13 +33,11 @@ class DormController extends Controller
                  ->orWhere('housingType', 'like', '%'.$search.'%')
                  ->orWhere('barangayName', 'like', '%'.$search.'%')
                  ->paginate(5);
-
         }
 
         else if (!empty($location)) {    
 
-            $dorms = Dorm::where('location', $location)
-                ->paginate(5);
+            $dorms = Dorm::where('location', $location)->paginate(5);
         }
 
          else if(!empty($faci)){
@@ -50,20 +47,16 @@ class DormController extends Controller
                     ->havingRaw('COUNT(id) >='. $size)
                     -> pluck('dorm_id');
             
-            $dorms = Dorm::whereIn('id', $dormId)
-                ->paginate(5);
+            $dorms = Dorm::whereIn('id', $dormId)->paginate(5);
 
         }
 
         else{
-           $dorms = Dorm::orderBy('dormName', 'asc')
-                ->paginate(5);
+           $dorms = Dorm::orderBy('dormName', 'asc')->paginate(5);
 
         }
 
-
         return $dorms;
-        
     }
 
     /**
