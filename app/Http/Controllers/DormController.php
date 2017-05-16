@@ -76,14 +76,14 @@ class DormController extends Controller
         return view('dorm.vote', compact('dorms'));
     }
 
-    public function vote($id)
+    public function vote(Request $request)
     {
-        $dorm = Dorm::findOrFail($id);
+        Cookie::queue(Cookie::make('voted', true, '1440'));
+        $dorm = Dorm::findOrFail($request['establishment']);
         $dorm->increment('votes');
-        $dorm->save();
 
         $dorms = Dorm::orderBy('dormName', 'asc')->get();
-        return $dorms;
+        return view('dorm.vote', compcat('dorms'));
     }
 
     /**
@@ -121,7 +121,8 @@ class DormController extends Controller
      */
     public function show($id)
     {
-        //
+        $dorm = Dorm::findOrFail($id);
+        return view('dorm.viewdorm', compact('dorm'));
     }
 
     /**
