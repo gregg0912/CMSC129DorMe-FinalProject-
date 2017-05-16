@@ -11,42 +11,50 @@ use App\Facility;
 class DormController extends Controller
 {
 
-    public function filter_faci(){
-        $faci = Input::get('facilityList');
-
-        echo serialize($faci);
-
-        // $facilities = Facility::where('facility_name', $faci)->get();
-
-        if (!empty($faci)) {
-            $facility = Facility::whereIn('facility_name', $faci)->pluck('dorm_id');
-            $dorms = Dorm::where('id', $facility)->paginate(5);
-
-        }
-        else{
-            $dorms = Dorm::orderBy('dormName', 'asc')->paginate(5);
-        }
-
-        return $dorms;
-
-
-    }
-    public function filter_location(){
+    public function filter(){
         $location = Input::get('loc');
+        $faci = Input::get('facilityList');
+        $search = Input::get('keyword');
+        $size = count($faci);   
 
-        if ($location == 'banwa') {
-            $dorms = Dorm::where('location', 'banwa')->paginate(5);
-        } 
-        elseif ($location == 'dormArea') {
-            $dorms = Dorm::where('location', 'dormArea')->paginate(5);
+        if (!empty($faci) && !empty($location)) {
+
+            $dormId = Facility::whereIn('facility_name', $faci)->groupBy('dorm_id')->havingRaw('COUNT(id) >='. $size)-> pluck('dorm_id');
+
+            $dorms = Dorm::whereIn('id', $dormId)->where('location', $location)->paginate(5);
+
         }
+
+        else if (!empty($search)) {
+
+            $dorms = Dorm::where('dormName', 'like', '%'.$search.'%')
+            ->orWhere('housingType', 'like', '%'.$search.'%')
+            ->orWhere('barangayName', 'like', '%'.$search.'%')
+            ->paginate(5);
+
+        }
+
+        else if (!empty($location)) {    
+
+            $dorms = Dorm::where('location', $location)->paginate(5);
+        }
+
+         else if(!empty($faci)){
+     
+              $dormId = Facility::whereIn('facility_name', $faci)->groupBy('dorm_id')->havingRaw('COUNT(id) >='. $size)-> pluck('dorm_id');
+            
+            $dorms = Dorm::whereIn('id', $dormId)->paginate(5);
+
+        }
+
         else{
            $dorms = Dorm::orderBy('dormName', 'asc')->paginate(5);
 
         }
 
-        echo($location);
+
         return $dorms;
+        
     }
 
     /**
@@ -57,11 +65,7 @@ class DormController extends Controller
     public function index()
     {
         $dorms = Dorm::orderBy('dormName', 'asc')->paginate(5);
-        // $dorms = $this->filter_location();
-        $dorms = $this->filter_faci();
-        // $dorms = serialize($dorms);
-
-        // return view('dorm.index', compact('dorms'));
+        $dorms = $this->filter();
         return view('dorm.index', ['dorms' => $dorms->appends(Input::except('page'))]);
 
     }
