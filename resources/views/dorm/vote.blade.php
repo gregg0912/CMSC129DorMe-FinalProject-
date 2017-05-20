@@ -17,8 +17,12 @@
 					@endforelse
 				</div>
 			@else
+<<<<<<< HEAD
 				<form id="voteForm" action="/vote" method="post">
 	                {{ method_field('PUT') }}
+=======
+				<form id="voteForm" action="/voteDorm/0" role="form" method="GET">
+>>>>>>> 0cb32c69fee3bc920187577847e4905895acab40
 	                {{ csrf_field() }}
 					<div class="establishments-holder">
 						@forelse($dorms as $dorm)

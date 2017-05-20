@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Cookie\CookieJar;
 use App\Dorm;
 use App\Facility;
+use Cookie;
 
 class DormController extends Controller
 {
@@ -78,14 +80,19 @@ class DormController extends Controller
         return view('dorm.vote', compact('dorms'));
     }
 
-    public function vote(Request $request)
+    public function vote($id)
     {
-        Cookie::queue(Cookie::make('voted', true, '1440'));
-        $dorm = Dorm::findOrFail($request['establishment']);
+        
+        $dorm = Dorm::findOrFail($id);
         $dorm->increment('votes');
+        if(!Cookie::has('voted'))
+        {
+            Cookie::queue('voted', 'true', 1440);
+            $dorms = Dorm::orderBy('dormName', 'asc')->get()->toArray();
+            return $dorms;
+        }
+    return null;
 
-        $dorms = Dorm::orderBy('dormName', 'asc')->get();
-        return view('dorm.vote', compact('dorms'));
     }
 
     /**
