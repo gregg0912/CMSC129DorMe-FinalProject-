@@ -12,6 +12,6 @@ class RequestAddon extends Model
     ];
 
     public function request(){
-    	return $this->belongsTo('App\Request');
+    	return $this->belongsTo('App\RequestDorm');
     }
 }
