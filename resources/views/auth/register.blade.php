@@ -2,11 +2,12 @@
 
 <link media="all" type="text/css" rel="stylesheet" href="{{ URL::asset('../css/style.css') }}" />
 <link media="all" type="text/css" rel="stylesheet" href="{{ URL::asset('../css/registration.css') }}" />
+<link media="all" type="text/css" rel="stylesheet" href="{{ URL::asset('../bootstrap-3.3.7/dist/css/bootstrap.min.css') }}" />
 
 @section('content')
 <div class="body-content">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-12 col-sm-12">
             <div class="panel panel-default">
                 <div class="panel-heading">Register</div>
                 <div class="panel-body">
@@ -15,7 +16,7 @@
 
                         <div class="input-group input-group {{ $errors->has('name') ? ' has-error' : '' }}">
                             <span class="input-group-addon" id="sizing-addon1">
-                                <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                                <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                             </span>
 
                                 <input id="name" type="text" class="form-control" name="name" placeholder="Name" value="{{ old('name') }}" required autofocus />
@@ -28,7 +29,9 @@
                         </div>
 
                         <div class="input-group input-group {{ $errors->has('username') ? ' has-error' : '' }}">
-                            <span class="input-group-addon" id="sizing-addon1">@</span>
+                            <span class="input-group-addon" id="sizing-addon1">
+                                 <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                            </span>
 
                                 <input id="username" type="text" class="form-control" name="username" placeholder="Username" value="{{ old('username') }}" required autofocus />
 
@@ -40,7 +43,9 @@
                         </div>
 
                         <div class="input-group input-group {{ $errors->has('email') ? ' has-error' : '' }}">
-                            <span class="input-group-addon" id="sizing-addon1">@</span>
+                            <span class="input-group-addon" id="sizing-addon1">
+                                 <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+                            </span>
 
                                 <input id="email" type="email" class="form-control" name="email" placeholder="E-mail" value="{{ old('email') }}" required />
 
@@ -52,7 +57,9 @@
                         </div>
 
                         <div class="input-group input-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <span class="input-group-addon" id="sizing-addon1">@</span>
+                            <span class="input-group-addon" id="sizing-addon1">
+                                 <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+                            </span>
 
                                 <input id="password" type="password" class="form-control" name="password" placeholder="Password" required />
 
@@ -64,13 +71,17 @@
                         </div>
 
                         <div class="input-group input-group">
-                            <span class="input-group-addon" id="sizing-addon1">@</span>
+                            <span class="input-group-addon" id="sizing-addon1">
+                                <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>
+                            </span>
 
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" placeholder="Confirm password" required />
                         </div>
 
                         <div class="input-group input-group {{ $errors->has('phone_number') ? ' has-error' : '' }}">
-                            <span class="input-group-addon" id="sizing-addon1">@</span>
+                            <span class="input-group-addon" id="sizing-addon1">
+                                <span class="glyphicon glyphicon-phone" aria-hidden="true"></span>
+                            </span>
 
                                 <input id="phone_number" type="text" class="form-control" name="phone_number" placeholder="Phone number" value="{{ old('phone_number') }}" required />
 
@@ -81,12 +92,10 @@
                                 @endif
                         </div>
 
-                        <div class="input-group">
-                            <div class=" col-md-8 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Register
-                                </button>
-                            </div>
+                        <div class="input-group col-md-12 col-sm-12">
+                            <button type="submit" class="btn btn-primary">
+                                Register
+                            </button>
                         </div>
                     </form>
                 </div>
