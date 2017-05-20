@@ -163,8 +163,10 @@ class DormController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        //
+    public function destroy($id){
+        $dorm = Dorm::find($id);
+        $dorm->delete();
+
+        return redirect('/home/show');
     }
 }

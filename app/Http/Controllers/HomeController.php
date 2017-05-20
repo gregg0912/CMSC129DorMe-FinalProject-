@@ -40,9 +40,10 @@ class HomeController extends Controller
         echo($owner);
     }
 
-    public function showDorms($id){
-         $ownerId = User::findOrFail($id)->where('id', $id)->pluck('id');
-         $dorms= Dorm::where('user_id', $ownerId)->orderBy('dormName', 'asc')->paginate(5);
+    public function showDorms(){
+        $id = Auth::user()->id;
+        $ownerId = User::findOrFail($id)->where('id', $id)->pluck('id');
+        $dorms= Dorm::where('user_id', $ownerId)->orderBy('dormName', 'asc')->paginate(5);
 
 
          return view('user.owndorm', ['dorms' => $dorms->appends(Input::except('page'))]);
@@ -51,14 +52,4 @@ class HomeController extends Controller
 
     }
 
-    public function destroy($id){
-
-        echo($id);
-        $ownerId = User::findOrFail($id);
-         $dorm= Dorm::where('user_id', $ownerId);
-        // $dorm = Dorm::findOrFail($id);
-        $dorm->delete();
-
-        return redirect('/home/showDorms/'.$ownerId);
-    }
 }

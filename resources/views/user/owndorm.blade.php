@@ -14,11 +14,12 @@
                                 <div>
 
                                     <a href="/dorm/viewdorm/{{$dorm->id}}"><img src="{{ $dorm->thumbnailPic }}" alt="IMAGE NOT FOUND" /></a>
-                                    <form class="form-delete" action="/home/showDorms/{{ $dorm->user->id }}/{{$dorm->id}}" method="GET">
+                                    <form class="form-delete" action="/dorm/{{ $dorm->id }}" method="POST">
                                         {{ csrf_field() }}
                                         {{ method_field('DELETE') }}
+                                        
+                                   <input type="submit"  name="delete" value="Delete" id="delete" class="btn btn-danger">
 
-                                    <input type="submit" class="btn btn-danger" value="Delete" />
                                     </form>
                                     <div class="caption">
                                         <label><span>{{ $dorm->dormName }}</span></label>

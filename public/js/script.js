@@ -1,5 +1,6 @@
 $(document).ready(function(){
 	$(document).on("submit", "#voteForm", vote);
+
 });
 
 function vote(e){

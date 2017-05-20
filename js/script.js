@@ -1,6 +1,7 @@
 $(document).ready(function(){
 	$(document).on("click", ".prev", plusSlides);
 	$(document).on("click", ".next", plusSlides);
+	$(document).on("click", "#delete", deleteDorm);
 });
 
 window.onload = function(){
@@ -38,6 +39,25 @@ window.onload = function(){
 
 // }
 }
+
+function deleteDorm(id) {
+
+	echo id;
+
+	$.ajax({
+		url: '/home/show/' + id,
+		data: { "_token": "{{ csrf_token() }}" },
+		type: 'DELETE',
+		success: function(deleting){
+			// return Redirect::back();
+
+			echo "fjdksf";
+		}
+
+
+	});
+}
+
 var slideIndex = 1;
 showSlides(slideIndex);
 
