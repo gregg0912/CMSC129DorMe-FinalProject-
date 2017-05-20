@@ -85,7 +85,7 @@ class DormController extends Controller
         $dorm->increment('votes');
 
         $dorms = Dorm::orderBy('dormName', 'asc')->get();
-        return view('dorm.vote', compcat('dorms'));
+        return view('dorm.vote', compact('dorms'));
     }
 
     /**

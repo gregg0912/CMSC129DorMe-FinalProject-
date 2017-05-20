@@ -62,7 +62,7 @@
                             <li><a href="{{ route('register') }}">Register</a></li>
                             <li><a href="{{ url('/vote') }}">Vote</a></li>
                         @else
-                            <li><a href="{{ url('/home') }}">Manage Establishments</a></li>
+                            <li><a href="{{ url('/home/show') }}">Manage Establishments</a></li>
                             <li>
                                 <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">{{ csrf_field() }}
