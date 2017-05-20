@@ -36,17 +36,16 @@
             </div>
         </div>
         <div id="contacthome">
-                <h2>Contact Us</h2>
+            <h2>Contact Us</h2>
                 <p> Questions? Feedback? Suggestions? <br> We'd love to hear from you!<br>
                     Send us an email at <strong><a href="javascript:void(0)">support@dorme.com</a></strong> and we'll get back to you as soon as possible.<br>
                 </p>
-            </div>
-            <footer>
-                <p>&copy; Dorme 2016 | A.Y. 2016-2017 CMSC 127: Fabilloren, Icay, Legada, Montano</p>
-            </footer>
-            </div>
-            <a id="back-to-top" href="#" class="btn btn-default btn-lg to-top" role="button" title="Click to return on the top page" data-toggle="tooltip" data-placement="left"><span class="glyphicon glyphicon-chevron-up"></span></a>
         </div>
+        <footer>
+            <p>&copy; Dorme 2016 | A.Y. 2016-2017 CMSC 127: Fabilloren, Icay, Legada, Montano</p>
+        </footer>
+            
+        <a id="back-to-top" href="#" class="btn btn-default btn-lg to-top" role="button" title="Click to return on the top page" data-toggle="tooltip" data-placement="left"><span class="glyphicon glyphicon-chevron-up"></span></a>
     </div>
 </div>
 @endsection

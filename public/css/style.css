@@ -61,11 +61,15 @@ p {
 }
 
 #gen-nav ul li:after {
-  display:block;
-  content: '';
-  border-bottom: solid 3px #009BFF;  
-  transform: scaleX(0);  
-  transition: transform 250ms ease-in-out;
+  	display:block;
+  	content: '';
+  	border-bottom: solid 3px #009BFF;  
+  	transform: scaleX(0);  
+  	transition: transform 250ms ease-in-out;
+}
+
+#gen-nav ul li:hover {
+	font-weight: bold;
 }
 
 #gen-nav ul li:hover:after {
