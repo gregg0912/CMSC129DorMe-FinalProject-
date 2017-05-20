@@ -6,10 +6,10 @@ body {
     background: fixed;
  }
 
-.body-content {
-	background-color: white;
-	padding: 0;
-}
+ .bodycontent {
+ 	padding: 0;
+ 	margin: 0;
+ }
 
 p {
 	font-family: "Segoe UI Semilight";

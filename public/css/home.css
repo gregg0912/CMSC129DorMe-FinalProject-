@@ -58,30 +58,16 @@
 	font-family: "Segoe UI Semilight";
 }
 
-.body-content {
-	align-content: center;
-	padding-top: 10px;
-	margin: 0;
-	top: 0;
-}
-
 #establishments > h2,
 #contacthome > h2 {
 	font-family: "Walkway Black";
 }
 
-#establishments,
-#contacthome {
-	margin: 0 50px;
+.establishments {
+	display: inline-block;
+	margin: 0 5px;
 }
 
-#establishments {
-	margin-top: 50px;
-}
-.establishment {
-	display: inline-block;
-	margin: 5px;
-}
 .establishment img {
 	max-width: 100%;
 }
@@ -116,18 +102,21 @@
     display: none;
 }
 
+.col-sm-12 {
+	padding: 0;
+}
+
 @media screen and (min-width: 769px) {
 	.row {
 		width: 45%;
 	}
 	
-	#establishments,
-	#contacthome {
-		margin: 0 100px;
+	#establishments {
+		margin: 60px 100px;
 	}
 
 	#contacthome {
-		background-color: ##5FC7FF;
+		background-color: #5FC7FF;
 		padding: 60px 100px;
 		margin: 0;
 	}
