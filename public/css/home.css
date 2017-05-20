@@ -1,0 +1,140 @@
+/***********************************************************************/
+/*                     STYLE FOR THE HOME PAGE                         */
+/***********************************************************************/
+.carousel {
+	width: 100%;
+	height:350px;
+}
+
+.img-responsive,
+.thumbnail > img,
+.thumbnail a > img,
+.carousel-inner > .item > img,
+.carousel-inner > .item > a > img {
+	height: 350px;
+	max-width: 100%;
+}
+
+.carousel-inner img {
+	width:100% ;
+  	max-height:100%;
+  	object-position: center;
+  	object-fit: cover;
+}
+
+#dorme-main-header {
+	color: white;
+	width: 90%;
+	height: auto;
+	top: 12%;
+	position: absolute;
+	text-align: center;
+	margin: 0 5%;
+}
+
+#dorme-main-header > h1 {
+	background-color: #2A2A2A;
+	text-align: center;
+	position: relative;
+	margin: auto;
+	padding: 5px;
+	font-family: "Walkway Black";
+}
+
+#dorme-main-header > h2 {
+	background-color: #2A2A2A;
+	position: relative;
+	margin: auto;
+	padding: 5px;
+	font-family: "Walkway Black";
+}
+
+#dorme-main-header > p {
+	background-color: #2A2A2A;
+	position: relative;
+	margin: auto;
+	text-align: left;
+	padding: 5px;
+	font-family: "Segoe UI Semilight";
+}
+
+#establishments > h2,
+#contacthome > h2 {
+	font-family: "Walkway Black";
+}
+
+.establishments {
+	display: inline-block;
+	margin: 0 5px;
+}
+
+.establishment img {
+	max-width: 100%;
+}
+.row {
+	width: 100%;
+}
+.caption {
+	padding: 10px;
+	text-align: center;
+	max-width: 500px;
+}
+
+#contacthome {
+	background-color: #5FC7FF;
+	padding: 30px 50px;
+	margin: 0;
+}
+
+.center {
+	margin-left: 0;
+}
+
+.center1 {
+	margin-left: 0;
+}
+
+.to-top {
+    cursor: pointer;
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+    display: none;
+}
+
+.col-sm-12 {
+	padding: 0;
+}
+
+@media screen and (min-width: 769px) {
+	.row {
+		width: 45%;
+	}
+	
+	#establishments {
+		margin: 60px 100px;
+	}
+
+	#contacthome {
+		background-color: #5FC7FF;
+		padding: 60px 100px;
+		margin: 0;
+	}
+
+	.center1 {
+		margin-left: 25%;
+	}
+
+@media screen and (min-width: 1024px) {
+	.row {
+		width: 31%;
+	}
+
+	.center {
+		margin-left: 18%;
+	}
+
+	.center1 {
+		margin-left: 10px;
+	}
+}

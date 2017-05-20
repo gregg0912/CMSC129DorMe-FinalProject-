@@ -1,0 +1,24 @@
+
+/***********************************************************************/
+/*                         CSS FOR SIGN UP PAGE                        */
+/***********************************************************************/
+
+.panel {
+	margin: 50px;
+}
+
+.input-group {
+	margin: 10px;
+}
+
+button {
+	width: 100%;
+}
+
+@media screen and (min-width: 769px) {
+	
+}
+
+@media screen and (min-width: 1024px) {
+	/* insert style */
+}
