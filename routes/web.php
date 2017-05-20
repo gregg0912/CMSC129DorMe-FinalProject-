@@ -44,3 +44,5 @@ Route::get('/vote', 'DormController@voteIndex');
 Route::get('/dorm/viewdorm/{dorm_id}', 'DormController@show');
 
 Route::get('/voteDorm/{dorm_id}', 'DormController@vote');
+
+Route::get('/admin', 'AdminController@index');

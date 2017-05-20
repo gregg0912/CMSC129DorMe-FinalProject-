@@ -7,11 +7,18 @@
 
 
 @section('content')
+
 <div class="flex-center position-ref full-height">
     <div class="content">
     </div>
     <div class="body-content col-md-12 col-sm-12">
         <div id="establishments">
+      <!--   @if (App\User::where("username", "admin"))
+              Hello admin
+       @else
+          Hello standard user
+       @endif -->
+    
             <h2>Featured Establishments</h2>
             <div class="establishment row">
                 @forelse(App\Dorm::orderBy('votes', 'desc')->take(5)->get() as $dorm)
