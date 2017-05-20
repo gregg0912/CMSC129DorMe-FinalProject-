@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Cookie\CookieJar;
 use App\Dorm;
 use App\Facility;
+use Cookie;
 
 class DormController extends Controller
 {
@@ -82,15 +83,16 @@ class DormController extends Controller
     public function vote($id)
     {
         
-            $dorm = Dorm::findOrFail($id);
-            $dorm->increment('votes');
-            if(!Cookie::has('voted'))
-            {
-                Cookie::queue('voted', 'true', 1440);
-                $dorms = Dorm::orderBy('dormName', 'asc')->get()->toArray();
-                return $dorms;
-            }
-        return null;
+        $dorm = Dorm::findOrFail($id);
+        $dorm->increment('votes');
+        if(!Cookie::has('voted'))
+        {
+            Cookie::queue('voted', 'true', 1440);
+            $dorms = Dorm::orderBy('dormName', 'asc')->get()->toArray();
+            return $dorms;
+        }
+    return null;
+
     }
 
     /**

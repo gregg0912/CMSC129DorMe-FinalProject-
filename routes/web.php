@@ -20,6 +20,7 @@ Auth::routes();
 Route::group(['middleware' => 'auth'], function(){
 	Route::get('/home', 'HomeController@index');
 
+
 });
 
 Route::get('/about', function(){
@@ -36,6 +37,10 @@ Route::get('/view', 'DormController@index');
 
 Route::get('/vote', 'DormController@voteIndex');
 
+Route::get('/dorm/viewdorm/{dorm_id}', 'DormController@show');
+
+Route::get('/home/showDorms/{user_id}', 'HomeController@showDorms');
+
 Route::get('/voteDorm/{dorm_id}', 'DormController@vote');
 
-Route::get('/dorm/viewdorm/{dorm_id}', 'DormController@show');
+Route::get('/home/showDorms/{user_id}/{dorm_id}', 'HomeController@destroy');

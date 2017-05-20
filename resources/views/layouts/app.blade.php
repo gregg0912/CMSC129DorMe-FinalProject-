@@ -60,20 +60,31 @@
                     <button id="menu" class="navbar-toggle" data-toggle="collapse" data-target="#glyph-menu"><span class="glyphicon glyphicon-menu-hamburger"></span></button>
                 </div>
                 <div id="glyph-menu" class="collapse navbar-collapse">
+
+                    <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav pull-left">
-                        <li class="fromLeft"><a href="home.php">Home</a></li>
-                        <li class="fromLeft"><a href="view.php">View</a></li>
-                        <li class="fromLeft"><a href="poll.php">Poll</a></li>
-                        <li class="fromLeft"><a href="about.php">About</a></li>
+                        <li><a href="{{ url('/view') }}">View</a></li>
+                        <!-- Authentication Links -->
+                        @if (Auth::guest())
+                            <li><a href="{{ url('/vote') }}">Vote</a></li>
+                        @else
+                            <li><a href="{{ url('/home/show') }}">Manage Establishments</a></li>
+                            <li>
+                                <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">{{ csrf_field() }}
+                                </form>
+                            </li>
+                            
+                        @endif
+                        
+                        <li><a href="{{ url('/about') }}">About</a></li>
                     </ul>
+
                     <ul class="nav navbar-nav pull-right">
-                        <li class="dropdown"><a aria-expanded="true" aria-haspopup="true" role="button" data-toggle="dropdown" class="dropdown-toggle" href="javascript:void(0)">Log In</a>
-                            <ul class="dropdown-menu">
-                                <li><a href="adminlogin.php">Admin</a></li>
-                                <li><a href="login.php">Owner</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="registration.php">Sign Up</a></li>
+                        @if (Auth::guest())
+                            <li><a href="{{ route('login') }}">Login</a></li>
+                            <li><a href="{{ route('register') }}">Register</a></li>
+                        @endif
                     </ul>
                 </div>
             </div>
