@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\RequestDorm;
+use Auth;
 use Illuminate\Http\Request;
 
 class RequestDormController extends Controller
@@ -14,7 +15,8 @@ class RequestDormController extends Controller
      */
     public function index()
     {
-        //
+        $requests = Auth::user()->requests;
+        return view('request.index', compact('requests'));
     }
 
     /**
@@ -24,7 +26,7 @@ class RequestDormController extends Controller
      */
     public function create()
     {
-        //
+        return view('request.create');
     }
 
     /**

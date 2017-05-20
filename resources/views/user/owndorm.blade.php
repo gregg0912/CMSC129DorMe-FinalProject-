@@ -8,7 +8,7 @@
                 <div class="panel-heading">Dashboard</div>
 
                 <div id = "establishments" class="panel-body">
-                    <a href="url('/')">Add Establishment</a>
+                    <a href="{{ url('/request') }}">View Requests</a>
                     <div id="estab-list">
                         <div class="establishment row">
                             @forelse($dorms as $dorm)
@@ -25,7 +25,7 @@
                                         <p>{{ $dorm->user->name }}</p>
                                         <p>{{ $dorm->streetName }}, {{ $dorm->barangayName }}</p>
                                         <p>{{ $dorm->getHousingType() }}</p>
-                                        <p>{{ $dorm->location }} </p>
+                                        <p>{{ $dorm->getLocation() }} </p>
                                     </div>
                                 </div>
                             @empty

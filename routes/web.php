@@ -25,6 +25,10 @@ Route::group(['middleware' => 'auth'], function(){
 	Route::get('/home/showDorms/{user_id}/{dorm_id}', 'HomeController@destroy');
 
 	Route::resource('/request', 'RequestDormController');
+
+	Route::get('/request', 'RequestDormController@index');
+
+	Route::get('/request/create', 'RequestDormController@create');
 });
 
 Route::get('/about', function(){
