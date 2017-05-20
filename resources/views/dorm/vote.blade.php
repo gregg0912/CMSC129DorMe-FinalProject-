@@ -17,9 +17,8 @@
 					@endforelse
 				</div>
 			@else
-				<form id="voteForm" role="form" action="vote/" method="POST">
+				<form id="voteForm" action="/voteDorm/0" role="form" method="GET">
 	                {{ csrf_field() }}
-	                {{ method_field('PUT') }}
 					<div class="establishments-holder">
 						@forelse($dorms as $dorm)
 							<div class="radio">
