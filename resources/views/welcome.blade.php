@@ -10,7 +10,7 @@
             <div class="establishment row">
                 @forelse(App\Dorm::orderBy('votes', 'desc')->take(5)->get() as $dorm)
                     <div>
-                        <a href="javascript:void(0)"><img src="{{ $dorm->thumbnailPic }}" alt="IMAGE NOT FOUND" /></a>
+                        <a href="/dorm/viewdorm/{{$dorm->id}}"><img src="{{ $dorm->thumbnailPic }}" alt="IMAGE NOT FOUND" /></a>
                         <div class="caption">
                             <label><span>{{ $dorm->dormName }}</span></label>
                             <p>{{ $dorm->user->name }}</p>
@@ -20,7 +20,12 @@
                     </div>
                     
                 @empty
-
+                    <div>
+                        <a href="javascript:void(0)"><img src="" alt="IMAGE NOT FOUND" /></a>
+                        <div class="caption">
+                            <p>There are no dormitories in this database yet!</p>
+                        </div>
+                    </div>
                 @endforelse
             </div>
             <div id="contacthome">

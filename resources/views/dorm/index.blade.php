@@ -10,7 +10,7 @@
 			@forelse(App\Facility::facilityList() as $facility)
 			<label><input type="checkbox" name="facilityList[]" value="{{ $facility->facility_name }}" />{{ $facility->facility_name }}</label>
 			@empty
-			WALA
+			<label>No facilities were found!</label>
 			@endforelse
 			<div class="location">
 				<label class="radio inline">
@@ -32,13 +32,15 @@
 			<div class="establishment row">
 				@forelse($dorms as $dorm)
 					<div>
-						<a href="javascript:void(0)"><img src="{{ $dorm->thumbnailPic }}" alt="IMAGE NOT FOUND" /></a>
+						<a href="/dorm/viewdorm/{{$dorm->id}}"><img src="{{ $dorm->thumbnailPic }}" alt="IMAGE NOT FOUND" /></a>
                         <div class="caption">
                             <label><span>{{ $dorm->dormName }}</span></label>
                             <p>{{ $dorm->user->name }}</p>
                             <p>{{ $dorm->streetName }}, {{ $dorm->barangayName }}</p>
                             <p>{{ $dorm->getHousingType() }}</p>
                             <p>{{ $dorm->location }} </p>
+                            <p>{{ $dorm->id }} </p>
+
                         </div>
 					</div>
 				@empty
