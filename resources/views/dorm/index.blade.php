@@ -32,7 +32,7 @@
 			<div class="establishment row">
 				@forelse($dorms as $dorm)
 					<div>
-						<a href="javascript:void(0)"><img src="{{ $dorm->thumbnailPic }}" alt="IMAGE NOT FOUND" /></a>
+						<a href="/dorm/viewdorm/{{$dorm->id}}"><img src="{{ $dorm->thumbnailPic }}" alt="IMAGE NOT FOUND" /></a>
                         <div class="caption">
                             <label><span>{{ $dorm->dormName }}</span></label>
                             <p>{{ $dorm->user->name }}</p>
