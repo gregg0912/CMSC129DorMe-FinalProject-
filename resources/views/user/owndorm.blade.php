@@ -22,13 +22,11 @@
 
                                     </form>
                                     <div class="caption">
-                                        <label><span>{{ $dorm->dormName }}</span></label>
+                                        <label><a href="/dorm/viewdorm/{{ $dorm->id }}">{{ $dorm->dormName }}</a></label>
                                         <p>{{ $dorm->user->name }}</p>
                                         <p>{{ $dorm->streetName }}, {{ $dorm->barangayName }}</p>
                                         <p>{{ $dorm->getHousingType() }}</p>
                                         <p>{{ $dorm->location }} </p>
-                                        <p>{{ $dorm->id }} </p>
-
                                     </div>
                                 </div>
                             @empty
