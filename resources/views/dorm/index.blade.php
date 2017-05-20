@@ -22,7 +22,7 @@
 					<span>Banwa</span>
 				</label>
 				<input type="submit" name="submit" value="Filter" />
-				<a href="javascript:void(0)"><strong>Remove Filter</strong></a>
+				<a href="{{ url('/view') }}"><strong>Remove Filter</strong></a>
 			</div>
 		</fieldset>
 	</form>
