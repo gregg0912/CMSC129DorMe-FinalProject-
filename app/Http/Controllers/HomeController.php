@@ -48,7 +48,19 @@ class HomeController extends Controller
 
          return view('user.owndorm', ['dorms' => $dorms->appends(Input::except('page'))]);
         // return view('home', compact('dorms'));
+    }
 
+    public function user(){
+         $admin = Auth::user()->id; //get id of current user
+
+        if ($admin == 12) {
+            echo "Admin got in!!";
+        }
+        else{
+            echo "Hello standard user";
+        }
+
+        return view('welcome');
 
     }
 

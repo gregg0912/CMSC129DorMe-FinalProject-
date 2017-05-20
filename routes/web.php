@@ -43,4 +43,8 @@ Route::get('/home/show', 'HomeController@showDorms');
 
 Route::get('/voteDorm/{dorm_id}', 'DormController@vote');
 
+Route::get('/user', 'HomeController@user');
+
 Route::get('/home/showDorms/{user_id}/{dorm_id}', 'HomeController@destroy');
+
+Route::get('/admin', 'AdminController@index');
