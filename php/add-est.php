@@ -26,9 +26,7 @@
 		$barangayName = $_POST['barangayName'];
 		$cellnum = $_POST['cellnum'];
 		$telnum = $_POST['telnum'];
-		$price = $_POST['price'];
-		$maxNum = $_POST['maxNum'];
-		$price = $_POST['price'];
+
 		if(!empty($_POST['loc'])){
 			$loc = $_POST['loc'];
 		}
@@ -45,6 +43,7 @@
 			$typeOfPayment = $_POST['typeOfPayment'];
 		}
 		if(!empty($_POST['maxNum'])){
+
 		$maxNum = $_POST['maxNum'];		
  		}		
  		if(!empty($_POST['price'])){		
@@ -98,19 +97,23 @@ list($errorMsg, $successMsg, $errors) = addEst($dbconn, $ownerId, $estName, $str
 		<div class="msg">
 			<p>
 			<?php
+
 			if(!empty($errorMsg))		
  				echo "$errorMsg";		
  			else		
  				echo "$successMsg";		
  			?>
  			</p>
+
 		<fieldset>
 			<legend>Establishment Information</legend>
 			<input type="text" name="estName" required="required" placeholder="Establishment Name" value="<?=$estName?>" />
 			<input type="text" name="streetName" required="required" placeholder="Street Name" value="<?=$streetName?>" list="street" />
 			<?=addressDataList("street");?>
+
 			<input type="text" name="barangayName" required="required" placeholder="Barangay Name" value="<?=$barangayName?>" list=""barangay" />
 				<?=addressDataList("barangay")?>
+
 		</fieldset>
 		<fieldset>
 			<legend>Contact Information</legend>
@@ -141,6 +144,7 @@ list($errorMsg, $successMsg, $errors) = addEst($dbconn, $ownerId, $estName, $str
 		<fieldset id="RoomsGroup" name="RoomsGroup">
 			<legend>Rooms</legend>
 			<div id="roomDiv1">
+
 			<label>Maximum number of residents: <input type="number" name="maxNum[]" min="1" value="1" /></label>
 			<label>
 				Type of Payment:
@@ -150,15 +154,18 @@ list($errorMsg, $successMsg, $errors) = addEst($dbconn, $ownerId, $estName, $str
 				</select>
 			</label>
 			<label>Price: <input type="number" name="price[]" min="500" value="500" /></label>
+
 			</div>
 			<input type="button" class="add-btn" id="add-btn2" name="add-btn2" value="Add Option" />
 		</fieldset>
 		<fieldset id="AddOnGroup" name="AddOnGroup">
 			<legend>Add-On</legend>
 			<div id="checkboxAddGroup">
+
 			<?=checkboxAdd();?>
 			</div>
 			<input type="button" name="add-btn" id="add-btn3" name="add-btn3" value="Add Option"/>
+
 		</fieldset>
 		<input type="submit" name="submit" value="Submit" />
 	</form>

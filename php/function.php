@@ -119,7 +119,7 @@
 	}
 	function ownerNav(){
 	?>
-		<nav id="gen-nav" class="nav navbar-inverse col-md-12 col-sm-12">
+		<nav id="gen-nav" class="nav navbar-inverse col-md-12 col-sm-12" data-spy="affix" data-offset-top="350">
 			<div class="container-fluid">
 				<div class="navbar-headernav">
 					<button id="menu" class="navbar-toggle" data-toggle="collapse" data-target="#glyph-menu"><span class="glyphicon glyphicon-menu-hamburger"></span></button>
@@ -140,7 +140,7 @@
 	}
 	function adminNav(){
 	?>
-		<nav id="gen-nav" class="nav navbar-inverse col-md-12 col-sm-12">
+		<nav id="gen-nav" class="nav navbar-inverse col-md-12 col-sm-12" data-spy="affix" data-offset-top="350">
 			<div class="container-fluid">
 				<div class="navbar-header">
 					<button id="menu" class="navbar-toggle collapse" data-toggle="collapse" data-target="#glyph-menu"><span class="glyphicon glyphicon-menu-hamburger"></span></button>
@@ -160,7 +160,7 @@
 	}
 	function userNav(){
 	?>
-		<nav id="gen-nav" class="nav navbar-inverse col-md-12 col-sm-12">
+		<nav id="gen-nav" class="nav navbar-inverse col-md-12 col-sm-12" data-spy="affix" data-offset-top="350">
 			<div class="container-fluid">
 				<div class="navbar-header">
 					<button id="menu" class="navbar-toggle" data-toggle="collapse" data-target="#glyph-menu"><span class="glyphicon glyphicon-menu-hamburger"></span></button>

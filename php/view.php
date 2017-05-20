@@ -84,12 +84,14 @@
 						<span>Banwa</span>
 					</label>
 				</div>
-				<input type="submit" name="submit" value="Filter" />
-				<a href="javascript:void(0)"><strong>Remove Filter</strong></a>
+				<div class="btn-group col-md-12 col-sm-12" role="group">
+					<button type="submit" name="submit" class="btn btn-default">Filter</button>
+					<button type="reset" class="btn btn-default">Clear</button>
+				</div>
 			</fieldset>
 		</form>
 		</div>
-		<div id="establishments" class="col-md-8 col-sm-8">
+		<div id="establishments" class="col-md-7 col-sm-7">
 			<?php
 			 $result = mysqli_query($dbconn, $query);
 
