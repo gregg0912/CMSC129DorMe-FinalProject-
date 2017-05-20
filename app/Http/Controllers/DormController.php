@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Cookie\CookieJar;
 use App\Dorm;
 use App\Facility;
+use Cookie;
 
 class DormController extends Controller
 {

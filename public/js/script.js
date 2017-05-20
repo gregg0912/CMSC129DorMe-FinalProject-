@@ -13,10 +13,10 @@ function vote(e){
 				alert("You are here!");
 				var establishments = "";
 				alert(data);
-				// $.each(data, function(key,value){
-				// 	establishments += "<div class='radio'><label><span class='badge'>"+value['votes']+"</span>"+value['dormName']+"</label></div>";
-				// });
-				// $(".establishments-holder").html(establishments);
+				$.each(data, function(key,value){
+					establishments += "<div class='radio'><label><span class='badge'>"+value['votes']+"</span>"+value['dormName']+"</label></div>";
+				});
+				$(".establishments-holder").html(establishments);
 				$("#successModal").modal();
 			}
 		});
