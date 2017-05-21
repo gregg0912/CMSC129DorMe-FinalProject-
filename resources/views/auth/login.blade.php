@@ -7,12 +7,11 @@
 @section('content')
 <div class="body-content">
     <div class="row">
-        <div >
            <div id="login">
                 <h2>LOG IN</h2>
             </div>
             <div class="logform">
-                <form class="form-horizontal" role="form" method="POST" action="{{ route('register') }}">
+                <form class="form-horizontal" role="form" method="POST" action="{{ route('login') }}">
                         {{ csrf_field() }}
 
                         <div class="input-group {{ $errors->has('username') ? ' has-error' : '' }}">
@@ -63,7 +62,6 @@
                 </div>
             </div>
         </div>
-    </div>
     <footer>
         <p>&copy; Dorme 2016 | A.Y. 2016-2017 CMSC 127: Fabilloren, Icay, Legada, Montano</p>
     </footer>

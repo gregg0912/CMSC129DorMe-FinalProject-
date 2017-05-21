@@ -11,7 +11,7 @@
     <title>{{ config('app.name', 'DorMe') }}</title>
 
     <!-- Styles -->
-    //<link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/home.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 
@@ -44,6 +44,7 @@
                 </div>
             </div>
         <div id='dorme-main-header' class="col-md-10 col-sm-10">
+            <img src="../img-uploads/dorme_logo" alt="DORME" />
             <h1>DorMe.</h1>
             <h2>your dorm. my dorm. our dorm.</h2>
             <p> Looking for convenience? Look no further. Dorme is here for your new place to dwell!<br />
@@ -87,7 +88,7 @@
                     <ul class="nav navbar-nav pull-right">
                         @if (Auth::guest())
                             <li><a href="{{ route('login') }}">Login</a></li>
-                            <li><a href="{{ route('register') }}">Register</a></li>
+                            <li><a href="{{ route('register') }}">Sign up</a></li>
                         @endif
                     </ul>
                 </div>
