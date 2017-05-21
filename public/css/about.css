@@ -1,0 +1,73 @@
+/***********************************************************************/
+/*                      STYLE FOR ABOUT PAGE                           */
+/***********************************************************************/
+
+.body-content {
+	margin: 0;
+	padding: 0;
+}
+
+#about {
+	padding: 30px 50px;
+}
+
+#TEAM {
+	display: inline-block;
+	margin: auto;
+	padding: 0;
+	text-align: center;
+}
+
+#TEAM h2 {
+	font-family: "Walkway Black";
+}
+
+#TEAM img {
+	height: 250px;
+	width: 250px;
+	margin: 0 50px;
+}
+
+
+#TEAM ul {
+	list-style-type: none;
+	padding: 5px;
+}
+
+@media screen and (min-width: 520px) {
+	#TEAM {
+		margin: 0;
+	}
+
+	#TEAM img {
+		height: 200px;
+		width: 200px;
+		margin: 0;	
+	}
+
+	#team1 {
+		float: left;
+		margin-left: 15px;
+	}
+
+	#team2 {
+		float: right;
+		margin-right: 15px;
+	}
+}
+
+@media screen and (min-width: 769px) {
+	#about {
+		padding: 80px;
+		margin-top: 30px;
+	}
+
+	#TEAM {
+		margin: 0 10%;
+	}
+
+	#TEAM ul {
+		list-style-type: none;
+		padding: 15px;
+	}
+}

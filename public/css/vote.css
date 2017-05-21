@@ -1,0 +1,28 @@
+/***********************************************************************/
+/*                      STYLE FOR VOTE PAGE                            */
+/***********************************************************************/
+
+.body-content {
+	background: linear-gradient(to bottom,
+		rgba(235,247,255,1) 0%,
+		rgba(235,247,255,1) 22%,
+		rgba(61,184,255,1) 50%,
+		rgba(107,203,255,1) 66%,
+		rgba(107,203,255,1) 100%);
+}
+
+.panel > h1 {
+	font-family: "Walkway Black";
+}
+
+.panel {
+	display: block;
+}
+
+@media screen and (min-width: 769px) {
+
+}
+
+@media screen and (min-width: 1024px) {
+	/* insert style */
+}
