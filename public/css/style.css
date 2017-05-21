@@ -35,8 +35,13 @@ p {
 	#menu {
 		display: none;
 	}
+
 	#glyph-menu {
 		margin: 0 30px;
+	}
+
+	#gen-nav ul li {
+		display: inline-block;
 	}
 }
 
@@ -55,7 +60,7 @@ p {
 #gen-nav ul li {
 	padding: 0 5px;
 	color: #666;
-	display:inline-block;
+	display: block;
 	margin:0;
 	text-transform:uppercase;
 }

@@ -1,5 +1,5 @@
 /***********************************************************************/
-/*                         CSS FOR LOGIN PAGE                          */
+/*                         CSS FOR EMAIL.BLADE PAGE                    */
 /***********************************************************************/
 .body-content {
 	background: linear-gradient(to bottom,
@@ -10,7 +10,7 @@
 		rgba(107,203,255,1) 100%);
 }
 
-#login {
+#reset {
 	text-align: left;
 	font-family: "Walkway Black";
 	display: block;
@@ -20,7 +20,7 @@
 	width: 100%;
 }
 
-#login > h2 {
+#reset > h2 {
 	margin-top: 70px;
 	margin-left: 100px;
 	margin-bottom: -60px;
@@ -50,7 +50,7 @@
 	border: none;
 }
 
-#username, #password {
+#email, #password, #password-confirm {
 	background-color: rgba(0,0,0, 0.6);
 	border: none;
 	width: 100%;
@@ -58,7 +58,7 @@
 }
 
 
-#username:focus, #password:focus {
+#password:focus, #email:focus, #password-confirm:focus {
 	border-bottom: 2px solid white;
 	width: 99%;
 }
@@ -67,10 +67,6 @@
 	color: white;
 }
 
-#note a:hover {
-	color: #009BFF;
-	text-decoration: none;
-}
 
 @media screen and (min-width: 769px) {
 	.body-content {
@@ -80,14 +76,14 @@
 	.logform {
 		padding: 40px 10px;
 		width: 500px;
-		height: 250px;
+		height: 290px;
 	}
 
-	#login {
+	#reset {
 		width: 400px;
 	}
 
-	#login > h2 {
+	#reset > h2 {
 		margin-top: 30%;
 	}
 }
