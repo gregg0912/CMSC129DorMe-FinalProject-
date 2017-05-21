@@ -34,6 +34,14 @@ class User extends Authenticatable
     }
 
     public function requests(){
-        return $this->hasMany('App\Request');
+        return $this->hasMany('App\RequestDorm');
+    }
+
+    public function roles(){
+        return $this->belongsToMany('App\Role');
+    }
+    public function isAdmin(){
+        // return in_array(1, $this->roles()->pluck('admin')->all());
+        return $this->roles()->where('admin', 1)->first();
     }
 }

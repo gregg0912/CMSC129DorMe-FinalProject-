@@ -4,27 +4,26 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Dorm extends Model
+class RequestDorm extends Model
 {
-
-	protected $fillable = [
-    	'dormName', 'user_id', 'housingType', 'location', 'thumbnailPic', 'votes', 'streetName', 'barangayName',
+    protected $fillable = [
+    	'user_id', 'dormName', 'housingType', 'location', 'thumbnailPic', 'streetName', 'barangayName',
     ];
 
-    public function user(){
-    	return $this->belongsTo('App\User');
+    public function addons(){
+    	return $this->hasMany('App\RequestAddon');
     }
 
     public function facilities(){
-    	return $this->hasMany('App\Facility');
+    	return $this->hasMany('App\RequestFacility');
     }
 
     public function rooms(){
-    	return $this->hasMany('App\Room');
+    	return $this->hasMany('App\RequestRoom');
     }
 
-    public function addons(){
-    	return $this->hasMany('App\Addon');
+    public function user(){
+    	return $this->belongsTo('App\User');
     }
 
     public function getHousingType(){
@@ -36,7 +35,8 @@ class Dorm extends Model
             return "Dormitory";
         return "Bed-space";
     }
-    public function getLocation(){
+
+    public function getlocation(){
         if($this->location == 'banwa')
             return "Banwa";
         else if($this->location == 'dormArea')

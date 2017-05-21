@@ -13,6 +13,6 @@ class RequestFacility extends Model
 
 
     public function request(){
-    	return $this->belongsTo('App\Request');
+    	return $this->belongsTo('App\RequestDorm');
     }
 }
