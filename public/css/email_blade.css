@@ -77,10 +77,12 @@
 		padding: 40px 10px;
 		width: 500px;
 		height: 290px;
+		margin: 80px 50%;
 	}
 
 	#reset {
 		width: 400px;
+		margin: 0 20%;
 	}
 
 	#reset > h2 {

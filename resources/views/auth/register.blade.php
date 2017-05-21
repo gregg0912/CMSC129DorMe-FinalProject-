@@ -7,7 +7,6 @@
 @section('content')
 <div class="body-content">
     <div class="row">
-        <div >
            <div id="signin">
                 <h2>SIGN UP</h2>
                 <p>
@@ -105,7 +104,6 @@
                     </form>
                 </div>
             </div>
-        </div>
     </div>
     <footer>
         <p>&copy; Dorme 2016 | A.Y. 2016-2017 CMSC 127: Fabilloren, Icay, Legada, Montano</p>

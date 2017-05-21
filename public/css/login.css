@@ -81,10 +81,12 @@
 		padding: 40px 10px;
 		width: 500px;
 		height: 250px;
+		margin: 80px 50%;
 	}
 
 	#login {
 		width: 400px;
+		margin: 0 20%;
 	}
 
 	#login > h2 {

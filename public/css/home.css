@@ -26,35 +26,25 @@
 	color: white;
 	width: 90%;
 	height: auto;
-	top: 12%;
+	top: 5%;
 	position: absolute;
 	text-align: center;
 	margin: 0 5%;
-}
-
-#dorme-main-header > h1 {
-	background-color: #2A2A2A;
-	text-align: center;
-	position: relative;
-	margin: auto;
-	padding: 5px;
-	font-family: "Walkway Black";
+	border: 5px solid #2A2A2A;
+	color: black;
+	background-color: rgba(255,255,255,0.6);
 }
 
 #dorme-main-header > h2 {
-	background-color: #2A2A2A;
-	position: relative;
-	margin: auto;
-	padding: 5px;
+	color: black;
+	margin-top: -10px;
+	font-size: 1.1em;
 	font-family: "Walkway Black";
 }
 
 #dorme-main-header > p {
-	background-color: #2A2A2A;
-	position: relative;
-	margin: auto;
-	text-align: left;
 	padding: 5px;
+	font-size: 0.9em;
 	font-family: "Segoe UI Semilight";
 }
 
@@ -125,6 +115,23 @@
 		margin-left: 25%;
 	}
 
+	#dorme-main-header {
+		width: 80%;
+		height: auto;
+		top: 5%;
+		margin: 0 10%;
+	}
+
+	#dorme-main-header > h2 {
+		margin-top: -10px;
+		font-size: 1.2em;
+	}
+
+	#dorme-main-header > p {
+		padding: 3px;
+		font-size: 1em;
+	}
+
 @media screen and (min-width: 1024px) {
 	.row {
 		width: 31%;
@@ -136,5 +143,22 @@
 
 	.center1 {
 		margin-left: 10px;
+	}
+
+	#dorme-main-header {
+		width: 60%;
+		height: auto;
+		top: 5%;
+		margin: 0 20%;
+	}
+
+	#dorme-main-header > h2 {
+		margin-top: -10px;
+		font-size: 1.2em;
+	}
+
+	#dorme-main-header > p {
+		padding: 5px;
+		font-size: 1.1em;
 	}
 }
