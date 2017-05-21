@@ -37,7 +37,19 @@ class RequestDormController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $messages = [
+            'phone_number.regex' => 'Sample phone numbers: 09123456789 or +639123456789',
+            'dorm_name.max' => 'Establishment name can only be :max characters long'
+        ];
+
+        $validation = Validator::make($request->all(),[
+            'dormName' => 'required|unique|max:255',
+            'streetName' => 'required',
+            'barangayName' => 'required',
+            'housingType' => 'required|in:boardinghouse,apartment,bedspace,dormitory',
+            'location' => 'required|in:banwa,dormArea',
+            'facilities' => 'required',
+        ], $messages);
     }
 
     /**
