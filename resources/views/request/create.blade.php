@@ -39,7 +39,7 @@
 				</fieldset>
 				<fieldset>
 					<legend>Contact Information</legend>
-					<div class="input-group {{ $errors->has('') }}">
+					<div class="input-group {{ $errors->has('') ? ' has-error': '' }}">
 						
 					</div>
 				</fieldset>
