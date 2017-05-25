@@ -3,13 +3,16 @@
 /***********************************************************************/
 body {
     margin: 0;
-    background: fixed;
  }
 
  .bodycontent {
  	padding: 0;
  	margin: 0;
  }
+
+.row {
+	margin: 0;
+}
 
 p {
 	font-family: "Segoe UI Semilight";
@@ -35,8 +38,13 @@ p {
 	#menu {
 		display: none;
 	}
+
 	#glyph-menu {
 		margin: 0 30px;
+	}
+
+	#gen-nav ul li {
+		display: inline-block;
 	}
 }
 
@@ -55,9 +63,9 @@ p {
 #gen-nav ul li {
 	padding: 0 5px;
 	color: #666;
-	display:inline-block;
-	margin:0;
-	text-transform:uppercase;
+	display: block;
+	margin: 0;
+	text-transform: uppercase;
 }
 
 #gen-nav ul li:after {

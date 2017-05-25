@@ -11,7 +11,7 @@
     <title>{{ config('app.name', 'DorMe') }}</title>
 
     <!-- Styles -->
-    //<link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/home.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 
@@ -38,14 +38,14 @@
                     <li data-target="#carousel" data-slide-to="2"></li>
                 </ol>
                 <div class="carousel-inner" role="listbox">
-                    <div class="item active"><img class="carousel-image" src="../img/thumbnails/bettys.JPG" alt="image not found" /></div>
-                    <div class="item"><img class="carousel-image" src="../img/thumbnails/firstestate.JPG" alt="image not found" /></div>
+                    <div class="item active"><img class="carousel-image" src="../img-uploads/bg/1.JPG" alt="image not found" /></div>
+                    <div class="item"><img class="carousel-image" src="../img-uploads/bg/2.png" alt="image not found" /></div>
                     <div class="item"><img class="carousel-image" src="../img/thumbnails/foursisters.JPG" alt="image not found" /></div>
                 </div>
             </div>
         <div id='dorme-main-header' class="col-md-10 col-sm-10">
-            <h1>DorMe.</h1>
-            <h2>your dorm. my dorm. our dorm.</h2>
+            <img src="../img-uploads/sm.png" alt="DORME" />
+            <h2>find your home away from home</h2>
             <p> Looking for convenience? Look no further. Dorme is here for your new place to dwell!<br />
                 Scroll through featured dormitories and apartments on our home page and <br />
                 have an easy glimpse into finding your perfect second home!<br />
@@ -66,9 +66,13 @@
                         <li><a href="{{ url('/view') }}">View</a></li>
                         <!-- Authentication Links -->
                         @if (Auth::guest())
-                            <li><a href="{{ url('/vote') }}">Vote</a></li>
+                            <li><a href="{{ url('/vote') }}">Poll</a></li>
                         @else
+                            @if((Auth::user()->id)!=12)
                             <li><a href="{{ url('/home/show') }}">Manage Establishments</a></li>
+                            @else
+                            <li><a href="{{ url('/admin')}}">Privileges</a></li>
+                            @endif
                             <li>
                                 <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">{{ csrf_field() }}
@@ -83,7 +87,7 @@
                     <ul class="nav navbar-nav pull-right">
                         @if (Auth::guest())
                             <li><a href="{{ route('login') }}">Login</a></li>
-                            <li><a href="{{ route('register') }}">Register</a></li>
+                            <li><a href="{{ route('register') }}">Sign up</a></li>
                         @endif
                     </ul>
                 </div>

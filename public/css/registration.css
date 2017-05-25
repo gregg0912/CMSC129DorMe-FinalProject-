@@ -2,23 +2,103 @@
 /***********************************************************************/
 /*                         CSS FOR SIGN UP PAGE                        */
 /***********************************************************************/
-
-.panel {
-	margin: 50px;
+.body-content {
+	background: linear-gradient(to bottom,
+		rgba(235,247,255,1) 0%,
+		rgba(235,247,255,1) 22%,
+		rgba(61,184,255,1) 50%,
+		rgba(107,203,255,1) 66%,
+		rgba(107,203,255,1) 100%);
 }
 
-.input-group {
-	margin: 10px;
-}
-
-button {
+#signin {
+	text-align: left;
+	font-family: "Walkway Black";
+	display: block;
+	position: relative;
+	display: block;
+	color: #2A2A2A;
 	width: 100%;
 }
 
+#signin > h2 {
+	margin-top: 70px;
+	margin-left: 100px;
+}
+
+#signin > p {
+	margin-left: 100px;
+	margin-bottom: -60px;
+}
+
+.logform {
+	margin: 80px;
+	padding: 40px 20px;
+	border-radius: 0;
+	border-top: 5px solid #009BFF;
+	background-color: rgba(42,42,42, 0.7);
+	display: block;
+	color: white;
+	height: 430px;
+}
+
+
+.input-group {
+	margin: 10px 20px;
+	border-radius: 100%;
+}
+
+
+#sizing-addon1 {
+	background-color: rgba(0,0,0, 0.6);
+	border: none;
+}
+
+#name, #username, #password,
+#email, #password-confirm, #phone_number {
+	background-color: rgba(0,0,0, 0.6);
+	border: none;
+	width: 100%;
+	transition: all .2s linear;
+}
+
+
+#name:focus, #username:focus, #password:focus,
+#email:focus, #password-confirm:focus, #phone_number:focus {
+	border-bottom: 2px solid white;
+	width: 99%;
+}
+
+.glyphicon {
+	color: white;
+}
+
+
 @media screen and (min-width: 769px) {
-	
+	.body-content {
+		padding: 0 20%;
+	}
+
+	.logform {
+		padding: 40px 20px;
+		width: 500px;
+		margin: 80px 50%;
+	}
+
+	#signin {
+		margin: 0 20%;
+		width: 400px;
+	}
+
+	#signin > h2 {
+		margin-top: 30%;
+	}
+
+	#signin > p {
+		margin-bottom: -10%;
+	}
 }
 
 @media screen and (min-width: 1024px) {
-	/* insert style */
+	
 }

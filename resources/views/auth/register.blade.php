@@ -7,14 +7,19 @@
 @section('content')
 <div class="body-content">
     <div class="row">
-        <div class="col-md-12 col-sm-12">
-            <div class="panel panel-default">
-                <div class="panel-heading">Register</div>
-                <div class="panel-body">
+           <div id="signin">
+                <h2>SIGN UP</h2>
+                <p>
+                    Please fill in the form below.
+                </p>
+            </div>
+            <div class="logform">
+
                     <form class="form-horizontal" role="form" method="POST" action="{{ route('register') }}">
                         {{ csrf_field() }}
 
-                        <div class="input-group input-group {{ $errors->has('name') ? ' has-error' : '' }}">
+
+                        <div class="input-group {{ $errors->has('name') ? ' has-error' : '' }}">
                             <span class="input-group-addon" id="sizing-addon1">
                                 <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                             </span>
@@ -28,7 +33,7 @@
                                 @endif
                         </div>
 
-                        <div class="input-group input-group {{ $errors->has('username') ? ' has-error' : '' }}">
+                        <div class="input-group {{ $errors->has('username') ? ' has-error' : '' }}">
                             <span class="input-group-addon" id="sizing-addon1">
                                  <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
                             </span>
@@ -42,7 +47,7 @@
                                 @endif
                         </div>
 
-                        <div class="input-group input-group {{ $errors->has('email') ? ' has-error' : '' }}">
+                        <div class="input-group {{ $errors->has('email') ? ' has-error' : '' }}">
                             <span class="input-group-addon" id="sizing-addon1">
                                  <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
                             </span>
@@ -56,7 +61,7 @@
                                 @endif
                         </div>
 
-                        <div class="input-group input-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                        <div class="input-group{{ $errors->has('password') ? ' has-error' : '' }}">
                             <span class="input-group-addon" id="sizing-addon1">
                                  <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
                             </span>
@@ -70,7 +75,7 @@
                                 @endif
                         </div>
 
-                        <div class="input-group input-group">
+                        <div class="input-group">
                             <span class="input-group-addon" id="sizing-addon1">
                                 <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>
                             </span>
@@ -78,7 +83,7 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" placeholder="Confirm password" required />
                         </div>
 
-                        <div class="input-group input-group {{ $errors->has('phone_number') ? ' has-error' : '' }}">
+                        <div class="input-group {{ $errors->has('phone_number') ? ' has-error' : '' }}">
                             <span class="input-group-addon" id="sizing-addon1">
                                 <span class="glyphicon glyphicon-phone" aria-hidden="true"></span>
                             </span>
@@ -92,15 +97,13 @@
                                 @endif
                         </div>
 
-                        <div class="input-group col-md-12 col-sm-12">
-                            <button type="submit" class="btn btn-primary">
-                                Register
+                        <div class="input-group pull-right">
+                            <button type="submit" class="btn btn-lg btn-primary ">Sign up
                             </button>
                         </div>
                     </form>
                 </div>
             </div>
-        </div>
     </div>
     <footer>
         <p>&copy; Dorme 2016 | A.Y. 2016-2017 CMSC 127: Fabilloren, Icay, Legada, Montano</p>

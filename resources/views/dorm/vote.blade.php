@@ -1,11 +1,20 @@
 @extends('layouts.app')
 
+
+<link media="all" type="text/css" rel="stylesheet" href="{{ URL::asset('../css/style.css') }}" />
+<link media="all" type="text/css" rel="stylesheet" href="{{ URL::asset('../css/vote.css') }}" />
+<link media="all" type="text/css" rel="stylesheet" href="{{ URL::asset('../bootstrap-3.3.7/dist/css/bootstrap.min.css') }}" />
+
+
 @section('content')
 
-<div class="container">
+<div class="body-content">
 	<div class="row">
-		<div class="col-md-6 col-md-offset-3">
-			<h1 class="text-center">Establishments</h1>
+		<div class="panel">
+			<div class="panel panel-heading">
+				<h1 class="text-center">Establishments</h1>
+			</div>
+			<div class="panel panel-body">
 			@if(Cookie::get('voted') !== null)
 				<div class="establishments-holder">
 					@forelse($dorms as $dorm)
@@ -17,12 +26,7 @@
 					@endforelse
 				</div>
 			@else
-<<<<<<< HEAD
-				<form id="voteForm" action="/vote" method="post">
-	                {{ method_field('PUT') }}
-=======
 				<form id="voteForm" action="/voteDorm/0" role="form" method="GET">
->>>>>>> 0cb32c69fee3bc920187577847e4905895acab40
 	                {{ csrf_field() }}
 					<div class="establishments-holder">
 						@forelse($dorms as $dorm)
@@ -35,12 +39,14 @@
 							<h4>No establishments  were found!</h4>
 						@endforelse
 					</div>
-
-					@if(!$dorms->isEmpty())
-						<div class="form-group">
-							<input id="submit" type="submit" name="submit" class="btn btn-success" value="Submit" />
-						</div>
-					@endif
+			</div>
+					<div class="panel panel-footer"> 
+						@if(!$dorms->isEmpty())
+							<div class="form-group">
+								<input id="submit" type="submit" name="submit" class="btn btn-success" value="Vote" />
+							</div>
+						@endif
+					</div>
 				</form>
 			@endif
 		</div>
@@ -72,5 +78,8 @@
 		</div>
 	</div>
 </div>
+<footer>
+    <p>&copy; Dorme 2016 | A.Y. 2016-2017 CMSC 127: Fabilloren, Icay, Legada, Montano</p>
+</footer>
 
 @endsection

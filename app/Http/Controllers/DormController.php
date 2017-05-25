@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Cookie\CookieJar;
 use App\Dorm;
 use App\Facility;
+use App\Addon;
+use App\Room;
 use Cookie;
 
 class DormController extends Controller
@@ -166,6 +168,9 @@ class DormController extends Controller
     public function destroy($id){
         $dorm = Dorm::find($id);
         $dorm->delete();
+        $deletedFacility = Facility::where('dorm_id', $id)->delete();
+        $deletedAddon = Addon::where('dorm_id', $id)->delete();
+        $deletedRoom = Room::where('dorm_id', $id)->delete();
 
         return redirect('/home/show');
     }

@@ -1,68 +1,69 @@
 @extends('layouts.app')
 
+<link media="all" type="text/css" rel="stylesheet" href="{{ URL::asset('../css/style.css') }}" />
+<link media="all" type="text/css" rel="stylesheet" href="{{ URL::asset('../css/login.css') }}" />
+<link media="all" type="text/css" rel="stylesheet" href="{{ URL::asset('../bootstrap-3.3.7/dist/css/bootstrap.min.css') }}" />
+
 @section('content')
-<div class="container">
+<div class="body-content">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Login</div>
-                <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ route('login') }}">
+           <div id="login">
+                <h2>LOG IN</h2>
+            </div>
+            <div class="logform">
+                <form class="form-horizontal" role="form" method="POST" action="{{ route('login') }}">
                         {{ csrf_field() }}
 
-                        <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
-                            <label for="username" class="col-md-4 control-label">Username</label>
+                        <div class="input-group {{ $errors->has('username') ? ' has-error' : '' }}">
+                            <span class="input-group-addon" id="sizing-addon1">
+                                 <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                            </span>
 
-                            <div class="col-md-6">
-                                <input id="username" type="text" class="form-control" name="username" value="{{ old('username') }}" required autofocus>
+                                <input id="username" type="text" class="form-control" name="username" placeholder="Username" value="{{ old('username') }}" required autofocus />
 
                                 @if ($errors->has('username'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('username') }}</strong>
                                     </span>
                                 @endif
-                            </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Password</label>
 
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
+                        <div class="input-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                            <span class="input-group-addon" id="sizing-addon1">
+                                 <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+                            </span>
+
+                                <input id="password" type="password" class="form-control" name="password" placeholder="Password" required />
 
                                 @if ($errors->has('password'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('password') }}</strong>
                                     </span>
                                 @endif
-                            </div>
                         </div>
 
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
-                                    </label>
-                                </div>
-                            </div>
+
+                        <div id="note" class="input-group">
+                            <label>
+                                <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
+                            </label>
+                            <span> | </span>             
+                            <a href="{{ route('password.request') }}">
+                                Forgot Your Password?
+                            </a>
                         </div>
 
-                        <div class="form-group">
-                            <div class="col-md-8 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Login
-                                </button>
-
-                                <a class="btn btn-link" href="{{ route('password.request') }}">
-                                    Forgot Your Password?
-                                </a>
-                            </div>
+                        <div class="input-group pull-right">
+                            <button type="submit" class="btn btn-lg btn-primary ">Login
+                            </button>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
-    </div>
+    <footer>
+        <p>&copy; Dorme 2016 | A.Y. 2016-2017 CMSC 127: Fabilloren, Icay, Legada, Montano</p>
+    </footer>
 </div>
 @endsection

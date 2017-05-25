@@ -951,11 +951,6 @@
                 "interactive",
                 "shell"
             ],
-<<<<<<< HEAD
-            "time": "2017-03-19T21:40:44+00:00"
-=======
-            "time": "2017-05-12T15:41:55+00:00"
->>>>>>> 099efb6dfba2ae15d080a2a2f051eb7ad1fdba61
         },
         {
             "name": "ramsey/uuid",

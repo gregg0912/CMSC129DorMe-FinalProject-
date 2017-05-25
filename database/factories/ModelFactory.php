@@ -64,7 +64,7 @@ $factory->define(App\Room::class, function(Faker\Generator $faker){
 	];
 });
 
-$factory->define(App\Request::class, function(Faker\Generator $faker){
+$factory->define(App\RequestDorm::class, function(Faker\Generator $faker){
 	return [
 		'user_id' => App\User::all()->random()->id,
 		'dormName' => $faker->company,
@@ -78,7 +78,7 @@ $factory->define(App\Request::class, function(Faker\Generator $faker){
 
 $factory->define(App\RequestAddon::class, function(Faker\Generator $faker){
 	return [
-		'request_id' => App\Request::all()->random()->id,
+		'request_id' => App\RequestDorm::all()->random()->id,
 		'add_item' => $faker->word,
 		'add_price' => $faker->numberBetween($min = 100, $max = 1000),
 	];
@@ -86,14 +86,14 @@ $factory->define(App\RequestAddon::class, function(Faker\Generator $faker){
 
 $factory->define(App\RequestFacility::class, function(Faker\Generator $faker){
 	return [
-		'request_id' => App\Request::all()->random()->id,
+		'request_id' => App\RequestDorm::all()->random()->id,
 		'facility_name' => $faker->word,
 	];
 });
 
 $factory->define(App\RequestRoom::class, function(Faker\Generator $faker){
 	return [
-		'request_id' => App\Dorm::all()->random()->id,
+		'request_id' => App\RequestDorm::all()->random()->id,
 		'maxNoOfResidents' => $faker->numberBetween($min = 2, $max = 8),
 		'typeOfPayment' => $faker->randomElement(['by_person', 'by_room']),
 		'price' => $faker->numberBetween($min = 800, $max = 5000),
