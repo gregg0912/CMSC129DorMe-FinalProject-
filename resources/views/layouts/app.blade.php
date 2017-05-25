@@ -72,10 +72,11 @@
                         @if (Auth::guest())
                             <li><a href="{{ url('/vote') }}">Poll</a></li>
                         @else
-                            @if((Auth::user()->id)!=12)
-                            <li><a href="{{ url('/home/show') }}">Manage</a></li>
+                            @if((Auth::user()->role)!=1)
+                            <li><a href="{{ url('/home/show') }}">Manage Establishments</a></li>
                             @else
-                            <li><a href="{{ url('/admin')}}">Privileges</a></li>
+                            <li><a href="{{ url('/admin')}}">Requests</a></li>
+
                             @endif
                         @endif
                         <li><a href="{{ url('/about') }}">About</a></li>

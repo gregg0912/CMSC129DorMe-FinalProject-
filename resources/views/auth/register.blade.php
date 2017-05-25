@@ -18,7 +18,7 @@
                     <form class="form-horizontal" role="form" method="POST" action="{{ route('register') }}">
                         {{ csrf_field() }}
 
-
+                        <input type="hidden" name="role" value="0" />
                         <div class="input-group {{ $errors->has('name') ? ' has-error' : '' }}">
                             <span class="input-group-addon" id="sizing-addon1">
                                 <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>

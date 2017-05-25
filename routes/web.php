@@ -24,6 +24,8 @@ Route::group(['middleware' => 'auth'], function(){
 
 	Route::get('/home/showDorms/{user_id}/{dorm_id}', 'HomeController@destroy');
 
+	Route::post('/editThumbnail/{dorm_id}', 'ImageController@upload');
+
 	Route::resource('/request', 'RequestDormController');
 
 	Route::get('/request', 'RequestDormController@index');
@@ -50,3 +52,5 @@ Route::get('/dorm/viewdorm/{dorm_id}', 'DormController@show');
 Route::get('/voteDorm/{dorm_id}', 'DormController@vote');
 
 Route::get('/admin', 'AdminController@index');
+
+Route::get('/admin/confirm/{dorm_id}', 'AdminController@confirm');
