@@ -45,7 +45,6 @@ class HomeController extends Controller
         $ownerId = User::findOrFail($id)->where('id', $id)->pluck('id');
         $dorms= Dorm::where('user_id', $ownerId)->orderBy('dormName', 'asc')->paginate(5);
 
-
          return view('user.owndorm', ['dorms' => $dorms->appends(Input::except('page'))]);
         // return view('home', compact('dorms'));
     }

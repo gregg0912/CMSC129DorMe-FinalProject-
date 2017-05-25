@@ -9,6 +9,7 @@
 		rgba(61,184,255,1) 50%,
 		rgba(107,203,255,1) 66%,
 		rgba(107,203,255,1) 100%);
+	display: block;
 }
 
 #signin {
@@ -33,7 +34,7 @@
 
 .logform {
 	margin: 80px;
-	padding: 40px 20px;
+	padding: 50px 20px;
 	border-radius: 0;
 	border-top: 5px solid #009BFF;
 	background-color: rgba(42,42,42, 0.7);
@@ -48,6 +49,11 @@
 	border-radius: 100%;
 }
 
+input[type=text],
+input[type=email],
+input[type=password] {
+	color: white;
+}
 
 #sizing-addon1 {
 	background-color: rgba(0,0,0, 0.6);
@@ -73,6 +79,25 @@
 	color: white;
 }
 
+.help-block {
+	color: red;
+	margin: 0;
+	padding: 0;
+	font-size: 0.8em;
+	text-align: center;
+}
+
+.button-grp {
+	width: 400px;
+}
+
+.btn-signin {
+	float: right;
+}
+
+span {
+	margin: 0;
+}
 
 @media screen and (min-width: 769px) {
 	.body-content {
@@ -81,8 +106,13 @@
 
 	.logform {
 		padding: 40px 20px;
-		width: 500px;
+		width: 530px;
+		height: 490px;
 		margin: 80px 50%;
+	}
+
+	.form-horizontal {
+		padding-top: 20px;
 	}
 
 	#signin {

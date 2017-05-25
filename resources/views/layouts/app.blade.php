@@ -57,7 +57,11 @@
         <nav id="gen-nav" class="nav navbar-inverse col-md-12 col-sm-12" data-spy="affix" data-offset-top="350">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <button id="menu" class="navbar-toggle" data-toggle="collapse" data-target="#glyph-menu"><span class="glyphicon glyphicon-menu-hamburger"></span></button>
+                    <button id="menu" class="navbar-toggle" data-toggle="collapse" data-target="#glyph-menu">
+                            <span class="glyphicon glyphicon-menu-hamburger"></span>
+                    </button>
+
+                    <a class="navbar-brand" href="{{ url('/') }}">{{ config('app.name', 'DorMe') }}</a>
                 </div>
                 <div id="glyph-menu" class="collapse navbar-collapse">
 
@@ -74,14 +78,7 @@
                             <li><a href="{{ url('/admin')}}">Requests</a></li>
 
                             @endif
-                            <li>
-                                <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">{{ csrf_field() }}
-                                </form>
-                            </li>
-                            
                         @endif
-                        
                         <li><a href="{{ url('/about') }}">About</a></li>
                     </ul>
 
@@ -89,6 +86,12 @@
                         @if (Auth::guest())
                             <li><a href="{{ route('login') }}">Login</a></li>
                             <li><a href="{{ route('register') }}">Sign up</a></li>
+                        @else
+                            <li>
+                                <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">{{ csrf_field() }}
+                                </form>
+                            </li>
                         @endif
                     </ul>
                 </div>

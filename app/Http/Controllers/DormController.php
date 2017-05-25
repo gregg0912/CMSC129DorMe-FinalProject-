@@ -93,7 +93,7 @@ class DormController extends Controller
             $dorms = Dorm::orderBy('dormName', 'asc')->get()->toArray();
             return $dorms;
         }
-    return null;
+        return null;
 
     }
 
