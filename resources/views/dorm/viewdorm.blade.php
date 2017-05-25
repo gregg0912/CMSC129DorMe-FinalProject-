@@ -6,9 +6,13 @@
 	<div class="row">
 		<div class="col-md-6 col-md-offset-3">
 			<h1>{{$dorm->dormName}}</h1>
+            <a href="javascript:void(0)"><span class="glyphicon glyphicon-edit"></span> Edit</a>
 			<div id="info">
 				<h2>Establishment Details</h2>
 				<img src="{{$dorm->thumbnailPic}}" alt="Image Not Found" />
+            <!-- 	<a data-toggle="modal" data-target="#modal"><span class="glyphicon glyphicon-pencil">Edit Thumbnail</span> </a> -->
+            	<button class="btn btn-primary" data-toggle="modal" data-target="#editThumbnail"><span class="glyphicon glyphicon-pencil"> Edit Thumbnail </span></button>
+
 				<div id="est">
 					<dl>
 						<dt>Owner</dt>
@@ -62,6 +66,26 @@
 				@endforelse
 			</div>
 			
+			<div class="modal fade" id="editThumbnail" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+							<h3 class="modal-title" id="modalLabel">Edit Thumbnail</h3>
+						</div>
+						<div class="modal-body">
+							<form action="/editThumbnail/{{$dorm->id}}" method="POST" enctype="multipart/form-data">
+								{{ csrf_field() }}
+								<input type="hidden" name="dorm_id" value="{{ $dorm->id }}">
+								<input type="file" name="image" />
+								<button type="submit" class="btn btn-primary"> Submit </button>
+							</form>
+						</div>
+					</div>
+					
+				</div>
+				
+			</div>
 
 
 			
