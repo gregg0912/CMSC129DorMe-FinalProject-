@@ -3,8 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\RequestDorm;
+use App\RequestAddon;
+use App\RequestRoom;
+use App\RequestFacility;
 use Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\MessageBag;
 
 class RequestDormController extends Controller
 {
@@ -38,23 +43,40 @@ class RequestDormController extends Controller
     public function store(Request $request)
     {
         $messages = [
-            'phone_number.regex' => 'Sample phone numbers: 09123456789 or +639123456789',
-            'dorm_name.max' => 'Establishment name can only be :max characters long'
+            'dormName.required' => 'Establishment should have a name',
+            'dormName.unique' => 'Establishment name is already taken',
+            'streetName.required' => 'Establishment should have a definitive street',
+            'barangayNname.required' => 'Establishment should have a definitive barangay', 
+            'dormName.max' => 'Establishment name can only be :max characters long',
+            'location.required' => 'Establishment should have a location. Please choose whether it is in the dorm area or in banwa',
+            'housingType.required' => 'Establishment should be given a housing type. Please choose among the provided categories',
+            'facilities.required' => 'Establishment should have at least facility',
+            'maxNum.required' => 'Please input maximum number of residents',
+            'maxNum.min' => 'Maximum number of residents should at least be :min',
+            'typeOfPayment.required' => 'Please provide a type of payment',
+            'price.required' => 'Please provide a price for the room',
         ];
 
         $validation = Validator::make($request->all(),[
-            'dormName' => 'required|unique|max:255',
+            'dormName' => 'required|unique:request_dorms|max:255',
             'streetName' => 'required',
             'barangayName' => 'required',
             'housingType' => 'required|in:boardinghouse,apartment,bedspace,dormitory',
             'location' => 'required|in:banwa,dormArea',
             'facilities' => 'required',
-            'addon' => 'required',
+            'maxNum' => 'required|min:1',
+            'typeOfPayment' => 'required|in:by_person,by_room',
+            'price' => 'required'
+
         ], $messages);
 
         if($validation->fails()){
-            
+            return redirect('/request/create')
+                    ->withErrors($validation)
+                    ->withInput();
         }
+
+        $requestDorm = new RequestDorm;
     }
 
     /**

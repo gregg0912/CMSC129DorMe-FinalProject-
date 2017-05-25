@@ -44,7 +44,7 @@
 		}
 		if(!empty($_POST['maxNum'])){
 
-		$maxNum = $_POST['maxNum'];		
+			$maxNum = $_POST['maxNum'];		
  		}		
  		if(!empty($_POST['price'])){		
  			$price = $_POST['price'];		
@@ -129,7 +129,7 @@ list($errorMsg, $successMsg, $errors) = addEst($dbconn, $ownerId, $estName, $str
 			<legend>Housing Type</legend>
 			<label class="radio inline"><input type="radio" name="hType" value="apartment" /><span>Apartment</span></label>
 			<label class="radio inline"><input type="radio" name="hType" value="bedspace" /><span>Bedspace</span></label>
-			<label class="radio inline"><input type="radio" name="hType" value="Boardinghouse" /><span>Boarding House</span></label>
+			<label class="radio inline"><input type="radio" name="hType" value="boardinghouse" /><span>Boarding House</span></label>
 			<label class="radio inline"><input type="radio" name="hType" value="dormitory"><span>Dormitory</span></label>
 		</fieldset>
 		<fieldset id="TextBoxesGroup" name="TextBoxesGroup">

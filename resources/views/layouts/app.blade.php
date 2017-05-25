@@ -67,13 +67,25 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav pull-left">
+                        <li>
+                            <a href="javascript:void(0)">
+                                Welcome
+                                @if (Auth::guest())
+                                    dear guest!
+                                @elseif (Auth::user()->role == 0)
+                                    {{ Auth::user()->name }}!
+                                @else
+                                    admin!
+                                @endif
+                            </a>
+                        </li>
                         <li><a href="{{ url('/view') }}">View</a></li>
                         <!-- Authentication Links -->
                         @if (Auth::guest())
                             <li><a href="{{ url('/vote') }}">Poll</a></li>
                         @else
                             @if((Auth::user()->role)!=1)
-                            <li><a href="{{ url('/home/show') }}">Manage Establishments</a></li>
+                            <li><a href="{{ url('/home/show') }}">Manage</a></li>
                             @else
                             <li><a href="{{ url('/admin')}}">Requests</a></li>
 
