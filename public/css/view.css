@@ -1,47 +1,130 @@
 /***********************************************************************/
 /*                     STYLE FOR THE HOME PAGE                         */
 /***********************************************************************/
+
+.body-content{
+	padding: 10px 20px;
+}
+
 #filter {
-	margin-top: 30px;
-	margin-left: 80px;
-	float: left;
-	position: block;
+	display: block;
+	margin: 10px 30px;
 }
 
 #establishments {
-	margin-top: 30px;
+	/*margin-top: 30px;
 	margin-right: 80px;
-	float: right;
+	float: right;*/
 }
 
-.search-input-group .input-group-addon {
-    background: white !important; 
+
+#search-input {
+    margin: 5px 0;
+    padding: 0;
+    width: 100%;
+}
+ 
+#search-input .search-query {
+    padding-right: 3px;
+    padding-right: 4px \9;
+    padding-left: 3px;
+    padding-left: 4px \9;
+    margin-bottom: 0;
+    border-radius: 3px;
+}
+ 
+#search-input button {
+    border: 0;
+    background: none;
+    padding: 2px 5px;
+    margin-top: 2px;
+    position: relative;
+    left: -28px;
+    margin-bottom: 0;
+    border-radius: 3px;
+    color:#7B7D7D;
+}
+ 
+.search-query:focus + button {
+    z-index: 3;   
 }
 
-.search-input-group .form-control {
-	border-right:0; 
-	box-shadow:0 0 0; 
-	border-color:#ccc;
-}
-
-.search-input-group button {
-    border:0;
-    background:transparent;
-}
 
 legend {
 	font-family: "Walkway Black";
 }
 
-.checkbox-inline {
+.dropdown {
+	width: 150px;
+	display: inline-block;
+	margin: auto;
+}
+
+.checkboxes,
+.checkboxes label {
 	display: block;
-	margin: 0;
-	margin-left: 10px;
+	margin-left: 5px;
+}	
+
+.pagination {
+	margin: 0 50px;
+}
+
+.pagination > li > a,
+.pagination > li > span  {
+	border-radius: 10% !important;
+	margin: 0 5px;
+}
+
+.radio {
+	margin-left: 30px;
+}
+
+#no-results {
+	text-align: center;
+	margin: 50px 0;
+}
+
+#filter-buttons {
+	margin-left: 30%;
+	margin-top: 5px;
+}
+
+#pc-checkboxes,
+#pc-location {
+	display: none;
 }
 
 @media screen and (min-width: 769px) {
 
+	#filter {
+		width: 280px;
+		margin-left: 80px;
+		margin-top: 50px;
+		display: block;
+
+	}
+
+	.dropdown {
+		display: none;
+	}
+
+	#pc-checkboxes,
+	#pc-location {
+		display: block;
+	}
+
+	#estab-list {
+		width: 450px;
+		float: right;
+		display: inline-block;
+		margin: 0;
+		margin-top: 50px;
+	}
+}
 
 @media screen and (min-width: 1024px) {
 
 }
+
+
