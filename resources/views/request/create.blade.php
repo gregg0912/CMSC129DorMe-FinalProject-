@@ -98,7 +98,7 @@
 					<legend>Add-On</legend>
 					<div id="addonDiv1">
 						@forelse (App\Addon::addonList() as $addon)
-							<label><input type="checkbox" name="addon" value="{{ $addon->add_item }}">{{ $addon->add_item }} - {{ $addon->add_price }}</label>
+							<label><input type="checkbox" name="addon" value="{{ $addon->add_item }}-{{ $addon->add_price }}">{{ $addon->add_item }} - {{ $addon->add_price }}</label>
 						@empty
 							<label>No addons were found in the database!</label>
 						@endforelse

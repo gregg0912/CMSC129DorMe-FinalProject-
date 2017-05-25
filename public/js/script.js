@@ -42,7 +42,7 @@ function addRoom(e){
 		return false;
 	}
 	var newRoomDiv = $(document.createElement('div')).attr("id", 'roomDiv'+roomCount);
-	newRoomDiv.after().html('<label>Maximum number of residents: <input type="number" name="maxNum" min="1" value="1" /></label><label>Type Of Payment:<select name="typeOfPayment"><option>Per Room</option<option>Per Person</option></select></label><label>Price: <input type="number" name="price" min="500" value="500" /></label><input type="button" name="removeRoom" id="removeRoom" value="Remove" />');
+	newRoomDiv.after().html('<label>Maximum number of residents: <input type="number" name="maxNum" min="1" value="1" /></label><label>Type Of Payment:<select name="typeOfPayment"><option value="by_room">Per Room</option><option value="by_person">Per Person</option></select></label><label>Price: <input type="number" name="price" min="500" value="500" /></label><input type="button" name="removeRoom" id="removeRoom" value="Remove" />');
 	newRoomDiv.appendTo("#roomDiv"+(roomCount-1));
 
 	roomCount++;
