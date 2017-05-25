@@ -67,6 +67,26 @@
 	color: white;
 }
 
+.help-block {
+	color: red;
+	margin: 0;
+	padding: 0;
+	font-size: 0.8em;
+	text-align: center;
+}
+
+.button-grp {
+	width: 400px;
+	float: right;
+}
+
+.btn-reset {
+	float: right;
+}
+
+span {
+	margin: 0;
+}
 
 @media screen and (min-width: 769px) {
 	.body-content {
@@ -76,7 +96,7 @@
 	.logform {
 		padding: 40px 10px;
 		width: 500px;
-		height: 290px;
+		height: 310px;
 		margin: 80px 50%;
 	}
 

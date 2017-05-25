@@ -28,13 +28,13 @@
                             </span>
 
                                 <input id="email" type="email" class="form-control" name="email" placeholder="E-mail" value="{{ old('email') }}" required />
-
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
                         </div>
+
+                        @if ($errors->has('email'))
+                            <span class="help-block">
+                                {{ $errors->first('email') }}
+                            </span>
+                        @endif
 
                         <div class="input-group{{ $errors->has('password') ? ' has-error' : '' }}">
                             <span class="input-group-addon" id="sizing-addon1">
@@ -42,30 +42,26 @@
                             </span>
 
                                 <input id="password" type="password" class="form-control" name="password" placeholder="Password" required />
-
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
                         </div>
-
+                         @if ($errors->has('password'))
+                            <span class="help-block">
+                                {{ $errors->first('password') }}
+                            </span>
+                        @endif
                         <div class="input-group">
                             <span class="input-group-addon" id="sizing-addon1">
                                 <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>
                             </span>
 
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" placeholder="Confirm password" required />
-
-                                 @if ($errors->has('password_confirmation'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password_confirmation') }}</strong>
-                                    </span>
-                                @endif
                         </div>
-
-                        <div class="input-group pull-right">
-                            <button type="submit" class="btn btn-lg btn-primary ">Reset
+                        @if ($errors->has('password_confirmation'))
+                            <span class="help-block">
+                                {{ $errors->first('password_confirmation') }}
+                            </span>
+                        @endif
+                        <div class="input-group button-grp">
+                            <button type="submit" class="btn btn-primary btn-reset">Reset
                             </button>
                         </div>
                     </form>

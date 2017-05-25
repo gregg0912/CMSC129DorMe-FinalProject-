@@ -50,8 +50,8 @@
                             </a>
                         </div>
 
-                        <div class="input-group pull-right">
-                            <button type="submit" class="btn btn-lg btn-primary ">Login
+                        <div class="input-group button-grp pull-right">
+                            <button type="submit" class="btn btn-primary btn-login">Login
                             </button>
                         </div>
                     </form>
