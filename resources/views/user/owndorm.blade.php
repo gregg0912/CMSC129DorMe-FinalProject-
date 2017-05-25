@@ -19,7 +19,6 @@
                                         {{ method_field('DELETE') }}
                                         <input type="submit"  name="delete" value="&times;" id="delete" class="btn btn-danger" />
                                     </form>
-                                    <a href="javascript:void(0)"><span class="glyphicon glyphicon-edit"></span> Edit</a>
                                     <div class="caption">
                                         <label><a href="/dorm/viewdorm/{{ $dorm->id }}">{{ $dorm->dormName }}</a></label>
                                         <p>{{ $dorm->user->name }}</p>

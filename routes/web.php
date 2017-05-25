@@ -24,6 +24,8 @@ Route::group(['middleware' => 'auth'], function(){
 
 	Route::get('/home/showDorms/{user_id}/{dorm_id}', 'HomeController@destroy');
 
+	Route::post('/editThumbnail/{dorm_id}', 'ImageController@upload');
+
 	Route::resource('/request', 'RequestDormController');
 
 	Route::get('/request', 'RequestDormController@index');
