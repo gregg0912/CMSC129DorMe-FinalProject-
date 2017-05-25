@@ -11,9 +11,7 @@ function vote(e){
 			url: "/voteDorm/"+dorm_id,
 			type: "get",
 			success:function(data){
-				// alert("You are here!");
-				var establishments = "";
-				// alert(data);
+
 				$.each(data, function(key,value){
 					establishments += "<div class='radio'><label><span class='badge'>"+value['votes']+"</span>"+value['dormName']+"</label></div>";
 				});

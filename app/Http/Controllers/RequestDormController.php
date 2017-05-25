@@ -49,7 +49,12 @@ class RequestDormController extends Controller
             'housingType' => 'required|in:boardinghouse,apartment,bedspace,dormitory',
             'location' => 'required|in:banwa,dormArea',
             'facilities' => 'required',
+            'addon' => 'required',
         ], $messages);
+
+        if($validation->fails()){
+            
+        }
     }
 
     /**
