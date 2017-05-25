@@ -68,10 +68,11 @@
                         @if (Auth::guest())
                             <li><a href="{{ url('/vote') }}">Poll</a></li>
                         @else
-                            @if((Auth::user()->id)!=12)
+                            @if((Auth::user()->role)!=1)
                             <li><a href="{{ url('/home/show') }}">Manage Establishments</a></li>
                             @else
-                            <li><a href="{{ url('/admin')}}">Privileges</a></li>
+                            <li><a href="{{ url('/admin')}}">Requests</a></li>
+
                             @endif
                             <li>
                                 <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
