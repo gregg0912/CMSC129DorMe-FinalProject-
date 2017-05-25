@@ -60,7 +60,7 @@
                                 {{ $errors->first('password_confirmation') }}
                             </span>
                         @endif
-                        <div class="input-group button-grp">
+                        <div class="input-group button-grp  ">
                             <button type="submit" class="btn btn-primary btn-reset">Reset
                             </button>
                         </div>

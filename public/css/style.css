@@ -46,6 +46,10 @@ p {
 	#gen-nav ul li {
 		display: inline-block;
 	}
+
+	.navbar-brand {
+		margin-left: 50px;
+	}
 }
 
 @media screen and (min-width: 1024px) {
