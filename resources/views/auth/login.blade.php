@@ -20,14 +20,12 @@
                             </span>
 
                                 <input id="username" type="text" class="form-control" name="username" placeholder="Username" value="{{ old('username') }}" required autofocus />
-
-                                @if ($errors->has('username'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('username') }}</strong>
-                                    </span>
-                                @endif
                         </div>
-
+                        @if ($errors->has('username'))
+                            <span class="help-block">
+                                {{ $errors->first('username') }}
+                            </span>
+                        @endif
 
                         <div class="input-group{{ $errors->has('password') ? ' has-error' : '' }}">
                             <span class="input-group-addon" id="sizing-addon1">
@@ -35,14 +33,12 @@
                             </span>
 
                                 <input id="password" type="password" class="form-control" name="password" placeholder="Password" required />
-
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
                         </div>
-
+                        @if ($errors->has('password'))
+                            <span class="help-block">
+                                {{ $errors->first('password') }}
+                            </span>
+                        @endif
 
                         <div id="note" class="input-group">
                             <label>
