@@ -9,8 +9,6 @@
 @section('content')
 
 <div class="flex-center position-ref full-height">
-    <div class="content">
-    </div>
     <div class="body-content col-md-12 col-sm-12">
         <div id="establishments">
       <!--   @if (App\User::where("username", "admin"))
@@ -20,7 +18,7 @@
        @endif -->
     
             <h2>Featured Establishments</h2>
-            <div class="establishment row">
+            <div class="establishment">
                 @forelse(App\Dorm::orderBy('votes', 'desc')->take(5)->get() as $dorm)
                     <div>
                         <a href="/dorm/viewdorm/{{$dorm->id}}"><img src="{{ $dorm->thumbnailPic }}" alt="IMAGE NOT FOUND" /></a>
