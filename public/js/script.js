@@ -29,8 +29,12 @@ function addAddon(e){
 		return false;
 	}
 	var newAddonDiv = $(document.createElement('div')).attr("id", 'addonDiv'+addonCount);
-	newAddonDiv.after().html('<input type="text" name="add_item" placeholder="Addon Name"/> - <input name="add_price" type="number" min = "100" value="100"/><input type="button" id="removeAddon" value="Remove" />');
-	newAddonDiv.appendTo("#addonDiv"+(addonCount-1));
+	newAddonDiv.after().html('<input type="text" name="add_item[]" placeholder="Addon Name"/>'+
+		' - <input name="add_price[]" type="number" min = "100" value="100"/>'+
+		'<button type="button" class="btn btn-danger" id="removeAddon">'+
+			'<span class="glyphicon glyphicon-minus-sign"></span> Remove'+
+		'</button>');
+	newAddonDiv.appendTo("#addonDiv1");
 
 	addonCount++;
 }
@@ -42,7 +46,17 @@ function addRoom(e){
 		return false;
 	}
 	var newRoomDiv = $(document.createElement('div')).attr("id", 'roomDiv'+roomCount);
-	newRoomDiv.after().html('<label>Maximum number of residents: <input type="number" name="maxNum" min="1" value="1" /></label><label>Type Of Payment:<select name="typeOfPayment"><option>Per Room</option<option>Per Person</option></select></label><label>Price: <input type="number" name="price" min="500" value="500" /></label><input type="button" name="removeRoom" id="removeRoom" value="Remove" />');
+	newRoomDiv.after().html('<label>Maximum number of residents: <input type="number" name="maxNum" min="1" value="1" /></label>'+
+		'<label>Type Of Payment:'+
+			'<select name="typeOfPayment[]">'+
+				'<option value="by_room">Per Room</option>'+
+				'<option value="by_person">Per Person</option>'+
+			'</select>'+
+		'</label>'+
+		'<label>Price: <input type="number" name="price" min="500" value="500" /></label>'+
+		'<button type="button" class="btn btn-danger" id="removeRoom">'+
+			'<span class="glyphicon glyphicon-minus-sign"></span> Remove'+
+		'</button>');
 	newRoomDiv.appendTo("#roomDiv"+(roomCount-1));
 
 	roomCount++;
@@ -66,7 +80,10 @@ function addFacility(e){
 		return false;
 	}
 	var newFacilityTextbox = $(document.createElement('div')).attr("id", 'facilityTextbox' + facilityCount);
-	newFacilityTextbox.after().html('<input type="text" name="facilities" id="facility'+facilityCount+'" placeholder="Facility Name" /><input type="button" name="removeFacility" id="removeFacility" value="Remove"/>');
+	newFacilityTextbox.after().html('<input type="text" name="facilities[]" id="facility'+facilityCount+'" placeholder="Facility Name" />'+
+		'<button type="button" class="btn btn-danger" id="removeFacility">'+
+			'<span class="glyphicon glyphicon-minus-sign"></span> Remove'+
+		'</button>');
 	newFacilityTextbox.appendTo("#FacilitiesGroup");
 
 	facilityCount++;

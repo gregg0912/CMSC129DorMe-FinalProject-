@@ -11,14 +11,18 @@
 <div class="flex-center position-ref full-height">
     <div class="body-content col-md-12 col-sm-12">
         <div id="establishments">
-      <!--   @if (App\User::where("username", "admin"))
-              Hello admin
-       @else
-          Hello standard user
-       @endif -->
-    
-            <h2>Featured Establishments</h2>
-            <div class="establishment">
+
+            <h2>Welcome
+            @if (Auth::guest())
+                dear guest!
+            @elseif (Auth::user()->role == 0)
+                {{ Auth::user()->name }}!
+            @else
+                admin!
+            @endif</h2>
+            <h3>Featured Establishments</h3>
+            <div class="establishment row">
+
                 @forelse(App\Dorm::orderBy('votes', 'desc')->take(5)->get() as $dorm)
                     <div>
                         <a href="/dorm/viewdorm/{{$dorm->id}}"><img src="{{ $dorm->thumbnailPic }}" alt="IMAGE NOT FOUND" /></a>

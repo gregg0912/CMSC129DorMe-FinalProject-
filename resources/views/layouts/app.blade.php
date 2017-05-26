@@ -67,18 +67,6 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav pull-left">
-                        <li>
-                            <a href="javascript:void(0)">
-                                Welcome
-                                @if (Auth::guest())
-                                    dear guest!
-                                @elseif (Auth::user()->role == 0)
-                                    {{ Auth::user()->name }}!
-                                @else
-                                    admin!
-                                @endif
-                            </a>
-                        </li>
                         <li><a href="{{ url('/view') }}">View</a></li>
                         <!-- Authentication Links -->
                         @if (Auth::guest())
@@ -87,7 +75,7 @@
                             @if((Auth::user()->role)!=1)
                             <li><a href="{{ url('/home/show') }}">Manage</a></li>
                             @else
-                            <li><button type="button" class="btn btn-primary">Requests <span class="badge">{{DB::table('request_dorms')->count()}}</span></button></li>
+                            <li><a href="{{url('/admin')}}" type="button" class="btn btn-primary">Requests <span class="badge">{{DB::table('request_dorms')->count()}}</span></a></li>
 
                             @endif
                         @endif
