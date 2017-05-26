@@ -87,7 +87,7 @@
                             @if((Auth::user()->role)!=1)
                             <li><a href="{{ url('/home/show') }}">Manage</a></li>
                             @else
-                            <li><button type="button" class="btn btn-primary">Requests <span class="badge">{{DB::table('request_dorms')->count()}}</span></button></li>
+                            <li><a href="{{url('/admin')}}" type="button" class="btn btn-primary">Requests <span class="badge">{{DB::table('request_dorms')->count()}}</span></a></li>
 
                             @endif
                         @endif
