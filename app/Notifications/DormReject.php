@@ -7,7 +7,7 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class DormApproved extends Notification
+class DormReject extends Notification
 {
     use Queueable;
 
@@ -55,8 +55,7 @@ class DormApproved extends Notification
     public function toArray($notifiable)
     {
         return [
-            // '''subscription_ended' => Carbon\Carbon::now()''
-            'meh'
+            "Rejected ka besh!"
         ];
     }
 }
