@@ -1,0 +1,72 @@
+/***********************************************************************/
+/*                      STYLE FOR VIEW DORM                            */
+/***********************************************************************/
+
+.body-content {
+	background: linear-gradient(to bottom,
+		rgba(242,250,255,1) 0%,
+		rgba(255,255,255,1) 61%,
+		rgba(69,174,255,1) 100%);
+}
+
+
+#info img {
+	width: 100%;
+	margin-bottom: 10px;
+}
+
+.body-content h2,
+.body-content h4 {
+	font-family: "Walkway Black";
+}
+
+.well {
+	width: 100%;
+}
+
+/*dl {
+	display: block;
+  width: 100%;
+  overflow: hidden;
+  background: #ff0;
+  padding: 0;
+  margin: 0
+}
+dt {
+	display: block;
+  float: left;
+  width: 10	0%;
+  background: #cc0;
+  padding: 0;
+  margin: 0
+}
+dd {
+	display: block;
+  float: left;
+  width: 50%;
+  background: #dd0;
+  padding: 0;
+  margin: 0
+}*/
+
+dt {
+    float: left;
+    width: 40%;
+    text-align: right;
+    padding: .25em;
+    clear: left;
+}
+dd {
+    float: left;
+    width: 60%;
+    padding: .25em 0;
+}
+dl:after {content:"";display:table;clear:both;}
+
+
+@media screen and (min-width: 769px) {
+	
+	#est {
+		float: right;
+	}
+}
