@@ -51,7 +51,7 @@ class RequestDormController extends Controller
             'dormName.max' => 'Establishment name can only be :max characters long',
             'location.required' => 'Establishment should have a location. Please choose whether it is in the dorm area or in banwa',
             'housingType.required' => 'Establishment should be given a housing type. Please choose among the provided categories',
-            'facilities.required' => 'Establishment should have at least facility',
+            'facilities.required' => 'Establishment should have at least one facility',
             'maxNum.required' => 'Please input maximum number of residents',
             'maxNum.min' => 'Maximum number of residents should at least be :min',
             'typeOfPayment.required' => 'Please provide a type of payment',
@@ -65,7 +65,7 @@ class RequestDormController extends Controller
             'housingType' => 'required|in:boardinghouse,apartment,bedspace,dormitory',
             'location' => 'required|in:banwa,dormArea',
             'facilities' => 'required',
-            'maxNum' => 'required|min:1',
+            'maxNum' => 'required',
             'typeOfPayment' => 'required|in:by_person,by_room',
             'price' => 'required'
 

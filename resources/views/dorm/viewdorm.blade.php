@@ -6,13 +6,16 @@
 	<div class="row">
 		<div class="col-md-6 col-md-offset-3">
 			<h1>{{$dorm->dormName}}</h1>
-            <a href="javascript:void(0)"><span class="glyphicon glyphicon-edit"></span> Edit</a>
+			@if($dorm->user_id == Auth::user()->id)
+				 <a href="javascript:void(0)"><span class="glyphicon glyphicon-edit"></span> Edit</a>
+			@endif
 			<div id="info">
 				<h2>Establishment Details</h2>
 				<img src="{{$dorm->thumbnailPic}}" alt="Image Not Found" />
             <!-- 	<a data-toggle="modal" data-target="#modal"><span class="glyphicon glyphicon-pencil">Edit Thumbnail</span> </a> -->
-            	<button class="btn btn-primary" data-toggle="modal" data-target="#editThumbnail"><span class="glyphicon glyphicon-pencil"> Edit Thumbnail </span></button>
-
+            	@if($dorm->user_id == Auth::user()->id)
+            		<button class="btn btn-primary" data-toggle="modal" data-target="#editThumbnail"><span class="glyphicon glyphicon-pencil"> Edit Thumbnail </span></button>
+            	@endif
 				<div id="est">
 					<dl>
 						<dt>Owner</dt>
