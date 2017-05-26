@@ -16,9 +16,10 @@ class DormReject extends Notification
      *
      * @return void
      */
-    public function __construct()
+    protected $dorm_id;
+    public function __construct($dorm_id)
     {
-        //
+        $this->dormName = $dorm_id->dormName;
     }
 
     /**
@@ -55,7 +56,7 @@ class DormReject extends Notification
     public function toArray($notifiable)
     {
         return [
-            "Rejected ka besh!"
+            "Your request for approval of  '$this->dormName '  has been rejected."
         ];
     }
 }

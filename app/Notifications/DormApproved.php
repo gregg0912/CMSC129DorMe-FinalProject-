@@ -16,10 +16,12 @@ class DormApproved extends Notification
      *
      * @return void
      */
-    public function __construct()
+     protected $dorm_id;
+    public function __construct($dorm_id)
     {
-        //
+        $this->dormName = $dorm_id->dormName;
     }
+
 
     /**
      * Get the notification's delivery channels.
@@ -56,7 +58,7 @@ class DormApproved extends Notification
     {
         return [
             // '''subscription_ended' => Carbon\Carbon::now()''
-            'meh'
+            "Your request for approval of  '$this->dormName '  has been accepted."
         ];
     }
 }

@@ -46,6 +46,7 @@ class AdminController extends Controller
     
     {
         $rdorm = RequestDorm::find($dorm_id)->first();
+       // $dormName = $dorm_id->dormName;
        // dd($dorm_id);
         //print_r($dorm_id->user_id);
 
@@ -58,17 +59,21 @@ class AdminController extends Controller
         $this->deleteFromFacilities($dorm_id);
         $this->deleteFromDorm($dorm_id);
         // $owner = User::where('id',"=",$dorm_id->user_id)->get()->first();
-        $owner = User::find($dorm_id->user_id)->get()->first();
+        $owner = User::find($dorm_id->user_id);
+
         //dd($owner);
       //  $owner->notify(new DormApproved);
         //dd($owner);
-      Notification::send($owner, new DormApproved);
+      Notification::send($owner, new DormApproved($dorm_id));
         return redirect('/admin');   
     }
     public function reject(RequestDorm $dorm_id)
     {
-        $owner = User::find($dorm_id->user_id)->get()->first();
-        Notification::send($owner, new DormReject);
+        
+        $owner = User::find($dorm_id->user_id);
+
+
+        Notification::send($owner, new DormReject($dorm_id));
         $this->deleteFromRoom($dorm_id);
         $this->deleteFromAddon($dorm_id);
         $this->deleteFromFacilities($dorm_id);
