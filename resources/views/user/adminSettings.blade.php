@@ -17,10 +17,16 @@
                     	</thead>
                     	<tbody>
                     		@for($i=0;$i<sizeOf($user);$i++)
-                    		<tr><td>{{$dorm[$i]}}</td><td>{{$user[$i]}}</td><td><td><a href="/admin/confirm/{{$dormid[$i]}}" type="button" class="btn btn-primary">Approve</a></td></td></tr>
+                    		<tr>
+                            <td>{{$dorm[$i]}}</td>
+                            <td>{{$user[$i]}}</td>
+                            <td><td><a href="/admin/confirm/{{$dormid[$i]}}" type="button" class="btn btn-primary">Approve</a></td></td>
+                            <td><td><a href="/admin/reject/{{$dormid[$i]}}" type="button" class="btn btn-warning">Reject</a></td></td>
+                            </tr>
                     		@endfor
                     	</tbody>
                     </table>
+
     
                 </div>
                 

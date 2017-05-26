@@ -74,6 +74,8 @@
                         @else
                             @if((Auth::user()->role)!=1)
                             <li><a href="{{ url('/home/show') }}">Manage</a></li>
+                            <li><a href="{{ url('/owner/notifications')}}" type="button" class="btn btn-primary">Notifications<span class="badge">
+                            </span>{{Auth::user()->unreadNotifications->count()}}</a></li>
                             @else
                             <li><a href="{{url('/admin')}}" type="button" class="btn btn-primary">Requests <span class="badge">{{DB::table('request_dorms')->count()}}</span></a></li>
 

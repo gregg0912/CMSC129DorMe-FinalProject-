@@ -54,3 +54,7 @@ Route::get('/voteDorm/{dorm_id}', 'DormController@vote');
 Route::get('/admin', 'AdminController@index');
 
 Route::get('/admin/confirm/{dorm_id}', 'AdminController@confirm');
+
+Route::get('/admin/reject/{dorm_id}', 'AdminController@reject');
+
+Route::get('/owner/notifications', 'OwnerController@index');

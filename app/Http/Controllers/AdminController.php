@@ -13,6 +13,10 @@ use App\Addon;
 use App\RequestRoom;
 use App\Room;
 use DB;
+use App\Notifications\DormReject;
+use App\Notifications\DormApproved;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Notification;
 
 class AdminController extends Controller
 {
@@ -37,10 +41,15 @@ class AdminController extends Controller
 
         return view('user.adminSettings',['dorm'=>$dormArray,'user'=>$userArray,'dormid'=>$dormIdArray]);
     }
+    
      public function confirm(RequestDorm $dorm_id)
+    
     {
         $rdorm = RequestDorm::find($dorm_id)->first();
-      //  dd($rdorm);
+       // $dormName = $dorm_id->dormName;
+       // dd($dorm_id);
+        //print_r($dorm_id->user_id);
+
         $this->addToDorm($rdorm);
         $this->getSendFacilities($dorm_id);
         $this->getSendAddon($dorm_id);
@@ -49,9 +58,30 @@ class AdminController extends Controller
         $this->deleteFromAddon($dorm_id);
         $this->deleteFromFacilities($dorm_id);
         $this->deleteFromDorm($dorm_id);
+        // $owner = User::where('id',"=",$dorm_id->user_id)->get()->first();
+        $owner = User::find($dorm_id->user_id);
 
+        //dd($owner);
+      //  $owner->notify(new DormApproved);
+        //dd($owner);
+      Notification::send($owner, new DormApproved($dorm_id));
         return redirect('/admin');   
     }
+    public function reject(RequestDorm $dorm_id)
+    {
+        
+        $owner = User::find($dorm_id->user_id);
+
+
+        Notification::send($owner, new DormReject($dorm_id));
+        $this->deleteFromRoom($dorm_id);
+        $this->deleteFromAddon($dorm_id);
+        $this->deleteFromFacilities($dorm_id);
+        $this->deleteFromDorm($dorm_id);
+        return redirect('/admin');
+           
+    }
+    
       public function deleteFromDorm($dorm_id)
     {
         return RequestDorm::where('id', $dorm_id->id)->delete();

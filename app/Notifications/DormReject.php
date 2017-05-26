@@ -7,7 +7,7 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class DormApproved extends Notification
+class DormReject extends Notification
 {
     use Queueable;
 
@@ -16,12 +16,11 @@ class DormApproved extends Notification
      *
      * @return void
      */
-     protected $dorm_id;
+    protected $dorm_id;
     public function __construct($dorm_id)
     {
         $this->dormName = $dorm_id->dormName;
     }
-
 
     /**
      * Get the notification's delivery channels.
@@ -57,8 +56,7 @@ class DormApproved extends Notification
     public function toArray($notifiable)
     {
         return [
-            // '''subscription_ended' => Carbon\Carbon::now()''
-            "Your request for approval of  '$this->dormName '  has been accepted."
+            "Your request for approval of  '$this->dormName '  has been rejected."
         ];
     }
 }
