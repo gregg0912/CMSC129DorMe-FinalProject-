@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+<link media="all" type="text/css" rel="stylesheet" href="{{ URL::asset('../bootstrap-3.3.7/dist/css/bootstrap.min.css') }}" />
 @section('content')
 
 <div class="container">
@@ -67,7 +67,7 @@
 					<legend>Facilities</legend>
 					<div class="input-group {{ $errors->has('facilities') ? ' has-error': '' }}" id="FacilitiesGroup" name="FacilitiesGroup">
 						@forelse(App\Facility::facilityList() as $facility)
-							<label><input type="checkbox" name="facilities" value="{{ $facility->facility_name }}">{{ $facility->facility_name }}</label>
+							<label><input type="checkbox" name="facilities[]" value="{{ $facility->facility_name }}">{{ $facility->facility_name }}</label>
 						@empty
 							<label>No facilities were found in the database!</label>
 						@endforelse
@@ -77,33 +77,39 @@
 							</span>
 						@endif
 					</div>
-					<input type="button" name="add-btn" id="add-facility" name="add-btn" value="Add Option" />
+					<button type="button" class="add-btn btn btn-success" id="add-facility" name="add-facility">
+						<span class="glyphicon glyphicon-plus-sign"></span> Add
+					</button>
 				</fieldset>
 				<fieldset id="RoomsGroup">
 					<legend>Rooms</legend>
 					<div id="roomDiv1">
-						<label>Maximum number of residents: <input type="number" name="maxNum" min="1" value="1" /></label>
+						<label>Maximum number of residents: <input type="number" name="maxNum[]" min="1" value="1" /></label>
 						<label>
 							Type of Payment:
-							<select name="typeOfPayment">
+							<select name="typeOfPayment[]">
 								<option value="by_room">Per Room</option>
 								<option value="by_person">Per person</option>
 							</select>
 						</label>
-						<label>Price: <input type="number" name="price" min="500" value="500" /></label>
+						<label>Price: <input type="number" name="price[]" min="500" value="500" /></label>
 					</div>
-					<input type="button" class="add-btn" id="add-room" name="add-room" value="Add Option" />
+					<button type="button" class="add-btn btn btn-success" id="add-room" name="add-room">
+						<span class="glyphicon glyphicon-plus-sign"></span> Add
+					</button>
 				</fieldset>
 				<fieldset id="AddOnGroup">
 					<legend>Add-On</legend>
-					<div id="addonDiv1">
+					<div id="addonDiv1" class="addonDiv">
 						@forelse (App\Addon::addonList() as $addon)
-							<label><input type="checkbox" name="addon" value="{{ $addon->add_item }}">{{ $addon->add_item }} - {{ $addon->add_price }}</label>
+							<label><input type="checkbox" name="addon[]" value="{{ $addon->add_item }}-{{ $addon->add_price }}">{{ $addon->add_item }} - {{ $addon->add_price }}</label>
 						@empty
 							<label>No addons were found in the database!</label>
 						@endforelse
 					</div>
-					<input type="button" class="add-btn" id="add-addon" name="add-btn3" value="Add Option" />
+					<button type="button" class="add-btn btn btn-success" id="add-addon" name="add-addon">
+						<span class="glyphicon glyphicon-plus-sign"></span> Add
+					</button>
 				</fieldset>
 				<input type="submit" name="submit" value="Submit" />
 			</form>
