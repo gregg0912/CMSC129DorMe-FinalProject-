@@ -12,7 +12,7 @@
     <div class="body-content col-md-12 col-sm-12">
         <div id="establishments">
 
-            <h2>Welcome
+            <h2>Welcome,
             @if (Auth::guest())
                 dear guest!
             @elseif (Auth::user()->role == 0)
@@ -21,10 +21,9 @@
                 admin!
             @endif</h2>
             <h3>Featured Establishments</h3>
-            <div class="establishment row">
+            <div class="establishment">
 
                 @forelse(App\Dorm::orderBy('votes', 'desc')->take(5)->get() as $dorm)
-                    <div>
                         <a href="/dorm/viewdorm/{{$dorm->id}}"><img src="{{ $dorm->thumbnailPic }}" alt="IMAGE NOT FOUND" /></a>
                         <div class="caption">
                             <label><span>{{ $dorm->dormName }}</span></label>
@@ -32,15 +31,12 @@
                             <p>{{ $dorm->streetName }}, {{ $dorm->barangayName }}</p>
                             <p>{{ $dorm->getHousingType() }}</p>
                         </div>
-                    </div>
                     
                 @empty
-                    <div>
                         <a href="javascript:void(0)"><img src="" alt="IMAGE NOT FOUND" /></a>
                         <div class="caption">
                             <p>There are no dormitories in this database yet!</p>
                         </div>
-                    </div>
                 @endforelse
             </div>
         </div>

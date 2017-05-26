@@ -60,7 +60,20 @@
 }
 
 #establishments {
-	margin: 10px 50px;	
+	margin: 30px 50px;	
+}
+
+#establishments img {
+	width:  100%;
+	margin-top: 30px;
+}
+
+#establishments .caption p {
+	font-size: 1em;
+}
+
+.establishment {
+	text-align: center;
 }
 
 .center {
@@ -107,6 +120,18 @@
 		padding: 3px;
 		font-size: 1em;
 	}
+
+	.establishment {
+		display: inline-block;
+		width: 300px;
+	}
+
+
+	#establishments img {
+		width:  100%;
+		margin-top: 30px;
+	}
+}
 
 @media screen and (min-width: 1024px) {
 

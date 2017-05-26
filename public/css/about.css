@@ -71,3 +71,20 @@
 		padding: 15px;
 	}
 }
+
+@media screen and (min-width: 1024px) {
+
+	#TEAM {
+		margin: 0 25%;
+		width: 640px;
+	}
+
+	#TEAM img {
+		height: 250px;
+		width: 250px;
+	}
+
+	#TEAM ul {
+		padding: 25px;
+	}
+}
