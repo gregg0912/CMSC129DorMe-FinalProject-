@@ -9,17 +9,17 @@
 @section('content')
 
 <div class="flex-center position-ref full-height">
-    <div class="content">
-    </div>
     <div class="body-content col-md-12 col-sm-12">
         <div id="establishments">
-      <!--   @if (App\User::where("username", "admin"))
-              Hello admin
-       @else
-          Hello standard user
-       @endif -->
-    
-            <h2>Featured Establishments</h2>
+            <h2>Welcome
+            @if (Auth::guest())
+                dear guest!
+            @elseif (Auth::user()->role == 0)
+                {{ Auth::user()->name }}!
+            @else
+                admin!
+            @endif</h2>
+            <h3>Featured Establishments</h3>
             <div class="establishment row">
                 @forelse(App\Dorm::orderBy('votes', 'desc')->take(5)->get() as $dorm)
                     <div>
