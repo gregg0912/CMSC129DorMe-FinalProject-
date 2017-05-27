@@ -107,11 +107,14 @@ function vote(e){
 			url: "/voteDorm/"+dorm_id,
 			type: "get",
 			success:function(data){
-
+				var establishments = "";
 				$.each(data, function(key,value){
-					establishments += "<div class='radio'><label><span class='badge'>"+value['votes']+"</span>"+value['dormName']+"</label></div>";
+					establishments +=
+						("<div>"+
+							"<label><span class='badge'>"+value['votes']+"</span>"+value['dormName']+"</label>"+
+						"</div>");
 				});
-				$(".establishments-holder").html(establishments);
+				$(".poll-list").html(establishments);
 				$("#successModal").modal();
 			}
 		});

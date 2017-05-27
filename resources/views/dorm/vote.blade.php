@@ -10,8 +10,9 @@
 
 <div class="body-content">
 		<div class="poll">
-				<h2 class="text-center">Establishments</h2>
+			<h2 class="text-center">Establishments</h2>
 			<div class="poll-list">
+
 			@if(Cookie::get('voted') !== null)
 					@forelse($dorms as $dorm)
 					<div>
@@ -21,6 +22,7 @@
 						<h4>No establishments were found!</h4>
 					@endforelse
 			@else
+
 				<form id="voteForm" action="/voteDorm/0" role="form" method="GET">
 	                {{ csrf_field() }}
 						@forelse($dorms as $dorm)
@@ -39,8 +41,8 @@
 							</div>
 						@endif
 				</form>
+			
 			</div>
-			@endif
 		</div>
 	<div class="modal fade" id="errorModal" role="dialog">
 		<div class="modal-dialog">
