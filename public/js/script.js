@@ -37,8 +37,8 @@ function addAddon(e){
 		'<button type="button" class="btn btn-danger" id="removeAddon">'+
 			'<span class="glyphicon glyphicon-minus-sign"></span> Remove'+
 		'</button>');
-	newAddonDiv.appendTo("#addonDiv1");
-
+	// newAddonDiv.appendTo("#addonDiv1");
+	$("#add-addon").before(newAddonDiv);
 	addonCount++;
 }
 
@@ -49,18 +49,23 @@ function addRoom(e){
 		return false;
 	}
 	var newRoomDiv = $(document.createElement('div')).attr("id", 'roomDiv'+roomCount);
-	newRoomDiv.after().html('<label>Maximum number of residents: <input type="number" name="maxNum" min="1" value="1" /></label>'+
-		'<label>Type Of Payment:'+
-			'<select name="typeOfPayment[]">'+
-				'<option value="by_room">Per Room</option>'+
-				'<option value="by_person">Per Person</option>'+
-			'</select>'+
-		'</label>'+
-		'<label>Price: <input type="number" name="price" min="500" value="500" /></label>'+
-		'<button type="button" class="btn btn-danger" id="removeRoom">'+
-			'<span class="glyphicon glyphicon-minus-sign"></span> Remove'+
-		'</button>');
-	newRoomDiv.appendTo("#roomDiv"+(roomCount-1));
+	newRoomDiv.after().html('<div class="input-gorup {{ $errors->has(\'maxNum[]\') ? \'has-error\': \'\' }}">'+
+							'<label>Maximum number of residents: <input type="number" name="maxNum[]" min="1" value="1" /></label>'+
+						'</div>'+
+						'<div class="input-group {{ $errors->has(\'typeOfPayment[]\') ? \'has-error\': \'\' }}">'+
+							'<label>'+
+								'Type of Payment:'+
+								'<select name="typeOfPayment[]">'+
+									'<option value="by_room">Per Room</option>'+
+									'<option value="by_person">Per person</option>'+
+								'</select>'+
+							'</label>'+
+						'</div>'+
+						'<div class="input-group {{ $errors->has(\'price[]\') ? \'has-error\': \'\' }}">'+
+							'<label>Price: <input type="number" name="price[]" min="500" value="500" /></label>'+
+						'</div>');
+	// newRoomDiv.appendTo("#RoomsGroup");
+	$("#add-room").before(newRoomDiv);
 
 	roomCount++;
 }
@@ -110,13 +115,15 @@ function vote(e){
 			url: "/voteDorm/"+dorm_id,
 			type: "get",
 			success:function(data){
-
+				var establishments = "";
 				$.each(data, function(key,value){
-					establishments += "<div class='radio'><label><span class='badge'>"+value['votes']+"</span>"+value['dormName']+"</label></div>";
+					establishments +=
+						("<div>"+
+							"<label><span class='badge'>"+value['votes']+"</span>"+value['dormName']+"</label>"+
+						"</div>");
 				});
-				$(".establishments-holder").html(establishments);
+				$(".poll-list").html(establishments);
 				$("#successModal").modal();
-				$("#submit").css("display","none");
 			}
 		});
 	}else{

@@ -7,12 +7,17 @@
 		rgba(242,250,255,1) 0%,
 		rgba(255,255,255,1) 61%,
 		rgba(69,174,255,1) 100%);
+	padding: 25px 10%;
 }
 
 
 #info img {
 	width: 100%;
 	margin-bottom: 10px;
+}
+
+.body-content h2 {
+	padding-top: 30px;
 }
 
 .body-content h2,
@@ -24,31 +29,6 @@
 	width: 100%;
 }
 
-/*dl {
-	display: block;
-  width: 100%;
-  overflow: hidden;
-  background: #ff0;
-  padding: 0;
-  margin: 0
-}
-dt {
-	display: block;
-  float: left;
-  width: 10	0%;
-  background: #cc0;
-  padding: 0;
-  margin: 0
-}
-dd {
-	display: block;
-  float: left;
-  width: 50%;
-  background: #dd0;
-  padding: 0;
-  margin: 0
-}*/
-
 dt {
     float: left;
     width: 40%;
@@ -56,17 +36,46 @@ dt {
     padding: .25em;
     clear: left;
 }
+
 dd {
     float: left;
     width: 60%;
     padding: .25em 0;
 }
-dl:after {content:"";display:table;clear:both;}
+
+dl:after { 
+	content:"";
+	display:table;
+	clear:both;
+}
 
 
 @media screen and (min-width: 769px) {
-	
-	#est {
-		float: right;
+
+
+}
+
+@media screen and (min-width: 1024px) {
+
+	#info > img {
+		width: 60%;
+		margin-bottom: 20px;
+		display: block;
 	}
+
+	#est {
+		width: 30%;
+		height: 42%;
+		float: right;
+		top: 480px;
+		left: 60%;
+		position: absolute;
+	}
+
+	#roomdetails,
+	#facilities {
+
+	}
+
+
 }

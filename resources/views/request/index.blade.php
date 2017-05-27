@@ -6,7 +6,8 @@
 	<div class="row">
 		<div class="col-md-6 col-md-offset-3">
 			<a href="{{ url('/request/create') }}">Add A Request</a>
-			@forelse ($requests as $request)
+			@forelse ($requests as $key => $request)
+				<h6>Request {{ $key+1 }}</h6>
 				<div class="caption">
 					<p>{{ $request->dormName }}</p>
 					<p>{{ $request->streetName }}, {{ $request->barangayName }}</p>

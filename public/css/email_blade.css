@@ -97,12 +97,12 @@ span {
 		padding: 40px 10px;
 		width: 500px;
 		height: 310px;
-		margin: 80px 50%;
+		margin: 80px 20%;
 	}
 
 	#reset {
 		width: 400px;
-		margin: 0 20%;
+		margin: 0 10%;
 	}
 
 	#reset > h2 {

@@ -1,14 +1,13 @@
 @extends('layouts.app')
 
-<link href="{{ asset('css/view.css') }}" rel="stylesheet">
-<link href="{{ asset('css/style.css') }}" rel="stylesheet">
-<script rel="stylesheet" src="{{ URL::asset('../js/script1.js') }}"></script>
+<link href="{{ asset('../css/view.css') }}" rel="stylesheet">
+<link href="{{ asset('../css/style.css') }}" rel="stylesheet">
 <script rel="stylesheet" src="{{ URL::asset('../js/home.js') }}"></script>
 <link media="all" type="text/css" rel="stylesheet" href="{{ URL::asset('../bootstrap-3.3.7/dist/css/bootstrap.min.css') }}" />
 
 @section('content')
 
-<div class="body-content">
+<div class="body-content col-md-12">
 	<form id="filter" class="col-md-12 col-sm-12">
 		<fieldset>
 			<legend>FILTER:</legend>
@@ -23,48 +22,47 @@
                     </span>
                 </div>
             </div>
-
-            <div class="dropdown">
-				<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Choose facilities
-				<span class="caret"></span></button>
-			  	<ul class="dropdown-menu">
-				    <li>
-				    	  <div class="checkboxes">
-							@forelse(App\Facility::facilityList() as $facility)
-							<label><input type="checkbox" name="facilityList[]" value="{{ $facility->facility_name }}" />{{ $facility->facility_name }}</label>
-							@empty
-							<label>No facilities were found!</label>
-							@endforelse
-						</div>
-				    </li>
-			  	</ul>
+            <div id="dropdown-grp">
+	            <div class="dropdown">
+					<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Choose facilities
+					<span class="caret"></span></button>
+				  	<ul class="dropdown-menu">
+					    <li>
+					    	  <div class="checkboxes">
+								@forelse(App\Facility::facilityList() as $facility)
+								<label><input type="checkbox" name="facilityList[]" value="{{ $facility->facility_name }}" />{{ $facility->facility_name }}</label>
+								@empty
+								<label>No facilities were found!</label>
+								@endforelse
+							</div>
+					    </li>
+				  	</ul>
+				</div>
+	 			<div class="dropdown drop-loc">
+					<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Choose location
+					<span class="caret"></span></button>
+				  	<ul class="dropdown-menu">
+					    <li>
+					    	 <div class="location">
+								<label class="radio inline">
+									<input type="radio" name="loc" value="dormArea" />
+									<span>Dorm Area</span>
+								</label>
+								<label class="radio inline">
+									<input type="radio" name="loc" value="banwa" />
+									<span>Banwa</span>
+								</label>
+							</div>
+					    </li>
+				  	</ul>
+				</div>
 			</div>
-
 			<div id="pc-checkboxes" class="checkboxes">
 				@forelse(App\Facility::facilityList() as $facility)
-					<label><input type="checkbox" name="facilityList[]" value="{{ $facility->facility_name }}" />{{ $facility->facility_name }}</label>
+					<label><input class="cb" type="checkbox" name="facilityList[]" value="{{ $facility->facility_name }}" />{{ $facility->facility_name }}</label>
 				@empty
 					<label>No facilities were found!</label>
 				@endforelse
-			</div>
-
-			 <div class="dropdown">
-				<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Choose location
-				<span class="caret"></span></button>
-			  	<ul class="dropdown-menu">
-				    <li>
-				    	 <div class="location">
-							<label class="radio inline">
-								<input type="radio" name="loc" value="dormArea" />
-								<span>Dorm Area</span>
-							</label>
-							<label class="radio inline">
-								<input type="radio" name="loc" value="banwa" />
-								<span>Banwa</span>
-							</label>
-						</div>
-				    </li>
-			  	</ul>
 			</div>
 
 			<div id="pc-location" class="location">
@@ -77,10 +75,9 @@
 					<span>Banwa</span>
 				</label>
 			</div>
-
 			<div id="filter-buttons">
-				<button type="submit" name="submit" class="btn btn-primary">Filter</button>
-				<a href="{{ url('/view') }}"><strong>Remove Filter</strong></a>
+				<button type="submit" name="submit" class="btn btn-primary">Filter</button><br />
+				<a href="{{ url('/view') }}" disabled><strong>Remove Filter</strong></a>
 			</div>
 			
 		</fieldset>
@@ -101,7 +98,9 @@
                         </div>
 					</div>
 				@empty
-					<div id="no-results">Your search returned no results!</div>
+					<div id="no-results" class="col-md-12 col-sm-12">
+						Your search returned no results!
+					</div>
 				@endforelse
 				<div class="pagination">
 					{{ $dorms->links() }}
@@ -109,9 +108,8 @@
 			</div>
 		</div>
 	</div>
-
 </div>
-<footer>
+<footer >
     <p>&copy; Dorme 2016 | A.Y. 2016-2017 CMSC 127: Fabilloren, Icay, Legada, Montano</p>
 </footer>
 @endsection

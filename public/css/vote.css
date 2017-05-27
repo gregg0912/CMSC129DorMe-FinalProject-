@@ -8,6 +8,7 @@
 		rgba(255,255,255,1) 61%,
 		rgba(69,174,255,1) 100%);
 	padding: 10% 0;
+	display: block;
 }
 
 .poll > h2 {
@@ -17,6 +18,7 @@
 .poll {
 	position: relative;
 	width: 50%;
+	display: block;
 	background-color: rgba(42,42,42, 0.7);
 	margin: 0 25%;
 	padding: 5px 10px;
@@ -30,6 +32,10 @@
 .btn-success {
 	width: 50%;
 	margin-left: 20%;
+}
+
+.poll {
+	margin-top: 5%;
 }
 
 @media screen and (min-width: 769px) {

@@ -2,6 +2,11 @@
 /*                      STYLE FOR ABOUT PAGE                           */
 /***********************************************************************/
 
+html {
+	overflow-x: hidden;
+	width: 100%;
+}
+
 .body-content {
 	margin: 0;
 	padding: 0;
@@ -32,6 +37,15 @@
 #TEAM ul {
 	list-style-type: none;
 	padding: 5px;
+}
+
+#contacthome2 {
+	display: block;
+	padding: 30px 15%;
+}
+
+#contacthome2 img {
+	width: 90%;
 }
 
 @media screen and (min-width: 520px) {
