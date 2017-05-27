@@ -18,13 +18,12 @@
 			@endif
 			<div id="info">
 				<h4>Establishment Details</h4>
-				<img src="{{$dorm->thumbnailPic}}" alt="Image Not Found" />
-            <!-- 	<a data-toggle="modal" data-target="#modal"><span class="glyphicon glyphicon-pencil">Edit Thumbnail</span> </a> -->
-            	@if(Auth::user())
+				@if(Auth::user())
             		@if($dorm->user_id == Auth::user()->id)
 	            		<button class="btn btn-primary" data-toggle="modal" data-target="#editThumbnail"><span class="glyphicon glyphicon-pencil"> Edit Thumbnail </span></button>
 	            	@endif
             	@endif
+				<img src="{{$dorm->thumbnailPic}}" alt="Image Not Found" />
 				<div id="est" class="well">
 					<dl>
 						<dt>Owner</dt>
