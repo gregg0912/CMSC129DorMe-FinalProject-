@@ -31,16 +31,19 @@
 </head>
 <body>
 
-        <div id="carousel" class="carousel slide" data-ride="carousel">
-            <ol class="carousel-indicators">
-                <li data-target="#carousel" data-slide-to="0" class="active"></li>
-                <li data-target="#carousel" data-slide-to="1"></li>
-                <li data-target="#carousel" data-slide-to="2"></li>
-            </ol>
-            <div class="carousel-inner" role="listbox">
-                <div class="item active"><img class="carousel-image" src="../img-uploads/bg/2.png" alt="image not found" /></div>
-                <div class="item"><img class="carousel-image" src="../img-uploads/bg/4.jpg" alt="image not found" /></div>
-                <div class="item"><img class="carousel-image" src="../img-uploads/bg/1.jpg" alt="image not found" /></div>
+
+    <div id="carousel" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#carousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#carousel" data-slide-to="1"></li>
+                    <li data-target="#carousel" data-slide-to="2"></li>
+                </ol>
+                <div class="carousel-inner" role="listbox">
+                    <div class="item active"><img class="carousel-image" src="../img-uploads/bg/2.png" alt="image not found" /></div>
+                    <div class="item"><img class="carousel-image" src="../img-uploads/bg/4.jpg" alt="image not found" /></div>
+                    <div class="item"><img class="carousel-image" src="../img-uploads/bg/1.jpg" alt="image not found" /></div>
+                </div>
+
             </div>
         </div>
         <div id='dorme-main-header' class="col-md-10 col-sm-10">
