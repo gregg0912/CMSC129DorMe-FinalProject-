@@ -6,10 +6,8 @@
 
 @section('content')
 <div class="body-content">
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3>Admin Dashboard</h3>
-        </div>
+    <div class="well">
+        <h3>Admin Dashboard</h3>
 
         <table class="table">
             <thead>
@@ -24,8 +22,8 @@
                     <tr>
                         <td>{{$dorm[$i]}}</td>
                         <td>{{$user[$i]}}</td>
-                        <td><a href="/admin/confirm/{{$dormid[$i]}}" type="button" class="btn btn-primary">Approve</a></td>
-                        <td><a href="/admin/reject/{{$dormid[$i]}}" type="button" class="btn btn-danger">Reject</a></td>
+                        <td><a href="/admin/confirm/{{$dormid[$i]}}" type="button" class="btn btn-success"><span class=" glyphicon glyphicon-ok"></span></a>
+                        <a href="/admin/reject/{{$dormid[$i]}}" type="button" class="btn btn-danger"><span class=" glyphicon glyphicon-remove"></span></a></td>
                     </tr>
                 @endfor
          	</tbody>
