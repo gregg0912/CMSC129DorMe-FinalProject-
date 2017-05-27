@@ -38,8 +38,8 @@
                     <li data-target="#carousel" data-slide-to="2"></li>
                 </ol>
                 <div class="carousel-inner" role="listbox">
-                    <div class="item"><img class="carousel-image" src="../img-uploads/bg/2.png" alt="image not found" /></div>
-                    <div class="item active"><img class="carousel-image" src="../img-uploads/bg/4.jpg" alt="image not found" /></div>
+                    <div class="item active"><img class="carousel-image" src="../img-uploads/bg/2.png" alt="image not found" /></div>
+                    <div class="item"><img class="carousel-image" src="../img-uploads/bg/4.jpg" alt="image not found" /></div>
                     <div class="item"><img class="carousel-image" src="../img-uploads/bg/1.jpg" alt="image not found" /></div>
                 </div>
             </div>

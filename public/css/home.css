@@ -123,7 +123,7 @@
 
 	.establishment {
 		display: inline-block;
-		width: 300px;
+		width: 500px;
 	}
 
 
@@ -134,6 +134,11 @@
 }
 
 @media screen and (min-width: 1024px) {
+
+
+	#establishments {
+		margin: 0 7%;
+	}
 
 	#dorme-main-header {
 		width: 60%;
