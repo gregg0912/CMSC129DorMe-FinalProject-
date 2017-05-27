@@ -9,18 +9,26 @@
 @section('content')
 
 <div class="body-content">
-		<div class="poll">
-				<h2 class="text-center">Establishments</h2>
-			<div class="poll-list">
+	<div class="row">
+		<div class="panel">
+			<div class="panel panel-heading">
+				<h1 class="text-center">Establishments</h1>
+			</div>
+			<div class="panel panel-body">
 			@if(Cookie::get('voted') !== null)
+				<div class="establishments-holder">
 					@forelse($dorms as $dorm)
-						<label>{{ $dorm->dormName }}</label><span class="badge pull-right">{{ $dorm->votes }}</span>
+						<div>
+							<label>{{ $dorm->dormName }}</label><span class="badge pull-right">{{ $dorm->votes }}</span>
+						</div>
 					@empty
 						<h4>No establishments were found!</h4>
 					@endforelse
+				</div>
 			@else
 				<form id="voteForm" action="/voteDorm/0" role="form" method="GET">
 	                {{ csrf_field() }}
+					<div class="establishments-holder">
 						@forelse($dorms as $dorm)
 							<div class="radio">
 								<label>
@@ -30,16 +38,19 @@
 						@empty
 							<h4>No establishments  were found!</h4>
 						@endforelse
-
+					</div>
+			</div>
+					<div class="panel panel-footer"> 
 						@if(!$dorms->isEmpty())
 							<div class="form-group">
 								<input id="submit" type="submit" name="submit" class="btn btn-success" value="Vote" />
 							</div>
 						@endif
+					</div>
 				</form>
-			</div>
 			@endif
 		</div>
+	</div>
 	<div class="modal fade" id="errorModal" role="dialog">
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -67,7 +78,6 @@
 		</div>
 	</div>
 </div>
-
 <footer>
     <p>&copy; Dorme 2016 | A.Y. 2016-2017 CMSC 127: Fabilloren, Icay, Legada, Montano</p>
 </footer>
