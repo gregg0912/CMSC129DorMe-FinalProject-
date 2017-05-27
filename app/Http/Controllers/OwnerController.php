@@ -12,7 +12,7 @@ class OwnerController extends Controller
      public function index() //after owner clicks the notifications tab
     {
          $user = Auth::user();
-         if($user!=null && $user==0){
+         if($user!=null && $user->role==0){
 
 	        // echo $user->name;
 	        // foreach ($user->notifications as $notification) {

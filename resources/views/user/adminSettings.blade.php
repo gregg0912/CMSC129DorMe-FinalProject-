@@ -8,7 +8,8 @@
 <div class="body-content">
     <div class="well">
         <h3>Admin Dashboard</h3>
-
+      
+        @if((sizeOf($dorm)!=0))
         <table class="table">
             <thead>
                 <tr>
@@ -28,6 +29,9 @@
                 @endfor
          	</tbody>
         </table>
+        @else
+            <h4>No dorm requests found!</h4>
+        @endif
     </div>
 </div>
 <footer >
