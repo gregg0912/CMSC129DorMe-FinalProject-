@@ -3,13 +3,16 @@ roomCount = 2;
 addonCount = 2;
 
 $(document).ready(function(){
+
 	$(document).on("submit", "#voteForm", vote);
+	// $(document).on("submit", "#uploadMulPics", mulpics);
 	$(document).on("click", "#add-facility", addFacility);
 	$(document).on("click", "#removeFacility", removeFacility);
 	$(document).on("click", "#add-room", addRoom);
 	$(document).on("click", "#removeRoom", removeRoom);
 	$(document).on("click", "#add-addon", addAddon);
 	$(document).on("click", "#removeAddon", removeAddon);
+
 });
 
 function removeAddon(e){
@@ -126,5 +129,24 @@ function vote(e){
 	}else{
 		$("#errorModal").modal();
 		return false;
+	}
+}
+
+function mulpics(e) {	
+	var form = document.getElementById("pictures");
+	var request = new XMLHttpRequest();
+	e.preventDefault();
+	var formData =  new FormData(form);
+
+	request.open('POST', '/upload/{{$dorm->id}}');
+	request.addEventListener('load', transferComplete);
+	request.send(formData); 
+}
+
+function transferComplete(data) {
+	response = JSON.parse(data.currentTarget.response);
+	console.log(response);
+	if (response.success) {
+		document.getElementById("msg").innerHTML = "Successfullly uploaded pictures";
 	}
 }

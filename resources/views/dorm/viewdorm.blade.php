@@ -12,7 +12,8 @@
 	@if(Auth::user())
 		@if($dorm->user_id == Auth::user()->id)
 			<a href="javascript:void(0)"><span class="glyphicon glyphicon-edit"></span> Edit</a>
-			@endif
+		@endif
+
 	@endif
 		<div id="info">
 			
@@ -79,6 +80,35 @@
 			@endforelse
 		</div>
 			
+		<div id="gallery" class="well"">
+				<h4>Gallery</h4>
+				@forelse($dorm->images as $image)
+				<ul>
+					<img src="{{$image->image_path}}" alt="Image Not Found" />
+				</ul>
+				@empty
+					<p>No pictures available</p>
+				@endforelse
+		</div>
+
+		<div class="panel-body panel-default">
+				<form action="{{ action('DormController@store') }}" method="post">
+					{{ csrf_field() }}
+					<input type="hidden" name="comment_id" value="{{ $dorm->id }}" />
+					<textarea name="content" class="form-control"></textarea>
+					<input type="submit" class="btn btn-success pull-right" value="Comment" />
+				</form>
+		</div>
+		
+		<div class="well">
+			
+			@forelse($dorm->comments->sortByDesc('id') as $comment)
+				<div><p>{{ $comment->content }} <span>{{$comment->created_at}} </span> </p></div>
+			@empty
+				<p>You have no comments...</p>
+			@endforelse
+		</div>
+
 		<div class="modal fade" id="editThumbnail" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
@@ -97,7 +127,26 @@
 				</div>
 			</div>
 		</div>
-</div>
+		<div class="modal fade" id="uploadPics" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h3 class="modal-title" id="modalLabel">Upload Pictures</h3>
+					</div>
+					<div class="modal-body">
+						<form action="/upload/{{$dorm->id}}" method="POST" id="pictures" enctype="multipart/form-data">
+							{{ csrf_field() }}
+							<input type="hidden" name="dorm_id" value="{{ $dorm->id }}">
+							<input type="file" name="images[]" multiple />
+							<h4 id="msg"></h4>
+
+							<button type="submit" id="uploadMulPics" class="btn btn-primary"> Submit </button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
 <footer>
     <p>&copy; Dorme 2016 | A.Y. 2016-2017 CMSC 127: Fabilloren, Icay, Legada, Montano</p>
 </footer>
