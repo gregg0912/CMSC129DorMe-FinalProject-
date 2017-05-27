@@ -12,11 +12,13 @@
 		<div class="poll">
 			<h2 class="text-center">Establishments</h2>
 			<div class="poll-list">
+
+
 			@if(Cookie::get('voted') !== null)
 					@forelse($dorms as $dorm)
-						<div>
-							<label>{{ $dorm->dormName }}</label><span class="badge pull-right">{{ $dorm->votes }}</span>
-						</div>
+					<div>
+						<label>{{ $dorm->dormName }}</label><span class="badge pull-right">{{ $dorm->votes }}</span>
+					</div>
 					@empty
 						<h4>No establishments were found!</h4>
 					@endforelse
