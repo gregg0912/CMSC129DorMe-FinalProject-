@@ -43,4 +43,8 @@ class Dorm extends Model
             return "Dorm Area";
         return "Elsewhere";
     }
+    public function images(){
+        return $this->hasMany('App\Image');
+    }
+
 }

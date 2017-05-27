@@ -4,19 +4,32 @@
 
 .body-content {
 	background: linear-gradient(to bottom,
-		rgba(235,247,255,1) 0%,
-		rgba(235,247,255,1) 22%,
-		rgba(61,184,255,1) 50%,
-		rgba(107,203,255,1) 66%,
-		rgba(107,203,255,1) 100%);
+		rgba(242,250,255,1) 0%,
+		rgba(255,255,255,1) 61%,
+		rgba(69,174,255,1) 100%);
+	padding: 10% 0;
 }
 
-.panel > h1 {
+.poll > h2 {
 	font-family: "Walkway Black";
 }
 
-.panel {
-	display: block;
+.poll {
+	position: relative;
+	width: 50%;
+	background-color: rgba(42,42,42, 0.7);
+	margin: 0 25%;
+	padding: 5px 10px;
+	color: white;
+}
+
+.poll-list {
+	margin-left: 5%;
+}
+
+.btn-success {
+	width: 50%;
+	margin-left: 20%;
 }
 
 @media screen and (min-width: 769px) {

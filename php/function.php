@@ -189,7 +189,7 @@
 	}
 	function headerRender(){
 	?>
-			<div id="carousel" class="carousel slide" data-ride="carousel">
+			<!-- <div id="carousel" class="carousel slide" data-ride="carousel">
 				<ol class="carousel-indicators">
 				    <li data-target="#carousel" data-slide-to="0" class="active"></li>
 				    <li data-target="#carousel" data-slide-to="1"></li>
@@ -200,7 +200,7 @@
 			    	<div class="item"><img class="carousel-image" src="../img/thumbnails/firstestate.JPG" alt="image not found" /></div>
 			    	<div class="item"><img class="carousel-image" src="../img/thumbnails/foursisters.JPG" alt="image not found" /></div>
 			  	</div>
-			</div>
+			</div> -->
 		<div id='dorme-main-header' class="col-md-10 col-sm-10">
 			<h1>DorMe.</h1>
 			<h2>your dorm. my dorm. our dorm.</h2>

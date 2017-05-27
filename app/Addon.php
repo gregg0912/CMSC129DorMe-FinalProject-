@@ -14,4 +14,8 @@ class Addon extends Model
     public function dorm(){
     	return $this->belongsTo('App/Dorm');
     }
+
+    public static function addonList(){
+    	return Addon::orderBy('add_item', 'asc')->get();
+    }
 }

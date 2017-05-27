@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Notifications\Notifiable;
+
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
@@ -15,9 +16,8 @@ class User extends Authenticatable
      * @var array
      */
 
-
     protected $fillable = [
-        'name', 'username', 'phone_number', 'email', 'password',
+        'name', 'username', 'phone_number', 'email', 'password', 'role'
     ];
 
     /**
@@ -37,11 +37,11 @@ class User extends Authenticatable
         return $this->hasMany('App\RequestDorm');
     }
 
-    public function roles(){
-        return $this->belongsToMany('App\Role');
-    }
+    // public function roles(){
+    //     return $this->belongsToMany('App\Role');
+    // }
     public function isAdmin(){
         // return in_array(1, $this->roles()->pluck('admin')->all());
-        return $this->roles()->where('admin', 1)->first();
+        return $this->role == 1 ;
     }
 }

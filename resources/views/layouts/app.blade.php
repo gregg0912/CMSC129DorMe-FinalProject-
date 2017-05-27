@@ -72,10 +72,13 @@
                         @if (Auth::guest())
                             <li><a href="{{ url('/vote') }}">Poll</a></li>
                         @else
-                            @if((Auth::user()->id)!=12)
+                            @if((Auth::user()->role)!=1)
                             <li><a href="{{ url('/home/show') }}">Manage</a></li>
+                            <li><a href="{{ url('/owner/notifications')}}" type="button" class="btn btn-primary">Notifications<span class="badge">
+                            </span>{{Auth::user()->unreadNotifications->count()}}</a></li>
                             @else
-                            <li><a href="{{ url('/admin')}}">Privileges</a></li>
+                            <li><a href="{{url('/admin')}}" type="button" class="btn btn-primary">Requests <span class="badge">{{DB::table('request_dorms')->count()}}</span></a></li>
+
                             @endif
                         @endif
                         <li><a href="{{ url('/about') }}">About</a></li>

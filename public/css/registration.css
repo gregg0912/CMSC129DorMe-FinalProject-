@@ -4,11 +4,9 @@
 /***********************************************************************/
 .body-content {
 	background: linear-gradient(to bottom,
-		rgba(235,247,255,1) 0%,
-		rgba(235,247,255,1) 22%,
-		rgba(61,184,255,1) 50%,
-		rgba(107,203,255,1) 66%,
-		rgba(107,203,255,1) 100%);
+		rgba(242,250,255,1) 0%,
+		rgba(255,255,255,1) 61%,
+		rgba(69,174,255,1) 100%);
 	display: block;
 }
 
@@ -45,7 +43,7 @@
 
 
 .input-group {
-	margin: 10px 20px;
+	margin: 7px 20px;
 	border-radius: 100%;
 }
 

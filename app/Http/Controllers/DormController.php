@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Cookie\CookieJar;
+use Illuminate\Support\Facades\File;
 use App\Dorm;
 use App\Facility;
 use App\Addon;
