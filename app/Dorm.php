@@ -26,6 +26,9 @@ class Dorm extends Model
     public function addons(){
     	return $this->hasMany('App\Addon');
     }
+    public function comments(){
+        return $this->hasMany('App\Comment');
+    }
 
     public function getHousingType(){
         if($this->housingType == 'boardinghouse')
