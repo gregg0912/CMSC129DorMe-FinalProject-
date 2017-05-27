@@ -3,9 +3,27 @@
 /***********************************************************************/
 
 .body-content {
-	height: auto;
+
+	padding: 15px;
 }
 
-.panel {
-	display: auto;
+.well {
+	margin: 10px;
 }
+
+.well .table {
+	font-size: 0.9em;
+}
+
+@media screen and (min-width: 769px) {
+	
+	.well {
+		margin: 5% 20%;
+		top: 300px;
+	}
+}
+
+@media screen and (min-width: 1024px) {
+	/* insert style */
+}
+
