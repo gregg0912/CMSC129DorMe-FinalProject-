@@ -2,13 +2,12 @@
 
 <link href="{{ asset('../css/view.css') }}" rel="stylesheet">
 <link href="{{ asset('../css/style.css') }}" rel="stylesheet">
-<script rel="stylesheet" src="{{ URL::asset('../js/script1.js') }}"></script>
 <script rel="stylesheet" src="{{ URL::asset('../js/home.js') }}"></script>
 <link media="all" type="text/css" rel="stylesheet" href="{{ URL::asset('../bootstrap-3.3.7/dist/css/bootstrap.min.css') }}" />
 
 @section('content')
 
-<div class="body-content">
+<div class="body-content col-md-12">
 	<form id="filter" class="col-md-12 col-sm-12">
 		<fieldset>
 			<legend>FILTER:</legend>
@@ -78,7 +77,7 @@
 			</div>
 			<div id="filter-buttons">
 				<button type="submit" name="submit" class="btn btn-primary">Filter</button><br />
-				<a href="{{ url('/view') }}"><strong>Remove Filter</strong></a>
+				<a href="{{ url('/view') }}" disabled><strong>Remove Filter</strong></a>
 			</div>
 			
 		</fieldset>
@@ -99,7 +98,9 @@
                         </div>
 					</div>
 				@empty
-					<div id="no-results" class="col-md-12 col-sm-12">Your search returned no results!</div>
+					<div id="no-results" class="col-md-12 col-sm-12">
+						Your search returned no results!
+					</div>
 				@endforelse
 				<div class="pagination">
 					{{ $dorms->links() }}
@@ -107,7 +108,6 @@
 			</div>
 		</div>
 	</div>
-
 </div>
 <footer >
     <p>&copy; Dorme 2016 | A.Y. 2016-2017 CMSC 127: Fabilloren, Icay, Legada, Montano</p>

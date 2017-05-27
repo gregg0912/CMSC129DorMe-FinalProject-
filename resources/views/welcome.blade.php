@@ -41,10 +41,12 @@
             </div>
         </div>
         <div id="contacthome">
-            <h2>Contact Us</h2>
-                <p> Questions? Feedback? Suggestions? <br> We'd love to hear from you!<br>
-                    Send us an email at <strong><a href="javascript:void(0)">support@dorme.com</a></strong> and we'll get back to you as soon as possible.<br>
+            <h3>Contact Us</h3>
+                <p> Questions? Feedback? Suggestions? <br> We'd love to hear from you!<br><br>
+                    Reach out to our team or get in touch with our customer service and we'll get back to you as soon as possible.<br>
+                    <hr/>
                 </p>
+                <img src="../img-uploads/contact.jpg" alt="Corporate Headquarters" />
         </div>
         <footer>
             <p>&copy; Dorme 2016 | A.Y. 2016-2017 CMSC 127: Fabilloren, Icay, Legada, Montano</p>

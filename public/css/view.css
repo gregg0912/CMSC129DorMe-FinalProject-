@@ -4,7 +4,11 @@
 
 .body-content{
 	padding: 10px 20px;
-	height: auto;
+	background: linear-gradient(to bottom,
+		rgba(242,250,255,1) 0%,
+		rgba(255,255,255,1) 61%,
+		rgba(69,174,255,1) 100%);
+	height: 
 }
 
 #filter {
@@ -143,9 +147,12 @@ legend {
  	}
 
  	.body-content {
- 		height: 2800px;
+ 		height: 2900px;
  	}
 
+ 	#filter-buttons a {
+ 		display: disabled;
+ 	}
 }
 
 @media screen and (min-width: 1024px) {
