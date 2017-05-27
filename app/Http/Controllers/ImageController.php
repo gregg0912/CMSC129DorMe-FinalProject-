@@ -18,12 +18,19 @@ class ImageController extends Controller
  		$fileName = rand(0, 99999).'_'.rand(0, 99999); //renaming the image
  		$fileNameExtension = $fileName.".".$extension;
 
- 		$dorm = Dorm::findOrFail($data->dorm_id);
- 		$dorm->thumbnailPic = "/".$path."/".$fileNameExtension;
- 		$dorm->update();
- 		$data->file('image')->move($path, $fileNameExtension);
+ 		if ($extension == "jpg" || $extension == "jpeg" || $extension == "png" || $extension == "JPG" || $extension == "PNG") {
 
- 		return view('dorm.viewdorm', compact('dorm'));
+	 		$dorm = Dorm::findOrFail($data->dorm_id);
+	 		$dorm->thumbnailPic = "/".$path."/".$fileNameExtension;
+	 		$dorm->update();
+	 		$data->file('image')->move($path, $fileNameExtension);
+
+ 		}
+
+		// else if extension is not mentioned above
+		// display message that file uploaded
+
+        return redirect('/dorm/viewdorm/'.$data->dorm_id);
 
  	}
 

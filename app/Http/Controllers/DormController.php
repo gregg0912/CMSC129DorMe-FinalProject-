@@ -131,7 +131,6 @@ class DormController extends Controller
             }
             
             return redirect('/dorm/viewdorm/'.$request->comment_id);
-        }
     }
 
     /**

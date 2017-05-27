@@ -9,22 +9,13 @@
 
 <div class="body-content">
 	<h2>{{$dorm->dormName}}</h2>
-	@if(Auth::user())
-		@if($dorm->user_id == Auth::user()->id)
-			<a href="javascript:void(0)"><span class="glyphicon glyphicon-edit"></span> Edit</a>
-		@endif
-
-	@endif
 		<div id="info">
-			
-			<img src="{{$dorm->thumbnailPic}}" alt="Image Not Found" />
-           		 <!-- 	<a data-toggle="modal" data-target="#modal"><span class="glyphicon glyphicon-pencil">Edit Thumbnail</span> </a> -->
            	@if(Auth::user())
-           		@if($dorm->user_id == Auth::user()->id)
-	           		<button class="btn btn-primary" data-toggle="modal" data-target="#editThumbnail"><span class="glyphicon glyphicon-pencil"> Edit Thumbnail </span></button>
-	           	@endif
-           	@endif
-				
+	           	@if($dorm->user_id == Auth::user()->id)
+					<a  data-toggle="modal" data-target="#editThumbnail"><span class="glyphicon glyphicon-edit"></span> Edit</a>
+				@endif
+           	@endif		
+			<img src="{{$dorm->thumbnailPic}}" alt="Image Not Found" />
 		</div>
 
 		<div id="est" class="well">
@@ -83,14 +74,20 @@
 		<div id="gallery" class="well"">
 				<h4>Gallery</h4>
 				@forelse($dorm->images as $image)
-				<ul>
-					<img src="{{$image->image_path}}" alt="Image Not Found" />
-				</ul>
+				<li>
+					<div class="thumbnail">
+						<img src="{{$image->image_path}}" alt="Image Not Found" />
+					</div>
+				</li>
 				@empty
 					<p>No pictures available</p>
 				@endforelse
-		</div>
 
+				<div>
+					<button class="btn btn-success btn-lg" data-toggle="modal" data-target="#uploadPics">Upload Pictures</button>
+				</div>
+		</div>
+		
 		<div class="panel-body panel-default">
 				<form action="{{ action('DormController@store') }}" method="post">
 					{{ csrf_field() }}
@@ -100,10 +97,12 @@
 				</form>
 		</div>
 		
-		<div class="well">
-			
+		<div class="well">	
 			@forelse($dorm->comments->sortByDesc('id') as $comment)
-				<div><p>{{ $comment->content }} <span>{{$comment->created_at}} </span> </p></div>
+				<div class="well">
+					<p>{{ $comment->content }}</p>
+					<span>{{$comment->created_at}} </span> 
+				</div>
 			@empty
 				<p>You have no comments...</p>
 			@endforelse
