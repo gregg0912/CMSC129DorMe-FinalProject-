@@ -113,7 +113,6 @@ function vote(e){
 				});
 				$(".establishments-holder").html(establishments);
 				$("#successModal").modal();
-				$("#submit").css("display","none");
 			}
 		});
 	}else{
