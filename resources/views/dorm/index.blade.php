@@ -94,7 +94,6 @@
                             <p>{{ $dorm->user->name }}</p>
                             <p>{{ $dorm->streetName }}, {{ $dorm->barangayName }}</p>
                             <p>{{ $dorm->getHousingType() }}</p>
-                            <p>{{ $dorm->location }} </p>
                         </div>
 					</div>
 				@empty

@@ -49,10 +49,52 @@ dl:after {
 	clear:both;
 }
 
+.nocomment {
+	text-align: center;
+}
+
+#btn-upload {
+
+}
+
+#btn-upload > button {
+	width: 100%;
+}
+
+#btn-cmt {
+	width: 100%;
+}
+
+.well-cmt {
+	display: inline-block;
+}
+
+#cmt-time {
+	font-size: .7em;
+	color: #969696;
+	float: right;
+}
+
+.modal-content {
+	top: 100px;
+	left: 20%;
+	width: 400px;
+}
 
 @media screen and (min-width: 769px) {
+	#btn-upload {
+		margin-left: 40%;
+		width: 150px;
+	}
 
+	#btn-upload > button {
+		width: 100%;
+	}
 
+	#btn-cmt {
+		width: 100px;
+		margin-left: 87%;
+	}
 }
 
 @media screen and (min-width: 1024px) {
@@ -72,9 +114,12 @@ dl:after {
 		position: absolute;
 	}
 
-	#roomdetails,
-	#facilities {
+	#btn-upload {
+		margin-left: 43%;
+	}
 
+	#btn-cmt {
+		margin-left: 91%;
 	}
 
 

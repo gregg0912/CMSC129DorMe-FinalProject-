@@ -1,0 +1,34 @@
+/***********************************************************************/
+/*                 STYLE FOR THE  NOTIFICATIONS PAGE                   */
+/***********************************************************************/
+
+.body-content {
+
+	padding: 15px;
+}
+
+.well {
+	margin: 10px;
+}
+
+.well .table {
+	font-size: 0.9em;
+}
+
+.well h4 {
+	text-align: center;
+	padding: 10% 0;
+}
+
+@media screen and (min-width: 768px) {
+	
+	.well {
+		margin: 8% 20%;
+		top: 300px;
+	}
+}
+
+@media screen and (min-width: 1024px) {
+	/* insert style */
+}
+

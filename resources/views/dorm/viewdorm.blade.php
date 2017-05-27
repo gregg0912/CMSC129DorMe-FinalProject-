@@ -49,7 +49,7 @@
 						<dd>{{$room->availability}}</dd>
 				</dl>			
 			@empty
-				<p>No available rooms!</p>
+				<p class="nocomment">No available rooms!</p>
 			@endforelse
 		</div>
 
@@ -58,7 +58,7 @@
 			@forelse($dorm->facilities as $facility)
 				<ul>{{$facility->facility_name}} </ul>
 			@empty
-				<p>No facilities found!</p>
+				<p class="nocomment">No facilities found!</p>
 			@endforelse
 		</div>
 
@@ -67,7 +67,7 @@
 			@forelse($dorm->addons as $addon)
 				<ul>{{$addon->add_item}} - Php {{$addon->add_price}} </ul>
 			@empty
-				<p>No additional payments!</p>
+				<p class="nocomment">No additional payments!</p>
 			@endforelse
 		</div>
 			
@@ -80,31 +80,31 @@
 					</div>
 				</li>
 				@empty
-					<p>No pictures available</p>
+					<p class="nocomment">No pictures available</p>
 				@endforelse
 
-				<div>
-					<button class="btn btn-success btn-lg" data-toggle="modal" data-target="#uploadPics">Upload Pictures</button>
+				<div id="btn-upload">
+					<button class="btn btn-success" data-toggle="modal" data-target="#uploadPics">Upload</button>
 				</div>
 		</div>
 		
-		<div class="panel-body panel-default">
+		<div class="well">
 				<form action="{{ action('DormController@store') }}" method="post">
 					{{ csrf_field() }}
 					<input type="hidden" name="comment_id" value="{{ $dorm->id }}" />
 					<textarea name="content" class="form-control"></textarea>
-					<input type="submit" class="btn btn-success pull-right" value="Comment" />
+					<br /><input id="btn-cmt" type="submit" class="btn btn-default" value="Comment" />
 				</form>
 		</div>
 		
 		<div class="well">	
 			@forelse($dorm->comments->sortByDesc('id') as $comment)
-				<div class="well">
+				<div class="well well-cmt">
 					<p>{{ $comment->content }}</p>
-					<span>{{$comment->created_at}} </span> 
+					<span id="cmt-time">{{$comment->created_at}} </span> 
 				</div>
 			@empty
-				<p>You have no comments...</p>
+				<p class="nocomment">You have no comments...</p>
 			@endforelse
 		</div>
 
@@ -146,6 +146,7 @@
 				</div>
 			</div>
 		</div>
+	</div>
 <footer>
     <p>&copy; Dorme 2016 | A.Y. 2016-2017 CMSC 127: Fabilloren, Icay, Legada, Montano</p>
 </footer>
