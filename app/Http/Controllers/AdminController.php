@@ -17,68 +17,87 @@ use App\Notifications\DormReject;
 use App\Notifications\DormApproved;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Notification;
-
+use Auth;
 class AdminController extends Controller
 {
     //
      public function index()
     {
-        $userArray = [];
-        $dormArray = [];
-        $dormIdArray = [];
+        
+        $user = Auth::user();
+        if($user!=null && $user->role==1){
+                $userArray = [];
+                $dormArray = [];
+                $dormIdArray = [];
 
-        // $request = DB::table('request_dorms')->get();
-        $request = RequestDorm::all();
-        foreach($request as $req){
-            $user = User::find($req->user_id);
-            array_push($dormArray, $req->dormName);
-            array_push($userArray, $user->name);
-            array_push($dormIdArray, $req->id);
+                // $request = DB::table('request_dorms')->get();
+                $request = RequestDorm::all();
+                foreach($request as $req){
+                    $user = User::find($req->user_id);
+                    array_push($dormArray, $req->dormName);
+                    array_push($userArray, $user->name);
+                    array_push($dormIdArray, $req->id);
+                }
+                 return view('user.adminSettings',['dorm'=>$dormArray,'user'=>$userArray,'dormid'=>$dormIdArray]);
         }
+        else{
+             return view('user.errorPage');
+        }
+
+
+
        
-
-
-
-        return view('user.adminSettings',['dorm'=>$dormArray,'user'=>$userArray,'dormid'=>$dormIdArray]);
     }
     
      public function confirm(RequestDorm $dorm_id)
-    
     {
-        $rdorm = RequestDorm::find($dorm_id)->first();
-       // $dormName = $dorm_id->dormName;
-       // dd($dorm_id);
-        //print_r($dorm_id->user_id);
+        $user = Auth::user();
+        if($user!=null && $user->role==1){
+            $rdorm = RequestDorm::find($dorm_id)->first();
+           // $dormName = $dorm_id->dormName;
+           // dd($dorm_id);
+            //print_r($dorm_id->user_id);
 
-        $this->addToDorm($rdorm);
-        $this->getSendFacilities($dorm_id);
-        $this->getSendAddon($dorm_id);
-        $this->getSendRoom($dorm_id);
-        $this->deleteFromRoom($dorm_id);
-        $this->deleteFromAddon($dorm_id);
-        $this->deleteFromFacilities($dorm_id);
-        $this->deleteFromDorm($dorm_id);
-        // $owner = User::where('id',"=",$dorm_id->user_id)->get()->first();
-        $owner = User::find($dorm_id->user_id);
+            $this->addToDorm($rdorm);
+            $this->getSendFacilities($dorm_id);
+            $this->getSendAddon($dorm_id);
+            $this->getSendRoom($dorm_id);
+            $this->deleteFromRoom($dorm_id);
+            $this->deleteFromAddon($dorm_id);
+            $this->deleteFromFacilities($dorm_id);
+            $this->deleteFromDorm($dorm_id);
+            // $owner = User::where('id',"=",$dorm_id->user_id)->get()->first();
+            $owner = User::find($dorm_id->user_id);
 
-        //dd($owner);
-      //  $owner->notify(new DormApproved);
-        //dd($owner);
-      Notification::send($owner, new DormApproved($dorm_id));
-        return redirect('/admin');   
+            //dd($owner);
+          //  $owner->notify(new DormApproved);
+            //dd($owner);
+            Notification::send($owner, new DormApproved($dorm_id));
+            return redirect('/admin');
+        }
+        else{
+             return view('user.errorPage');
+        }
+   
     }
     public function reject(RequestDorm $dorm_id)
     {
-        
-        $owner = User::find($dorm_id->user_id);
+        $user = Auth::user();
+        if($user!=null && $user->role==1){
+            $owner = User::find($dorm_id->user_id);
 
 
-        Notification::send($owner, new DormReject($dorm_id));
-        // $this->deleteFromRoom($dorm_id);
-        // $this->deleteFromAddon($dorm_id);
-        // $this->deleteFromFacilities($dorm_id);
-        // $this->deleteFromDorm($dorm_id);
-        return redirect('/admin');
+            Notification::send($owner, new DormReject($dorm_id));
+            // $this->deleteFromRoom($dorm_id);
+            // $this->deleteFromAddon($dorm_id);
+            // $this->deleteFromFacilities($dorm_id);
+            // $this->deleteFromDorm($dorm_id);
+            return redirect('/admin');
+        }
+        else{
+             return view('user.errorPage');
+        }
+
            
     }
     
