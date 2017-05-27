@@ -10,6 +10,7 @@
 				<fieldset>
 					<legend>Establishment information</legend>
 					<input type="hidden" name="user_id" value="{{ Auth::user()->id }}" />
+					<input type="hidden" name="thumbnailPic" value="/img-uploads/no_image.png" />
 					<div class="input-group {{ $errors->has('dormName') ? ' has-error': '' }}">
 						<input type="text" name="dormName" placeholder="Establishment Name" value="{{ old('dormName') }}" />
 						@if ($errors->has('dormName'))
@@ -65,15 +66,15 @@
 				</fieldset>
 				<fieldset>
 					<legend>Facilities</legend>
-					<div class="input-group {{ $errors->has('facilities') ? ' has-error': '' }}" id="FacilitiesGroup" name="FacilitiesGroup">
+					<div class="input-group {{ $errors->has('facilities[]') ? ' has-error': '' }}" id="FacilitiesGroup" name="FacilitiesGroup">
 						@forelse(App\Facility::facilityList() as $facility)
-							<label><input type="checkbox" name="facilities[]" value="{{ $facility->facility_name }}">{{ $facility->facility_name }}</label>
+							<label><input type="checkbox" name="facilities[]" value="{{ $facility->facility_name }}" >{{ $facility->facility_name }}</label>
 						@empty
 							<label>No facilities were found in the database!</label>
 						@endforelse
-						@if ($errors->has('facilities'))
+						@if ($errors->has('facilities[]'))
 							<span class="help-block">
-								<strong>{{ $errors->first('facilities') }}</strong>
+								<strong>{{ $errors->first('facilities[]') }}</strong>
 							</span>
 						@endif
 					</div>
@@ -84,15 +85,36 @@
 				<fieldset id="RoomsGroup">
 					<legend>Rooms</legend>
 					<div id="roomDiv1">
-						<label>Maximum number of residents: <input type="number" name="maxNum[]" min="1" value="1" /></label>
-						<label>
-							Type of Payment:
-							<select name="typeOfPayment[]">
-								<option value="by_room">Per Room</option>
-								<option value="by_person">Per person</option>
-							</select>
-						</label>
-						<label>Price: <input type="number" name="price[]" min="500" value="500" /></label>
+						<div class="input-gorup {{ $errors->has('maxNum[]') ? 'has-error': '' }}">
+							<label>Maximum number of residents: <input type="number" name="maxNum[]" min="1" value="1" /></label>
+							@if ($errors->has('maxNum[]'))
+								<span class="help-block">
+									<strong>{{ $errors->first('maxNum[]') }}</strong>
+								</span>
+							@endif
+						</div>
+						<div class="input-group {{ $errors->has('typeOfPayment[]') ? 'has-error': '' }}">
+							<label>
+								Type of Payment:
+								<select name="typeOfPayment[]">
+									<option value="by_room">Per Room</option>
+									<option value="by_person">Per person</option>
+								</select>
+							</label>
+							@if ($errors->has('typeOfPayment[]'))
+								<span class="help-block">
+									<strong>{{ $errors->first('typeOfPayment[]') }}</strong>
+								</span>
+							@endif
+						</div>
+						<div class="input-group {{ $errors->has('price[]') ? 'has-error': '' }}">
+							<label>Price: <input type="number" name="price[]" min="500" value="500" /></label>
+							@if ($errors->has('price[]'))
+								<span class="help-block">
+									<strong>{{ $errors->first('price[]') }}</strong>
+								</span>
+							@endif
+						</div>
 					</div>
 					<button type="button" class="add-btn btn btn-success" id="add-room" name="add-room">
 						<span class="glyphicon glyphicon-plus-sign"></span> Add
