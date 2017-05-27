@@ -74,10 +74,10 @@ class AdminController extends Controller
 
 
         Notification::send($owner, new DormReject($dorm_id));
-        $this->deleteFromRoom($dorm_id);
-        $this->deleteFromAddon($dorm_id);
-        $this->deleteFromFacilities($dorm_id);
-        $this->deleteFromDorm($dorm_id);
+        // $this->deleteFromRoom($dorm_id);
+        // $this->deleteFromAddon($dorm_id);
+        // $this->deleteFromFacilities($dorm_id);
+        // $this->deleteFromDorm($dorm_id);
         return redirect('/admin');
            
     }
