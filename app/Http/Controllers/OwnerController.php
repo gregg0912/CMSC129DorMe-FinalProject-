@@ -20,6 +20,7 @@ class OwnerController extends Controller
                  
         //     }
          $user->unreadNotifications->markAsRead();
+         
         return view('user.notif',['user'=>$user]);
     }
        

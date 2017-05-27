@@ -31,6 +31,7 @@
 </head>
 <body>
 
+
     <div id="carousel" class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">
                     <li data-target="#carousel" data-slide-to="0" class="active"></li>
@@ -42,7 +43,9 @@
                     <div class="item"><img class="carousel-image" src="../img-uploads/bg/4.jpg" alt="image not found" /></div>
                     <div class="item"><img class="carousel-image" src="../img-uploads/bg/1.jpg" alt="image not found" /></div>
                 </div>
+
             </div>
+        </div>
         <div id='dorme-main-header' class="col-md-10 col-sm-10">
             <img src="../img-uploads/sm.png" alt="DORME" />
             <h2>find your home away from home</h2>
@@ -74,8 +77,7 @@
                         @else
                             @if((Auth::user()->role)!=1)
                             <li><a href="{{ url('/home/show') }}">Manage</a></li>
-                            <li><a href="{{ url('/owner/notifications')}}" type="button" class="btn btn-primary">Notifications<span class="badge">
-                            </span>{{Auth::user()->unreadNotifications->count()}}</a></li>
+                            <li><a href="{{ url('/owner/notifications')}}" type="button" class="btn btn-primary">Notifications<span class="badge">{{Auth::user()->unreadNotifications->count()}}</span ></a></li>
                             @else
                             <li><a href="{{url('/admin')}}" type="button" class="btn btn-primary">Requests <span class="badge">{{DB::table('request_dorms')->count()}}</span></a></li>
 

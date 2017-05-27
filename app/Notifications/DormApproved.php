@@ -58,7 +58,9 @@ class DormApproved extends Notification
     {
         return [
             // '''subscription_ended' => Carbon\Carbon::now()''
-            "Your request for approval of  '$this->dormName '  has been accepted."
+         $mytime = Carbon::now('Asia/Manila')->format('d-m-Y H:i:s');
+           "Your request for approval of  '$this->dormName' has been rejected.",
+            $mytime
         ];
     }
 }

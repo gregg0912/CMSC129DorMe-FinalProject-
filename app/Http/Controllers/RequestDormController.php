@@ -46,28 +46,23 @@ class RequestDormController extends Controller
         $messages = [
             'dormName.required' => 'Establishment should have a name',
             'dormName.unique' => 'Establishment name is already taken',
-            'streetName.required' => 'Establishment should have a definitive street',
-            'barangayNname.required' => 'Establishment should have a definitive barangay', 
             'dormName.max' => 'Establishment name can only be :max characters long',
-            'location.required' => 'Establishment should have a location. Please choose whether it is in the dorm area or in banwa',
             'housingType.required' => 'Establishment should be given a housing type. Please choose among the provided categories',
-            'facilities.required' => 'Establishment should have at least one facility',
-            'maxNum.required' => 'Please input maximum number of residents',
-            'maxNum.min' => 'Maximum number of residents should at least be :min',
-            'typeOfPayment.required' => 'Please provide a type of payment',
-            'price.required' => 'Please provide a price for the room',
+            'housingType.in' => 'Housing Type should be among the following choices: boarding house, apartment, bedspace, or dormitory',
+            'location.required' => 'Establishment should have a location. Please choose whether it is in the dorm area or in banwa',
+            'location.in' => 'Location should only either be banwa or dorm area',
+            'streetName.required' => 'Establishment should have a definitive street',
+            'barangayNname.required' => 'Establishment should have a definitive barangay',
+            'facilities[].smin' => 'Establishment should have at least 1 selected facility',
         ];
 
         $validation = Validator::make($request->all(),[
-            'dormName' => 'required|unique:request_dorms|max:255',
+            'dormName' => 'required|unique:dorms|max:255',
             'streetName' => 'required',
             'barangayName' => 'required',
             'housingType' => 'required|in:boardinghouse,apartment,bedspace,dormitory',
             'location' => 'required|in:banwa,dormArea',
-            'facilities' => 'required',
-            'maxNum' => 'required',
-            'typeOfPayment' => 'required|in:by_person,by_room',
-            'price' => 'required'
+            'facilities[]' => 'min:1',
 
         ], $messages);
 
@@ -82,47 +77,55 @@ class RequestDormController extends Controller
         $requestDorm->user_id = $request->user_id;
         $requestDorm->housingType = $request->housingType;
         $requestDorm->location = $request->location;
-        $requestDorm->thumbnailPic = "/img-uploads/no_image.png";
+        $requestDorm->thumbnailPic = $request->thumbnailPic;
         $requestDorm->streetName = $request->streetName;
         $requestDorm->barangayName = $request->barangayName;
         $requestDorm->save();
 
         $requestId = $requestDorm->id;
 
-        for($i=0, $facilities = Input::get('facilities'); $i < count($facilities); $i++){
+
+        for($i=0, $facilities = $request->input('facilities.*'); $i < count($facilities); $i++){
             $requestFacility = new RequestFacility;
             $requestFacility->request_id = $requestId;
             $requestFacility->facility_name = $facilities[$i];
             $requestFacility->save();
+
         }
 
-        for ($i=0, $maxNum = Input::get('maxNum'), $typeOfPayment = Input::get('typeOfPayment'), $price = Input::get('price'); $i < count($maxNum) && $i < count($typeOfPayment) && $i < count($price); $i++) { 
+        for ($i=0, $maxNum = $request->input('maxNum.*'), $typeOfPayment = $request->input('typeOfPayment.*'), $price = $request->input('price.*'); $i < count($maxNum) && $i < count($typeOfPayment) && $i < count($price); $i++) { 
             $requestRoom = new RequestRoom;
             $requestRoom->request_id = $requestId;
             $requestRoom->maxNoOfResidents = $maxNum[$i];
             $requestRoom->typeOfPayment = $typeOfPayment[$i];
             $requestRoom->price = $price[$i];
             $requestRoom->save();
+
         }
 
-        if(!empty($request->addon)){
-            for($i = 0; $i < count($request->addon); $i++){
+        $addon = $request->input('addon.*');
+        if(!empty($addon)){
+            for($i = 0; $i < count($addon); $i++){
                 $requestAddon = new RequestAddon;
                 $requestAddon->request_id = $requestId;
-                $addon = explode("-", $request->addon[$i]);
-                $requestAddon->add_item = $addon[0];
-                $requestAddon->add_price = $addon[1];
+                $addonSep = explode("-", $addon[$i]);
+                $requestAddon->add_item = $addonSep[0];
+                $requestAddon->add_price = $addonSep[1];
                 $requestAddon->save();
+
             }
         }
 
-        if(!empty($request->add_item)){
-            for($i = 0; $i < count($request->add_item); $i++){
+        $add_item = $request->input('add_item.*');
+        $add_price = $request->input('add_price.*');
+        if(!empty($add_item)){
+            for($i = 0; $i < count($add_item); $i++){
                 $requestAddon = new RequestAddon;
                 $requestAddon->request_id = $requestId;
-                $requestAddon->add_item = $request->add_item[$i];
-                $requestAddon->add_price = $request->add_price[$i];
+                $requestAddon->add_item = $add_item[$i];
+                $requestAddon->add_price = $add_price[$i];
                 $requestAddon->save();
+
             }
         }
 

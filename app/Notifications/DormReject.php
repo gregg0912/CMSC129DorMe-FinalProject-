@@ -6,6 +6,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
+use Carbon\Carbon;
 
 class DormReject extends Notification
 {
@@ -55,8 +56,11 @@ class DormReject extends Notification
      */
     public function toArray($notifiable)
     {
+        $mytime = Carbon::now('Asia/Manila')->format('d-m-Y H:i:s');
         return [
-            "Your request for approval of  '$this->dormName '  has been rejected."
+            "Your request for approval of  '$this->dormName' has been rejected.",
+            $mytime
+
         ];
     }
 }
