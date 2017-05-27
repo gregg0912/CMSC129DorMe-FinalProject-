@@ -79,6 +79,9 @@ class DormController extends Controller
     public function voteIndex()
     {
         $dorms = Dorm::orderBy('dormName', 'asc')->get();
+        if(Cookie::has('voted')){
+            $dorms = Dorm::orderBy('votes', 'desc')->get();
+        }
         return view('dorm.vote', compact('dorms'));
     }
 
@@ -90,7 +93,7 @@ class DormController extends Controller
         if(!Cookie::has('voted'))
         {
             Cookie::queue('voted', 'true', 1440);
-            $dorms = Dorm::orderBy('dormName', 'asc')->get()->toArray();
+            $dorms = Dorm::orderBy('votes', 'desc')->get()->toArray();
             return $dorms;
         }
         return null;

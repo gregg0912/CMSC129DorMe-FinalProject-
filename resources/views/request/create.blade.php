@@ -10,6 +10,7 @@
 				<fieldset>
 					<legend>Establishment information</legend>
 					<input type="hidden" name="user_id" value="{{ Auth::user()->id }}" />
+					<input type="hidden" name="thumbnailPic" value="/img-uploads/no_image.png" />
 					<div class="input-group {{ $errors->has('dormName') ? ' has-error': '' }}">
 						<input type="text" name="dormName" placeholder="Establishment Name" value="{{ old('dormName') }}" />
 						@if ($errors->has('dormName'))
