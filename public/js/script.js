@@ -1,5 +1,6 @@
 $(document).ready(function(){
 	$(document).on("submit", "#voteForm", vote);
+	$(document).on("submit", "#uploadMulPics", mulpics);
 	
 });
 
@@ -22,5 +23,21 @@ function vote(e){
 	}else{
 		$("#errorModal").modal();
 		return false;
+	}
+}
+
+function mulpics(e) {
+	e.preventDefault();
+	var form =  new FormData(form);
+
+	request.open('POST', '/upload/{{$dorm->id}}');
+	request.addEventListener('load', transferComplete);
+	request.send(form); 
+}
+
+function transferComplete(data) {
+	response = JSON.parse(data.currentTarget.response);
+	if (response.success) {
+		document.getElementById("msg").innerHTML = "Successfullly uploaded pictures";
 	}
 }

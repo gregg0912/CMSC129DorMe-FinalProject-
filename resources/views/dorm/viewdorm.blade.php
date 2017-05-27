@@ -65,12 +65,27 @@
 					<p>No additional payments!</p>
 				@endforelse
 			</div>
+
+			<button class="btn btn-success btn-lg" data-toggle="modal" data-target="#uploadPics">Upload Pictures</button>
 			
 			<div class="modal fade" id="editThumbnail" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
 				<div class="modal-dialog">
 					<div class="modal-content">
 						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+							<button type="button" class="c<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        </div>
+        <div class="modal-body">
+          <h4>Are you sure you want to delete this lesson?</h4>
+          
+            <form action="/lessons/{{$lesson->id}}" method="post">
+                {{ csrf_field() }}
+                {{method_field('DELETE')}}
+
+                <input type="submit" class="btn btn-danger" value="Delete"/>
+                <input type="button" class="btn btn-default" value="No" data-dismiss="modal">lose" data-dismiss="modal" aria-hidden="true">&times;</button>
 							<h3 class="modal-title" id="modalLabel">Edit Thumbnail</h3>
 						</div>
 						<div class="modal-body">
@@ -82,9 +97,27 @@
 							</form>
 						</div>
 					</div>
-					
 				</div>
-				
+			</div>
+
+			<div class="modal fade" id="uploadPics" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+							<h3 class="modal-title" id="modalLabel">Upload Pictures</h3>
+						</div>
+						<div class="modal-body">
+							<form action="/upload/{{$dorm->id}}" method="POST" enctype="multipart/form-data">
+								{{ csrf_field() }}
+								<input type="hidden" name="dorm_id" value="{{ $dorm->id }}">
+								<input type="file" name="images[]" multiple />
+								<h4 id="msg"></h4>
+								<button type="submit" id="uploadMulPics" class="btn btn-primary"> Submit </button>
+							</form>
+						</div>
+					</div>
+				</div>
 			</div>
 
 
