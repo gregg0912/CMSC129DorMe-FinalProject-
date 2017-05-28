@@ -159,9 +159,13 @@
 								<span class="glyphicon glyphicon-rub"></span>	
 							</div>
 							<input type="number" class="form-control" name="add_price[]" min="100" />
+							<div class="input-group-addon">
+								<button type="button" class=""></button>
+							</div>
 						</div>
 					</div>
 					@endforelse
+
 				</fieldset>
 			</form>
 		</div>

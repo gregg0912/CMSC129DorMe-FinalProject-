@@ -8,14 +8,14 @@
 @section('content')
 <div class="body-content">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-9 col-sm-9">
             
                
                     <!-- <input type="submit"  name="approve" value="Approve Request" id="approve" class="btn btn-default"> -->
 
                     @if(($user->notifications->count()!=0))
                     
-                    <table class="table">
+                    <table class="table well ">
                     	<thead>
                     	<tr>
                     	<th>Message</th>
