@@ -15,6 +15,9 @@
     <link href="{{ asset('css/home.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 
+  <!--  -->
+
+
     <!-- Scripts -->
     <script>
         window.Laravel = {!! json_encode([
@@ -40,8 +43,8 @@
                     <li data-target="#carousel" data-slide-to="2"></li>
                 </ol>
                 <div class="carousel-inner" role="listbox">
-                    <div class="item active"><img class="carousel-image" src="../img-uploads/c1.png" alt="image not found" /></div>
-                    <div class="item"><img class="carousel-image" src="../img-uploads/c1.png" alt="image not found" /></div>
+                    <div class="item active"><img class="carousel-image" src="../img-uploads/bg/2.png" alt="image not found" /></div>
+                    <div class="item"><img class="carousel-image" src="../img-uploads/bg/4.jpg" alt="image not found" /></div>
                     <div class="item"><img class="carousel-image" src="../img-uploads/c1.png" alt="image not found" /></div>
                 </div>
 
