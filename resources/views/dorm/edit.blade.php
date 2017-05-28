@@ -8,10 +8,12 @@
 		<div class="col-md-6 col-md-offset-3 col-sm-12">
 			<form class="form-horizontal" action="/dorm" method="POST" role="form">
 				{{ csrf_field() }}
+				{{ method_field('PUT') }}
 				<fieldset>
 					<legend>Establishment information</legend>
 					<input type="hidden" name="user_id" value="{{ Auth::user()->id }}" />
 					<input type="hidden" name="thumbnailPic" value="{{ $dorm->thumbnailPic }}" />
+					<input type="hidden" name="votes" value="{{ $dorm->votes }}" />
 					<div class="form-group {{ $errors->has('dormName') ? ' has-error': '' }}">
 						<input type="text" class="form-control" name="dormName" placeholder="Establishment name" value="{{ old('dormName', $dorm->dormName) }}" value="{{ old('dormName') }}" />
 						@if ($errors->has('dormName'))
@@ -245,6 +247,7 @@
 					@endforelse
 					<button type="button" class="btn btn-success pull-right" id="edit-addAddon"><span class="glyphicon glyphicon-plus-sign"></span> Add</button>
 				</fieldset>
+				<input type="submit" name="submit" class="btn btn-primary" value="Submit" />
 			</form>
 		</div>
 	</div>
