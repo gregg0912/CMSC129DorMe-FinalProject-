@@ -69,7 +69,7 @@ function addRoom(e){
 				'<label>Price: <input type="number" name="price[]" min="500" value="500" class="form-control" /></label>'+
 			'</div>'+
 			'<div class="col-xs-3">'+
-				'<span style="visibility:hidden;">Remove</span>'+
+				'<span style="visibility:hidden; display:block;">Remove</span>'+
 				'<button type="button" class="btn btn-danger" id="removeRoom">'+
 					'<span class="glyphicon glyphicon-minus-sign"></span> Remove'+
 				'</button>'+
@@ -110,7 +110,7 @@ function addFacility(e){
 				'</button>'+
 			'</span>'+
 		'</div>');
-	newFacilityTextbox.appendTo("#FacilitiesGroup");
+	$("#add-facility").before(newFacilityTextbox);
 
 	facilityCount++;
 }

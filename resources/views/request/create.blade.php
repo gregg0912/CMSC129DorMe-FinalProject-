@@ -3,7 +3,7 @@
 <link href="{{ asset('../css/style.css') }}" rel="stylesheet">
 <style type="text/css">
 	#reqform{
-
+		display: block;
 	}
 </style>
 
@@ -14,8 +14,6 @@
 		<div class="container">
 
 			<form action="/request" method="POST" role="form">
-
-
 				{{ csrf_field() }}
 				<fieldset>
 					<legend>Establishment information</legend>
@@ -111,7 +109,7 @@
 					<legend>Facilities</legend>
 					<div class="input-group {{ $errors->has('facilities[]') ? ' has-error': '' }}" id="FacilitiesGroup" name="FacilitiesGroup">
 						@forelse(App\Facility::facilityList() as $facility)
-							<div class="radio">
+							<div class="radio col-xs-6">
 								<label><input type="checkbox" name="facilities[]" value="{{ $facility->facility_name }}" 
 									@if(!is_null(old('facilities')))
 										@if(in_array($facility->facility_name , old('facilities')))
@@ -161,7 +159,7 @@
 					<legend>Add-On</legend>
 					<div id="addonDiv1" class="addonDiv">
 						@forelse (App\Addon::addonList() as $addon)
-							<div class="radio">
+							<div class="radio col-xs-6 addonCheckbox">
 								<label><input type="checkbox" name="addon[]" value="{{ $addon->add_item }}-{{ $addon->add_price }}"
 									@if(!is_null(old('facilities')))
 										@if(in_array($addon, old('addon[]')))
