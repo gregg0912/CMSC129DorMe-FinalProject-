@@ -45,6 +45,8 @@ Route::resource('/vote', 'DormController');
 
 Route::resource('/dorm', 'DormController');
 
+Route::get('/dorm/{dorm_id}', 'DormController@update');
+
 Route::get('/view', 'DormController@index');
 
 Route::get('/vote', 'DormController@voteIndex');
