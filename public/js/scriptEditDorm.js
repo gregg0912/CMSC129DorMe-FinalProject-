@@ -35,26 +35,83 @@ function addFacilityBox(e){
 
 function addRoomBox(e){
 	e.preventDefault();
+	if(editRoomCount > 10){
+		$("#roomError").modal();
+		return false;
+	}
+	var newRoomBox = $(document.createElement('div')).attr("id", 'roomDiv'+(editRoomCount+1));
+	newRoomBox.addClass("form-group");
+	newRoomBox.after().html(
+		'<div class="input-group">'+
+			'<div class="col-xs-3">'+
+				'<label>Max residents: <input type="number" class="form-control" name="maxNum[]" min="1" value="1"></label>'+
+			'</div>'+
+			'<div class="col-xs-3">'+
+				'<label>Type of Payment:'+ 
+					'<select name="typeOfPayment[]" class="form-control">'+
+						'<option value="by_room">Per room</option>'+
+						'<option value="by_person">Per person</option>'+
+					'</select>'+
+				'</label>'+
+			'</div>'+
+			'<div class="col-xs-3">'+
+				'<label>Price: <input type="number" class="form-control" name="price[]" min="500" value="500" /></label>'+
+			'</div>'+
+			'<div class="col-xs-3">'+
+				'<button type="button" class="btn btn-danger" id="edit-removeRoom"><span class="glyphicon glyphicon-minus-sign"></span> Remove</button>'+
+			'</div>'+
+		'</div>'
+	);
+	$("#edit-addRoom").before(newRoomBox);
+	editRoomCount = $('input[name="maxNum[]"]').length;
+}
+
+function addAddonBox(e){
+	e.preventDefault();
 	if(editAddonCount > 10){
 		$("#addonError").modal();
 		return false;
 	}
-	var newRoomBox = $(document.createElement('div'))
-}
-
-function addAddonBox(e){
-	alert('clicked add addon');
-	console.log(editAddonCount);
+	var newAddonBox = $(document.createElement('div')).attr("id", 'addonDiv'+(editAddonCount+1));
+	newAddonBox.addClass("form-group");
+	newAddonBox.after().html(
+		'<div class="input-group">'+
+			'<input type="text" class="form-control" name="add_item[]" placeholder="Addon name" />'+
+			'<div class="input-group-addon">'+
+				'<span class="glyphicon glyphicon-rub"></span>'+
+			'</div>'+
+			'<input type="number" class="form-control" name="add_price[]" min="100" />'+
+			'<div class="input-group-btn">'+
+				'<button type="button" class="btn btn-danger" id="edit-removeAddon"><span class="glyphicon glyphicon-minus-sign"></span> Remove</button>'+
+			'</div>'+
+		'</div>'
+	);
+	$("#edit-addAddon").before(newAddonBox);
+	editAddonCount = $('input[name="add_item[]"]').length;
 }
 
 function removeFacilityBox(e){
-	alert('clicked remove facility');
+	e.preventDefault();
+	if(editFacilityCount == 1){
+		$("#facilityRemoveError").modal();
+		return false;
+	}
+	$(this).closest('[id^="facilityTextbox"]').remove();
+	editFacilityCount = $('input[name="facilities[]"]').length;
 }
 
 function removeAddonBox(e){
-	alert('clicked remove addon');
+	e.preventDefault();
+	$(this).closest('[id^="addonDiv"]').remove();
+	editAddonCount = $('input[name="add_item[]"]').length;
 }
 
 function removeRoomBox(e){
-	alert('clicked remove room');
+	e.preventDefault();
+	if(editRoomCount == 1){
+		$("#roomRemoveError").modal();
+		return false;
+	}
+	$(this).closest('[id^="roomDiv"]').remove();
+	editRoomCount = $('input[name="maxNum[]"]').length;
 }

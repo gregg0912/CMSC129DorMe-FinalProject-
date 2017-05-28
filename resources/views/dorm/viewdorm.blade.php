@@ -110,7 +110,10 @@
 			@forelse($dorm->comments->sortByDesc('id') as $comment)
 				<div class="well well-cmt">
 
-					<a href="/dorm/viewdorm/comment/{{$comment->id}}" class="btn btn-default">Delete</a>
+					@if(Auth::user()!=null AND Auth::user()==1)
+							<a href="/dorm/viewdorm/comment/{{$comment->id}}" class="btn btn-default">Delete</a>
+					@endif
+
 					<p>{{ $comment->content }}</p>
 					<span id="cmt-time">{{$comment->created_at}} </span> 
 				</div>

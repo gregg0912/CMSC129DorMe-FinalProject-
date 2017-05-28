@@ -3,12 +3,16 @@
 <link href="{{ asset('../css/style.css') }}" rel="stylesheet">
 <link href="{{ asset('../css/addrequest.css') }}" rel="stylesheet">
 
+
 @section('content')
 
 <div class="body-content">
 	<div id="reqform">
 		<div class="container">
+
 			<form class="form-vertical" action="/request" method="POST" role="form">
+
+
 				{{ csrf_field() }}
 				<fieldset>
 					<legend>Establishment information</legend>

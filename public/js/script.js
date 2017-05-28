@@ -16,10 +16,6 @@ $(document).ready(function(){
 
 function removeAddon(e){
 	e.preventDefault();
-	if(addonCount == 1){
-		alert("No more textboxes to remove!");
-		return false;
-	}
 	addonCount--;
 	$(this).closest('div').remove();
 }

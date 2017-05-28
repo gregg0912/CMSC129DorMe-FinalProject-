@@ -137,10 +137,13 @@ class DormController extends Controller
         //$comment = new Comment;
         
          //  dd($comment_id->dorm_id);
+        if(Auth::user() != null && Auth::user()->role==1){
            Comment::find($comment_id->id)->delete();
-            
-            
             return redirect('/dorm/viewdorm/'.$comment_id->dorm_id);
+        }
+        else{
+            return view('user.errorPage');
+        }
     }
 
     /**
@@ -176,7 +179,80 @@ class DormController extends Controller
      */
     public function update(Request $request, $dorm)
     {
+        $messages = [
+            'dormName.required' => 'Establishment should have a name',
+            'dormName.unique' => 'Establishment name is already taken',
+            'dormName.max' => 'Establishment name can only be :max characters long',
+            'housingType.required' => 'Establishment should be given a housing type. Please choose among the provided categories',
+            'housingType.in' => 'Housing Type should be among the following choices: boarding house, apartment, bedspace, or dormitory',
+            'location.required' => 'Establishment should have a location. Please choose whether it is in the dorm area or in banwa',
+            'location.in' => 'Location should only either be banwa or dorm area',
+            'streetName.required' => 'Establishment should have a definitive street',
+            'barangayNname.required' => 'Establishment should have a definitive barangay',
+        ];
 
+        $validation = Validator::make($request->all(),[
+            'dormName' => 'required|unique:dorms|max:255',
+            'streetName' => 'required',
+            'barangayName' => 'required',
+            'housingType' => 'required|in:boardinghouse,apartment,bedspace,dormitory',
+            'location' => 'required|in:banwa,dormArea',
+
+        ], $messages);
+
+        if($validation->fails()){
+            return redirect('/request/create')
+                    ->withErrors($validation)
+                    ->withInput();
+        }
+        $dorm_id = $dorm;
+        $dorm = Dorm::findOrFail($dorm_id);
+        $dorm->user_id = $request->user_id;
+        $dorm->dormName = $request->dormName;
+        $dorm->thumbnailPic = $request->thumbnailPic;
+        $dorm->housingType = $request->housingType;
+        $dorm->location = $request->location;
+        $dorm->votes = $request->votes;
+        $dorm->save();
+
+        $dorm_facilities = Facility::where('dorm_id', $dorm_id)->delete();
+
+        for($i = 0, $facilities = $request->input('facilities.*'); $i < count($facilities); $i++){
+            $facility = new Facility;
+            $facility->dorm_id = $dorm_id;
+            $facility->facility_name = $facilities[$i];
+            $facility->save();
+        }
+
+        $dorm_addon = Addon::where('dorm_id', $dorm_id)->delete();
+
+        $add_item = $request->input('add_item.*');
+        $add_price = $request->input('add_price.*');
+        if(!empty($add_item)){
+            for($i = 0; $i < count($add_item); $i++){
+                $addon = new Addon;
+                $addon->dorm_id = $dorm_id;
+                $addon->add_item = $add_item[$i];
+                $addon->add_price = $add_item[$i];
+                $addon->save();
+            }
+        }
+
+        $dorm_room = Room::where('dorm_id', $dorm_id)->delete();
+
+        $maxNum = $request->input('maxNum.*');
+        $typeOfPayment = $request->input('typeOfPayment.*');
+        $price = $request->input('price.*');
+        for($i = 0; $i < count($maxNum) && $i < count($typeOfPayment) && $i < count($price); $i++ ){
+            $room = new Room;
+            $room->dorm_id = $dorm_id;
+            $room->maxNoOfResidents = $maxNum[$i];
+            $room->typeOfPayment = $maxNum[$i];
+            $room->price = $price[$i];
+            $room->save();
+        }
+
+        return redirect('/dorm/viewdorm/'+$dorm_id);
     }
 
     /**
