@@ -26,7 +26,7 @@
                 @forelse(App\Dorm::orderBy('votes', 'desc')->take(5)->get() as $dorm)
                         <a href="/dorm/viewdorm/{{$dorm->id}}"><img src="{{ $dorm->thumbnailPic }}" alt="IMAGE NOT FOUND" /></a>
                         <div class="caption">
-                            <label><span>{{ $dorm->dormName }}</span></label>
+                            <label><a href="/dorm/viewdorm/{{ $dorm->id }}">{{ $dorm->dormName }}</a></label>
                             <p>{{ $dorm->user->name }}</p>
                             <p>{{ $dorm->streetName }}, {{ $dorm->barangayName }}</p>
                             <p>{{ $dorm->getHousingType() }}</p>

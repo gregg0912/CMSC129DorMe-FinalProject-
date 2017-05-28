@@ -161,9 +161,10 @@ class DormController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($dorm)
     {
-        //
+        $dorm = Dorm::findOrFail($dorm);
+        return view('dorm.edit', compact('dorm'));
     }
 
     /**
@@ -173,9 +174,9 @@ class DormController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $dorm)
     {
-        //
+
     }
 
     /**

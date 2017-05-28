@@ -8,13 +8,16 @@
 @section('content')
 
 <div class="body-content">
-	<h2>{{$dorm->dormName}}</h2>
+	<h2>{{$dorm->dormName}}
+		@if(Auth::user() AND $dorm->user_id == Auth::user()->id)
+			<a href="/dorm/{{ $dorm->id }}/edit" class="small"><span class="glyphicon glyphicon-edit">Edit Establishment's Information</span></a>
+		@endif
+	</h2>
 		<div id="info">
-           	@if(Auth::user())
-	           	@if($dorm->user_id == Auth::user()->id)
-					<a  data-toggle="modal" data-target="#editThumbnail"><span class="glyphicon glyphicon-edit"></span> Edit</a>
-				@endif
-           	@endif		
+
+           	@if(Auth::user() AND $dorm->user_id == Auth::user()->id)
+				<a  data-toggle="modal" data-target="#editThumbnail"><span class="glyphicon glyphicon-edit"></span> Edit Thumbnail</a>
+           	@endif	
 			<img src="{{$dorm->thumbnailPic}}" alt="Image Not Found" />
 		</div>
 
@@ -83,19 +86,25 @@
 					<p class="nocomment">No pictures available</p>
 				@endforelse
 
-				<div id="btn-upload">
-					<button class="btn btn-success" data-toggle="modal" data-target="#uploadPics">Upload</button>
-				</div>
+				@if(Auth::user())
+		           	@if($dorm->user_id == Auth::user()->id)
+		           		<div id="btn-upload">
+							<button class="btn btn-success" data-toggle="modal" data-target="#uploadPics">Upload</button>
+						</div>
+					@endif
+	           	@endif
 		</div>
 		
-		<div class="well">
+		@if(Auth::guest())
+			<div class="well">
 				<form action="{{ action('DormController@store') }}" method="post">
 					{{ csrf_field() }}
 					<input type="hidden" name="comment_id" value="{{ $dorm->id }}" />
 					<textarea name="content" class="form-control"></textarea>
 					<br /><input id="btn-cmt" type="submit" class="btn btn-default" value="Comment" />
 				</form>
-		</div>
+			</div>
+		@endif
 		
 		<div class="well">	
 			

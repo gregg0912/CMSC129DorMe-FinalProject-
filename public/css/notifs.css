@@ -3,16 +3,13 @@
 /***********************************************************************/
 
 .body-content {
-
 	padding: 15px;
 }
 
-.well {
-	margin: 10px;
-}
 
-.well .table {
+.well .table {	
 	font-size: 0.9em;
+	margin: 10px;
 }
 
 .well h4 {
@@ -20,11 +17,29 @@
 	padding: 10% 0;
 }
 
+.table>caption+thead>tr:first-child>td,
+.table>caption+thead>tr:first-child>th,
+.table>colgroup+thead>tr:first-child>td,
+.table>colgroup+thead>tr:first-child>th,
+.table>thead:first-child>tr:first-child>td,
+.table>thead:first-child>tr:first-child>th {
+	text-align: center;
+}
+
 @media screen and (min-width: 768px) {
 	
+	.body-content {
+		padding-bottom: 100px;
+	}
+
 	.well {
 		margin: 8% 20%;
-		top: 300px;
+		top: 400px;
+	}
+
+	.well .table {	
+		margin: 10px;
+		margin-bottom: 60px;
 	}
 }
 
