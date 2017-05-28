@@ -14,7 +14,7 @@
 
 			<div id="search-input">
                     <div class="input-group">
-                            <input type="text" class="search-query form-control" placeholder=" Search..." />
+                            <input type="text" name="keyword" class="search-query form-control" placeholder=" Search..." />
                             <span class="input-group-btn">
                                 <button class="btn btn-default" type="button">
                             <span class=" glyphicon glyphicon-search"></span>
