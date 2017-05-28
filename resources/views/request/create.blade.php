@@ -110,12 +110,7 @@
 					<div class="input-group {{ $errors->has('facilities[]') ? ' has-error': '' }}" id="FacilitiesGroup" name="FacilitiesGroup">
 						@forelse(App\Facility::facilityList() as $facility)
 							<div class="radio col-xs-6">
-								<label><input type="checkbox" name="facilities[]" value="{{ $facility->facility_name }}" 
-									@if(!is_null(old('facilities')))
-										@if(in_array($facility->facility_name , old('facilities')))
-											checked 
-										@endif
-									@endif />{{ $facility->facility_name }}
+								<label><input type="checkbox" name="facilities[]" value="{{ $facility->facility_name }}" />{{ $facility->facility_name }}
 								</label>
 							</div>
 						@empty
@@ -160,12 +155,7 @@
 					<div id="addonDiv1" class="addonDiv clearfix">
 						@forelse (App\Addon::addonList() as $addon)
 							<div class="radio col-xs-6 addonCheckbox">
-								<label><input type="checkbox" name="addon[]" value="{{ $addon->add_item }}-{{ $addon->add_price }}"
-									@if(!is_null(old('facilities')))
-										@if(in_array($addon, old('addon[]')))
-											checked="checked"
-										@endif
-									@endif />{{ $addon->add_item }} - {{ $addon->add_price }}
+								<label><input type="checkbox" name="addon[]" value="{{ $addon->add_item }}-{{ $addon->add_price }}" />{{ $addon->add_item }} - {{ $addon->add_price }}
 								</label>
 							</div>
 						@empty
