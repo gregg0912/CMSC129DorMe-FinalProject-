@@ -168,6 +168,10 @@ class DormController extends Controller
     public function edit($dorm)
     {
         $dorm = Dorm::findOrFail($dorm);
+        if($dorm->user_id != Auth::user()->id){
+            return view('user.errorPage');
+        }
+
         return view('dorm.edit', compact('dorm'));
     }
 
@@ -180,6 +184,8 @@ class DormController extends Controller
      */
     public function update(Request $request, $dorm)
     {
+        $dorm_id = $dorm;
+        $dorm = Dorm::findOrFail($dorm_id);
         $messages = [
             'dormName.required' => 'Establishment should have a name',
             'dormName.unique' => 'Establishment name is already taken',
@@ -206,8 +212,6 @@ class DormController extends Controller
                     ->withErrors($validation)
                     ->withInput();
         }
-        $dorm_id = $dorm;
-        $dorm = Dorm::findOrFail($dorm_id);
         $dorm->user_id = $request->user_id;
         $dorm->dormName = $request->dormName;
         $dorm->thumbnailPic = $request->thumbnailPic;
@@ -234,7 +238,7 @@ class DormController extends Controller
                 $addon = new Addon;
                 $addon->dorm_id = $dorm_id;
                 $addon->add_item = $add_item[$i];
-                $addon->add_price = $add_item[$i];
+                $addon->add_price = $add_price[$i];
                 $addon->save();
             }
         }
