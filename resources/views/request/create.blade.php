@@ -12,7 +12,7 @@
 					<input type="hidden" name="user_id" value="{{ Auth::user()->id }}" />
 					<input type="hidden" name="thumbnailPic" value="/img-uploads/no_image.png" />
 					<div class="input-group {{ $errors->has('dormName') ? ' has-error': '' }}">
-						<input type="text" name="dormName" placeholder="Establishment Name" value="{{ old('dormName') }}" />
+						<input type="text" class="form-control" name="dormName" placeholder="Establishment Name" value="{{ old('dormName') }}" />
 						@if ($errors->has('dormName'))
 							<span class="help-block">
 								<strong>{{ $errors->first('dormName') }}</strong>
@@ -21,7 +21,7 @@
 					</div>
 
 					<div class="input-group {{ $errors->has('streetName') ? ' has-error': '' }}">
-						<input type="text" name="streetName" placeholder="Street Name" value="{{ old('streetName') }}" />
+						<input type="text" class="form-control" name="streetName" placeholder="Street Name" value="{{ old('streetName') }}" />
 						@if ($errors->has('streetName'))
 							<span class="help-block">
 								<strong>{{ $errors->first('streetName') }}</strong>
@@ -30,7 +30,7 @@
 					</div>
 
 					<div class="input-group {{ $errors->has('barangayName') ? ' has-error': '' }}">
-						<input type="text" name="barangayName" placeholder="Barangay Name" value="{{ old('barangayName') }}" />
+						<input type="text" class="form-control" name="barangayName" placeholder="Barangay Name" value="{{ old('barangayName') }}" />
 						@if ($errors->has('barangayName'))
 							<span class="help-block">
 								<strong>{{ $errors->first('barangayName') }}</strong>
@@ -41,8 +41,8 @@
 				<fieldset>
 					<legend>Establishment Location</legend>
 					<div class="input-group {{ $errors->has('location') ? ' has-error': '' }}">
-						<label><input type="radio" name="location" value="dormArea" /> Dorm Area</label>
-						<label><input type="radio" name="location" value="banwa"> Banwa</label>
+						<label><input type="radio" name="location" value="dormArea" @if(!is_null(old('location'))) @if('dormArea' == old('location')) checked @endif @endif /> Dorm Area</label>
+						<label><input type="radio" name="location" value="banwa" @if(!is_null(old('location'))) @if('banwa' == old('location')) checked @endif @endif /> Banwa</label>
 						@if ($errors->has('location'))
 							<span class="help-block">
 								<strong>{{ $errors->first('location') }}</strong>
@@ -53,10 +53,10 @@
 				<fieldset>
 					<legend>Housing Type</legend>
 					<div class="input-group {{ $errors->has('housingType') ? ' has-error': '' }}">
-						<label><input type="radio" name="housingType" value="apartment" /> Apartment</label>
-						<label><input type="radio" name="housingType" value="boardinghouse" /> Boarding House</label>
-						<label><input type="radio" name="housingType" value="dormitory" /> Dormitory</label>
-						<label><input type="radio" name="housingType" value="bedspace" /> Bedspace</label>
+						<label><input type="radio" name="housingType" value="apartment" @if(!is_null(old('housingType'))) @if('apartment' == old('housingType')) checked @endif @endif /> Apartment</label>
+						<label><input type="radio" name="housingType" value="boardinghouse" @if(!is_null(old('housingType'))) @if('boardinghouse' == old('housingType')) checked @endif @endif /> Boarding House</label>
+						<label><input type="radio" name="housingType" value="dormitory" @if(!is_null(old('housingType'))) @if('dormitory' == old('housingType')) checked @endif @endif /> Dormitory</label>
+						<label><input type="radio" name="housingType" value="bedspace" @if(!is_null(old('housingType'))) @if('bedspace' == old('housingType')) checked @endif @endif /> Bedspace</label>
 						@if ($errors->has('housingType'))
 							<span class="help-block">
 								<strong>{{ $errors->first('housingType') }}</strong>
@@ -68,7 +68,7 @@
 					<legend>Facilities</legend>
 					<div class="input-group {{ $errors->has('facilities[]') ? ' has-error': '' }}" id="FacilitiesGroup" name="FacilitiesGroup">
 						@forelse(App\Facility::facilityList() as $facility)
-							<label><input type="checkbox" name="facilities[]" value="{{ $facility->facility_name }}" >{{ $facility->facility_name }}</label>
+							<label><input type="checkbox" name="facilities[]" value="{{ $facility->facility_name }}" @if(!is_null(old('facilities'))) @if(in_array($facility->facility_name , old('facilities'))) checked="checked" @endif @endif />{{ $facility->facility_name }}</label>
 						@empty
 							<label>No facilities were found in the database!</label>
 						@endforelse
@@ -124,7 +124,7 @@
 					<legend>Add-On</legend>
 					<div id="addonDiv1" class="addonDiv">
 						@forelse (App\Addon::addonList() as $addon)
-							<label><input type="checkbox" name="addon[]" value="{{ $addon->add_item }}-{{ $addon->add_price }}">{{ $addon->add_item }} - {{ $addon->add_price }}</label>
+							<label><input type="checkbox" name="addon[]" value="{{ $addon->add_item }}-{{ $addon->add_price }}"@if(!is_null(old('facilities'))) @if(in_array($addon, old('addon[]'))) checked="checked" @endif @endif />{{ $addon->add_item }} - {{ $addon->add_price }}</label>
 						@empty
 							<label>No addons were found in the database!</label>
 						@endforelse
