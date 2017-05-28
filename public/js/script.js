@@ -17,7 +17,7 @@ $(document).ready(function(){
 function removeAddon(e){
 	e.preventDefault();
 	addonCount--;
-	$(this).closest('div').remove();
+	$(this).closest('[id^="addonDiv"]').remove();
 }
 
 function addAddon(e){
@@ -27,11 +27,18 @@ function addAddon(e){
 		return false;
 	}
 	var newAddonDiv = $(document.createElement('div')).attr("id", 'addonDiv'+addonCount);
-	newAddonDiv.after().html('<input type="text" class="form-control" name="add_item[]" placeholder="Addon Name"/>'+
-		' - <input name="add_price[]" type="number" min = "100" value="100"/>'+
-		'<button type="button" class="btn btn-danger" id="removeAddon">'+
-			'<span class="glyphicon glyphicon-minus-sign"></span> Remove'+
-		'</button>');
+	newAddonDiv.after().html(
+		'<div class="input-group">'+
+			'<input type="text" name="add_item[]" class="form-control" placeholder="Addon name" />'+
+			'<div class="input-group-addon">'+
+				'<span class="glyphicon glyphicon-rub"></span>'+
+			'</div>'+
+			'<input type="number" name="add_price[]" class="form-control" min="100" value="100" />'+
+			'<div class="input-group-btn">'+
+				'<button type="button" class="btn btn-danger" id="removeAddon"><span class="glyphicon glyphicon-minus-sign"></span> Remove</button>'+
+			'</div>'+
+		'</div>'
+		);
 	// newAddonDiv.appendTo("#addonDiv1");
 	$("#add-addon").before(newAddonDiv);
 	addonCount++;
@@ -44,24 +51,30 @@ function addRoom(e){
 		return false;
 	}
 	var newRoomDiv = $(document.createElement('div')).attr("id", 'roomDiv'+roomCount);
-	newRoomDiv.after().html('<div class="input-gorup {{ $errors->has(\'maxNum[]\') ? \'has-error\': \'\' }}">'+
-							'<label>Maximum number of residents: <input type="number" class="form-control" name="maxNum[]" min="1" value="1" /></label>'+
-						'</div>'+
-						'<div class="input-group {{ $errors->has(\'typeOfPayment[]\') ? \'has-error\': \'\' }}">'+
-							'<label>'+
-								'Type of Payment:'+
-								'<select name="typeOfPayment[]">'+
-									'<option value="by_room">Per Room</option>'+
-									'<option value="by_person">Per person</option>'+
-								'</select>'+
-							'</label>'+
-						'</div>'+
-						'<div class="input-group {{ $errors->has(\'price[]\') ? \'has-error\': \'\' }}">'+
-							'<label>Price: <input type="number" class="form-control" name="price[]" min="500" value="500" /></label>'+
-						'</div>'+
-						'<button type="button" class="btn btn-danger" id="removeRoom">'+
-							'<span class="glyphicon glyphicon-minus-sign"></span> Remove'+
-						'</button>');
+	newRoomDiv.after().html(
+		'<div class="input-group">'+
+			'<div class="col-xs-3">'+
+				'<label>Max residents: <input type="number" class="form-control" name="maxNum[]" min="1" value="1" /></label>'+
+			'</div>'+
+			'<div class="col-xs-3">'+
+				'<label>Type of Payment:'+
+					'<select name="typeOfPayment[]" class="form-control">'+
+						'<option value="by_room">Per Room</option>'+
+						'<option value="by_person">Per person</option>'+
+					'</select>'+
+				'</label>'+
+			'</div>'+
+			'<div class="col-xs-3">'+
+				'<label>Price: <input type="number" name="price[]" min="500" value="500" class="form-control" /></label>'+
+			'</div>'+
+			'<div class="col-xs-3">'+
+				'<span style="visibility:hidden;">Remove</span>'+
+				'<button type="button" class="btn btn-danger" id="removeRoom">'+
+					'<span class="glyphicon glyphicon-minus-sign"></span> Remove'+
+				'</button>'+
+			'</div>'+
+		'</div>'
+	);
 	// newRoomDiv.appendTo("#RoomsGroup");
 	$("#add-room").before(newRoomDiv);
 
@@ -76,7 +89,7 @@ function removeRoom(e){
 	}
 
 	roomCount--;
-	$(this).closest('div').remove();
+	$(this).closest('[id^="roomDiv"]').remove();
 }
 
 function addFacility(e){
@@ -86,10 +99,16 @@ function addFacility(e){
 		return false;
 	}
 	var newFacilityTextbox = $(document.createElement('div')).attr("id", 'facilityTextbox' + facilityCount);
-	newFacilityTextbox.after().html('<input type="text" class="form-control" name="facilities[]" id="facility'+facilityCount+'" placeholder="Facility Name" />'+
-		'<button type="button" class="btn btn-danger" id="removeFacility">'+
-			'<span class="glyphicon glyphicon-minus-sign"></span> Remove'+
-		'</button>');
+	newFacilityTextbox.addClass("form-group");
+	newFacilityTextbox.after().html(
+		'<div class="input-group">'+
+			'<input type="text" name="facilities[]" class="form-control" placeholder="Facility Name" />'+
+			'<span class="input-group-btn">'+
+				'<button type="button" class="btn btn-danger" id="removeFacility" >'+
+					'<span class="glyphicon glyphicon-minus-sign"></span> Remove'+
+				'</button>'+
+			'</span>'+
+		'</div>');
 	newFacilityTextbox.appendTo("#FacilitiesGroup");
 
 	facilityCount++;
@@ -102,7 +121,7 @@ function removeFacility(e){
 		return false;
 	}
 	facilityCount--;
-	$(this).closest('div').remove();
+	$(this).closest('[id^="facilityTextbox"]').remove();
 }
 
 function vote(e){
