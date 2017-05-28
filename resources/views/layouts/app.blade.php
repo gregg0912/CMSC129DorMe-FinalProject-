@@ -15,6 +15,9 @@
     <link href="{{ asset('css/home.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 
+  <!--  -->
+
+
     <!-- Scripts -->
     <script>
         window.Laravel = {!! json_encode([
@@ -42,10 +45,10 @@
                 <div class="carousel-inner" role="listbox">
                     <div class="item active"><img class="carousel-image" src="../img-uploads/bg/2.png" alt="image not found" /></div>
                     <div class="item"><img class="carousel-image" src="../img-uploads/bg/4.jpg" alt="image not found" /></div>
-                    <div class="item"><img class="carousel-image" src="../img-uploads/bg/1.jpg" alt="image not found" /></div>
+                    <div class="item"><img class="carousel-image" src="../img-uploads/c1.png" alt="image not found" /></div>
                 </div>
 
-            </div>
+    </div>
         </div>
         <div id='dorme-main-header' class="col-md-10 col-sm-10">
             <img src="../img-uploads/sm.png" alt="DORME" />

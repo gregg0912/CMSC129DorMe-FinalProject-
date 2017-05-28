@@ -60,3 +60,6 @@ Route::get('/admin/confirm/{dorm_id}', 'AdminController@confirm');
 Route::get('/admin/reject/{dorm_id}', 'AdminController@reject');
 
 Route::get('/owner/notifications', 'OwnerController@index');
+
+Route::get('/dorm/viewdorm/comment/{comment_id}', 'DormController@delcom');
+

@@ -14,6 +14,7 @@
 		@endif
 	</h2>
 		<div id="info">
+
            	@if(Auth::user() AND $dorm->user_id == Auth::user()->id)
 				<a  data-toggle="modal" data-target="#editThumbnail" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-edit"></span> Change Photo</a>
            	@endif	
@@ -106,8 +107,10 @@
 		@endif
 		
 		<div class="well">	
+			
 			@forelse($dorm->comments->sortByDesc('id') as $comment)
 				<div class="well well-cmt">
+					<a href="/dorm/viewdorm/comment/{{$comment->id}}" class="btn btn-default">Delete</a>
 					<p>{{ $comment->content }}</p>
 					<span id="cmt-time">{{$comment->created_at}} </span> 
 				</div>
