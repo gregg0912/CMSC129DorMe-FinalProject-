@@ -157,7 +157,7 @@
 				</fieldset>
 				<fieldset id="AddOnGroup">
 					<legend>Add-On</legend>
-					<div id="addonDiv1" class="addonDiv">
+					<div id="addonDiv1" class="addonDiv clearfix">
 						@forelse (App\Addon::addonList() as $addon)
 							<div class="radio col-xs-6 addonCheckbox">
 								<label><input type="checkbox" name="addon[]" value="{{ $addon->add_item }}-{{ $addon->add_price }}"
