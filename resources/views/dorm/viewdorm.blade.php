@@ -14,7 +14,6 @@
 	           	@if($dorm->user_id == Auth::user()->id)
 					<a  data-toggle="modal" data-target="#editThumbnail"><span class="glyphicon glyphicon-edit"></span> Edit</a>
 				@endif
-
            	@endif		
 			<img src="{{$dorm->thumbnailPic}}" alt="Image Not Found" />
 		</div>
@@ -99,8 +98,10 @@
 		</div>
 		
 		<div class="well">	
+			
 			@forelse($dorm->comments->sortByDesc('id') as $comment)
 				<div class="well well-cmt">
+					<a href="/dorm/viewdorm/comment/{{$comment->id}}" class="btn btn-default">Delete</a>
 					<p>{{ $comment->content }}</p>
 					<span id="cmt-time">{{$comment->created_at}} </span> 
 				</div>
