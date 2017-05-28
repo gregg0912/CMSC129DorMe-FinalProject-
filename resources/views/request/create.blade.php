@@ -168,5 +168,7 @@
 		</div>
 	</div>
 </div>
-
+<footer>
+    <p>&copy; Dorme 2016 | A.Y. 2016-2017 CMSC 127: Fabilloren, Icay, Legada, Montano</p>
+</footer>
 @endsection
