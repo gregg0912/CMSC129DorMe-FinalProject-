@@ -58,11 +58,11 @@
 						@endif /> Dorm Area</label>
 						<label class="checkbox-inline"><input type="radio" name="location" value="banwa"
 						@if(!is_null(old('location')))
-							@if('dormArea' == old('location'))
+							@if('banwa' == old('location'))
 								checked
 							@endif
 						@else
-							@if('dormArea' == $dorm->location)
+							@if('banwa' == $dorm->location)
 								checked
 							@endif
 						@endif /> Banwa</label>
@@ -118,11 +118,11 @@
 						<label class="checkbox-inline">
 							<input type="radio" name="housingType" value="bedspace"
 								@if(!is_null(old('housingType')))
-									@if('dormitory' == old('housingType'))
+									@if('bedspace' == old('housingType'))
 										checked
 									@endif
 								@else
-									@if('dormitory' == $dorm->housingType)
+									@if('bedspace' == $dorm->housingType)
 										checked
 									@endif
 								@endif

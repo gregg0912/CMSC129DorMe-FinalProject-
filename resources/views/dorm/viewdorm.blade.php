@@ -110,7 +110,7 @@
 			@forelse($dorm->comments->sortByDesc('id') as $comment)
 				<div class="well well-cmt">
 
-					@if(Auth::user()!=null AND Auth::user()==1)
+					@if(Auth::user()!=null AND Auth::user()->role==1)
 							<a href="/dorm/viewdorm/comment/{{$comment->id}}" class="btn btn-default">Delete</a>
 					@endif
 
