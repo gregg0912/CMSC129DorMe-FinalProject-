@@ -132,6 +132,16 @@ class DormController extends Controller
             
             return redirect('/dorm/viewdorm/'.$request->comment_id);
     }
+    public function delcom(Comment $comment_id)
+    {
+        //$comment = new Comment;
+        
+         //  dd($comment_id->dorm_id);
+           Comment::find($comment_id->id)->delete();
+            
+            
+            return redirect('/dorm/viewdorm/'.$comment_id->dorm_id);
+    }
 
     /**
      * Display the specified resource.
