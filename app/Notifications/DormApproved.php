@@ -62,7 +62,7 @@ class DormApproved extends Notification
         $mytime = Carbon::now('Asia/Manila')->format('d-m-Y H:i:s');
         return [
 
-           "Your request for approval of  '$this->dormName' has been rejected.",
+           "Your request for approval of  '$this->dormName' has been approved.",
             $mytime
         ];
     }
