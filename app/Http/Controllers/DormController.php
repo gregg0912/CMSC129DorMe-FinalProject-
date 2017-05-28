@@ -137,10 +137,13 @@ class DormController extends Controller
         //$comment = new Comment;
         
          //  dd($comment_id->dorm_id);
+        if(Auth::user() != null && Auth::user()->role==1){
            Comment::find($comment_id->id)->delete();
-            
-            
             return redirect('/dorm/viewdorm/'.$comment_id->dorm_id);
+        }
+        else{
+            return view('user.errorPage');
+        }
     }
 
     /**

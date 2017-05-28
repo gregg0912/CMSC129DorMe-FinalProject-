@@ -3,11 +3,12 @@
 <link href="{{ asset('../css/style.css') }}" rel="stylesheet">
 <link href="{{ asset('../css/request.css') }}" rel="stylesheet">
 
+
 @section('content')
 
 <div class="body-content">
 	<div id="reqform">
-		<div class="col-md-6 col-md-offset-3">
+		<div class="container">
 			<form class="form-horizontal" action="/request" method="POST" role="form">
 				{{ csrf_field() }}
 				<fieldset>
