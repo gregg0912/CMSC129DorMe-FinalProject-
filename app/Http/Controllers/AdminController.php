@@ -28,6 +28,8 @@ class AdminController extends Controller
         if($user!=null && $user->role==1){
                 $userArray = [];
                 $dormArray = [];
+                $userNumberArray = [];
+                $userEmailArray = [];
                 $dormIdArray = [];
 
                 // $request = DB::table('request_dorms')->get();
@@ -36,9 +38,11 @@ class AdminController extends Controller
                     $user = User::find($req->user_id);
                     array_push($dormArray, $req->dormName);
                     array_push($userArray, $user->name);
+                    array_push($userNumberArray, $user->phone_number);
+                    array_push($userEmailArray, $user->email);
                     array_push($dormIdArray, $req->id);
                 }
-                 return view('user.adminSettings',['dorm'=>$dormArray,'user'=>$userArray,'dormid'=>$dormIdArray]);
+                 return view('user.adminSettings',['dorm'=>$dormArray,'user'=>$userArray,'dormid'=>$dormIdArray, 'userNumberArray'=>$userNumberArray, 'userEmailArray'=>$userEmailArray]);
         }
         else{
              return view('user.errorPage');

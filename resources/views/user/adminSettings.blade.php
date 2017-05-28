@@ -13,9 +13,11 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>Dorm Name</th>
-                    <th>Owner</th>
-                    <th>Action</th>
+                    <th class="text-center">Dorm Name</th>
+                    <th class="text-center">Owner</th>
+                    <th class="text-center">Number</th>
+                    <th class="text-center">E-mail address</th>
+                    <th class="text-center">Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -23,8 +25,16 @@
                     <tr>
                         <td>{{$dorm[$i]}}</td>
                         <td>{{$user[$i]}}</td>
-                        <td><a href="/admin/confirm/{{$dormid[$i]}}" type="button" class="btn btn-success"><span class=" glyphicon glyphicon-ok"></span></a>
-                        <a href="/admin/reject/{{$dormid[$i]}}" type="button" class="btn btn-danger"><span class=" glyphicon glyphicon-remove"></span></a></td>
+                        <td>{{$userNumberArray[$i]}}</td>
+                        <td>{{$userEmailArray[$i]}}</td>
+                        <td>
+                            <div class="col-sm-6">
+                                <a href="/admin/confirm/{{$dormid[$i]}}" type="button" class="btn btn-success"><span class=" glyphicon glyphicon-ok"></span></a>
+                            </div>
+                            <div class="col-sm-6">
+                                <a href="/admin/reject/{{$dormid[$i]}}" type="button" class="btn btn-danger"><span class=" glyphicon glyphicon-remove"></span></a>
+                            </div>
+                        </td>
                     </tr>
                 @endfor
          	</tbody>
