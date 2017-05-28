@@ -1,9 +1,12 @@
 @extends('layouts.app')
 <link media="all" type="text/css" rel="stylesheet" href="{{ URL::asset('../bootstrap-3.3.7/dist/css/bootstrap.min.css') }}" />
+<link href="{{ asset('../css/style.css') }}" rel="stylesheet">
+<link href="{{ asset('../css/request.css') }}" rel="stylesheet">
+
 @section('content')
 
-<div class="container">
-	<div class="row">
+<div class="body-content">
+	<div id="reqform">
 		<div class="col-md-6 col-md-offset-3">
 			<form class="form-horizontal" action="/request" method="POST" role="form">
 				{{ csrf_field() }}
@@ -168,5 +171,9 @@
 		</div>
 	</div>
 </div>
+
+<footer >
+    <p>&copy; Dorme 2016 | A.Y. 2016-2017 CMSC 127: Fabilloren, Icay, Legada, Montano</p>
+</footer>
 
 @endsection
