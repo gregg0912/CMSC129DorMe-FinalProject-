@@ -2,6 +2,7 @@
 
 <link media="all" type="text/css" rel="stylesheet" href="{{ URL::asset('../css/style.css') }}" />
 <link media="all" type="text/css" rel="stylesheet" href="{{ URL::asset('../css/home.css') }}" />
+<link media="all" type="text/css" rel="stylesheet" href="{{ URL::asset('../bootstrap-3.3.7/dist/css/bootstrap.min.css') }}" />
 <script rel="stylesheet" src="{{ URL::asset('../js/script1.js') }}"></script>
 <script rel="stylesheet" src="{{ URL::asset('../js/home.js') }}"></script>
 

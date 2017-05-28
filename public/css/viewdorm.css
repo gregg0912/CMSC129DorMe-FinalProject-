@@ -92,6 +92,20 @@ dl:after {
 	margin: 5px;
 }
 
+#gallery li {
+	list-style: none;
+}
+
+#gallery img {
+	width: 100%;
+	margin-bottom: 20px;
+	max-height: 300px;
+	object-fit: cover;
+	object-position: center;
+	border-radius: 3px;
+	padding: 0 20%;
+}
+
 @media screen and (min-width: 769px) {
 	#btn-upload {
 		margin-left: 40%;
