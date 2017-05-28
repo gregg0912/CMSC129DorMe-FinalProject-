@@ -9,19 +9,25 @@ use Auth;
 class OwnerController extends Controller
 {
     //
-     public function index()
+     public function index() //after owner clicks the notifications tab
     {
          $user = Auth::user();
-        // echo $user->name;
-        // foreach ($user->notifications as $notification) {
-        //     foreach($notification->data as $message){
-                 
-        //          echo $message;
-                 
-        //     }
-         $user->unreadNotifications->markAsRead();
-         
-        return view('user.notif',['user'=>$user]);
+         if($user!=null && $user->role==0){
+
+	        // echo $user->name;
+	        // foreach ($user->notifications as $notification) {
+	        //     foreach($notification->data as $message){
+	                 
+	        //          echo $message;
+	                 
+	        //     }
+	         $user->unreadNotifications->markAsRead();
+
+	        return view('user.notif',['user'=>$user]);
+   		 }
+   		 else{
+   		 	 return view('user.errorPage');
+   		 }
     }
        
 	

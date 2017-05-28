@@ -5,10 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Cookie\CookieJar;
+use Illuminate\Support\Facades\File;
 use App\Dorm;
 use App\Facility;
 use App\Addon;
 use App\Room;
+use App\Comment;
+use Auth;
 use Cookie;
 
 class DormController extends Controller
@@ -118,13 +121,16 @@ class DormController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        // $location = $request->get('loc');
-
-        // echo $location;
-
-        // $location->loc = Input::get('loc');
-        // $location->save();
+        $comment = new Comment;
+        
+        if ($request->content != null) {
+                $comment->content = $request->content;
+                $comment->dorm_id = $request->comment_id;
+                $comment->save();
+                # code...
+            }
+            
+            return redirect('/dorm/viewdorm/'.$request->comment_id);
     }
 
     /**

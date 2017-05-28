@@ -4,6 +4,11 @@
 
 .body-content{
 	padding: 10px 20px;
+	background: linear-gradient(to bottom,
+		rgba(242,250,255,1) 0%,
+		rgba(255,255,255,1) 61%,
+		rgba(69,174,255,1) 100%);
+	height: 
 }
 
 #filter {
@@ -48,17 +53,21 @@ legend {
 }
 
 .dropdown {
-	width: 150px;
+	clear: both;
 	display: inline-block;
-	margin: auto;
+}
+
+.dropdown-grp {
+	width: 100%;
 }
 
 .checkboxes,
 .checkboxes label {
 	display: block;
-	margin-left: 5px;
+	padding-left: 5px;
 }	
 
+.checkboxes 
 .pagination {
 	margin: 0 50px;
 }
@@ -79,13 +88,22 @@ legend {
 }
 
 #filter-buttons {
-	margin-left: 30%;
 	margin-top: 5px;
+	display: block;
+	text-align: center;
+}
+
+#filter-buttons button {
+	width: 50%;
 }
 
 #pc-checkboxes,
 #pc-location {
 	display: none;
+}
+
+#no-results {
+	padding: 50px 30px;
 }
 
 @media screen and (min-width: 769px) {
@@ -95,7 +113,15 @@ legend {
 		margin-left: 80px;
 		margin-top: 50px;
 		display: block;
+		height: 1300px;
+	}
 
+	#filter-buttons {
+		text-align:left;
+	}
+
+	#filter-buttons a {
+		margin-left: 7%;
 	}
 
 	.dropdown {
@@ -107,16 +133,26 @@ legend {
 		display: block;
 	}
 
-	#estab-list {
-		width: 450px;
-		margin: 0;
-		line-height: 1em;
-	}
+ 	.checkboxes .cb {
+ 		margin-right: 5px;
+ 	}
 
-	#establishments {
-		display: inline-block;
-		height: 300px;
-	}
+ 	#establishments {
+ 		padding-top: 50px;
+ 		height: 1800px;
+ 		position: absolute;
+ 		float: right;
+ 		flex: vertical;
+ 		left: 30%;
+ 	}
+
+ 	.body-content {
+ 		height: 2900px;
+ 	}
+
+ 	#filter-buttons a {
+ 		display: disabled;
+ 	}
 }
 
 @media screen and (min-width: 1024px) {
