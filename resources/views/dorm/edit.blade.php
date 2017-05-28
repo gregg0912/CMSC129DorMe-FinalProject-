@@ -279,6 +279,26 @@
 		</div>
 	</div>
 </div>
+<div class="modal fade" id="facilityRemoveError">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header bg-danger">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4>You cannot remove any more facilities.</h4>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal fade" id="roomRemoveError">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header bg-danger">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4>You cannot remove any more rooms.</h4>
+			</div>
+		</div>
+	</div>
+</div>
 <footer>
     <p>&copy; Dorme 2016 | A.Y. 2016-2017 CMSC 127: Fabilloren, Icay, Legada, Montano</p>
 </footer>

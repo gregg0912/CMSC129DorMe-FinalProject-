@@ -176,7 +176,7 @@ class DormController extends Controller
      */
     public function update(Request $request, $dorm)
     {
-
+        
     }
 
     /**
