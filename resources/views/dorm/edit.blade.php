@@ -1,7 +1,10 @@
 @extends('layouts.app')
 <link href="{{ asset('../css/style.css') }}" rel="stylesheet">
+<link href="{{ asset('../css/editform.css') }}" rel="stylesheet">
 <link media="all" type="text/css" rel="stylesheet" href="{{ URL::asset('../bootstrap-3.3.7/dist/css/bootstrap.min.css') }}" />
 <script type="text/javascript" src="scriptEditDorm.js"></script>
+
+
 @section('content')
 <div class="container">
 	<div class="row">
@@ -9,12 +12,11 @@
 			<form class="form-horizontal" action="/dorm/{{ $dorm->id }}" method="POST" role="form">
 				{{ csrf_field() }}
 				{{ method_field('PUT') }}
-				<fieldset>
+				<fieldset id="fs">
 					<legend>Establishment information</legend>
 					<input type="hidden" name="user_id" value="{{ Auth::user()->id }}" />
 					<input type="hidden" name="thumbnailPic" value="{{ $dorm->thumbnailPic }}" />
 					<input type="hidden" name="votes" value="{{ $dorm->votes }}" />
-					<input type="hidden" name="availability" value="{{ $dorm->availability }}" />
 					<div class="form-group {{ $errors->has('dormName') ? ' has-error': '' }}">
 						<input type="text" class="form-control" name="dormName" placeholder="Establishment name" value="{{ old('dormName', $dorm->dormName) }}" value="{{ old('dormName') }}" />
 						@if ($errors->has('dormName'))

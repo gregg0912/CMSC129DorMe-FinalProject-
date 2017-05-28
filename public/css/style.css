@@ -7,6 +7,10 @@ html {
 	width: 100%;
 }
 
+fieldset, legend {
+	padding: 1px !important
+}
+
 body {
     margin: 0;
     background-color: white;
@@ -60,7 +64,7 @@ p {
 
 	#gen-nav ul li {
 		display: inline-block;
-	}
+	}	
 
 	#gen-nav ul li:after {
 	  	display:block;
