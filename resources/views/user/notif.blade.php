@@ -16,7 +16,7 @@
                     @if(($user->notifications->count()!=0))
                     
                     <table class="table well ">
-                    	<thead>
+                    	<thead class="head">
                     	<tr>
                     	<th>Message</th>
                         <th>Date</th>
@@ -40,13 +40,11 @@
                     </div>
                      </div>
                      @else
-                      <div class="well">
+                      <div class="well no-notifs">
                         <h4>No notifications found!</h4>
                         </div>
                     @endif
                 
-                
-           
         </div>
     </div>
 </div>
