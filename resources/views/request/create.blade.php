@@ -44,8 +44,20 @@
 				<fieldset>
 					<legend>Establishment Location</legend>
 					<div class="input-group {{ $errors->has('location') ? ' has-error': '' }}">
-						<label><input type="radio" name="location" value="dormArea" @if(!is_null(old('location'))) @if('dormArea' == old('location')) checked @endif @endif /> Dorm Area</label>
-						<label><input type="radio" name="location" value="banwa" @if(!is_null(old('location'))) @if('banwa' == old('location')) checked @endif @endif /> Banwa</label>
+						<label><input type="radio" name="location" value="dormArea" 
+							@if(!is_null(old('location')))
+								@if('dormArea' == old('location'))
+									checked
+								@endif
+							@endif /> Dorm Area
+						</label>
+						<label><input type="radio" name="location" value="banwa" 
+							@if(!is_null(old('location')))
+								@if('banwa' == old('location'))
+									checked
+								@endif
+							@endif /> Banwa
+						</label>
 						@if ($errors->has('location'))
 							<span class="help-block">
 								<strong>{{ $errors->first('location') }}</strong>
@@ -56,10 +68,31 @@
 				<fieldset>
 					<legend>Housing Type</legend>
 					<div class="input-group {{ $errors->has('housingType') ? ' has-error': '' }}">
-						<label><input type="radio" name="housingType" value="apartment" @if(!is_null(old('housingType'))) @if('apartment' == old('housingType')) checked @endif @endif /> Apartment</label>
-						<label><input type="radio" name="housingType" value="boardinghouse" @if(!is_null(old('housingType'))) @if('boardinghouse' == old('housingType')) checked @endif @endif /> Boarding House</label>
-						<label><input type="radio" name="housingType" value="dormitory" @if(!is_null(old('housingType'))) @if('dormitory' == old('housingType')) checked @endif @endif /> Dormitory</label>
-						<label><input type="radio" name="housingType" value="bedspace" @if(!is_null(old('housingType'))) @if('bedspace' == old('housingType')) checked @endif @endif /> Bedspace</label>
+						<label><input type="radio" name="housingType" value="apartment"
+							@if(!is_null(old('housingType')))
+								@if('apartment' == old('housingType'))
+									checked
+								@endif
+							@endif /> Apartment
+						</label>
+						<label><input type="radio" name="housingType" value="boardinghouse"
+							@if(!is_null(old('housingType')))
+								@if('boardinghouse' == old('housingType'))
+									checked
+								@endif
+							@endif /> Boarding House</label>
+						<label><input type="radio" name="housingType" value="dormitory"
+							@if(!is_null(old('housingType')))
+								@if('dormitory' == old('housingType'))
+									checked
+								@endif
+							@endif /> Dormitory</label>
+						<label><input type="radio" name="housingType" value="bedspace"
+							@if(!is_null(old('housingType')))
+								@if('bedspace' == old('housingType'))
+									checked
+								@endif
+							@endif /> Bedspace</label>
 						@if ($errors->has('housingType'))
 							<span class="help-block">
 								<strong>{{ $errors->first('housingType') }}</strong>
@@ -71,7 +104,13 @@
 					<legend>Facilities</legend>
 					<div class="input-group {{ $errors->has('facilities[]') ? ' has-error': '' }}" id="FacilitiesGroup" name="FacilitiesGroup">
 						@forelse(App\Facility::facilityList() as $facility)
-							<label><input type="checkbox" name="facilities[]" value="{{ $facility->facility_name }}" @if(!is_null(old('facilities'))) @if(in_array($facility->facility_name , old('facilities'))) checked="checked" @endif @endif />{{ $facility->facility_name }}</label>
+							<label><input type="checkbox" name="facilities[]" value="{{ $facility->facility_name }}" 
+								@if(!is_null(old('facilities')))
+									@if(in_array($facility->facility_name , old('facilities')))
+										checked 
+									@endif
+								@endif />{{ $facility->facility_name }}
+							</label>
 						@empty
 							<label>No facilities were found in the database!</label>
 						@endforelse
@@ -127,7 +166,13 @@
 					<legend>Add-On</legend>
 					<div id="addonDiv1" class="addonDiv">
 						@forelse (App\Addon::addonList() as $addon)
-							<label><input type="checkbox" name="addon[]" value="{{ $addon->add_item }}-{{ $addon->add_price }}"@if(!is_null(old('facilities'))) @if(in_array($addon, old('addon[]'))) checked="checked" @endif @endif />{{ $addon->add_item }} - {{ $addon->add_price }}</label>
+							<label><input type="checkbox" name="addon[]" value="{{ $addon->add_item }}-{{ $addon->add_price }}"
+								@if(!is_null(old('facilities')))
+									@if(in_array($addon, old('addon[]')))
+										checked="checked"
+									@endif
+								@endif />{{ $addon->add_item }} - {{ $addon->add_price }}
+							</label>
 						@empty
 							<label>No addons were found in the database!</label>
 						@endforelse
@@ -143,7 +188,7 @@
 	<div class="modal fade" id="addFacilityModal" role="dialog">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<div class="modal-header bg-warning">
+				<div class="modal-header bg-danger">
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 					<h4>Only ten textboxes for the facility can be added.</h4>
 				</div>
@@ -153,9 +198,9 @@
 	<div class="modal fade" id="addRoomModal" role="dialog">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<div class="modal-header bg-warning">
+				<div class="modal-header bg-danger">
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					<h4>Only ten textboxes for the room can be added.</h4>
+					<h4>Only ten inputs for the room can be added.</h4>
 				</div>
 			</div>
 		</div>
@@ -163,7 +208,7 @@
 	<div class="modal fade" id="addAddonModal" role="dialog">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<div class="modal-header bg-warning">
+				<div class="modal-header bg-danger">
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 					<h4>Only ten textboxes for the addon can be added.</h4>
 				</div>

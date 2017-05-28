@@ -1,7 +1,7 @@
-editRoomCount = 2;
-editFacilityCount = 2;
-editAddonCount = 2;
 $(document).ready(function(){
+	editRoomCount = $('input[name="maxNum[]"]').length;
+	editFacilityCount = $('input[name="facilities[]"]').length;
+	editAddonCount = $('input[name="add_item[]"]').length;
 	$(document).on("click", "#edit-addFacility", addFacilityBox);
 	$(document).on("click", "#edit-removeFacility", removeFacilityBox);
 	$(document).on("click", "#edit-addRoom", addRoomBox);
@@ -11,15 +11,40 @@ $(document).ready(function(){
 });
 
 function addFacilityBox(e){
-	alert('clicked add facility');
+	e.preventDefault();
+	if(editFacilityCount > 10){
+		$("#facilityError").modal();
+		return false;
+	}
+	var newFacilityDiv = $(document.createElement('div')).attr("id", 'facilityTextbox'+(editFacilityCount+1));
+	newFacilityDiv.addClass("form-group");
+	newFacilityDiv.after().html(
+		'<div class="input-group">'+
+			'<input type="text" name="facilities[]" class="form-control" placeholder="Facility Name" />'+
+			'<span class="input-group-btn">'+
+				'<button type="button" class="btn btn-danger" id="edit-removeFacility" >'+
+					'<span class="glyphicon glyphicon-minus-sign"></span> Remove'+
+				'</button>'+
+			'</span>'+
+		'</div>'
+	);
+
+	$('#edit-addFacility').before(newFacilityDiv);
+	editFacilityCount = $('input[name="facilities[]"]').length;
 }
 
 function addRoomBox(e){
-	alert('clicked add room');
+	e.preventDefault();
+	if(editAddonCount > 10){
+		$("#addonError").modal();
+		return false;
+	}
+	var newRoomBox = $(document.createElement('div'))
 }
 
 function addAddonBox(e){
 	alert('clicked add addon');
+	console.log(editAddonCount);
 }
 
 function removeFacilityBox(e){

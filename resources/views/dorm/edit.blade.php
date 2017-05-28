@@ -1,7 +1,7 @@
 @extends('layouts.app')
 <link href="{{ asset('../css/style.css') }}" rel="stylesheet">
 <link media="all" type="text/css" rel="stylesheet" href="{{ URL::asset('../bootstrap-3.3.7/dist/css/bootstrap.min.css') }}" />
-
+<script type="text/javascript" src="scriptEditDorm.js"></script>
 @section('content')
 <div class="container">
 	<div class="row">
@@ -42,8 +42,25 @@
 				<fieldset>
 					<legend>Establishment Location</legend>
 					<div class="input-group {{ $errors->has('location') ? ' has-error': '' }}">
-						<label class="checkbox-inline"><input type="radio" name="location" value="dormArea" @if(!is_null(old('location'))) @if('dormArea' == old('location', $dorm->location)) checked @endif @else @if('dormArea' == $dorm->location) @endif @endif /> Dorm Area</label>
-						<label class="checkbox-inline"><input type="radio" name="location" value="banwa" @if(!is_null(old('location'))) @if('banwa' == old('location', $dorm->location)) checked @endif @endif /> Banwa</label>
+						<label class="checkbox-inline"><input type="radio" name="location" value="dormArea" @if(!is_null(old('location')))
+							@if('dormArea' == old('location'))
+								checked
+							@endif
+						@else
+							@if('dormArea' == $dorm->location)
+								checked
+							@endif
+						@endif /> Dorm Area</label>
+						<label class="checkbox-inline"><input type="radio" name="location" value="banwa"
+						@if(!is_null(old('location')))
+							@if('dormArea' == old('location'))
+								checked
+							@endif
+						@else
+							@if('dormArea' == $dorm->location)
+								checked
+							@endif
+						@endif /> Banwa</label>
 						@if ($errors->has('location'))
 							<span class="help-block">
 								<strong>{{ $errors->first('location') }}</strong>
@@ -54,10 +71,58 @@
 				<fieldset>
 					<legend>Housing Type</legend>
 					<div class="{{ $errors->has('housingType') ? ' has-error': '' }}">
-						<label class="checkbox-inline"><input type="radio" name="housingType" value="apartment" /> Apartment</label>
-						<label class="checkbox-inline"><input type="radio" name="housingType" value="boardinghouse" /> Boarding House</label>
-						<label class="checkbox-inline"><input type="radio" name="housingType" value="dormitory" /> Dormitory</label>
-						<label class="checkbox-inline"><input type="radio" name="housingType" value="bedspace" /> Bedspace</label>
+						<label class="checkbox-inline">
+							<input type="radio" name="housingType" value="apartment"
+								@if(!is_null(old('housingType')))
+									@if('apartment' == old('housingType'))
+										checked
+									@endif
+								@else
+									@if('apartment' == $dorm->housingType)
+										checked
+									@endif
+								@endif
+							 /> Apartment
+						</label>
+						<label class="checkbox-inline">
+							<input type="radio" name="housingType" value="boardinghouse"
+								@if(!is_null(old('housingType')))
+									@if('boardinghouse' == old('housingType'))
+										checked
+									@endif
+								@else
+									@if('boardinghouse' == $dorm->housingType)
+										checked
+									@endif
+								@endif
+							 /> Boarding House
+						</label>
+						<label class="checkbox-inline">
+							<input type="radio" name="housingType" value="dormitory"
+								@if(!is_null(old('housingType')))
+									@if('dormitory' == old('housingType'))
+										checked
+									@endif
+								@else
+									@if('dormitory' == $dorm->housingType)
+										checked
+									@endif
+								@endif
+							 /> Dormitory
+						</label>
+						<label class="checkbox-inline">
+							<input type="radio" name="housingType" value="bedspace"
+								@if(!is_null(old('housingType')))
+									@if('dormitory' == old('housingType'))
+										checked
+									@endif
+								@else
+									@if('dormitory' == $dorm->housingType)
+										checked
+									@endif
+								@endif
+							 /> Bedspace
+						</label>
 						@if ($errors->has('housingType'))
 							<span class="help-block">
 								<strong>{{ $errors->first('housingType') }}</strong>
@@ -83,9 +148,11 @@
 							<div id="facilityTextbox1" class="form-group">
 								<div class="input-group">
 									<input type="text" name="facilities[]" class="form-control" placeholder="Facility Name" />
-									<button type="button" class="btn btn-danger" id="edit-removeFacility" >
-										<span class="glyphicon glyphicon-minus-sign"></span> Remove
-									</button>
+									<span class="input-group-btn">
+										<button type="button" class="btn btn-danger" id="edit-removeFacility" >
+											<span class="glyphicon glyphicon-minus-sign"></span> Remove
+										</button>
+									</span>
 								</div>
 							</div>
 						@endforelse
@@ -102,10 +169,10 @@
 					@forelse($dorm->rooms as $key => $room)
 						<div id="roomDiv{{ $key+1 }}" class="form-group">
 							<div class="input-group">
-								<div class="col-md-3">
+								<div class="col-xs-3">
 									<label>Max residents: <input type="number" class="form-control" name="maxNum[]" min="1" value="{{ $room->maxNoOfResidents }}" /></label>
 								</div>
-								<div class="col-md-3">
+								<div class="col-xs-3">
 									<label>Type of Payment:
 										<select name="typeOfPayment[]" class="form-control">
 											<option value="by_room"  @if($room->typeOfPayment =='by_room') selected @endif>Per room</option>
@@ -113,10 +180,10 @@
 										</select>
 									</label>
 								</div>
-								<div class="col-md-3">
+								<div class="col-xs-3">
 									<label>Price: <input type="number" class="form-control" name="price[]" min="500" value="{{ $room->price }}" /></label>
 								</div>
-								<div class="col-md-3">
+								<div class="col-xs-3">
 									<span style="visibility: hidden">Remove</span>
 									<button type="button" class="btn btn-danger" id="edit-removeRoom"><span class="glyphicon glyphicon-minus-sign"></span> Remove</button>
 								</div>
@@ -125,15 +192,23 @@
 					@empty
 						<div id="roomDiv1" class="form-group">
 							<div class="input-group">
-								<label>Max residents: <input type="number" class="form-control" name="maxNum[]" min="1" value="1"></label>
-								<label>Type of Payment: 
-									<select name="typeOfPayment[]" class="form-control">
-										<option value="by_room">Per room</option>
-										<option value="by_person">Per person</option>
-									</select>
-								</label>
-								<label>Price: <input type="number" class="form-control" name="price[]" min="500" value="500" /></label>
-								<button type="button" class="btn btn-danger" id="edit-removeRoom"><span class="glyphicon glyphicon-minus-sign"></span> Remove</button>
+								<div class="col-xs-3">
+									<label>Max residents: <input type="number" class="form-control" name="maxNum[]" min="1" value="1"></label>
+								</div>
+								<div class="col-xs-3">
+									<label>Type of Payment: 
+										<select name="typeOfPayment[]" class="form-control">
+											<option value="by_room">Per room</option>
+											<option value="by_person">Per person</option>
+										</select>
+									</label>
+								</div>
+								<div class="col-xs-3">
+									<label>Price: <input type="number" class="form-control" name="price[]" min="500" value="500" /></label>
+								</div>
+								<div class="col-xs-3">
+									<button type="button" class="btn btn-danger" id="edit-removeRoom"><span class="glyphicon glyphicon-minus-sign"></span> Remove</button>
+								</div>
 							</div>
 						</div>
 					@endforelse
@@ -149,6 +224,9 @@
 								<span class="glyphicon glyphicon-rub"></span>
 							</div>
 							<input type="number" name="add_price[]" class="form-control" min="100" value="{{ $addon->add_price }}" />
+							<div class="input-group-btn">
+								<button type="button" class="btn btn-danger" id="edit-removeAddon"><span class="glyphicon glyphicon-minus-sign"></span> Remove</button>
+							</div>
 						</div>
 					</div>
 					@empty
@@ -159,15 +237,45 @@
 								<span class="glyphicon glyphicon-rub"></span>	
 							</div>
 							<input type="number" class="form-control" name="add_price[]" min="100" />
-							<div class="input-group-addon">
-								<button type="button" class=""></button>
+							<div class="input-group-btn">
+								<button type="button" class="btn btn-danger" id="edit-removeAddon"><span class="glyphicon glyphicon-minus-sign"></span> Remove</button>
 							</div>
 						</div>
 					</div>
 					@endforelse
-
+					<button type="button" class="btn btn-success pull-right" id="edit-addAddon"><span class="glyphicon glyphicon-plus-sign"></span> Add</button>
 				</fieldset>
 			</form>
+		</div>
+	</div>
+</div>
+<div class="modal fade" id="facilityError">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header bg-danger">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4>Only ten inputs for the facilities can be added.</h4>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal fade" id="addonError">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header bg-danger">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4>Only ten inputs for the addons can be added.</h4>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal fade" id="roomError">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header bg-danger">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4>Only ten inputs for the rooms can be added.</h4>
+			</div>
 		</div>
 	</div>
 </div>
