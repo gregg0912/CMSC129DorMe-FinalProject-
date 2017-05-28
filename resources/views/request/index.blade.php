@@ -8,7 +8,7 @@
 @section('content')
 
 <div class="body-content">
-		<div class="well">
+		<div class="well req">
 			<a href="{{ url('/request/create') }}">Add A Request</a>
 			@forelse ($requests as $key => $request)
 				<h6>Request {{ $key+1 }}</h6>

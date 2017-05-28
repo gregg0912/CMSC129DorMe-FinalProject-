@@ -10,12 +10,12 @@
 <div class="body-content">
 	<h2>{{$dorm->dormName}}
 		@if(Auth::user() AND $dorm->user_id == Auth::user()->id)
-			<a href="/dorm/{{ $dorm->id }}/edit" class="small"><span class="glyphicon glyphicon-edit">Edit Establishment's Information</span></a>
+			<a href="/dorm/{{ $dorm->id }}/edit" class="small"><span class="glyphicon glyphicon-edit"></span> Edit Info</a>
 		@endif
 	</h2>
 		<div id="info">
            	@if(Auth::user() AND $dorm->user_id == Auth::user()->id)
-				<a  data-toggle="modal" data-target="#editThumbnail"><span class="glyphicon glyphicon-edit"></span> Edit Thumbnail</a>
+				<a  data-toggle="modal" data-target="#editThumbnail" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-edit"></span> Change Photo</a>
            	@endif	
 			<img src="{{$dorm->thumbnailPic}}" alt="Image Not Found" />
 		</div>
