@@ -8,12 +8,13 @@
 @section('content')
 
 <div class="body-content">
+<div class="container">
 		<div class="well req">
-			<a href="{{ url('/request/create') }}">Add A Request</a>
+			<a href="{{ url('/request/create') }}"" type="button" class="btn btn-primary">Add A Request</a>
 			@forelse ($requests as $key => $request)
-				<h6>Request {{ $key+1 }}</h6>
+				<h3>Request {{ $key+1 }}</h3>
 				<div class="caption">
-					<p>{{ $request->dormName }}</p>
+					<p><strong>{{ $request->dormName }}</strong></p>
 					<p>{{ $request->streetName }}, {{ $request->barangayName }}</p>
 					<p>{{ $request->getHousingType() }}</p>
 					<p>{{ $request->getLocation() }}</p>
@@ -25,6 +26,7 @@
 			@endforelse
 		</div>
 	</div>
+</div>
 </div>
 <footer >
     <p>&copy; Dorme 2016 | A.Y. 2016-2017 CMSC 127: Fabilloren, Icay, Legada, Montano</p>

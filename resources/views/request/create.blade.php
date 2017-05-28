@@ -1,14 +1,14 @@
 @extends('layouts.app')
 <link media="all" type="text/css" rel="stylesheet" href="{{ URL::asset('../bootstrap-3.3.7/dist/css/bootstrap.min.css') }}" />
 <link href="{{ asset('../css/style.css') }}" rel="stylesheet">
-<link href="{{ asset('../css/request.css') }}" rel="stylesheet">
+<link href="{{ asset('../css/addrequest.css') }}" rel="stylesheet">
 
 @section('content')
 
 <div class="body-content">
 	<div id="reqform">
-		<div class="col-md-6 col-md-offset-3">
-			<form class="form-horizontal" action="/request" method="POST" role="form">
+		<div class="container">
+			<form class="form-vertical" action="/request" method="POST" role="form">
 				{{ csrf_field() }}
 				<fieldset>
 					<legend>Establishment information</legend>

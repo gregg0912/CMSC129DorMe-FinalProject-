@@ -41,3 +41,19 @@
 	display: block;
 	padding-left: 5px;
 }
+
+.caption {
+	margin-left: 5%;
+}
+
+
+@media screen and (min-width: 1024px) {
+	.body-content {
+		height: 1000px;
+	}
+
+	.caption {
+		margin-left: 15%;
+	}
+
+}
