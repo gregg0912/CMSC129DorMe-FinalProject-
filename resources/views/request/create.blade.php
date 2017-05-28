@@ -1,8 +1,11 @@
 @extends('layouts.app')
 <link media="all" type="text/css" rel="stylesheet" href="{{ URL::asset('../bootstrap-3.3.7/dist/css/bootstrap.min.css') }}" />
 <link href="{{ asset('../css/style.css') }}" rel="stylesheet">
-<link href="{{ asset('../css/addrequest.css') }}" rel="stylesheet">
+<style type="text/css">
+	#reqform{
 
+	}
+</style>
 
 @section('content')
 
@@ -10,7 +13,7 @@
 	<div id="reqform">
 		<div class="container">
 
-			<form class="form-vertical" action="/request" method="POST" role="form">
+			<form action="/request" method="POST" role="form">
 
 
 				{{ csrf_field() }}

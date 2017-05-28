@@ -27,6 +27,7 @@ function addAddon(e){
 		return false;
 	}
 	var newAddonDiv = $(document.createElement('div')).attr("id", 'addonDiv'+addonCount);
+	newAddonDiv.addClass("form-group");
 	newAddonDiv.after().html(
 		'<div class="input-group">'+
 			'<input type="text" name="add_item[]" class="form-control" placeholder="Addon name" />'+
