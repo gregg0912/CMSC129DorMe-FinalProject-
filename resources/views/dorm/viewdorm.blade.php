@@ -78,9 +78,7 @@
 				<h4>Gallery</h4>
 				@forelse($dorm->images as $image)
 				<li>
-					<div class="thumbnail">
-						<img src="{{$image->image_path}}" alt="Image Not Found" />
-					</div>
+					<img src="{{$image->image_path}}" alt="Image Not Found" />
 				</li>
 				@empty
 					<p class="nocomment">No pictures available</p>
@@ -97,6 +95,7 @@
 		
 		@if(Auth::guest())
 			<div class="well">
+
 				<form action="{{ action('DormController@store') }}" method="post">
 					{{ csrf_field() }}
 					<input type="hidden" name="comment_id" value="{{ $dorm->id }}" />
@@ -107,9 +106,10 @@
 		@endif
 		
 		<div class="well">	
-			
+			<h4>Comments</h4>
 			@forelse($dorm->comments->sortByDesc('id') as $comment)
 				<div class="well well-cmt">
+
 					<a href="/dorm/viewdorm/comment/{{$comment->id}}" class="btn btn-default">Delete</a>
 					<p>{{ $comment->content }}</p>
 					<span id="cmt-time">{{$comment->created_at}} </span> 
