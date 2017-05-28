@@ -1,8 +1,11 @@
 @extends('layouts.app')
 <link media="all" type="text/css" rel="stylesheet" href="{{ URL::asset('../bootstrap-3.3.7/dist/css/bootstrap.min.css') }}" />
 <link href="{{ asset('../css/style.css') }}" rel="stylesheet">
-<link href="{{ asset('../css/addrequest.css') }}" rel="stylesheet">
-
+<style type="text/css">
+	#reqform{
+		display: block;
+	}
+</style>
 
 @section('content')
 
@@ -10,15 +13,13 @@
 	<div id="reqform">
 		<div class="container">
 
-			<form class="form-vertical" action="/request" method="POST" role="form">
-
-
+			<form action="/request" method="POST" role="form">
 				{{ csrf_field() }}
 				<fieldset>
 					<legend>Establishment information</legend>
 					<input type="hidden" name="user_id" value="{{ Auth::user()->id }}" />
 					<input type="hidden" name="thumbnailPic" value="/img-uploads/no_image.png" />
-					<div class="input-group {{ $errors->has('dormName') ? ' has-error': '' }}">
+					<div class="form-group {{ $errors->has('dormName') ? ' has-error': '' }}">
 						<input type="text" class="form-control" name="dormName" placeholder="Establishment Name" value="{{ old('dormName') }}" />
 						@if ($errors->has('dormName'))
 							<span class="help-block">
@@ -27,7 +28,7 @@
 						@endif
 					</div>
 
-					<div class="input-group {{ $errors->has('streetName') ? ' has-error': '' }}">
+					<div class="form-group {{ $errors->has('streetName') ? ' has-error': '' }}">
 						<input type="text" class="form-control" name="streetName" placeholder="Street Name" value="{{ old('streetName') }}" />
 						@if ($errors->has('streetName'))
 							<span class="help-block">
@@ -36,7 +37,7 @@
 						@endif
 					</div>
 
-					<div class="input-group {{ $errors->has('barangayName') ? ' has-error': '' }}">
+					<div class="form-group {{ $errors->has('barangayName') ? ' has-error': '' }}">
 						<input type="text" class="form-control" name="barangayName" placeholder="Barangay Name" value="{{ old('barangayName') }}" />
 						@if ($errors->has('barangayName'))
 							<span class="help-block">
@@ -48,14 +49,14 @@
 				<fieldset>
 					<legend>Establishment Location</legend>
 					<div class="input-group {{ $errors->has('location') ? ' has-error': '' }}">
-						<label><input type="radio" name="location" value="dormArea" 
+						<label class="checkbox-inline"><input type="radio" name="location" value="dormArea" 
 							@if(!is_null(old('location')))
 								@if('dormArea' == old('location'))
 									checked
 								@endif
 							@endif /> Dorm Area
 						</label>
-						<label><input type="radio" name="location" value="banwa" 
+						<label class="checkbox-inline"><input type="radio" name="location" value="banwa" 
 							@if(!is_null(old('location')))
 								@if('banwa' == old('location'))
 									checked
@@ -72,26 +73,26 @@
 				<fieldset>
 					<legend>Housing Type</legend>
 					<div class="input-group {{ $errors->has('housingType') ? ' has-error': '' }}">
-						<label><input type="radio" name="housingType" value="apartment"
+						<label class="checkbox-inline"><input type="radio" name="housingType" value="apartment"
 							@if(!is_null(old('housingType')))
 								@if('apartment' == old('housingType'))
 									checked
 								@endif
 							@endif /> Apartment
 						</label>
-						<label><input type="radio" name="housingType" value="boardinghouse"
+						<label class="checkbox-inline"><input type="radio" name="housingType" value="boardinghouse"
 							@if(!is_null(old('housingType')))
 								@if('boardinghouse' == old('housingType'))
 									checked
 								@endif
 							@endif /> Boarding House</label>
-						<label><input type="radio" name="housingType" value="dormitory"
+						<label class="checkbox-inline"><input type="radio" name="housingType" value="dormitory"
 							@if(!is_null(old('housingType')))
 								@if('dormitory' == old('housingType'))
 									checked
 								@endif
 							@endif /> Dormitory</label>
-						<label><input type="radio" name="housingType" value="bedspace"
+						<label class="checkbox-inline"><input type="radio" name="housingType" value="bedspace"
 							@if(!is_null(old('housingType')))
 								@if('bedspace' == old('housingType'))
 									checked
@@ -108,13 +109,15 @@
 					<legend>Facilities</legend>
 					<div class="input-group {{ $errors->has('facilities[]') ? ' has-error': '' }}" id="FacilitiesGroup" name="FacilitiesGroup">
 						@forelse(App\Facility::facilityList() as $facility)
-							<label><input type="checkbox" name="facilities[]" value="{{ $facility->facility_name }}" 
-								@if(!is_null(old('facilities')))
-									@if(in_array($facility->facility_name , old('facilities')))
-										checked 
-									@endif
-								@endif />{{ $facility->facility_name }}
-							</label>
+							<div class="radio col-xs-6">
+								<label><input type="checkbox" name="facilities[]" value="{{ $facility->facility_name }}" 
+									@if(!is_null(old('facilities')))
+										@if(in_array($facility->facility_name , old('facilities')))
+											checked 
+										@endif
+									@endif />{{ $facility->facility_name }}
+								</label>
+							</div>
 						@empty
 							<label>No facilities were found in the database!</label>
 						@endforelse
@@ -124,45 +127,31 @@
 							</span>
 						@endif
 					</div>
-					<button type="button" class="add-btn btn btn-success" id="add-facility" name="add-facility">
+					<button type="button" class="add-btn btn btn-success pull-right" id="add-facility" name="add-facility">
 						<span class="glyphicon glyphicon-plus-sign"></span> Add
 					</button>
 				</fieldset>
 				<fieldset id="RoomsGroup">
 					<legend>Rooms</legend>
 					<div id="roomDiv1">
-						<div class="input-gorup {{ $errors->has('maxNum[]') ? 'has-error': '' }}">
-							<label>Maximum number of residents: <input type="number" name="maxNum[]" min="1" value="1" /></label>
-							@if ($errors->has('maxNum[]'))
-								<span class="help-block">
-									<strong>{{ $errors->first('maxNum[]') }}</strong>
-								</span>
-							@endif
-						</div>
-						<div class="input-group {{ $errors->has('typeOfPayment[]') ? 'has-error': '' }}">
-							<label>
-								Type of Payment:
-								<select name="typeOfPayment[]">
-									<option value="by_room">Per Room</option>
-									<option value="by_person">Per person</option>
-								</select>
-							</label>
-							@if ($errors->has('typeOfPayment[]'))
-								<span class="help-block">
-									<strong>{{ $errors->first('typeOfPayment[]') }}</strong>
-								</span>
-							@endif
-						</div>
-						<div class="input-group {{ $errors->has('price[]') ? 'has-error': '' }}">
-							<label>Price: <input type="number" name="price[]" min="500" value="500" /></label>
-							@if ($errors->has('price[]'))
-								<span class="help-block">
-									<strong>{{ $errors->first('price[]') }}</strong>
-								</span>
-							@endif
+						<div class="input-group">
+							<div class="col-xs-4 {{ $errors->has('maxNum[]') ? 'has-error': '' }}">
+								<label>Max residents: <input type="number" class="form-control" name="maxNum[]" min="1" value="1" /></label>
+							</div>
+							<div class="col-xs-4 {{ $errors->has('typeOfPayment[]') ? 'has-error': '' }}">
+								<label>Type of Payment:
+									<select name="typeOfPayment[]" class="form-control">
+										<option value="by_room">Per Room</option>
+										<option value="by_person">Per person</option>
+									</select>
+								</label>
+							</div>
+							<div class="col-xs-4 {{ $errors->has('price[]') ? 'has-error': '' }}">
+								<label>Price: <input type="number" name="price[]" min="500" value="500" class="form-control" /></label>
+							</div>
 						</div>
 					</div>
-					<button type="button" class="add-btn btn btn-success" id="add-room" name="add-room">
+					<button type="button" class="add-btn btn btn-success pull-right" id="add-room" name="add-room">
 						<span class="glyphicon glyphicon-plus-sign"></span> Add
 					</button>
 				</fieldset>
@@ -170,22 +159,26 @@
 					<legend>Add-On</legend>
 					<div id="addonDiv1" class="addonDiv">
 						@forelse (App\Addon::addonList() as $addon)
-							<label><input type="checkbox" name="addon[]" value="{{ $addon->add_item }}-{{ $addon->add_price }}"
-								@if(!is_null(old('facilities')))
-									@if(in_array($addon, old('addon[]')))
-										checked="checked"
-									@endif
-								@endif />{{ $addon->add_item }} - {{ $addon->add_price }}
-							</label>
+							<div class="radio col-xs-6 addonCheckbox">
+								<label><input type="checkbox" name="addon[]" value="{{ $addon->add_item }}-{{ $addon->add_price }}"
+									@if(!is_null(old('facilities')))
+										@if(in_array($addon, old('addon[]')))
+											checked="checked"
+										@endif
+									@endif />{{ $addon->add_item }} - {{ $addon->add_price }}
+								</label>
+							</div>
 						@empty
 							<label>No addons were found in the database!</label>
 						@endforelse
 					</div>
-					<button type="button" class="add-btn btn btn-success" id="add-addon" name="add-addon">
+					<button type="button" class="add-btn btn btn-success pull-right" id="add-addon" name="add-addon">
 						<span class="glyphicon glyphicon-plus-sign"></span> Add
 					</button>
 				</fieldset>
-				<input type="submit" name="submit" value="Submit" />
+				<div class="pull-left">
+					<input type="submit" name="submit" class="btn btn-primary" value="Submit" />
+				</div>
 			</form>
 		</div>
 	</div>

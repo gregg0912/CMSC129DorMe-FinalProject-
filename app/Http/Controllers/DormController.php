@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Cookie\CookieJar;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Validator;
 use App\Dorm;
 use App\Facility;
 use App\Addon;
@@ -201,7 +202,7 @@ class DormController extends Controller
         ], $messages);
 
         if($validation->fails()){
-            return redirect('/request/create')
+            return redirect('/dorm/'.$dorm.'/edit')
                     ->withErrors($validation)
                     ->withInput();
         }
@@ -252,7 +253,7 @@ class DormController extends Controller
             $room->save();
         }
 
-        return redirect('/dorm/viewdorm/'+$dorm_id);
+        return redirect('/dorm/viewdorm/'.$dorm_id);
     }
 
     /**

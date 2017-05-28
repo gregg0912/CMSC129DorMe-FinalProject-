@@ -6,7 +6,7 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-6 col-md-offset-3 col-sm-12">
-			<form class="form-horizontal" action="/dorm" method="POST" role="form">
+			<form class="form-horizontal" action="/dorm/{{ $dorm->id }}" method="POST" role="form">
 				{{ csrf_field() }}
 				{{ method_field('PUT') }}
 				<fieldset>
@@ -14,6 +14,7 @@
 					<input type="hidden" name="user_id" value="{{ Auth::user()->id }}" />
 					<input type="hidden" name="thumbnailPic" value="{{ $dorm->thumbnailPic }}" />
 					<input type="hidden" name="votes" value="{{ $dorm->votes }}" />
+					<input type="hidden" name="availability" value="{{ $dorm->availability }}" />
 					<div class="form-group {{ $errors->has('dormName') ? ' has-error': '' }}">
 						<input type="text" class="form-control" name="dormName" placeholder="Establishment name" value="{{ old('dormName', $dorm->dormName) }}" value="{{ old('dormName') }}" />
 						@if ($errors->has('dormName'))
